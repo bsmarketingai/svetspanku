@@ -137,8 +137,8 @@ class Component extends DCLogic {
       { label: 'Jednolůžkové postele', count: 46, href: '#' }
     ]).map(c => ({ label: c.label, count: c.count, hasCount: c.count !== undefined, href: c.href || '#' }));
     const articles = p.articles || [
-      { title: 'Jak vybrat postel?', href: '#clanek' },
-      { title: 'Proč postel z masivu?', href: '#clanek' }
+      { title: 'Jak vybrat postel?', href: 'Clanek.dc.html' },
+      { title: 'Proč postel z masivu?', href: 'Clanek.dc.html' }
     ];
     const frequent = (p.frequent || ['Manželská postel', 'Dvojlůžko']).map(f => (typeof f === 'string' ? { label: f, href: '#' } : f));
     return {

@@ -24,8 +24,8 @@ export const MENU = [
       { label: 'Postele MULTI na míru', href: '#vyroba-na-miru' }
     ],
     articles: [
-      { title: 'Jak správně vybrat matraci a na co si dát pozor?', href: '#clanek' },
-      { title: 'Postel z masivu, nebo čalouněná? Srovnání po pěti letech', href: '#clanek' }
+      { title: 'Jak správně vybrat matraci a na co si dát pozor?', href: 'Clanek.dc.html' },
+      { title: 'Postel z masivu, nebo čalouněná? Srovnání po pěti letech', href: 'Clanek.dc.html' }
     ],
     popular: ['Postel LEVITA', 'Postel s úložným prostorem', 'Postel 180 × 200', 'Masiv smrk'],
     promo: { title: 'Výroba na míru', text: 'Postel vyrobíme v rozměru, který potřebujete. Do 4 týdnů.', cta: 'Nezávazná poptávka', href: '#' }
