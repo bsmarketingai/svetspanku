@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Archivo,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:800!important;font-stretch:75%;text-transform:uppercase;letter-spacing:-0.005em;}
+
+.ss-pc{position:relative;font-family:Archivo,Helvetica,Arial,sans-serif;display:flex;flex-direction:column;width:100%;min-width:0;background:#FFFFFF;border-radius:12px;padding:16px;transition:box-shadow .15s cubic-bezier(.22,.61,.36,1);}
+.ss-pc:hover{box-shadow:0 4px 12px rgba(19,44,67,.12);}
+.ss-pc:focus-within{box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+.ss-pc-cover{position:absolute;inset:0;z-index:1;border-radius:12px;}
+.ss-pc-cover:focus-visible{outline:none;}
+.ss-pc-title{margin:0;font-size:15px;font-weight:600;line-height:1.4;color:#1C2229;transition:color .12s cubic-bezier(.22,.61,.36,1);}
+.ss-pc:hover .ss-pc-title{color:#296093;}
+.ss-pc-actions{position:relative;z-index:2;}
+.ss-pc-fav{position:absolute;top:0;right:0;z-index:2;display:flex;align-items:center;justify-content:center;width:40px;height:40px;border:0;border-radius:999px;background:rgba(255,255,255,.9);color:#55616C;cursor:pointer;transition:color .12s cubic-bezier(.22,.61,.36,1),background-color .12s cubic-bezier(.22,.61,.36,1);}
+.ss-pc-fav:hover{background:#FFFFFF;color:#B3261E;}
+.ss-pc-fav:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+</style>
+</helmet>
+<article class="ss-pc">
+  <a class="ss-pc-cover" href="{{ href }}" aria-label="{{ title }}"></a>
+
+  <div style="position:relative;width:100%;aspect-ratio:4/3;background:#F7F9FB;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#C8D0D8;margin-bottom:12px">
+    <dc-import name="Ikony" iconName="photo" size="32" hint-size="32px,32px"></dc-import>
+    <sc-if value="{{ hasBadge }}" hint-placeholder-val="{{ false }}">
+      <span style="position:absolute;top:8px;left:8px;z-index:2"><dc-import name="Stitek" kind="{{ badgeKind }}" label="{{ badgeLabel }}" size="small" hint-size="80px,24px"></dc-import></span>
+    </sc-if>
+    <button type="button" class="ss-pc-fav" onClick="{{ toggleFav }}" aria-label="{{ favLabel }}" aria-pressed="{{ favPressed }}">
+      <dc-import name="Ikony" iconName="{{ favIcon }}" size="20" hint-size="20px,20px"></dc-import>
+    </button>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:8px;flex:1;min-width:0">
+    <h3 class="ss-pc-title">{{ title }}</h3>
+    <sc-if value="{{ hasRating }}" hint-placeholder-val="{{ true }}">
+      <dc-import name="Hodnoceni" value="{{ rating }}" count="{{ ratingCount }}" size="small" hint-size="180px,20px"></dc-import>
+    </sc-if>
+    <span style="font-size:13px;color:#5B6874">Obj. číslo {{ orderNo }}</span>
+    <sc-if value="{{ hasParams }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;flex-wrap:wrap;gap:8px 16px;font-size:13px;color:#3D4750">
+        <sc-for list="{{ params }}" as="pm" hint-placeholder-count="3">
+          <span style="display:inline-flex;align-items:center;gap:6px"><span style="display:flex;color:#55616C"><dc-import name="Ikony" iconName="{{ pm.icon }}" size="16" hint-size="16px,16px"></dc-import></span>{{ pm.label }}</span>
+        </sc-for>
+      </div>
+    </sc-if>
+
+    <div style="margin-top:auto;padding-top:12px;display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:8px">
+      <dc-import name="Stitek" kind="{{ stockKind }}" label="{{ stockLabel }}" size="small" hint-size="140px,20px"></dc-import>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:2px;min-width:0">
+        <sc-if value="{{ hasBefore }}" hint-placeholder-val="{{ false }}">
+          <span style="font-size:13px;color:#5B6874;text-decoration:line-through">{{ priceBefore }}</span>
+        </sc-if>
+        <span style="font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:24px;color:{{ priceColor }};white-space:nowrap">{{ price }}</span>
+      </div>
+    </div>
+
+    <div class="ss-pc-actions" style="display:flex;gap:8px;align-items:center;margin-top:8px;flex-wrap:wrap">
+      <dc-import name="Kvantifikator" size="compact" value="{{ qty }}" onChange="{{ onQty }}" hint-size="108px,36px"></dc-import>
+      <div style="flex:1;min-width:120px">
+        <dc-import name="Tlacitko" label="{{ buyLabel }}" variant="{{ buyVariant }}" size="standard" iconLeft="shopping-cart" fullWidth="{{ true }}" disabled="{{ buyDisabled }}" onClick="{{ onBuy }}" hint-size="100%,36px"></dc-import>
+      </div>
+    </div>
+    <div class="ss-pc-actions" style="display:flex;align-items:center;gap:4px">
+      <dc-import name="Tlacitko" label="Porovnat" variant="text" size="standard" iconLeft="arrows-diff" onClick="{{ onCompare }}" hint-size="120px,24px"></dc-import>
+    </div>
+  </div>
+</article>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:320,&quot;height&quot;:520},&quot;product&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;Product&quot;},&quot;onBuy&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(qty: number) =&gt; void&quot;},&quot;onCompare&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;() =&gt; void&quot;},&quot;onFavourite&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(fav: boolean) =&gt; void&quot;}}">
+class Component extends DCLogic {
+  state = { fav: null, qty: 1 };
+  renderVals() {
+    const p = this.props;
+    const d = p.product || {};
+    const stock = d.stock || 'inStock';
+    const out = stock === 'outOfStock';
+    const fav = this.state.fav === null ? !!d.favourite : this.state.fav;
+    return {
+      href: d.href || '#produkt',
+      title: d.title || 'Partnerská matrace Spring Variant 22 cm',
+      orderNo: d.orderNo || '428170',
+      hasRating: d.rating !== undefined && d.rating !== null,
+      rating: d.rating ?? 4.6,
+      ratingCount: d.ratingCount ?? 128,
+      hasParams: !!(d.params && d.params.length),
+      params: d.params || [],
+      hasBadge: !!d.badge,
+      badgeKind: d.badge,
+      badgeLabel: d.badgeLabel,
+      stockKind: stock,
+      stockLabel: d.stockLabel,
+      price: d.price || '7 590 Kč',
+      priceBefore: d.priceBefore,
+      hasBefore: !!d.priceBefore,
+      priceColor: d.priceBefore ? '#B3261E' : '#1C2229',
+      buyLabel: out ? 'Hlídat dostupnost' : 'Do košíku',
+      buyVariant: out ? 'secondary' : 'buy',
+      buyDisabled: false,
+      qty: this.state.qty,
+      onQty: (v) => this.setState({ qty: v }),
+      favIcon: fav ? 'heart-filled' : 'heart',
+      favPressed: fav ? 'true' : 'false',
+      favLabel: fav ? 'Odebrat z oblíbených' : 'Přidat do oblíbených',
+      toggleFav: () => { this.setState({ fav: !fav }); if (p.onFavourite) p.onFavourite(!fav); },
+      onBuy: () => { if (p.onBuy) p.onBuy(this.state.qty); },
+      onCompare: () => { if (p.onCompare) p.onCompare(); }
+    };
+  }
+}
+</script>
+</body>
+</html>

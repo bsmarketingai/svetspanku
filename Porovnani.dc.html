@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Archivo,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:800!important;font-stretch:75%;text-transform:uppercase;letter-spacing:-0.005em;}
+
+html,body{margin:0!important;padding:0!important;}
+#dc-root{margin:0!important;padding:0!important;width:100%!important;max-width:none!important;border:0!important;}
+#dc-root>.sc-host{margin:0!important;padding:0!important;width:100%!important;}
+a{color:#296093;}
+a:hover{color:#21507B;}
+
+.ss-cmp-tab{box-sizing:border-box;font-family:Archivo,Helvetica,Arial,sans-serif;display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 20px;border:0;margin:0;cursor:pointer;border-radius:6px;font-size:15px;font-weight:600;white-space:nowrap;background:#FFFFFF;color:#21507B;box-shadow:inset 0 0 0 1px #C8D0D8;transition:background-color .12s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1),box-shadow .15s cubic-bezier(.22,.61,.36,1);}
+.ss-cmp-tab:focus-visible{outline:none;box-shadow:inset 0 0 0 1px #C8D0D8,0 0 0 3px rgba(41,96,147,.35);}
+.ss-cmp-tab[aria-pressed="true"]{background:#296093;color:#FFFFFF;box-shadow:none;}
+.ss-cmp-tab[aria-pressed="true"]:focus-visible{box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+@media (hover:hover) and (pointer:fine){
+  .ss-cmp-tab:hover{background:#F0F5FA;}
+  .ss-cmp-tab[aria-pressed="true"]:hover{background:#21507B;color:#FFFFFF;}
+}
+
+.ss-cmp-icon{box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border:0;margin:0;padding:0;background:transparent;color:#5B6874;border-radius:6px;cursor:pointer;transition:background-color .12s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1),box-shadow .15s cubic-bezier(.22,.61,.36,1);}
+.ss-cmp-icon:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+.ss-cmp-icon[aria-disabled="true"]{opacity:.35;cursor:not-allowed;}
+.ss-cmp-icon::after{content:"";position:absolute;inset:-4px;}
+@media (hover:hover) and (pointer:fine){ .ss-cmp-icon:not([aria-disabled="true"]):hover{background:#F0F5FA;color:#21507B;} }
+
+.ss-cmp-fav{box-sizing:border-box;font-family:Archivo,Helvetica,Arial,sans-serif;display:inline-flex;align-items:center;gap:8px;min-height:36px;padding:0 6px;border:0;margin:0;background:transparent;color:#3D4750;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;transition:color .12s cubic-bezier(.22,.61,.36,1),box-shadow .15s cubic-bezier(.22,.61,.36,1);}
+.ss-cmp-fav:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+@media (hover:hover) and (pointer:fine){ .ss-cmp-fav:hover{color:#21507B;} }
+
+.ss-cmp-title{font-family:Archivo,Helvetica,Arial,sans-serif;font-size:16px;font-weight:700;line-height:1.3;color:#1C2229;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px;}
+.ss-cmp-title:hover{color:#21507B;}
+@keyframes ss-cmp-led{0%{box-shadow:0 0 0 0 rgba(21,122,65,.45);}70%{box-shadow:0 0 0 6px rgba(21,122,65,0);}100%{box-shadow:0 0 0 0 rgba(21,122,65,0);}}
+.ss-cmp-led{display:inline-block;width:8px;height:8px;flex:none;border-radius:999px;background:#157A41;animation:ss-cmp-led 1.8s cubic-bezier(.22,.61,.36,1) infinite;}
+@media (prefers-reduced-motion:reduce){.ss-cmp-led{animation:none;}}
+.ss-cmp-scroll{overflow-x:auto;overflow-y:visible;-webkit-overflow-scrolling:touch;scrollbar-width:thin;}
+</style>
+</helmet>
+<div style="width:100%;background:#FFFFFF;font-family:Archivo,Helvetica,Arial,sans-serif;color:#1C2229">
+  <dc-import name="Hlavicka" style="position:sticky;top:0;z-index:200" ledMode="{{ ledMode }}" hint-size="100%,180px"></dc-import>
+  <dc-import name="PrezentacniLista" items="{{ presItems }}" onToggle="{{ onPresToggle }}" hint-size="320px,52px"></dc-import>
+
+  <main>
+    <section style="width:100%;background:#FFFFFF">
+      <div style="{{ inner }}">
+
+        <div style="{{ topGrid }}">
+          <div style="display:flex;flex-direction:column;gap:20px;min-width:0">
+            <div style="display:flex;flex-direction:column;gap:12px">
+              <h1 style="margin:0;font-size:{{ h1Size }};line-height:1.08">Porovnání produktů <span style="font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:600;font-stretch:100%;color:#5B6874">({{ totalCount }})</span></h1>
+              <p style="margin:0;max-width:56ch;font-size:17px;line-height:1.55;color:#3D4750;text-wrap:pretty">Vyberte produkty, které chcete porovnat, a v přehledné tabulce zkontrolujete, v čem se liší, který má jaké výhody a co bude pro vás nejvhodnější.</p>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:12px">
+              <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="3">
+                <button type="button" class="ss-cmp-tab" aria-pressed="{{ t.active }}" onClick="{{ t.onPick }}">{{ t.label }}</button>
+              </sc-for>
+            </div>
+          </div>
+
+          <sc-if value="{{ showAdvisor }}" hint-placeholder-val="{{ true }}">
+            <div style="{{ advisorStyle }}">
+              <h2 style="margin:0;font-size:22px;line-height:1.2">Nevíte si rady s výběrem?</h2>
+              <p style="margin:0;font-size:15px;line-height:1.5;color:#3D4750">Naši spánkoví specialisté vám poradí on-line nebo přímo na pobočce.</p>
+              <div style="{{ advisorGrid }}">
+                <div style="background:#FFFFFF;border-radius:6px;padding:16px;display:flex;flex-direction:column;gap:10px;min-width:0">
+                  <h3 style="margin:0;font-size:15px;line-height:1.3">Chcete poradit on-line?</h3>
+                  <a href="tel:+420543212855" style="font-family:'Archivo Narrow',Archivo,sans-serif;font-size:19px;font-weight:700;text-decoration:none">+420 543 212 855</a>
+                  <span style="display:inline-flex;align-items:center;gap:8px;font-size:13px;color:#3D4750">
+                    <sc-if value="{{ isOpenNow }}" hint-placeholder-val="{{ true }}">
+                      <span class="ss-cmp-led" role="img" aria-label="Právě jsme online"></span>
+                    </sc-if>
+                    <span>Po–Ne 9–17 hod.</span>
+                  </span>
+                  <a href="mailto:info@svetspanku.cz" style="font-size:14px;font-weight:600">info@svetspanku.cz</a>
+                </div>
+                <div style="background:#FFFFFF;border-radius:6px;padding:16px;display:flex;flex-direction:column;gap:12px;align-items:flex-start;min-width:0">
+                  <h3 style="margin:0;font-size:15px;line-height:1.3">Chcete si produkty vyzkoušet osobně na pobočce?</h3>
+                  <dc-import name="Tlacitko" label="Vybrat pobočku" variant="secondary" size="medium" href="#prodejny" iconLeft="map-pin" hint-size="180px,44px"></dc-import>
+                </div>
+              </div>
+            </div>
+          </sc-if>
+        </div>
+
+        <sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}">
+          <div style="padding:16px 0 8px">
+            <dc-import name="PrazdnyStav" icon="arrows-diff" title="V porovnání nic není" text="Produkty do porovnání přidáte tlačítkem Porovnat na kartě produktu nebo v jeho detailu." primaryLabel="Zpět na matrace" secondaryLabel="Průvodce výběrem" suggestions="{{ emptySuggestions }}" hint-size="100%,320px"></dc-import>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ showTools }}" hint-placeholder-val="{{ true }}">
+          <div style="{{ toolsStyle }}">
+            <sc-if value="{{ showDiffToggle }}" hint-placeholder-val="{{ false }}">
+              <button type="button" class="ss-cmp-tab" aria-pressed="{{ onlyDiff }}" onClick="{{ toggleDiff }}" style="min-height:36px;padding:0 14px;font-size:14px">
+                <span style="display:inline-flex;margin-right:8px"><dc-import name="Ikony" iconName="arrows-diff" size="18" hint-size="18px,18px"></dc-import></span>
+                <span>Jen rozdíly</span>
+              </button>
+            </sc-if>
+            <sc-if value="{{ showNav }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex;align-items:center;gap:4px;margin-left:auto">
+                <button type="button" class="ss-cmp-icon" style="position:relative" aria-label="Předchozí produkt" onClick="{{ scrollPrev }}">
+                  <dc-import name="Ikony" iconName="chevron-left" size="22" hint-size="22px,22px"></dc-import>
+                </button>
+                <span aria-hidden="true" style="width:1px;height:20px;background:#E1E6EB"></span>
+                <button type="button" class="ss-cmp-icon" style="position:relative" aria-label="Další produkt" onClick="{{ scrollNext }}">
+                  <dc-import name="Ikony" iconName="chevron-right" size="22" hint-size="22px,22px"></dc-import>
+                </button>
+              </div>
+            </sc-if>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ hasCols }}" hint-placeholder-val="{{ true }}">
+          <div class="ss-cmp-scroll" style="{{ scrollStyle }}" ref="{{ setScroller }}">
+            <div style="{{ headRowStyle }}">
+              <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
+                <div style="{{ headCornerStyle }}"></div>
+              </sc-if>
+              <sc-for list="{{ cols }}" as="c" hint-placeholder-count="3">
+                <div style="{{ headCellStyle }}">
+                  <div style="display:flex;justify-content:flex-end">
+                    <button type="button" class="ss-cmp-icon" style="position:relative;margin-right:-6px" aria-label="{{ c.removeLabel }}" onClick="{{ c.onRemove }}">
+                      <dc-import name="Ikony" iconName="x" size="20" hint-size="20px,20px"></dc-import>
+                    </button>
+                  </div>
+                  <a href="{{ c.href }}" style="{{ mediaStyle }}" aria-hidden="true" tabindex="-1">
+                    <span style="color:#9AA6B2;display:flex"><dc-import name="Ikony" iconName="photo" size="32" hint-size="32px,32px"></dc-import></span>
+                  </a>
+                  <h2 class="ss-plain" style="margin:0"><a class="ss-cmp-title" href="{{ c.href }}">{{ c.title }}</a></h2>
+                  <p style="margin:0;font-size:14px;line-height:1.5;color:#3D4750;text-wrap:pretty">{{ c.perex }}</p>
+                  <div style="{{ priceRowStyle }}">
+                    <dc-import name="Stitek" kind="{{ c.stock }}" label="{{ c.stockLabel }}" size="small" hint-size="120px,20px"></dc-import>
+                    <span style="{{ priceStackStyle }}">
+                      <span style="{{ c.beforeStyle }}" aria-hidden="{{ c.beforeHidden }}">{{ c.priceBefore }}</span>
+                      <span style="font-family:'Archivo Narrow',Archivo,sans-serif;font-size:19px;font-weight:700;white-space:nowrap">{{ c.price }}</span>
+                    </span>
+                  </div>
+                  <div style="width:100%;min-width:0">
+                    <dc-import name="Tlacitko" label="Do košíku" variant="buy" size="medium" iconLeft="shopping-bag" href="#kosik" fullWidth="{{ true }}" hint-size="100%,44px"></dc-import>
+                  </div>
+                  <button type="button" class="ss-cmp-fav" onClick="{{ c.onFav }}" aria-pressed="{{ c.fav }}">
+                    <span style="display:inline-flex;color:{{ c.favColor }}"><dc-import name="Ikony" iconName="{{ c.favIcon }}" size="18" hint-size="18px,18px"></dc-import></span>
+                    <span>{{ c.favLabel }}</span>
+                  </button>
+                </div>
+              </sc-for>
+            </div>
+
+            <sc-for list="{{ rows }}" as="r" hint-placeholder-count="6">
+              <div style="{{ r.rowStyle }}">
+                <div style="{{ r.labelCellStyle }}"><span style="{{ r.labelStyle }}">{{ r.label }}</span></div>
+                <sc-for list="{{ r.cells }}" as="cell" hint-placeholder-count="3">
+                  <div style="{{ r.cellStyle }}">{{ cell.value }}</div>
+                </sc-for>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ noDiff }}" hint-placeholder-val="{{ false }}">
+          <p style="margin:24px 0 0;font-size:15px;color:#3D4750">Vybrané produkty se v uvedených parametrech neliší. Vypněte <strong>Jen rozdíly</strong> a uvidíte celou tabulku.</p>
+        </sc-if>
+
+        <div style="{{ supportWrapStyle }}">
+          <div style="{{ supportCardStyle }}">
+            <h2 style="margin:0;font-size:20px;line-height:1.15;max-width:8ch">Jsme tu pro vás</h2>
+            <span aria-hidden="true" style="display:inline-flex;align-items:center;justify-content:center;width:56px;height:56px;border-radius:999px;background:#F0F5FA;color:#21507B;flex:none">
+              <dc-import name="Ikony" iconName="phone" size="26" hint-size="26px,26px"></dc-import>
+            </span>
+            <span style="display:flex;flex-direction:column;gap:6px">
+              <a href="tel:+420543212855" style="font-family:'Archivo Narrow',Archivo,sans-serif;font-size:22px;font-weight:700;text-decoration:none">+420 543 212 855</a>
+              <span style="display:inline-flex;align-items:center;gap:8px;font-size:13px;color:#3D4750">
+                <sc-if value="{{ isOpenNow }}" hint-placeholder-val="{{ true }}">
+                  <span class="ss-cmp-led" role="img" aria-label="Právě jsme online"></span>
+                </sc-if>
+                <span>Po–Ne 9–17 hod.</span>
+              </span>
+            </span>
+            <a href="mailto:podpora@svetspanku.cz" style="font-size:16px;font-weight:600">podpora@svetspanku.cz</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <dc-import name="Paticka" ledMode="{{ ledMode }}" hint-size="100%,700px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;kategorie&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;vse&quot;,&quot;options&quot;:[&quot;vse&quot;,&quot;postele&quot;,&quot;matrace&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;mobilniSloupce&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:2,&quot;options&quot;:[1,2],&quot;tsType&quot;:&quot;number&quot;},&quot;zobrazitPoradnu&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;zobrazitJenRozdily&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  static LABELS = {
+    rozmer: 'Rozměr', material: 'Materiál', odstin: 'Odstín',
+    nosnost: 'Maximální nosnost', vyska: 'Výška matrace', tuhost: 'Tuhost / tvrdost',
+    konstrukce: 'Konstrukce', jadro: 'Jádro', potah: 'Potah', zony: 'Zóny tuhosti',
+    celo: 'Čelo postele', ulozny: 'Úložný prostor', rost: 'Vhodné na polohovací rošt',
+    rostvceni: 'Rošt v ceně', zaruka: 'Záruka'
+  };
+  static ORDER = ['rozmer','material','odstin','nosnost','vyska','tuhost','konstrukce','jadro','potah','zony','celo','ulozny','rost','rostvceni','zaruka'];
+  static DATA = [
+    { id: 'm20', kat: 'matrace', title: 'Matrace Spring Variant 20 cm', href: '#produkt', stock: 'inStock',
+      perex: 'Partnerská matrace s tuhostí volitelnou pro každou polovinu samostatně. Už žádná mezera uprostřed.',
+      price: '7 950 Kč',
+      params: { rozmer: '80 × 200 cm', nosnost: '120 kg', vyska: '19 cm', tuhost: '3/5 – středně tuhá', konstrukce: 'Pěnová', jadro: 'Studená pěna HR', potah: 'Úplet Silver, snímatelný', zony: '5 zón', rost: 'Ano', zaruka: '5 let' } },
+    { id: 'm22', kat: 'matrace', title: 'Matrace Spring Variant 22 cm', href: '#produkt', stock: 'inStock',
+      perex: 'Partnerská matrace s tuhostí volitelnou pro každou polovinu samostatně. Už žádná mezera uprostřed.',
+      price: '8 950 Kč', priceBefore: '9 950 Kč',
+      params: { rozmer: '80 × 200 cm', nosnost: '140 kg', vyska: '21 cm', tuhost: '4/5 – tuhá', konstrukce: 'Pěnová', jadro: 'Studená pěna HR + latex', potah: 'Úplet Silver, snímatelný', zony: '7 zón', rost: 'Ano', zaruka: '5 let' } },
+    { id: 'm24', kat: 'matrace', title: 'Matrace Spring Variant 24 cm', href: '#produkt', stock: 'lowStock',
+      perex: 'Nejvyšší z řady. Taštičkové jádro s latexovou deskou pro vyšší hmotnost spících.',
+      price: '9 950 Kč',
+      params: { rozmer: '80 × 200 cm', nosnost: '160 kg', vyska: '23 cm', tuhost: '3/5 – středně tuhá', konstrukce: 'Taštičková', jadro: 'Taštičkové pružiny + latex', potah: 'Úplet Silver, snímatelný', zony: '7 zón', rost: 'Ne', zaruka: '7 let' } },
+    { id: 'b1', kat: 'postele', title: 'Postel z masivu LEVITA', href: '#produkt', stock: 'inStock',
+      perex: 'Smrkový masiv s úložným prostorem po celé ploše lože a plynovými písty.',
+      price: '21 390 Kč',
+      params: { rozmer: '180 × 200 cm', material: 'Smrkový masiv', odstin: 'Bílá lazura', nosnost: '250 kg', celo: 'Dřevěné plné', ulozny: 'Ano, po celé ploše', rostvceni: 'Ne', zaruka: '5 let' } },
+    { id: 'b2', kat: 'postele', title: 'Postel z masivu Sara s čalouněným čelem', href: '#produkt', stock: 'onWay',
+      perex: 'Bukový masiv s čalouněným čelem v pratelném lněném potahu.',
+      price: '18 490 Kč',
+      params: { rozmer: '160 × 200 cm', material: 'Bukový masiv', odstin: 'Olej natur', nosnost: '220 kg', celo: 'Čalouněné, len šedý', ulozny: 'Ne', rostvceni: 'Ano', zaruka: '5 let' } }
+  ];
+  static STOCK = { inStock: 'Skladem · odesíláme do 24 h', lowStock: 'Poslední kusy', onWay: 'Na cestě k nám', outOfStock: 'Nedostupné' };
+
+  state = {
+    width: typeof window !== 'undefined' ? document.documentElement.clientWidth : 1440,
+    kat: 'vse', removed: [], fav: [], onlyDiff: false
+  };
+  componentDidMount() {
+    this._resize = () => this.setState({ width: document.documentElement.clientWidth });
+    window.addEventListener('resize', this._resize);
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this._resize); }
+
+  scrollByCol(dir) {
+    const el = this._scroller;
+    if (!el) return;
+    el.scrollBy({ left: dir * (this._colW || 200), behavior: 'smooth' });
+  }
+
+  renderVals() {
+    const p = this.props;
+    const w = this.state.width;
+    const narrow = w < 820;
+    const wide = !narrow;
+    const kat = p.kategorie || this.state.kat;
+    const onlyDiff = p.zobrazitJenRozdily === true ? this.state.onlyDiff : false;
+    const mobileCols = p.mobilniSloupce === 1 ? 1 : 2;
+    const led = this.state.led !== false;
+
+    const pool = Component.DATA.filter(d => this.state.removed.indexOf(d.id) === -1);
+    const active = pool.filter(d => kat === 'vse' || d.kat === kat);
+
+    const counts = { vse: pool.length, postele: pool.filter(d => d.kat === 'postele').length, matrace: pool.filter(d => d.kat === 'matrace').length };
+    const tabs = [
+      { key: 'vse', label: 'Vše (' + counts.vse + ')' },
+      { key: 'postele', label: 'Postele (' + counts.postele + ')' },
+      { key: 'matrace', label: 'Matrace (' + counts.matrace + ')' }
+    ].map(t => ({ label: t.label, active: kat === t.key, onPick: () => this.setState({ kat: t.key }) }));
+
+    const n = active.length;
+    const labelColW = w >= 1150 ? 240 : 200;
+    const inner = { maxWidth: '1560px', margin: '0 auto', padding: narrow ? '0 16px' : '0 32px' };
+
+    const availW = Math.max(280, Math.min(w, 1560) - (narrow ? 32 : 64));
+    const colW = narrow
+      ? Math.floor((availW - (mobileCols - 1) * 1) / mobileCols)
+      : Math.max(200, Math.floor((availW - labelColW) / Math.max(1, Math.min(n, 4))));
+    this._colW = colW;
+
+    const template = narrow
+      ? 'repeat(' + Math.max(1, n) + ',' + colW + 'px)'
+      : labelColW + 'px repeat(' + Math.max(1, n) + ',' + colW + 'px)';
+    const gridW = narrow ? n * colW : labelColW + n * colW;
+
+    let keys = Component.ORDER.filter(k => active.some(d => d.params[k] != null));
+    const allKeys = keys;
+    if (onlyDiff && n > 1) {
+      keys = keys.filter(k => {
+        const vals = active.map(d => d.params[k] || '—');
+        return vals.some(v => v !== vals[0]);
+      });
+    }
+
+    const rowBase = { display: 'grid', gridTemplateColumns: template, width: gridW + 'px', minWidth: '100%' };
+
+    const rows = keys.map((k, ri) => {
+      const zebra = ri % 2 === 1;
+      const bg = zebra ? '#F7F9FB' : '#FFFFFF';
+      return {
+        label: Component.LABELS[k],
+        cells: active.map(d => ({ value: d.params[k] || '—' })),
+        rowStyle: narrow
+          ? Object.assign({}, rowBase, { gridTemplateColumns: 'repeat(' + Math.max(1, n) + ',' + colW + 'px)' })
+          : rowBase,
+        labelCellStyle: narrow
+          ? { gridColumn: '1 / -1', background: '#FFFFFF', padding: '14px 0 6px' }
+          : { display: 'flex', alignItems: 'center', padding: '14px 16px 14px 0', background: bg, borderTop: '1px solid #E1E6EB', minWidth: 0, position: 'sticky', left: 0, zIndex: 1 },
+        labelStyle: narrow
+          ? { position: 'sticky', left: 0, display: 'inline-block', paddingRight: '12px', background: '#FFFFFF', fontSize: '13px', fontWeight: 600, letterSpacing: '.08em', textTransform: 'uppercase', color: '#5B6874' }
+          : { fontSize: '13px', fontWeight: 600, letterSpacing: '.08em', textTransform: 'uppercase', color: '#5B6874' },
+        cellStyle: narrow
+          ? { padding: '12px 16px 12px 0', background: '#F7F9FB', fontSize: '15px', lineHeight: 1.4, color: '#1C2229', minWidth: 0, textWrap: 'pretty' }
+          : { padding: '14px 16px', background: bg, borderTop: '1px solid #E1E6EB', fontSize: '15px', lineHeight: 1.4, color: '#1C2229', minWidth: 0, textWrap: 'pretty' }
+      };
+    });
+
+    const cols = active.map(d => ({
+      title: d.title, href: d.href, perex: d.perex, price: d.price,
+      priceBefore: d.priceBefore || '\u00A0',
+      beforeHidden: !d.priceBefore,
+      beforeStyle: {
+        fontFamily: "'Archivo Narrow', Archivo, sans-serif", fontSize: '13px', fontWeight: 600,
+        color: '#5B6874', textDecoration: d.priceBefore ? 'line-through' : 'none',
+        visibility: d.priceBefore ? 'visible' : 'hidden'
+      },
+      stock: d.stock, stockLabel: Component.STOCK[d.stock],
+      removeLabel: 'Odebrat ' + d.title + ' z porovnání',
+      fav: this.state.fav.indexOf(d.id) !== -1,
+      favIcon: this.state.fav.indexOf(d.id) !== -1 ? 'heart-filled' : 'heart',
+      favColor: this.state.fav.indexOf(d.id) !== -1 ? '#B3261E' : '#5B6874',
+      favLabel: this.state.fav.indexOf(d.id) !== -1 ? 'V oblíbených' : 'Přidat do oblíbených',
+      onRemove: () => this.setState(s => ({ removed: s.removed.concat(d.id) })),
+      onFav: () => this.setState(s => ({ fav: s.fav.indexOf(d.id) === -1 ? s.fav.concat(d.id) : s.fav.filter(x => x !== d.id) }))
+    }));
+
+    return {
+      wide, narrow,
+      isOpenNow: led,
+      ledMode: led ? 'on' : 'off',
+      presItems: [{ label: 'LED', value: led }],
+      onPresToggle: () => this.setState(s => ({ led: s.led === false })),
+      inner,
+      h1Size: narrow ? '30px' : '42px',
+      totalCount: pool.length,
+      tabs,
+      showAdvisor: p.zobrazitPoradnu !== false,
+      topGrid: {
+        display: 'grid',
+        gridTemplateColumns: w >= 1150 ? 'minmax(0,1fr) minmax(0,700px)' : 'minmax(0,1fr)',
+        gap: narrow ? '32px' : '48px',
+        alignItems: 'start',
+        padding: narrow ? '32px 0 24px' : '56px 0 40px'
+      },
+      advisorStyle: {
+        background: '#F7F9FB', borderRadius: '12px', padding: narrow ? '20px' : '24px',
+        display: 'flex', flexDirection: 'column', gap: '16px', minWidth: 0
+      },
+      advisorGrid: {
+        display: 'grid',
+        gridTemplateColumns: w >= 550 ? 'repeat(2,minmax(0,1fr))' : 'minmax(0,1fr)',
+        gap: '12px', alignItems: 'stretch'
+      },
+
+      isEmpty: pool.length === 0,
+      emptySuggestions: ['Matrace 180 × 200', 'Postele z masivu', 'Taštičkové matrace'],
+      hasCols: n > 0,
+      showTools: n > 0,
+      showNav: narrow ? n > mobileCols : gridW > availW + 1,
+      showDiffToggle: p.zobrazitJenRozdily === true,
+      onlyDiff,
+      toggleDiff: () => this.setState(s => ({ onlyDiff: !s.onlyDiff })),
+      scrollPrev: () => this.scrollByCol(-1),
+      scrollNext: () => this.scrollByCol(1),
+      setScroller: (el) => { this._scroller = el; },
+      noDiff: n > 1 && onlyDiff && keys.length === 0 && allKeys.length > 0,
+
+      scrollStyle: {
+        width: '100%', paddingBottom: narrow ? '8px' : 0,
+        scrollSnapType: narrow ? 'x proximity' : undefined
+      },
+      headRowStyle: {
+        display: 'grid', gridTemplateColumns: template, width: gridW + 'px', minWidth: '100%',
+        alignItems: 'stretch', paddingBottom: '20px'
+      },
+      toolsStyle: {
+        display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '12px',
+        padding: narrow ? '4px 0 16px' : '8px 0 16px'
+      },
+      headCornerStyle: { position: 'sticky', left: 0, zIndex: 1, background: '#FFFFFF' },
+      headCellStyle: {
+        display: 'flex', flexDirection: 'column', gap: '10px', minWidth: 0, height: '100%',
+        padding: narrow ? '0 16px 0 0' : '0 16px',
+        scrollSnapAlign: narrow ? 'start' : undefined
+      },
+      mediaStyle: {
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        aspectRatio: '4 / 3', background: '#EDF1F5', borderRadius: '6px', width: '100%'
+      },
+      priceRowStyle: {
+        display: 'flex', flexDirection: colW >= 260 ? 'row' : 'column',
+        flexWrap: 'wrap', alignItems: colW >= 260 ? 'flex-end' : 'flex-start',
+        justifyContent: 'space-between', gap: colW >= 260 ? '8px' : '6px',
+        marginTop: 'auto', paddingTop: '2px'
+      },
+      priceStackStyle: {
+        display: 'flex', flexDirection: 'column',
+        alignItems: colW >= 260 ? 'flex-end' : 'flex-start', lineHeight: 1.15
+      },
+      cols, rows,
+
+      supportWrapStyle: { padding: narrow ? '48px 0' : '80px 0', display: 'flex', justifyContent: 'center' },
+      supportCardStyle: {
+        boxSizing: 'border-box', display: 'flex', flexWrap: 'wrap', alignItems: 'center',
+        justifyContent: 'center', gap: narrow ? '20px' : '32px',
+        padding: narrow ? '24px' : '28px 40px', borderRadius: '12px',
+        boxShadow: 'inset 0 0 0 1px #E1E6EB', maxWidth: '900px', width: '100%'
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+</helmet>
+<span style="{{ style }}">
+  <sc-if value="{{ hasDot }}" hint-placeholder-val="{{ false }}">
+    <span style="{{ dotStyle }}"></span>
+  </sc-if>
+  <sc-if value="{{ hasIcon }}" hint-placeholder-val="{{ false }}">
+    <dc-import name="Ikony" iconName="{{ icon }}" size="16" hint-size="16px,16px"></dc-import>
+  </sc-if>
+  <span>{{ label }}</span>
+</span>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:320,&quot;height&quot;:64},&quot;kind&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;inStock&quot;,&quot;options&quot;:[&quot;inStock&quot;,&quot;lowStock&quot;,&quot;onWay&quot;,&quot;outOfStock&quot;,&quot;sale&quot;,&quot;news&quot;,&quot;freeShip&quot;,&quot;tip&quot;,&quot;madeToOrder&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;label&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;size&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;standard&quot;,&quot;options&quot;:[&quot;standard&quot;,&quot;small&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;icon&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  static KINDS = {
+    inStock:    { label: 'Skladem · odesíláme do 24 h', fg: '#157A41', bg: 'transparent', dot: '#157A41', plain: true },
+    lowStock:   { label: 'Poslední kusy', fg: '#A4600C', bg: 'transparent', dot: '#D07C13', plain: true },
+    onWay:      { label: 'Na cestě k nám', fg: '#21507B', bg: 'transparent', dot: '#5B8FBC', plain: true },
+    outOfStock: { label: 'Nedostupné', fg: '#55616C', bg: 'transparent', dot: '#9AA6B2', plain: true },
+    sale:       { label: 'Sleva 20 %', fg: '#FFFFFF', bg: '#B3261E' },
+    news:       { label: 'Novinka', fg: '#1C2229', bg: '#FBB255' },
+    freeShip:   { label: 'Doprava zdarma', fg: '#FFFFFF', bg: '#157A41', icon: 'truck' },
+    tip:        { label: 'Tip prodejny', fg: '#FFFFFF', bg: '#296093' },
+    madeToOrder:{ label: 'Výroba na míru', fg: '#21507B', bg: '#DCE8F2' }
+  };
+  renderVals() {
+    const p = this.props;
+    const k = Component.KINDS[p.kind] || Component.KINDS.inStock;
+    const small = p.size === 'small';
+    return {
+      label: p.label || k.label,
+      hasDot: !!k.dot,
+      hasIcon: !!(p.icon || k.icon),
+      icon: p.icon || k.icon,
+      dotStyle: { width: '8px', height: '8px', borderRadius: '999px', flex: 'none', background: k.dot },
+      style: {
+        fontFamily: 'Archivo, Helvetica, Arial, sans-serif',
+        display: 'inline-flex', alignItems: 'center', gap: '6px',
+        fontSize: (small ? 12 : 13) + 'px', fontWeight: 600, lineHeight: 1.2,
+        color: k.fg, background: k.bg,
+        padding: k.plain ? 0 : (small ? '4px 8px' : '5px 10px'),
+        borderRadius: k.plain ? 0 : '4px',
+        whiteSpace: 'nowrap'
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>

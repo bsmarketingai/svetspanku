@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+</helmet>
+<div style="font-family:Archivo,Helvetica,Arial,sans-serif;width:100%;min-width:0;background:#F7F9FB;border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:16px">
+  <div style="display:flex;flex-wrap:wrap;align-items:flex-end;gap:12px">
+    <div style="display:flex;flex-direction:column;gap:2px;min-width:0">
+      <sc-if value="{{ hasBefore }}" hint-placeholder-val="{{ false }}">
+        <span style="font-size:15px;color:#5B6874;text-decoration:line-through">{{ priceBefore }}</span>
+      </sc-if>
+      <span style="font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:34px;line-height:1.05;color:{{ priceColor }}">{{ price }}</span>
+      <span style="font-size:13px;color:#5B6874">{{ vatNote }}</span>
+    </div>
+    <sc-if value="{{ hasSaving }}" hint-placeholder-val="{{ false }}">
+      <span style="margin-left:auto"><dc-import name="Stitek" kind="sale" label="{{ saving }}" hint-size="120px,26px"></dc-import></span>
+    </sc-if>
+  </div>
+
+  <dc-import name="Stitek" kind="{{ stockKind }}" label="{{ stockLabel }}" hint-size="220px,20px"></dc-import>
+
+  <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
+    <dc-import name="Kvantifikator" value="{{ qty }}" onChange="{{ onQty }}" hint-size="132px,44px"></dc-import>
+    <div style="flex:1;min-width:180px">
+      <dc-import name="Tlacitko" label="{{ buyLabel }}" variant="buy" size="large" iconLeft="shopping-cart" fullWidth="{{ true }}" onClick="{{ onBuy }}" hint-size="100%,52px"></dc-import>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:10px;padding-top:4px">
+    <sc-for list="{{ perks }}" as="p" hint-placeholder-count="3">
+      <span style="display:flex;align-items:flex-start;gap:10px;font-size:14px;color:#3D4750">
+        <span style="display:flex;color:#157A41;flex:none"><dc-import name="Ikony" iconName="{{ p.icon }}" size="18" hint-size="18px,18px"></dc-import></span>
+        <span style="min-width:0">{{ p.label }}</span>
+      </span>
+    </sc-for>
+  </div>
+
+  <div style="display:flex;flex-wrap:wrap;gap:4px;align-items:center;padding-top:4px;border-top:1px solid #E1E6EB;margin-top:4px">
+    <dc-import name="Tlacitko" label="Porovnat" variant="text" size="standard" iconLeft="arrows-diff" onClick="{{ onCompare }}" hint-size="110px,24px"></dc-import>
+    <span style="color:#C8D0D8">·</span>
+    <dc-import name="Tlacitko" label="{{ favLabel }}" variant="text" size="standard" iconLeft="{{ favIcon }}" onClick="{{ onFav }}" hint-size="140px,24px"></dc-import>
+    <span style="color:#C8D0D8">·</span>
+    <dc-import name="Tlacitko" label="Dostupnost na prodejnách" variant="text" size="standard" iconLeft="map-pin" href="#prodejny" hint-size="200px,24px"></dc-import>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:420,&quot;height&quot;:480},&quot;price&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;11 290 Kč&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;priceBefore&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;saving&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;stock&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;inStock&quot;,&quot;options&quot;:[&quot;inStock&quot;,&quot;lowStock&quot;,&quot;onWay&quot;,&quot;outOfStock&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;stockLabel&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;buyLabel&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Do košíku&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;perks&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;{icon: string, label: string}[]&quot;},&quot;onBuy&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(qty: number) =&gt; void&quot;},&quot;onCompare&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;() =&gt; void&quot;},&quot;onFavourite&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(fav: boolean) =&gt; void&quot;}}">
+class Component extends DCLogic {
+  state = { qty: 1, fav: false };
+  renderVals() {
+    const p = this.props;
+    const fav = p.favourite !== undefined ? p.favourite : this.state.fav;
+    return {
+      price: p.price || '11 290 Kč',
+      priceBefore: p.priceBefore,
+      hasBefore: !!p.priceBefore,
+      priceColor: p.priceBefore ? '#B3261E' : '#1C2229',
+      vatNote: 'Cena včetně DPH',
+      hasSaving: !!p.saving,
+      saving: p.saving,
+      stockKind: p.stock || 'inStock',
+      stockLabel: p.stockLabel,
+      qty: this.state.qty,
+      onQty: (v) => this.setState({ qty: v }),
+      buyLabel: p.buyLabel || 'Do košíku',
+      onBuy: () => { if (p.onBuy) p.onBuy(this.state.qty); },
+      perks: p.perks || [
+        { icon: 'truck', label: 'Doprava zdarma po celé ČR' },
+        { icon: 'calendar-time', label: 'Doručíme do 5 pracovních dnů' },
+        { icon: 'shield-check', label: '30 dní na vyzkoušení, výměna zdarma' }
+      ],
+      favIcon: fav ? 'heart-filled' : 'heart',
+      favLabel: fav ? 'V oblíbených' : 'Do oblíbených',
+      onFav: () => { const n = !fav; this.setState({ fav: n }); if (p.onFavourite) p.onFavourite(n); },
+      onCompare: () => { if (p.onCompare) p.onCompare(); }
+    };
+  }
+}
+</script>
+</body>
+</html>

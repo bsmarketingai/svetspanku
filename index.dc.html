@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Archivo,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:800!important;font-stretch:75%;text-transform:uppercase;letter-spacing:-0.005em;}
+
+html,body{margin:0!important;padding:0!important;}
+#dc-root{margin:0!important;padding:0!important;width:100%!important;max-width:none!important;border:0!important;}
+#dc-root>.sc-host{margin:0!important;padding:0!important;width:100%!important;}
+a{color:#296093;}
+a:hover{color:#21507B;}
+.ss-hp-tile{position:relative;display:flex;flex-direction:column;justify-content:flex-end;gap:8px;min-height:200px;padding:24px;border-radius:12px;text-decoration:none;color:#1C2229;background:#EFF2F5;transition:box-shadow .15s cubic-bezier(.22,.61,.36,1);}
+.ss-hp-tile:hover{box-shadow:0 4px 12px rgba(19,44,67,.12);}
+.ss-hp-tile:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+.ss-hp-art{position:relative;display:flex;flex-direction:column;gap:12px;padding:8px;margin:-8px;text-decoration:none;color:#1C2229;border-radius:12px;}
+.ss-hp-art:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+.ss-hp-art:hover .ss-hp-art-t{color:#296093;}
+@keyframes ss-shine{0%{transform:translateX(-120%) skewX(-12deg);}12%{transform:translateX(220%) skewX(-12deg);}100%{transform:translateX(220%) skewX(-12deg);}}
+.ss-rev-badge{position:relative;overflow:hidden;background:#FDF3E2;box-shadow:inset 0 0 0 1px #F3DDB4;}
+.ss-rev-badge::after{content:"";position:absolute;top:0;bottom:0;left:0;width:40%;background:linear-gradient(100deg,rgba(255,255,255,0),rgba(255,255,255,.75),rgba(255,255,255,0));animation:ss-shine 5s cubic-bezier(.22,.61,.36,1) infinite;pointer-events:none;}
+@media (prefers-reduced-motion:reduce){.ss-rev-badge::after{animation:none;opacity:0;}}
+.ss-mag-ph{height:200px;position:relative;overflow:hidden;}
+.ss-mag-zoom{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;transition:transform .4s cubic-bezier(.22,.61,.36,1);}
+.ss-mag-cta{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) scale(.96);z-index:2;display:inline-flex;align-items:center;min-height:44px;padding:0 22px;border-radius:999px;background:#FFFFFF;color:#1C2229;font-size:15px;font-weight:600;box-shadow:0 4px 12px rgba(19,44,67,.12);opacity:0;pointer-events:none;transition:opacity .15s cubic-bezier(.22,.61,.36,1),transform .15s cubic-bezier(.22,.61,.36,1);}
+@media (hover:hover) and (pointer:fine){
+.ss-hp-art:hover .ss-mag-zoom,.ss-mag-lead:hover .ss-mag-zoom{transform:scale(1.06);}
+.ss-hp-art:hover .ss-mag-cta,.ss-mag-lead:hover .ss-mag-cta{opacity:1;transform:translate(-50%,-50%) scale(1);}
+}
+.ss-mag-lead{position:relative;display:flex;flex-direction:column;gap:12px;padding:12px;margin:-12px;color:#1C2229;border-radius:12px;}
+.ss-mag-lead:hover .ss-hp-art-t{color:#296093;}
+.ss-mag-lead .ss-mag-ph{position:relative;height:280px;}
+.ss-mag-lead .ss-hp-art-t{font-size:23px;}
+.ss-mag-cover{position:absolute;inset:0;z-index:1;border-radius:12px;}
+.ss-mag-cover:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+@media (min-width:820px) and (max-width:1149px){.ss-mag-lead{grid-column:span 2;}.ss-mag-lead .ss-mag-ph{height:360px;}}
+@media (min-width:1150px){.ss-mag-lead{grid-row:span 2;}.ss-mag-lead .ss-mag-ph{flex:1;height:auto;min-height:440px;}}
+.ss-mag-nav{display:flex;justify-content:flex-end;gap:8px;margin-top:16px;}
+.ss-mag-arrow{display:flex;align-items:center;justify-content:center;width:44px;height:44px;flex:none;border:0;border-radius:999px;background:none;color:#1C2229;cursor:pointer;transition:background-color .12s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1);}
+@media (hover:hover) and (pointer:fine){.ss-mag-arrow:hover{background:#F0F5FA;color:#296093;}}
+.ss-mag-arrow:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+.ss-mag-wrap{position:relative;}
+.ss-mag-over-prev,.ss-mag-over-next{position:absolute;top:50%;transform:translateY(-50%);z-index:3;background:#FFFFFF;color:#21507B;box-shadow:0 4px 12px rgba(19,44,67,.12);}
+.ss-mag-over-prev{left:-22px;}
+.ss-mag-over-next{right:-22px;}
+@media (max-width:1149px){.ss-mag-over-prev{left:-16px;}.ss-mag-over-next{right:-16px;}}
+.ss-hp-hot{position:absolute;display:flex;align-items:center;justify-content:center;width:36px;height:36px;border:0;border-radius:999px;background:rgba(255,255,255,.92);color:#21507B;cursor:pointer;box-shadow:0 2px 8px rgba(19,44,67,.08);transition:background-color .12s cubic-bezier(.22,.61,.36,1),transform .06s cubic-bezier(.22,.61,.36,1);}
+.ss-hp-hot:hover{background:#FFFFFF;}
+.ss-hp-hot:active{transform:scale(.96);}
+.ss-hp-hot:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+.ss-hp-ph{display:flex;align-items:center;justify-content:center;background:#EFF2F5;color:#C8D0D8;border-radius:12px;}
+</style>
+</helmet>
+<div style="width:100%;background:#FFFFFF;font-family:Archivo,Helvetica,Arial,sans-serif;color:#1C2229">
+  <dc-import name="Hlavicka" style="position:sticky;top:0;z-index:200" ledMode="{{ ledMode }}" theme="{{ chromeTheme }}" hint-size="100%,180px"></dc-import>
+  <dc-import name="PrezentacniLista" items="{{ presItems }}" onToggle="{{ onPresToggle }}" choices="{{ presChoices }}" onPick="{{ onPresPick }}" hint-size="460px,52px"></dc-import>
+
+  <main>
+    <h1 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0">Světspánku.cz — postele, matrace a rošty z masivu</h1>
+
+    <section style="width:100%;background:#FFFFFF">
+      <div style="{{ inner }}">
+        <div style="display:grid;grid-template-columns:{{ heroTemplate }};gap:20px;padding:24px 0 0">
+          <a class="ss-hp-tile" href="#akce" style="background:#FEEDD4">
+            <span style="font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:21px;line-height:1.2">Black Friday — nakupte se slevami až 60 %</span>
+            <span style="font-size:14px;color:#3D4750">Jen do 30. listopadu, na vybrané matrace a komplety</span>
+          </a>
+          <a class="ss-hp-tile" href="#komplety" style="background:#EFF2F5">
+            <span style="font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:21px;line-height:1.2">Cenově zvýhodněné komplety se slevou až 30 %</span>
+            <span style="font-size:14px;color:#3D4750">Postel, rošt a matrace v jedné objednávce</span>
+          </a>
+          <div class="ss-hp-tile" style="background:#132C43;color:#FFFFFF">
+            <span style="font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:21px;line-height:1.2">Najít moji matraci</span>
+            <span style="font-size:14px;color:#DCE8F2">Osm otázek a doporučíme model podle vaší váhy a polohy spánku</span>
+            <div style="margin-top:4px"><dc-import name="Tlacitko" label="Průvodce výběrem" variant="primary" href="#pruvodce" iconRight="arrow-right" hint-size="200px,44px"></dc-import></div>
+          </div>
+        </div>
+        <div style="position:relative;margin-top:20px;border-radius:12px;overflow:hidden;min-height:{{ bannerHeight }};display:flex;align-items:center">
+          <img src="hero-banner.webp" alt="" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" />
+          <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(9,18,27,.82) 0%,rgba(9,18,27,.62) 45%,rgba(9,18,27,.15) 100%)"></div>
+          <div style="position:relative;display:flex;flex-direction:column;gap:16px;max-width:min(100%,560px);padding:{{ bannerPad }}">
+            <h2 style="margin:0;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:{{ bannerTitle }};line-height:1.02;letter-spacing:-0.01em;text-transform:uppercase;color:#FFFFFF">Stylové povlečení</h2>
+            <p style="margin:0;font-size:{{ bannerText }};line-height:1.55;color:#FFFFFF;max-width:46ch">Proměníme vaši ložnici v oázu klidu. Prémiové materiály, moderní design a maximální pohodlí pro váš spánek.</p>
+            <div><dc-import name="Tlacitko" label="Zobrazit povlečení" variant="primary" size="large" href="#luzkoviny" iconRight="arrow-right" hint-size="220px,52px"></dc-import></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="width:100%;background:#F7F9FB;margin-top:{{ sectionGap }}">
+      <div style="{{ innerPadded }}">
+        <dc-import name="VypisKategorii" heading="Nejoblíbenější kategorie" subheading="Vše pro zdravý spánek" hint-size="100%,380px"></dc-import>
+      </div>
+    </section>
+
+    <section style="width:100%;background:#FFFFFF">
+      <div style="{{ innerPadded }}">
+        <dc-import name="Usp" heading="Česká značka postelí a matrací pro váš zdravý spánek" hint-size="100%,260px"></dc-import>
+      </div>
+    </section>
+
+    <section style="width:100%;background:#FFFFFF">
+      <div style="{{ inner }}">
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px;margin-bottom:20px">
+          <h2 style="margin:0;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:{{ h2Size }};line-height:1.15">Inspirujte se</h2>
+          <div style="display:flex;flex-wrap:wrap;gap:8px">
+            <sc-for list="{{ inspTabs }}" as="t" hint-placeholder-count="3">
+              <dc-import name="Chip" label="{{ t.label }}" size="small" variant="{{ t.variant }}" ariaPressed="{{ t.pressed }}" onClick="{{ t.onPick }}" hint-size="110px,32px"></dc-import>
+            </sc-for>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:{{ inspTemplate }};gap:20px">
+          <div class="ss-hp-ph" style="position:relative;min-height:{{ inspHeight }}">
+            <img src="inspirace-loznice-led.jpg" alt="Ložnice s postelí z masivu a LED osvětlením v čele" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;border-radius:12px" />
+            <div onMouseEnter="{{ hoverHot }}" onMouseLeave="{{ leaveHot }}" onFocus="{{ hoverHot }}" onBlur="{{ leaveHot }}">
+              <button type="button" class="ss-hp-hot" style="top:56%;left:44%" onClick="{{ toggleHot }}" aria-label="Zobrazit produkt Postel CASTELLO LED" aria-expanded="{{ hotExpanded }}">
+                <dc-import name="Ikony" iconName="plus" size="18" hint-size="18px,18px"></dc-import>
+              </button>
+              <sc-if value="{{ hotOpen }}" hint-placeholder-val="{{ true }}">
+                <div style="position:absolute;bottom:calc(44% + 12px);left:44%;max-width:56%;width:min(280px,70%);background:#FFFFFF;border-radius:12px;box-shadow:0 16px 40px rgba(19,44,67,.18);display:flex;align-items:stretch;overflow:hidden;z-index:300">
+                  <div style="flex:1;min-width:0;padding:16px;display:flex;flex-direction:column;gap:8px;text-align:left">
+                    <img src="produkt-castello-led.png" alt="Postel z masivu CASTELLO LED" style="display:block;width:100%;height:88px;object-fit:contain;object-position:left center;border-radius:12px;background:#FFFFFF" />
+                    <span style="font-size:14px;font-weight:600;line-height:1.35;color:#1C2229">Postel z masivu CASTELLO LED</span>
+                    <span style="font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:28px;color:#1C2229;letter-spacing:-0.01em">od 22 990 Kč</span>
+                    <dc-import name="Stitek" kind="inStock" size="small" hint-size="200px,18px"></dc-import>
+                  </div>
+                  <span style="display:flex;align-items:center;justify-content:center;width:44px;flex:none;border-left:1px solid #E1E6EB;color:#296093"><dc-import name="Ikony" iconName="chevron-right" size="24" hint-size="24px,24px"></dc-import></span>
+                  <button type="button" onClick="{{ toggleHot }}" aria-label="Zavřít náhled produktu" style="position:absolute;top:8px;right:52px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border:0;border-radius:999px;background:transparent;color:#3D4750;cursor:pointer"><dc-import name="Ikony" iconName="x" size="18" hint-size="18px,18px"></dc-import></button>
+                </div>
+              </sc-if>
+            </div>
+            <div onMouseEnter="{{ hoverHot2 }}" onMouseLeave="{{ leaveHot2 }}" onFocus="{{ hoverHot2 }}" onBlur="{{ leaveHot2 }}">
+            <button type="button" class="ss-hp-hot" style="top:63%;left:12%" onClick="{{ toggleHot2 }}" aria-label="Zobrazit produkt Noční stolek UNI 50" aria-expanded="{{ hot2Expanded }}">
+              <dc-import name="Ikony" iconName="plus" size="18" hint-size="18px,18px"></dc-import>
+            </button>
+            <sc-if value="{{ hot2Open }}" hint-placeholder-val="{{ false }}">
+              <div style="position:absolute;bottom:calc(37% + 12px);left:12%;max-width:88%;width:min(280px,70%);background:#FFFFFF;border-radius:12px;box-shadow:0 16px 40px rgba(19,44,67,.18);display:flex;align-items:stretch;overflow:hidden;z-index:300">
+                <div style="flex:1;min-width:0;padding:16px;display:flex;flex-direction:column;gap:8px;text-align:left">
+                  <img src="produkt-nocni-stolek-uni-50.png" alt="Noční stolek UNI 50 z masivu" style="display:block;width:100%;height:88px;object-fit:contain;object-position:left center;border-radius:12px;background:#FFFFFF" />
+                  <span style="font-size:14px;font-weight:600;line-height:1.35;color:#1C2229">Noční stolek UNI 50</span>
+                  <span style="font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:28px;color:#1C2229;letter-spacing:-0.01em">od 6 089 Kč</span>
+                  <dc-import name="Stitek" kind="inStock" size="small" hint-size="200px,18px"></dc-import>
+                </div>
+                <span style="display:flex;align-items:center;justify-content:center;width:44px;flex:none;border-left:1px solid #E1E6EB;color:#296093"><dc-import name="Ikony" iconName="chevron-right" size="24" hint-size="24px,24px"></dc-import></span>
+                <button type="button" onClick="{{ toggleHot2 }}" aria-label="Zavřít náhled produktu" style="position:absolute;top:8px;right:52px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border:0;border-radius:999px;background:transparent;color:#3D4750;cursor:pointer"><dc-import name="Ikony" iconName="x" size="18" hint-size="18px,18px"></dc-import></button>
+              </div>
+            </sc-if>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-rows:repeat(2,minmax(0,1fr));gap:20px">
+            <div class="ss-hp-ph" style="position:relative;min-height:{{ inspSmallHeight }}">
+              <img src="inspirace-detsky-pokoj.jpg" alt="Dětský pokoj s patrovou postelí z masivu a komodou" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;border-radius:12px" />
+              <div onMouseEnter="{{ hoverHot3 }}" onMouseLeave="{{ leaveHot3 }}" onFocus="{{ hoverHot3 }}" onBlur="{{ leaveHot3 }}">
+                <button type="button" class="ss-hp-hot" style="top:143px;left:32%" onClick="{{ toggleHot3 }}" aria-label="Zobrazit produkt Komplet Patrik – patrová rozkládací postel" aria-expanded="{{ hot3Expanded }}">
+                  <dc-import name="Ikony" iconName="plus" size="18" hint-size="18px,18px"></dc-import>
+                </button>
+                <sc-if value="{{ hot3Open }}" hint-placeholder-val="{{ false }}">
+                  <div style="position:absolute;top:191px;max-height:240px;left:32%;max-width:68%;width:min(260px,70%);background:#FFFFFF;border-radius:12px;box-shadow:0 16px 40px rgba(19,44,67,.18);display:flex;align-items:stretch;overflow:hidden;z-index:300">
+                    <div style="flex:1;min-width:0;padding:12px;display:flex;flex-direction:column;gap:6px;text-align:left;overflow:hidden">
+                      <img src="produkt-patrik-patrova-postel.png" alt="Patrová rozkládací postel Patrik z bukového masivu" style="display:block;width:100%;height:52px;min-height:0;flex:none;object-fit:contain;object-position:left center;border-radius:12px;background:#FFFFFF" />
+                      <span style="font-size:13px;font-weight:600;line-height:1.3;color:#1C2229;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">Komplet Patrik – patrová postel s rošty a matracemi</span>
+                      <span style="display:flex;align-items:baseline;gap:8px"><span style="font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:24px;color:#1C2229;letter-spacing:-0.01em">28 995 Kč</span><span style="font-family:'Archivo Narrow',Archivo,sans-serif;font-size:15px;color:#5B6874;text-decoration:line-through">37 870 Kč</span></span>
+                      <dc-import name="Stitek" kind="inStock" size="small" hint-size="200px,18px"></dc-import>
+                    </div>
+                    <span style="display:flex;align-items:center;justify-content:center;width:44px;flex:none;border-left:1px solid #E1E6EB;color:#296093"><dc-import name="Ikony" iconName="chevron-right" size="24" hint-size="24px,24px"></dc-import></span>
+                    <button type="button" onClick="{{ toggleHot3 }}" aria-label="Zavřít náhled produktu" style="position:absolute;top:8px;right:52px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border:0;border-radius:999px;background:transparent;color:#3D4750;cursor:pointer"><dc-import name="Ikony" iconName="x" size="18" hint-size="18px,18px"></dc-import></button>
+                  </div>
+                </sc-if>
+              </div>
+              <div onMouseEnter="{{ hoverHot5 }}" onMouseLeave="{{ leaveHot5 }}" onFocus="{{ hoverHot5 }}" onBlur="{{ leaveHot5 }}">
+                <button type="button" class="ss-hp-hot" style="top:70%;left:22%" onClick="{{ toggleHot5 }}" aria-label="Zobrazit produkt Matrace Valentina Ultrafresh" aria-expanded="{{ hot5Expanded }}">
+                  <dc-import name="Ikony" iconName="plus" size="18" hint-size="18px,18px"></dc-import>
+                </button>
+                <sc-if value="{{ hot5Open }}" hint-placeholder-val="{{ false }}">
+                  <div style="position:absolute;bottom:calc(30% + 12px);max-height:240px;left:22%;max-width:78%;width:min(260px,70%);background:#FFFFFF;border-radius:12px;box-shadow:0 16px 40px rgba(19,44,67,.18);display:flex;align-items:stretch;overflow:hidden;z-index:300">
+                    <div style="flex:1;min-width:0;padding:12px;display:flex;flex-direction:column;gap:6px;text-align:left;overflow:hidden">
+                      <img src="produkt-valentina-ultrafresh.png" alt="Matrace Valentina Ultrafresh" style="display:block;width:100%;height:52px;min-height:0;flex:none;object-fit:contain;object-position:left center;border-radius:12px;background:#FFFFFF" />
+                      <span style="font-size:13px;font-weight:600;line-height:1.3;color:#1C2229;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">Matrace Valentina Ultrafresh</span>
+                      <span style="font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:24px;color:#1C2229;letter-spacing:-0.01em">od 7 949 Kč</span>
+                      <dc-import name="Stitek" kind="inStock" size="small" hint-size="200px,18px"></dc-import>
+                    </div>
+                    <span style="display:flex;align-items:center;justify-content:center;width:44px;flex:none;border-left:1px solid #E1E6EB;color:#296093"><dc-import name="Ikony" iconName="chevron-right" size="24" hint-size="24px,24px"></dc-import></span>
+                    <button type="button" onClick="{{ toggleHot5 }}" aria-label="Zavřít náhled produktu" style="position:absolute;top:8px;right:52px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border:0;border-radius:999px;background:transparent;color:#3D4750;cursor:pointer"><dc-import name="Ikony" iconName="x" size="18" hint-size="18px,18px"></dc-import></button>
+                  </div>
+                </sc-if>
+              </div>
+              <div onMouseEnter="{{ hoverHot4 }}" onMouseLeave="{{ leaveHot4 }}" onFocus="{{ hoverHot4 }}" onBlur="{{ leaveHot4 }}">
+                <button type="button" class="ss-hp-hot" style="top:64%;left:80%" onClick="{{ toggleHot4 }}" aria-label="Zobrazit produkt Komoda UNI kombi" aria-expanded="{{ hot4Expanded }}">
+                  <dc-import name="Ikony" iconName="plus" size="18" hint-size="18px,18px"></dc-import>
+                </button>
+                <sc-if value="{{ hot4Open }}" hint-placeholder-val="{{ false }}">
+                  <div style="position:absolute;bottom:calc(36% + 12px);max-height:240px;right:calc(20% - 36px);max-width:80%;width:min(260px,70%);background:#FFFFFF;border-radius:12px;box-shadow:0 16px 40px rgba(19,44,67,.18);display:flex;align-items:stretch;overflow:hidden;z-index:300">
+                    <div style="flex:1;min-width:0;padding:12px;display:flex;flex-direction:column;gap:6px;text-align:left;overflow:hidden">
+                      <img src="produkt-komoda-uni-kombi.png" alt="Komoda UNI kombi z masivu" style="display:block;width:100%;height:52px;min-height:0;flex:none;object-fit:contain;object-position:left center;border-radius:12px;background:#FFFFFF" />
+                      <span style="font-size:13px;font-weight:600;line-height:1.3;color:#1C2229;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">Komoda UNI kombi z masivu</span>
+                      <span style="font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:24px;color:#1C2229;letter-spacing:-0.01em">od 19 989 Kč</span>
+                      <dc-import name="Stitek" kind="inStock" size="small" hint-size="200px,18px"></dc-import>
+                    </div>
+                    <span style="display:flex;align-items:center;justify-content:center;width:44px;flex:none;border-left:1px solid #E1E6EB;color:#296093"><dc-import name="Ikony" iconName="chevron-right" size="24" hint-size="24px,24px"></dc-import></span>
+                    <button type="button" onClick="{{ toggleHot4 }}" aria-label="Zavřít náhled produktu" style="position:absolute;top:8px;right:52px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border:0;border-radius:999px;background:transparent;color:#3D4750;cursor:pointer"><dc-import name="Ikony" iconName="x" size="18" hint-size="18px,18px"></dc-import></button>
+                  </div>
+                </sc-if>
+              </div>
+            </div>
+            <div class="ss-hp-ph" style="position:relative;min-height:{{ inspSmallHeight }}">
+              <img src="inspirace-skrin-azzo.jpg" alt="Ložnice se šatní skříní AZZO z masivu" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;border-radius:12px" />
+              <div onMouseEnter="{{ hoverHot6 }}" onMouseLeave="{{ leaveHot6 }}" onFocus="{{ hoverHot6 }}" onBlur="{{ leaveHot6 }}">
+                <button type="button" class="ss-hp-hot" style="top:46%;left:52%" onClick="{{ toggleHot6 }}" aria-label="Zobrazit produkt Skříň Azzo 3D" aria-expanded="{{ hot6Expanded }}">
+                  <dc-import name="Ikony" iconName="plus" size="18" hint-size="18px,18px"></dc-import>
+                </button>
+                <sc-if value="{{ hot6Open }}" hint-placeholder-val="{{ false }}">
+                  <div style="position:absolute;bottom:calc(54% + 12px);right:calc(48% - 36px);max-width:52%;max-height:240px;width:min(260px,70%);background:#FFFFFF;border-radius:12px;box-shadow:0 16px 40px rgba(19,44,67,.18);display:flex;align-items:stretch;overflow:hidden;z-index:300">
+                    <div style="flex:1;min-width:0;padding:12px;display:flex;flex-direction:column;gap:6px;text-align:left;overflow:hidden">
+                      <img src="produkt-skrin-azzo.png" alt="Skříň Azzo 3D z masivu" style="display:block;width:100%;height:52px;min-height:0;flex:none;object-fit:contain;object-position:left center;border-radius:12px;background:#FFFFFF" />
+                      <span style="font-size:13px;font-weight:600;line-height:1.3;color:#1C2229;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">Skříň Azzo 3D z masivu</span>
+                      <span style="font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:24px;color:#1C2229;letter-spacing:-0.01em">od 34 990 Kč</span>
+                      <dc-import name="Stitek" kind="madeToOrder" size="small" hint-size="200px,18px"></dc-import>
+                    </div>
+                    <span style="display:flex;align-items:center;justify-content:center;width:44px;flex:none;border-left:1px solid #E1E6EB;color:#296093"><dc-import name="Ikony" iconName="chevron-right" size="24" hint-size="24px,24px"></dc-import></span>
+                    <button type="button" onClick="{{ toggleHot6 }}" aria-label="Zavřít náhled produktu" style="position:absolute;top:8px;right:52px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border:0;border-radius:999px;background:transparent;color:#3D4750;cursor:pointer"><dc-import name="Ikony" iconName="x" size="18" hint-size="18px,18px"></dc-import></button>
+                  </div>
+                </sc-if>
+              </div>
+              <div onMouseEnter="{{ hoverHot7 }}" onMouseLeave="{{ leaveHot7 }}" onFocus="{{ hoverHot7 }}" onBlur="{{ leaveHot7 }}">
+                <button type="button" class="ss-hp-hot" style="top:33%;left:20%" onClick="{{ toggleHot7 }}" aria-label="Zobrazit produkt Kulaté zrcadlo v černém rámu ⌀ 70 cm" aria-expanded="{{ hot7Expanded }}">
+                  <dc-import name="Ikony" iconName="plus" size="18" hint-size="18px,18px"></dc-import>
+                </button>
+                <sc-if value="{{ hot7Open }}" hint-placeholder-val="{{ false }}">
+                  <div style="position:absolute;top:calc(33% + 48px);left:20%;max-width:80%;max-height:240px;width:min(260px,70%);background:#FFFFFF;border-radius:12px;box-shadow:0 16px 40px rgba(19,44,67,.18);display:flex;align-items:stretch;overflow:hidden;z-index:300">
+                    <div style="flex:1;min-width:0;padding:12px;display:flex;flex-direction:column;gap:6px;text-align:left;overflow:hidden">
+                      <img src="produkt-zrcadlo-kulate.png" alt="Kulaté zrcadlo v černém rámu" style="display:block;width:100%;height:52px;min-height:0;flex:none;object-fit:contain;object-position:left center;border-radius:12px;background:#FFFFFF" />
+                      <span style="font-size:13px;font-weight:600;line-height:1.3;color:#1C2229;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">Kulaté zrcadlo v černém rámu ⌀ 70 cm</span>
+                      <span style="font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:24px;color:#1C2229;letter-spacing:-0.01em">2 490 Kč</span>
+                      <dc-import name="Stitek" kind="inStock" size="small" hint-size="200px,18px"></dc-import>
+                    </div>
+                    <span style="display:flex;align-items:center;justify-content:center;width:44px;flex:none;border-left:1px solid #E1E6EB;color:#296093"><dc-import name="Ikony" iconName="chevron-right" size="24" hint-size="24px,24px"></dc-import></span>
+                    <button type="button" onClick="{{ toggleHot7 }}" aria-label="Zavřít náhled produktu" style="position:absolute;top:8px;right:52px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border:0;border-radius:999px;background:transparent;color:#3D4750;cursor:pointer"><dc-import name="Ikony" iconName="x" size="18" hint-size="18px,18px"></dc-import></button>
+                  </div>
+                </sc-if>
+              </div>
+            </div>
+          </div>
+        </div>
+        <sc-if value="{{ inspMore }}" hint-placeholder-val="{{ false }}">
+          <div style="display:grid;grid-template-columns:{{ inspTemplateMirror }};gap:20px;margin-top:20px">
+            <div style="display:grid;grid-template-rows:repeat(2,minmax(0,1fr));gap:20px">
+              <div class="ss-hp-ph" style="position:relative;min-height:{{ inspSmallHeight }}">
+                <img src="inspirace-leonardo.jpg" alt="Ložnice s postelí LEONARDO z dubového masivu a LED osvětlením" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;border-radius:12px" />
+                <button type="button" class="ss-hp-hot" style="top:56%;left:42%" aria-label="Zobrazit produkt Postel LEONARDO">
+                  <dc-import name="Ikony" iconName="plus" size="18" hint-size="18px,18px"></dc-import>
+                </button>
+                <button type="button" class="ss-hp-hot" style="top:62%;left:80%" aria-label="Zobrazit produkt Noční stolek z masivu">
+                  <dc-import name="Ikony" iconName="plus" size="18" hint-size="18px,18px"></dc-import>
+                </button>
+              </div>
+              <div class="ss-hp-ph" style="position:relative;min-height:{{ inspSmallHeight }}">
+                <img src="inspirace-lineta.jpg" alt="Obývací pokoj s rozkládací pohovkou LINETA z masivu" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;border-radius:12px" />
+                <button type="button" class="ss-hp-hot" style="top:52%;left:30%" aria-label="Zobrazit produkt Rozkládací postel LINETA">
+                  <dc-import name="Ikony" iconName="plus" size="18" hint-size="18px,18px"></dc-import>
+                </button>
+              </div>
+            </div>
+            <div class="ss-hp-ph" style="position:relative;min-height:{{ inspHeight }}">
+              <img src="inspirace-multi-sante.png" alt="Ložnice se sestavou MULTI SANTÉ z bukového masivu" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;border-radius:12px" />
+                <button type="button" class="ss-hp-hot" style="top:58%;left:45%" aria-label="Zobrazit produkt Postel MULTI SANTÉ">
+                  <dc-import name="Ikony" iconName="plus" size="18" hint-size="18px,18px"></dc-import>
+                </button>
+                <button type="button" class="ss-hp-hot" style="top:52%;left:78%" aria-label="Zobrazit produkt Šatní skříň z masivu">
+                  <dc-import name="Ikony" iconName="plus" size="18" hint-size="18px,18px"></dc-import>
+                </button>
+                <button type="button" class="ss-hp-hot" style="top:58%;left:11%" aria-label="Zobrazit produkt Komoda z masivu">
+                  <dc-import name="Ikony" iconName="plus" size="18" hint-size="18px,18px"></dc-import>
+                </button>
+            </div>
+          </div>
+        </sc-if>
+        <div style="display:flex;justify-content:flex-end;margin-top:24px">
+          <dc-import name="Tlacitko" label="{{ inspMoreLabel }}" variant="secondary" onClick="{{ toggleInspMore }}" iconRight="{{ inspMoreIcon }}" hint-size="220px,44px"></dc-import>
+        </div>
+      </div>
+    </section>
+
+    <section style="width:100%;background:#F7F9FB;margin-top:{{ sectionGap }}">
+      <div style="{{ innerPadded }}">
+        <div style="text-align:center;margin-bottom:24px">
+          <span style="display:block;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#21507B;margin-bottom:8px">Naše prodejny</span>
+          <h2 style="margin:0;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:{{ h2Size }};line-height:1.15">Přijďte si vše osobně vyzkoušet</h2>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-bottom:24px">
+          <sc-for list="{{ cityTabs }}" as="c" hint-placeholder-count="6">
+            <dc-import name="Chip" label="{{ c.label }}" size="small" variant="{{ c.variant }}" ariaPressed="{{ c.pressed }}" onClick="{{ c.onPick }}" hint-size="130px,32px"></dc-import>
+          </sc-for>
+        </div>
+        <div style="display:grid;grid-template-columns:{{ storeTemplate }};gap:20px;align-items:start">
+          <div style="background:#FFFFFF;border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:16px;min-width:0">
+            <h3 style="margin:0;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:21px">{{ storeTitle }}</h3>
+            <div style="display:flex;flex-wrap:wrap;gap:8px">
+              <sc-for list="{{ storeFacts }}" as="f" hint-placeholder-count="3">
+                <span style="display:inline-flex;align-items:center;gap:8px;background:#F7F9FB;border-radius:999px;padding:6px 14px;font-size:13px;font-weight:500;color:#3D4750"><span style="display:flex;color:#55616C"><dc-import name="Ikony" iconName="{{ f.icon }}" size="16" hint-size="16px,16px"></dc-import></span>{{ f.label }}</span>
+              </sc-for>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:12px">
+              <span style="display:flex;align-items:flex-start;gap:10px;font-size:15px;color:#3D4750"><span style="display:flex;color:#296093;flex:none"><dc-import name="Ikony" iconName="map-pin" size="18" hint-size="18px,18px"></dc-import></span><span>{{ storeAddress }}</span></span>
+              <span style="display:flex;align-items:flex-start;gap:10px;font-size:15px;color:#3D4750"><span style="display:flex;color:#296093;flex:none"><dc-import name="Ikony" iconName="clock" size="18" hint-size="18px,18px"></dc-import></span><span>{{ storeHours }}</span></span>
+              <span style="display:flex;align-items:flex-start;gap:10px;font-size:15px;color:#3D4750"><span style="display:flex;color:#296093;flex:none"><dc-import name="Ikony" iconName="phone" size="18" hint-size="18px,18px"></dc-import></span><a href="{{ storePhoneHref }}" style="font-weight:600">{{ storePhone }}</a></span>
+              <span style="display:flex;align-items:flex-start;gap:10px;font-size:15px;color:#3D4750"><span style="display:flex;color:#296093;flex:none"><dc-import name="Ikony" iconName="mail" size="18" hint-size="18px,18px"></dc-import></span><a href="{{ storeEmailHref }}">{{ storeEmail }}</a></span>
+            </div>
+            <div><dc-import name="Tlacitko" label="Více o prodejně" variant="secondary" href="#prodejny" iconRight="chevron-right" hint-size="180px,44px"></dc-import></div>
+          </div>
+          <div class="ss-hp-ph" style="{{ storePhotoStyle }}">
+            <sc-if value="{{ noStorePhoto }}" hint-placeholder-val="{{ true }}">
+              <dc-import name="Ikony" iconName="photo" size="32" hint-size="32px,32px"></dc-import>
+            </sc-if>
+          </div>
+          <div class="ss-hp-ph" style="position:relative;overflow:hidden;min-height:{{ storeMediaHeight }}">
+            <sc-if value="{{ hasStoreMap }}" hint-placeholder-val="{{ false }}">
+              <iframe src="{{ storeMap }}" title="{{ storeMapTitle }}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe>
+            </sc-if>
+            <sc-if value="{{ noStoreMap }}" hint-placeholder-val="{{ true }}">
+              <dc-import name="Ikony" iconName="map-pin" size="32" hint-size="32px,32px"></dc-import>
+            </sc-if>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="width:100%;background:#F7F9FB">
+      <div style="{{ innerTight }}">
+        <div style="background:#FFF8EE;border-radius:12px;padding:{{ ctaPad }};display:grid;grid-template-columns:{{ ctaTemplate }};gap:24px;align-items:center">
+          <div style="display:flex;flex-direction:column;gap:12px;min-width:0">
+            <h2 style="margin:0;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:{{ h2Size }};line-height:1.15">Pomůžeme vám najít tu správnou matraci</h2>
+            <p style="margin:0;max-width:60ch;font-size:15px;line-height:1.6;color:#3D4750">Odpovíte na osm otázek o váze, poloze spánku a rozpočtu. Doporučíme tři modely a řekneme, proč zrovna je.</p>
+            <div style="margin-top:4px"><dc-import name="Tlacitko" label="Najít dokonalou matraci" variant="buy" size="large" href="#pruvodce" iconRight="arrow-right" hint-size="260px,52px"></dc-import></div>
+          </div>
+          <div class="ss-hp-ph" style="min-height:200px;background:#FDDCAA;color:#A4600C"><dc-import name="Ikony" iconName="photo" size="32" hint-size="32px,32px"></dc-import></div>
+        </div>
+      </div>
+    </section>
+
+    <section style="width:100%;background:#FFFFFF;margin-top:{{ sectionGap }}">
+      <div style="{{ inner }}">
+        <div style="display:grid;grid-template-columns:{{ storyTemplate }};gap:32px;align-items:center">
+          <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px">
+            <div class="ss-hp-ph" style="min-height:180px"><dc-import name="Ikony" iconName="photo" size="28" hint-size="28px,28px"></dc-import></div>
+            <div class="ss-hp-ph" style="min-height:220px"><dc-import name="Ikony" iconName="photo" size="28" hint-size="28px,28px"></dc-import></div>
+            <div class="ss-hp-ph" style="min-height:160px;grid-column:span 2"><dc-import name="Ikony" iconName="photo" size="28" hint-size="28px,28px"></dc-import></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:14px;min-width:0">
+            <span style="font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#21507B">O nás</span>
+            <h2 style="margin:0;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:{{ h2Size }};line-height:1.15">Poznejte příběh Světa spánku</h2>
+            <p style="margin:0;max-width:66ch;font-size:15px;line-height:1.65;color:#3D4750">Jsme rodinná firma z jižní Moravy. Postele vyrábíme z masivu ze středoevropských lesů, matrace vybíráme podle toho, jak drží páteř po pěti letech používání — ne podle toho, jak vypadají v katalogu.</p>
+            <p style="margin:0;max-width:66ch;font-size:15px;line-height:1.65;color:#3D4750">Za 23 let jsme prošli stovky konstrukcí a vybrali z nich ty, za kterými umíme stát. Když si nebudete jistí, zavolejte — poradíme i tehdy, když nakonec nekoupíte nic.</p>
+            <div style="margin-top:4px"><dc-import name="Tlacitko" label="Celý náš příběh" variant="secondary" href="#o-nas" iconRight="chevron-right" hint-size="180px,44px"></dc-import></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="width:100%;background:#FFFFFF;margin-top:{{ sectionGap }}">
+      <div style="{{ inner }}">
+        <h2 style="margin:0 0 24px;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:{{ h2Size }};line-height:1.15">Ověřené recenze</h2>
+        <div style="display:grid;grid-template-columns:{{ reviewTemplate }};gap:24px;align-items:start">
+          <div class="ss-rev-badge" style="border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:10px;align-items:center;text-align:center;min-width:0">
+            <img src="logo-heureka-overeno.png" alt="Ověřeno zákazníky — Heureka" style="display:block;width:140px;height:auto;margin-bottom:4px" />
+            <span style="font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:21px;line-height:1.25">98 % zákazníků nás doporučuje</span>
+            <span style="font-size:14px;color:#3D4750">2 430 hodnocení za posledních 12 měsíců</span>
+            <dc-import name="Tlacitko" label="Všechny recenze" variant="text" href="#recenze" iconRight="chevron-right" hint-size="160px,24px"></dc-import>
+          </div>
+          <sc-for list="{{ reviews }}" as="r" hint-placeholder-count="3">
+            <div style="display:flex;flex-direction:column;gap:10px;min-width:0">
+              <dc-import name="Hodnoceni" value="{{ r.value }}" size="small" hint-size="140px,20px"></dc-import>
+              <p style="margin:0;font-size:15px;line-height:1.6;color:#3D4750">{{ r.text }}</p>
+              <span style="font-size:13px;color:#5B6874">{{ r.author }} · {{ r.date }}</span>
+            </div>
+          </sc-for>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:24px">
+          <span style="font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#55616C">Za co nás chválíte</span>
+          <sc-for list="{{ praise }}" as="p" hint-placeholder-count="4">
+            <span style="display:inline-flex;align-items:center;gap:8px;background:#EEF9F1;border-radius:999px;padding:6px 14px;font-size:13px;font-weight:600;color:#106134"><span style="display:flex"><dc-import name="Ikony" iconName="circle-check" size="16" hint-size="16px,16px"></dc-import></span>{{ p }}</span>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+    <section style="width:100%;background:#FFFFFF;margin-top:{{ sectionGap }}">
+      <div style="{{ inner }}">
+        <dc-import name="SouvisejiciProdukty" heading="Objevte nejprodávanější produkty" linkLabel="Zobrazit vše" linkHref="#bestsellery" navPosition="{{ carNavPosition }}" hint-size="100%,560px"></dc-import>
+      </div>
+    </section>
+
+    <section style="width:100%;background:#FFFFFF;margin-top:{{ sectionGap }}">
+      <div style="{{ inner }}">
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-bottom:20px">
+          <h2 style="margin:0;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:{{ h2Size }};line-height:1.15">Magazín zdravého spánku</h2>
+          <div style="margin-left:auto"><dc-import name="Tlacitko" label="Do magazínu" variant="secondary" href="#magazin" iconRight="chevron-right" hint-size="170px,44px"></dc-import></div>
+        </div>
+        <div class="ss-mag-wrap">
+          <div style="display:grid;grid-template-columns:{{ articleTemplate }};gap:40px">
+            <div class="ss-mag-lead">
+              <span class="ss-hp-ph ss-mag-ph">
+                <span class="ss-mag-zoom" style="{{ leadPhotoStyle }}"></span>
+                <span class="ss-mag-cta">Přečíst</span>
+                <sc-if value="{{ navOverlay }}" hint-placeholder-val="{{ false }}">
+                  <button type="button" class="ss-mag-arrow ss-mag-over-prev" onClick="{{ magPrev }}" aria-label="Předchozí články">
+                    <dc-import name="Ikony" iconName="chevron-left" size="22" hint-size="22px,22px"></dc-import>
+                  </button>
+                  <button type="button" class="ss-mag-arrow ss-mag-over-next" onClick="{{ magNext }}" aria-label="Další články">
+                    <dc-import name="Ikony" iconName="chevron-right" size="22" hint-size="22px,22px"></dc-import>
+                  </button>
+                </sc-if>
+              </span>
+              <span class="ss-hp-art-t" style="font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;line-height:1.25;transition:color .12s cubic-bezier(.22,.61,.36,1)">{{ leadArticle.title }}</span>
+              <span style="font-size:15px;line-height:1.6;color:#3D4750">{{ leadArticle.perex }}</span>
+              <a class="ss-mag-cover" href="{{ leadArticle.href }}" aria-label="{{ leadArticle.title }}"></a>
+            </div>
+            <sc-for list="{{ restArticles }}" as="a" hint-placeholder-count="4">
+              <a class="ss-hp-art" href="{{ a.href }}">
+                <span class="ss-hp-ph ss-mag-ph">
+                  <span class="ss-mag-zoom" style="{{ a.photoStyle }}"></span>
+                  <span class="ss-mag-cta">Přečíst</span>
+                </span>
+                <span class="ss-hp-art-t" style="font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:19px;line-height:1.25;transition:color .12s cubic-bezier(.22,.61,.36,1)">{{ a.title }}</span>
+                <span style="font-size:14px;line-height:1.55;color:#3D4750">{{ a.perex }}</span>
+              </a>
+            </sc-for>
+          </div>
+          <sc-if value="{{ navBelow }}" hint-placeholder-val="{{ true }}">
+          <div class="ss-mag-nav">
+            <button type="button" class="ss-mag-arrow" onClick="{{ magPrev }}" aria-label="Předchozí články">
+              <dc-import name="Ikony" iconName="arrow-left" size="24" hint-size="24px,24px"></dc-import>
+            </button>
+            <button type="button" class="ss-mag-arrow" onClick="{{ magNext }}" aria-label="Další články">
+              <dc-import name="Ikony" iconName="arrow-right" size="24" hint-size="24px,24px"></dc-import>
+            </button>
+          </div>
+        </sc-if>
+      </div>
+    </section>
+
+    <section style="width:100%;background:#F0F5FA;margin-top:{{ sectionGap }}">
+      <div style="{{ innerPadded }}">
+        <div style="display:grid;grid-template-columns:{{ newsTemplate }};gap:24px;align-items:center">
+          <div style="display:flex;flex-direction:column;gap:8px;min-width:0">
+            <h2 style="margin:0;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:{{ h3Size }};line-height:1.2">Dostávejte novinky ze Světa spánku</h2>
+            <p style="margin:0;font-size:14px;color:#3D4750">Slevy, akce, výprodeje a novinky o spánkové vědě. Jednou za týden, bez balastu.</p>
+          </div>
+          <form style="display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end;min-width:0" onSubmit="{{ submitNews }}">
+            <div style="flex:1;min-width:220px">
+              <dc-import name="Input" label="" type="email" placeholder="Váš e-mail" ariaLabel="Váš e-mail" value="{{ email }}" onChange="{{ onEmail }}" hint-size="100%,44px"></dc-import>
+            </div>
+            <dc-import name="Tlacitko" label="Chci newsletter" variant="primary" onClick="{{ doNews }}" hint-size="170px,44px"></dc-import>
+          </form>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:16px;margin-top:16px">
+          <sc-for list="{{ newsPerks }}" as="n" hint-placeholder-count="3">
+            <span style="display:inline-flex;align-items:center;gap:8px;font-size:13px;color:#3D4750"><span style="display:flex;color:#157A41"><dc-import name="Ikony" iconName="circle-check" size="16" hint-size="16px,16px"></dc-import></span>{{ n }}</span>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <dc-import name="Paticka" ledMode="{{ ledMode }}" theme="{{ footerTheme }}" hint-size="100%,700px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:1000}}">
+class Component extends DCLogic {
+  ARTICLES = [
+    { title: 'Proč kvalitní matrace vydrží déle?', perex: 'Levná matrace může ztratit oporu už po pár nocích. Ukážeme, které materiály rozhodují o tom, jestli matrace vydrží dva roky, nebo dlouhá léta.', href: 'Clanek.dc.html', image: 'clanek-matrace-hero.png' },
+    { title: 'Nová matrace na starém roštu? Chyba, která může zkrátit její životnost', perex: 'Rošt rozhoduje o tom, jak matrace pracuje i jak dlouho vydrží. Podle čeho poznáte, že je čas vyměnit i jeho.', href: 'Clanek.dc.html', image: 'clanek-rost.png' },
+    { title: 'Proč se vyplatí koupit postelový komplet místo jednotlivých částí', perex: 'Postel, rošt a matrace v jednom balení — ušetříte peníze i čas a všechny části do sebe pasují.', href: 'Clanek.dc.html', image: 'clanek-komplet.jpg' },
+    { title: 'Dovezeme, vyneseme, smontujeme. Vše zařídíme za vás', perex: 'Nová ložnice bez starostí — od dopravy až po odvoz obalů. Jak služba funguje a kam všude jezdíme.', href: 'Clanek.dc.html', image: 'clanek-doprava.jpg' },
+    { title: 'Postel s LED osvětlením: praktický pomocník i stylový doplněk ložnice', perex: 'Tlumené světlo u čela postele, které nevzbudí partnera. Jaké má varianty a kolik potřebuje energie.', href: 'Clanek.dc.html', image: 'clanek-led.jpg' },
+  ];
+  state = {
+    width: typeof window !== 'undefined' ? document.documentElement.clientWidth : 1440,
+    insp: 0, city: 0, hot: true, hot2: false, hot3: false, hot4: false, hot5: false, hot6: false, hot7: false, inspMore: false, email: '', mag: 0, carNav: 'V1'
+  };
+  componentDidMount() {
+    this._resize = () => this.setState({ width: document.documentElement.clientWidth });
+    window.addEventListener('resize', this._resize);
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this._resize); }
+  openHot(key) {
+    clearTimeout(this._hotT);
+    if (!this.canHover()) return;
+    this.setState({ hot: key === 'hot', hot2: key === 'hot2', hot3: key === 'hot3', hot4: key === 'hot4', hot5: key === 'hot5', hot6: key === 'hot6', hot7: key === 'hot7' });
+  }
+  closeHotSoon() {
+    if (!this.canHover()) return;
+    clearTimeout(this._hotT);
+    this._hotT = setTimeout(() => this.setState({ hot: false, hot2: false, hot3: false, hot4: false, hot5: false, hot6: false, hot7: false }), 260);
+  }
+  componentWillUnmount() { clearTimeout(this._hotT); }
+  canHover() {
+    return typeof window !== 'undefined' && window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+  }
+  renderVals() {
+    const w = this.state.width;
+    const narrow = w < 820;
+    const pad = narrow ? '0 16px' : '0 32px';
+    const inner = { maxWidth: '1560px', margin: '0 auto', padding: pad };
+    const stores = [
+      { city: 'Brno – H-Park', title: 'Brno H-Park', address: 'H-Park, Heršpická 11f, 639 00 Brno',
+        hours: 'Po–Pá 9.00–18.00 · So 10.00–18.00',
+        phone: '+420 543 212 855', email: 'obchod@svetspanku.cz',
+        photo: 'prodejna-brno.jpg',
+        map: 'https://www.google.com/maps?q=Her%C5%A1pick%C3%A1+11f+639+00+Brno-st%C5%99ed&ll=49.174158,16.604449&z=16&hl=cs&output=embed',
+        facts: [{ icon: 'package', label: '28 předváděcích postelí' }, { icon: 'ruler-3', label: '42 matrací k vyzkoušení' }] },
+      { city: 'Praha 5 – Butovice', title: 'Praha 5 Butovice', address: 'Galerie Butovice, Radlická 117, Praha 5',
+        hours: 'Po–Ne 9.00–20.00',
+        phone: '+420 222 261 497', email: 'butovice@svetspanku.cz',
+        photo: 'prodejna-praha-butovice.jpg',
+        map: 'https://www.google.com/maps?cid=8282324235014765458&ll=50.047164,14.354621&z=16&hl=cs&output=embed',
+        facts: [{ icon: 'package', label: '18 předváděcích postelí' }, { icon: 'ruler-3', label: '29 matrací k vyzkoušení' }] },
+      { city: 'Praha 10 – Kutnohorská', title: 'Praha 10 Kutnohorská', address: 'Retail Kutnohorská (u Penny), Kutnohorská 532, Praha 10',
+        hours: 'Po–Ne 9.00–20.00',
+        phone: '+420 272 656 213', email: 'sterboholy@svetspanku.cz',
+        photo: 'prodejna-praha-10.jpg',
+        map: 'https://www.google.com/maps?cid=14642449341363822801&ll=50.066794,14.5492&z=16&hl=cs&output=embed',
+        facts: [{ icon: 'package', label: '24 předváděcích postelí' }, { icon: 'ruler-3', label: '39 matrací k vyzkoušení' }] },
+      { city: 'Ostrava', title: 'Ostrava', address: 'Varenská 50, 702 00 Ostrava',
+        hours: 'Po–Ne 9.00–20.00',
+        phone: '+420 596 633 911', email: 'ostrava@svetspanku.cz',
+        photo: 'prodejna-ostrava.jpg',
+        map: 'https://www.google.com/maps?q=Sv%C4%9Btsp%C3%A1nku.cz+Ostrava&ll=49.8335365,18.2680417&z=16&hl=cs&output=embed',
+        facts: [{ icon: 'package', label: '25 předváděcích postelí' }, { icon: 'ruler-3', label: '37 matrací k vyzkoušení' }] },
+      { city: 'Olomouc', title: 'Olomouc', address: 'Nákupní park OC Haná, Kafkova 15, 783 01 Olomouc-Slavonín',
+        hours: 'Po–Pá 9.00–20.00 · So–Ne 9.00–19.00',
+        phone: '+420 581 277 810', email: 'olomouc@svetspanku.cz',
+        photo: 'prodejna-olomouc.jpg',
+        map: 'https://www.google.com/maps?cid=5323467175451449000&ll=49.572849,17.223726&z=17&hl=cs&output=embed',
+        facts: [{ icon: 'dimensions', label: 'cca 600 m² výstavní plochy' }, { icon: 'package', label: 'přes 40 předváděcích postelí' }, { icon: 'ruler-3', label: 'přes 70 matrací k vyzkoušení' }] }
+    ];
+    const store = stores[this.state.city];
+    const led = this.state.led !== false;
+    return {
+      ledMode: led ? 'on' : 'off',
+      presItems: [{ label: 'LED', value: led }],
+      onPresToggle: () => this.setState(s => ({ led: s.led === false })),
+      presChoices: [
+        { label: 'Karusel', value: this.state.carNav, options: ['V1', 'V2'] },
+        { label: 'Header', value: this.state.chrome || 'Světlá', options: ['Světlá', 'Modrá'] },
+        { label: 'Footer', value: this.state.footer || 'Světlá', options: ['Světlá', 'Modrá'] }
+      ],
+      onPresPick: (ci, opt) => {
+        if (ci === 0) this.setState({ carNav: opt });
+        else if (ci === 1) this.setState({ chrome: opt });
+        else this.setState({ footer: opt });
+      },
+      chromeTheme: this.state.chrome === 'Modrá' ? 'blue' : 'light',
+      footerTheme: this.state.footer === 'Modrá' ? 'blue' : 'light',
+      carNavPosition: this.state.carNav === 'V2' ? 'overlay' : 'below',
+      navBelow: this.state.carNav !== 'V2',
+      navOverlay: this.state.carNav === 'V2',
+      magPrev: () => this.setState(s => ({ mag: (s.mag + this.ARTICLES.length - 1) % this.ARTICLES.length })),
+      magNext: () => this.setState(s => ({ mag: (s.mag + 1) % this.ARTICLES.length })),
+      leadArticle: this.ARTICLES[this.state.mag % this.ARTICLES.length],
+      leadPhotoStyle: this.ARTICLES[this.state.mag % this.ARTICLES.length].image
+        ? { backgroundImage: 'url(' + this.ARTICLES[this.state.mag % this.ARTICLES.length].image + ')', backgroundSize: 'cover', backgroundPosition: 'center' }
+        : {},
+      restArticles: [1, 2, 3, 4].map(o => {
+        const a = this.ARTICLES[(this.state.mag + o) % this.ARTICLES.length];
+        return Object.assign({}, a, {
+          photoStyle: a.image
+            ? { backgroundImage: 'url(' + a.image + ')', backgroundSize: 'cover', backgroundPosition: 'center' }
+            : { background: '#F0F3F6' }
+        });
+      }),
+      inner,
+      innerPadded: Object.assign({}, inner, { padding: narrow ? '40px 16px' : '64px 32px' }),
+      innerTight: Object.assign({}, inner, { padding: narrow ? '0 16px 40px' : '0 32px 64px' }),
+      sectionGap: narrow ? '40px' : '64px',
+      h2Size: narrow ? '26px' : '34px',
+      h3Size: narrow ? '21px' : '26px',
+      heroTemplate: w >= 1000 ? 'repeat(3,minmax(0,1fr))' : w >= 550 ? 'repeat(2,minmax(0,1fr))' : 'minmax(0,1fr)',
+      bannerHeight: narrow ? '340px' : '420px',
+      bannerPad: narrow ? '32px 24px' : '48px 64px',
+      bannerTitle: narrow ? '38px' : '64px',
+      bannerText: narrow ? '15px' : '17px',
+      inspTemplate: w >= 1000 ? 'minmax(0,1.4fr) minmax(0,1fr)' : 'minmax(0,1fr)',
+      inspTemplateMirror: w >= 1000 ? 'minmax(0,1fr) minmax(0,1.4fr)' : 'minmax(0,1fr)',
+      inspMore: this.state.inspMore,
+      inspMoreLabel: this.state.inspMore ? 'Skrýt inspiraci' : 'Ukázat více inspirace',
+      inspMoreIcon: this.state.inspMore ? 'chevron-up' : 'chevron-down',
+      toggleInspMore: () => this.setState(s2 => ({ inspMore: !s2.inspMore })),
+      inspHeight: narrow ? '480px' : '780px',
+      inspSmallHeight: narrow ? '230px' : '380px',
+      storeTemplate: w >= 1150 ? 'minmax(0,1fr) minmax(0,1fr) minmax(0,1fr)' : w >= 820 ? 'minmax(0,1fr) minmax(0,1fr)' : 'minmax(0,1fr)',
+      storeMediaHeight: narrow ? '200px' : '280px',
+      ctaTemplate: w >= 820 ? 'minmax(0,1.2fr) minmax(0,1fr)' : 'minmax(0,1fr)',
+      ctaPad: narrow ? '24px' : '40px',
+      storyTemplate: w >= 1000 ? 'minmax(0,1fr) minmax(0,1fr)' : 'minmax(0,1fr)',
+      reviewTemplate: w >= 1150 ? 'minmax(0,1fr) repeat(3,minmax(0,1fr))' : w >= 820 ? 'repeat(2,minmax(0,1fr))' : 'minmax(0,1fr)',
+      articleTemplate: w >= 1150 ? '1.7fr minmax(0,1fr) minmax(0,1fr)' : w >= 820 ? 'repeat(2,minmax(0,1fr))' : 'minmax(0,1fr)',
+      newsTemplate: w >= 820 ? 'minmax(0,1fr) minmax(0,1fr)' : 'minmax(0,1fr)',
+      inspTabs: ['Ložnice', 'Dětský pokoj', 'Penzion'].map((label, i) => ({
+        label,
+        variant: this.state.insp === i ? 'primary' : 'outline',
+        pressed: this.state.insp === i ? 'true' : 'false',
+        onPick: () => this.setState({ insp: i })
+      })),
+      cityTabs: stores.map((s, i) => ({
+        label: s.city,
+        variant: this.state.city === i ? 'primary' : 'outline',
+        pressed: this.state.city === i ? 'true' : 'false',
+        onPick: () => this.setState({ city: i })
+      })),
+      storeTitle: store.title,
+      storeAddress: store.address,
+      storeHours: store.hours,
+      storePhone: store.phone,
+      storePhoneHref: 'tel:' + String(store.phone || '').replace(/\s/g, ''),
+      storeEmail: store.email,
+      storeEmailHref: 'mailto:' + store.email,
+      storeFacts: store.facts,
+      storePhoto: store.photo,
+      storePhotoStyle: {
+        position: 'relative', overflow: 'hidden', minHeight: narrow ? '200px' : '280px',
+        backgroundImage: store.photo ? 'url(' + store.photo + ')' : undefined,
+        backgroundSize: 'cover', backgroundPosition: 'center'
+      },
+      hasStorePhoto: !!store.photo,
+      noStorePhoto: !store.photo,
+      storeMap: store.map,
+      hasStoreMap: !!store.map,
+      noStoreMap: !store.map,
+      storeMapTitle: 'Mapa — ' + store.title,
+      hotOpen: this.state.hot,
+      hotExpanded: this.state.hot ? 'true' : 'false',
+      toggleHot: () => this.setState(s => ({ hot: !s.hot, hot2: false })),
+      hoverHot: () => this.openHot('hot'),
+      leaveHot: () => this.closeHotSoon(),
+      hoverHot2: () => this.openHot('hot2'),
+      leaveHot2: () => this.closeHotSoon(),
+      hot6Open: this.state.hot6,
+      hot6Expanded: this.state.hot6 ? 'true' : 'false',
+      toggleHot6: () => this.setState(s2 => ({ hot6: !s2.hot6 })),
+      hoverHot6: () => this.openHot('hot6'),
+      leaveHot6: () => this.closeHotSoon(),
+      hot7Open: this.state.hot7,
+      hot7Expanded: this.state.hot7 ? 'true' : 'false',
+      toggleHot7: () => this.setState(s2 => ({ hot7: !s2.hot7 })),
+      hoverHot7: () => this.openHot('hot7'),
+      leaveHot7: () => this.closeHotSoon(),
+      hot5Open: this.state.hot5,
+      hot5Expanded: this.state.hot5 ? 'true' : 'false',
+      toggleHot5: () => this.setState(s2 => ({ hot5: !s2.hot5 })),
+      hoverHot5: () => this.openHot('hot5'),
+      leaveHot5: () => this.closeHotSoon(),
+      hot4Open: this.state.hot4,
+      hot4Expanded: this.state.hot4 ? 'true' : 'false',
+      toggleHot4: () => this.setState(s2 => ({ hot4: !s2.hot4 })),
+      hoverHot4: () => this.openHot('hot4'),
+      leaveHot4: () => this.closeHotSoon(),
+      hot3Open: this.state.hot3,
+      hot3Expanded: this.state.hot3 ? 'true' : 'false',
+      toggleHot3: () => this.setState(s => ({ hot3: !s.hot3 })),
+      hoverHot3: () => this.openHot('hot3'),
+      leaveHot3: () => this.closeHotSoon(),
+      hot2Open: this.state.hot2,
+      hot2Expanded: this.state.hot2 ? 'true' : 'false',
+      toggleHot2: () => this.setState(s => ({ hot2: !s.hot2, hot: false })),
+      reviews: [
+        { value: 5, text: 'Přesvědčil mě přístup prodejce. Nechal mě v klidu vyzkoušet pět matrací a nakonec doporučil tu levnější.', author: 'Jana K.', date: '15. 6. 2026' },
+        { value: 5, text: 'Postel z masivu dorazila přesně v termínu, sestavená za hodinu. Po roce nevrže a vypadá jako první den.', author: 'Martin V.', date: '2. 6. 2026' },
+        { value: 4, text: 'Matrace sedí, jen dovoz do patra bylo potřeba domluvit dopředu. Jinak bez výhrad.', author: 'Vera S.', date: '21. 5. 2026' }
+      ],
+      praise: ['Široký sortiment', 'Kvalitní česká výroba', 'Rychlé a férové jednání', 'Vstřícnost personálu'],
+      newsPerks: ['Nejvýše 2× týdně', 'Odebírá přes 110 000 lidí', 'Odhlásíte se jedním kliknutím'],
+      email: this.state.email,
+      onEmail: (v) => this.setState({ email: v }),
+      submitNews: (e) => e.preventDefault(),
+      doNews: () => {}
+    };
+  }
+}
+</script>
+</body>
+</html>

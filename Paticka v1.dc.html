@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Archivo,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:800!important;font-stretch:75%;text-transform:uppercase;letter-spacing:-0.005em;}
+
+.ss-ft{font-family:Archivo,Helvetica,Arial,sans-serif;width:100%;background:#F7F9FB;color:#3D4750;}
+.ss-ft a{text-decoration:none;color:#3D4750;}
+.ss-ft-link{display:inline-flex;align-items:center;min-height:32px;font-size:14px;border-radius:4px;transition:color .12s cubic-bezier(.22,.61,.36,1);}
+.ss-ft-link:hover{color:#296093;text-decoration:underline;text-underline-offset:3px;}
+.ss-ft-link:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+.ss-ft-acc{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;min-height:48px;padding:0;border:0;background:none;font:inherit;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:16px;color:#1C2229;cursor:pointer;text-align:left;}
+.ss-ft-acc:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);border-radius:6px;}
+.ss-ft-soc{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:999px;background:#FFFFFF;color:#21507B;transition:background-color .12s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1);}
+.ss-ft-soc:hover{background:#296093;color:#FFFFFF;}
+.ss-ft-soc:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+
+.ss-ft[data-theme="blue"]{background:#1A3E5F;color:#DCE8F2;}
+.ss-ft[data-theme="blue"] h3{color:#FFFFFF!important;}
+.ss-ft[data-theme="blue"] a{color:#DCE8F2;}
+.ss-ft[data-theme="blue"] .ss-ft-top{background:#296093!important;border-top-color:rgba(255,255,255,.14)!important;}
+.ss-ft[data-theme="blue"] .ss-ft-link{color:#DCE8F2!important;}
+.ss-ft[data-theme="blue"] .ss-ft-link:hover{color:#FFFFFF!important;text-decoration:underline;text-underline-offset:3px;}
+.ss-ft[data-theme="blue"] .ss-ft-heading{color:#FFFFFF!important;}
+.ss-ft[data-theme="blue"] .ss-ft-tel,.ss-ft[data-theme="blue"] .ss-ft-mail{color:#FFFFFF!important;}
+.ss-ft[data-theme="blue"] .ss-ft-hours{color:#DCE8F2!important;}
+.ss-ft[data-theme="blue"] .ss-ft-avatar{background:rgba(255,255,255,.16)!important;color:#DCE8F2!important;}
+.ss-ft[data-theme="blue"] .ss-ft-soc{background:#FFFFFF;color:#21507B;}
+.ss-ft[data-theme="blue"] .ss-ft-soc:hover{background:#FBB255;color:#1C2229;}
+.ss-ft[data-theme="blue"] .ss-ft-acc{color:#FFFFFF;}
+.ss-ft[data-theme="blue"] .ss-ft-accrow{border-bottom-color:rgba(255,255,255,.18)!important;}
+.ss-ft[data-theme="blue"] .ss-ft-accicon{color:#DCE8F2!important;}
+.ss-ft[data-theme="blue"] .ss-ft-paybar{border-top-color:rgba(255,255,255,.14)!important;}
+.ss-ft[data-theme="blue"] .ss-ft-caption{color:#DCE8F2!important;}
+.ss-ft[data-theme="blue"] .ss-ft-chip{background:rgba(255,255,255,.14)!important;color:#FFFFFF!important;}
+.ss-ft[data-theme="blue"] .ss-ft-chipicon{color:#DCE8F2!important;}
+.ss-ft[data-theme="blue"] .ss-ft-link:focus-visible,.ss-ft[data-theme="blue"] .ss-ft-acc:focus-visible,.ss-ft[data-theme="blue"] .ss-ft-soc:focus-visible{box-shadow:0 0 0 3px rgba(251,178,85,.65);}
+</style>
+</helmet>
+<footer class="ss-ft" data-theme="{{ theme }}">
+  <div class="ss-ft-top" style="width:100%;background:#FFFFFF;border-top:1px solid #E1E6EB">
+    <div style="max-width:1560px;margin:0 auto;padding:{{ padX }};display:flex;flex-wrap:wrap;align-items:center;gap:24px 40px">
+      <div style="display:flex;align-items:center;gap:16px;min-width:0">
+        <span class="ss-ft-avatar" style="width:56px;height:56px;border-radius:999px;background:#EFF2F5;flex:none;display:flex;align-items:center;justify-content:center;color:#9AA6B2"><dc-import name="Ikony" iconName="user" size="24" hint-size="24px,24px"></dc-import></span>
+        <div style="display:flex;flex-direction:column;gap:2px;min-width:0">
+          <span class="ss-ft-heading" style="font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:19px;color:#1C2229">Jsme tu pro vás</span>
+          <a class="ss-ft-tel" href="tel:+420543212855" style="font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:21px;color:#296093">+420 543 212 855</a>
+          <span class="ss-ft-hours" style="font-size:13px;color:#5B6874">Po–Pá 9.00–17.00</span>
+        </div>
+      </div>
+      <a class="ss-ft-link ss-ft-mail" href="mailto:podpora@svetspanku.cz" style="gap:8px;font-weight:600;color:#296093">
+        <dc-import name="Ikony" iconName="mail" size="20" hint-size="20px,20px"></dc-import>
+        <span>podpora@svetspanku.cz</span>
+      </a>
+      <div style="margin-left:auto;display:flex;align-items:center;gap:10px">
+        <a class="ss-ft-soc" href="#facebook" aria-label="Facebook"><dc-import name="Ikony" iconName="book" size="20" hint-size="20px,20px"></dc-import></a>
+        <a class="ss-ft-soc" href="#instagram" aria-label="Instagram"><dc-import name="Ikony" iconName="photo" size="20" hint-size="20px,20px"></dc-import></a>
+        <a class="ss-ft-soc" href="#youtube" aria-label="YouTube"><dc-import name="Ikony" iconName="player-play" size="20" hint-size="20px,20px"></dc-import></a>
+      </div>
+    </div>
+  </div>
+
+  <div style="max-width:1560px;margin:0 auto;padding:{{ padCols }}">
+    <sc-if value="{{ columnsMode }}" hint-placeholder-val="{{ true }}">
+      <div style="display:grid;grid-template-columns:{{ colTemplate }};gap:32px 40px">
+        <sc-for list="{{ columns }}" as="c" hint-placeholder-count="4">
+          <nav aria-label="{{ c.title }}" style="display:flex;flex-direction:column;gap:6px;min-width:0">
+            <h3 style="margin:0 0 6px;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:16px;color:#1C2229">{{ c.title }}</h3>
+            <sc-for list="{{ c.items }}" as="i" hint-placeholder-count="5">
+              <a class="ss-ft-link" href="{{ i.href }}">{{ i.label }}</a>
+            </sc-for>
+          </nav>
+        </sc-for>
+      </div>
+    </sc-if>
+    <sc-if value="{{ accordionMode }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;flex-direction:column">
+        <sc-for list="{{ columns }}" as="c" hint-placeholder-count="4">
+          <div class="ss-ft-accrow" style="border-bottom:1px solid #E1E6EB;padding:4px 0">
+            <h3 style="margin:0">
+              <button type="button" class="ss-ft-acc" onClick="{{ c.onToggle }}" aria-expanded="{{ c.expanded }}">
+                <span>{{ c.title }}</span>
+                <span class="ss-ft-accicon" style="display:flex;color:#55616C"><dc-import name="Ikony" iconName="{{ c.chevron }}" size="20" hint-size="20px,20px"></dc-import></span>
+              </button>
+            </h3>
+            <sc-if value="{{ c.open }}" hint-placeholder-val="{{ false }}">
+              <nav aria-label="{{ c.title }}" style="display:flex;flex-direction:column;gap:4px;padding:4px 0 16px">
+                <sc-for list="{{ c.items }}" as="i" hint-placeholder-count="5">
+                  <a class="ss-ft-link" href="{{ i.href }}" style="min-height:40px">{{ i.label }}</a>
+                </sc-for>
+              </nav>
+            </sc-if>
+          </div>
+        </sc-for>
+      </div>
+    </sc-if>
+  </div>
+
+  <div class="ss-ft-paybar" style="max-width:1560px;margin:0 auto;padding:{{ padPay }};display:grid;grid-template-columns:{{ payTemplate }};gap:24px 40px;border-top:1px solid #E1E6EB">
+    <div style="display:flex;flex-direction:column;gap:10px;min-width:0">
+      <span class="ss-ft-caption" style="font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#55616C">Možnosti dopravy</span>
+      <div style="display:flex;flex-wrap:wrap;gap:8px">
+        <sc-for list="{{ delivery }}" as="d" hint-placeholder-count="4">
+          <span class="ss-ft-chip" style="display:inline-flex;align-items:center;gap:8px;background:#FFFFFF;border-radius:6px;padding:8px 12px;font-size:13px;font-weight:500;color:#3D4750"><span class="ss-ft-chipicon" style="display:flex;color:#55616C"><dc-import name="Ikony" iconName="truck" size="16" hint-size="16px,16px"></dc-import></span>{{ d }}</span>
+        </sc-for>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px;min-width:0">
+      <span class="ss-ft-caption" style="font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#55616C">Možnosti platby</span>
+      <div style="display:flex;flex-wrap:wrap;gap:8px">
+        <sc-for list="{{ payment }}" as="pm" hint-placeholder-count="5">
+          <span class="ss-ft-chip" style="display:inline-flex;align-items:center;gap:8px;background:#FFFFFF;border-radius:6px;padding:8px 12px;font-size:13px;font-weight:500;color:#3D4750"><span class="ss-ft-chipicon" style="display:flex;color:#55616C"><dc-import name="Ikony" iconName="{{ pm.icon }}" size="16" hint-size="16px,16px"></dc-import></span>{{ pm.label }}</span>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+
+  <div style="width:100%;background:#132C43;color:#DCE8F2">
+    <div style="max-width:1560px;margin:0 auto;padding:{{ padLegal }};display:flex;flex-wrap:wrap;align-items:center;gap:12px 24px;font-size:13px">
+      <span>© 2026 LUCKÉ CZ GROUP s.r.o. — Všechna práva vyhrazena</span>
+      <nav aria-label="Právní informace" style="display:flex;flex-wrap:wrap;gap:16px;margin-left:auto">
+        <a class="ss-ft-link" href="#obchodni-podminky" style="color:#DCE8F2">Obchodní podmínky</a>
+        <a class="ss-ft-link" href="#ochrana-udaju" style="color:#DCE8F2">Ochrana osobních údajů</a>
+        <a class="ss-ft-link" href="#cookies" style="color:#DCE8F2">Nastavení cookies</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:760},&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;light&quot;,&quot;options&quot;:[&quot;light&quot;,&quot;blue&quot;],&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { width: typeof window !== 'undefined' ? document.documentElement.clientWidth : 1440, open: {} };
+  componentDidMount() {
+    this._resize = () => this.setState({ width: document.documentElement.clientWidth });
+    window.addEventListener('resize', this._resize);
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this._resize); }
+  renderVals() {
+    const w = this.state.width;
+    const accordion = w < 820;
+    const twoCols = w < 1150;
+    const base = [
+      { title: 'Zákaznický servis', items: [
+        ['Kontakt', '#kontakty'], ['Doprava a platba', '#doprava'], ['Reklamace a vrácení', '#reklamace'],
+        ['Obchodní podmínky', '#obchodni-podminky'], ['Časté dotazy', '#faq']
+      ] },
+      { title: 'O Světě spánku', items: [
+        ['O nás', '#o-nas'], ['Výroba na míru', '#vyroba-na-miru'], ['Naše prodejny', '#prodejny'],
+        ['Magazín', '#magazin'], ['Ověřené recenze', '#recenze']
+      ] },
+      { title: 'Poradíme vám', items: [
+        ['Jak vybrat matraci', '#jak-vybrat-matraci'], ['Jaká tvrdost je správná', '#tvrdost'],
+        ['Jak vybrat rošt', '#jak-vybrat-rost'], ['Průvodce výběrem postele', '#pruvodce-postel'],
+        ['Rozměry postelí', '#rozmery']
+      ] },
+      { title: 'Nakupujte', items: [
+        ['Postele z masivu', '#postele-z-masivu'], ['Matrace', '#matrace'], ['Rošty', '#rosty'],
+        ['Výhodné komplety', '#komplety'], ['Akce a výprodej', '#akce']
+      ] }
+    ];
+    const columns = base.map((c, i) => ({
+      title: c.title,
+      items: c.items.map(([label, href]) => ({ label, href })),
+      open: !!this.state.open[i],
+      expanded: this.state.open[i] ? 'true' : 'false',
+      chevron: this.state.open[i] ? 'chevron-up' : 'chevron-down',
+      onToggle: () => this.setState(s => ({ open: Object.assign({}, s.open, { [i]: !s.open[i] }) }))
+    }));
+    const pad = accordion ? '0 16px' : '0 32px';
+    return {
+      theme: this.props.theme === 'blue' ? 'blue' : 'light',
+      columns,
+      columnsMode: !accordion,
+      accordionMode: accordion,
+      colTemplate: twoCols ? 'repeat(2,minmax(0,1fr))' : 'repeat(4,minmax(0,1fr))',
+      payTemplate: w < 820 ? 'minmax(0,1fr)' : 'repeat(2,minmax(0,1fr))',
+      padX: accordion ? '24px 16px' : '32px',
+      padCols: accordion ? '8px 16px 24px' : '48px 32px',
+      padPay: accordion ? '24px 16px' : '32px',
+      padLegal: accordion ? '20px 16px' : '20px 32px',
+      delivery: ['PPL', 'Zásilkovna', 'Vlastní doprava', 'Osobní odběr'],
+      payment: [
+        { label: 'Převod', icon: 'coins' }, { label: 'Dobírka', icon: 'coin' }, { label: 'Kartou', icon: 'discount' },
+        { label: 'Google Pay', icon: 'circle-check' }, { label: 'Apple Pay', icon: 'circle-check' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

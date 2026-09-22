@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Archivo,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:800!important;font-stretch:75%;text-transform:uppercase;letter-spacing:-0.005em;}
+
+.ss-fp-head{display:flex;align-items:center;gap:8px;width:100%;min-height:44px;padding:0;border:0;background:none;font:inherit;font-family:Archivo,Helvetica,Arial,sans-serif;font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#3D4750;text-align:left;cursor:pointer;border-radius:6px;transition:color .12s cubic-bezier(.22,.61,.36,1);}
+@media (hover:hover) and (pointer:fine){.ss-fp-head:hover{color:#296093;}}
+.ss-fp-head:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+.ss-fp-chev{display:flex;margin-left:auto;color:#55616C;transition:transform .15s cubic-bezier(.22,.61,.36,1);}
+.ss-fp-head[aria-expanded="true"] .ss-fp-chev{transform:rotate(180deg);}
+@media (prefers-reduced-motion:reduce){.ss-fp-chev{transition:none;}}
+</style>
+</helmet>
+<aside aria-label="Filtry" style="font-family:Archivo,Helvetica,Arial,sans-serif;background:#F7F9FB;border-radius:12px;padding:8px 24px 16px;display:flex;flex-direction:column;min-width:0;color:#1C2229">
+  <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:16px 0">
+    <h2 style="margin:0;font-family:'Archivo Narrow',Archivo,sans-serif;font-size:19px">{{ heading }}</h2>
+    <sc-if value="{{ hasActive }}" hint-placeholder-val="{{ false }}">
+      <div style="margin-left:auto">
+        <dc-import name="Tlacitko" label="Smazat filtry" variant="textDanger" onClick="{{ clear }}" hint-size="120px,24px"></dc-import>
+      </div>
+    </sc-if>
+  </div>
+
+  <div style="display:flex;flex-direction:column;border-top:1px solid #E1E6EB">
+    <div style="padding:8px 0;border-bottom:1px solid #E1E6EB">
+      <button type="button" class="ss-fp-head" aria-expanded="{{ priceExpanded }}" onClick="{{ togglePrice }}">
+        <span>Cena</span>
+        <span class="ss-fp-chev"><dc-import name="Ikony" iconName="chevron-down" size="18" hint-size="18px,18px"></dc-import></span>
+      </button>
+      <sc-if value="{{ priceOpen }}" hint-placeholder-val="{{ true }}">
+        <div style="padding:8px 0 16px">
+          <dc-import name="CenovyFiltr" from="{{ priceFrom }}" to="{{ priceTo }}" min="{{ priceMin }}" max="{{ priceMax }}" onChange="{{ onPrice }}" hint-size="100%,160px"></dc-import>
+        </div>
+      </sc-if>
+    </div>
+
+    <sc-for list="{{ facets }}" as="f" hint-placeholder-count="4">
+      <div style="padding:8px 0;border-bottom:1px solid #E1E6EB">
+        <button type="button" class="ss-fp-head" aria-expanded="{{ f.expanded }}" onClick="{{ f.onToggleSection }}">
+          <span>{{ f.title }}</span>
+          <sc-if value="{{ f.hasSelected }}" hint-placeholder-val="{{ false }}">
+            <span style="display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:20px;padding:0 6px;border-radius:999px;background:#296093;color:#FFFFFF;font-size:12px;font-weight:700;letter-spacing:0">{{ f.selectedCount }}</span>
+          </sc-if>
+          <span class="ss-fp-chev"><dc-import name="Ikony" iconName="chevron-down" size="18" hint-size="18px,18px"></dc-import></span>
+        </button>
+        <sc-if value="{{ f.open }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex;flex-direction:column;gap:2px;padding:4px 0 12px">
+            <sc-for list="{{ f.options }}" as="o" hint-placeholder-count="4">
+              <dc-import name="Checkbox" label="{{ o.label }}" count="{{ o.count }}" size="compact" checked="{{ o.checked }}" onChange="{{ o.onToggle }}" hint-size="100%,32px"></dc-import>
+            </sc-for>
+          </div>
+        </sc-if>
+      </div>
+    </sc-for>
+  </div>
+</aside>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:320,&quot;height&quot;:720},&quot;heading&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Zjednodušte si výběr&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;priceFrom&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:0,&quot;min&quot;:0,&quot;max&quot;:100000,&quot;tsType&quot;:&quot;number&quot;},&quot;priceTo&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:40000,&quot;min&quot;:0,&quot;max&quot;:100000,&quot;tsType&quot;:&quot;number&quot;},&quot;priceMin&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:0,&quot;min&quot;:0,&quot;max&quot;:100000,&quot;tsType&quot;:&quot;number&quot;},&quot;priceMax&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:40000,&quot;min&quot;:0,&quot;max&quot;:100000,&quot;tsType&quot;:&quot;number&quot;},&quot;facets&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;Facet[]&quot;},&quot;selected&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;Record&lt;string,string[]&gt;&quot;},&quot;onToggleOption&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(group: string, option: string) =&gt; void&quot;},&quot;onPriceChange&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(from: number, to: number) =&gt; void&quot;},&quot;onClearAll&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;() =&gt; void&quot;}}">
+class Component extends DCLogic {
+  state = { facets: null, closed: {} };
+  componentDidMount() {
+    if (!this.props.facets) import('./produkty.js').then(m => this.setState({ facets: m.FACETY }));
+  }
+  toggleSection(id) {
+    this.setState(s => ({ closed: Object.assign({}, s.closed, { [id]: !s.closed[id] }) }));
+  }
+  renderVals() {
+    const p = this.props;
+    const selected = p.selected || {};
+    const closed = this.state.closed;
+    const facets = (p.facets || this.state.facets || []).map(f => {
+      const sel = selected[f.id] || [];
+      const open = !closed[f.id];
+      return {
+        title: f.title,
+        open,
+        expanded: open ? 'true' : 'false',
+        hasSelected: sel.length > 0,
+        selectedCount: sel.length,
+        onToggleSection: () => this.toggleSection(f.id),
+        options: (f.options || []).map(o => ({
+          label: o.label, count: o.count,
+          checked: sel.indexOf(o.id) !== -1,
+          onToggle: () => { if (p.onToggleOption) p.onToggleOption(f.id, o.id); }
+        }))
+      };
+    });
+    const activeCount = Object.keys(selected).reduce((n, k) => n + (selected[k] || []).length, 0);
+    const priceOpen = !closed.__cena;
+    return {
+      heading: p.heading ?? 'Zjednodušte si výběr',
+      facets,
+      priceOpen,
+      priceExpanded: priceOpen ? 'true' : 'false',
+      togglePrice: () => this.toggleSection('__cena'),
+      priceFrom: p.priceFrom ?? 0,
+      priceTo: p.priceTo ?? 40000,
+      priceMin: p.priceMin ?? 0,
+      priceMax: p.priceMax ?? 40000,
+      onPrice: (from, to) => { if (p.onPriceChange) p.onPriceChange(from, to); },
+      hasActive: activeCount > 0,
+      clear: () => { if (p.onClearAll) p.onClearAll(); }
+    };
+  }
+}
+</script>
+</body>
+</html>

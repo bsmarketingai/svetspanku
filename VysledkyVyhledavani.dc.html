@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Archivo,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:800!important;font-stretch:75%;text-transform:uppercase;letter-spacing:-0.005em;}
+
+html,body{margin:0!important;padding:0!important;}
+#dc-root{margin:0!important;padding:0!important;width:100%!important;max-width:none!important;border:0!important;}
+#dc-root>.sc-host{margin:0!important;padding:0!important;width:100%!important;}
+a{color:#296093;}
+a:hover{color:#21507B;}
+.ss-seg{display:inline-flex;align-items:center;justify-content:center;height:52px;padding:0 24px;border:1px solid #E1E6EB;border-radius:6px;background:#FFFFFF;font:inherit;font-size:15px;font-weight:600;color:#3D4750;cursor:pointer;white-space:nowrap;transition:background-color .12s cubic-bezier(.22,.61,.36,1),border-color .12s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1);}
+@media (hover:hover) and (pointer:fine){.ss-seg:hover{border-color:#296093;color:#21507B;}}
+.ss-seg:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+.ss-seg[aria-pressed="true"]{background:#F0F5FA;border-color:#296093;color:#21507B;}
+.ss-cat{position:relative;display:flex;align-items:center;gap:12px;padding:16px;border:1px solid #E1E6EB;border-radius:12px;background:#FFFFFF;text-decoration:none;color:#1C2229;min-width:0;transition:box-shadow .15s cubic-bezier(.22,.61,.36,1),border-color .12s cubic-bezier(.22,.61,.36,1);}
+@media (hover:hover) and (pointer:fine){.ss-cat:hover{border-color:#296093;box-shadow:0 4px 12px rgba(19,44,67,.12);}}
+.ss-cat:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+.ss-art{position:relative;display:flex;flex-direction:column;gap:12px;padding:12px;margin:-12px;text-decoration:none;color:#1C2229;border-radius:12px;transition:box-shadow .15s cubic-bezier(.22,.61,.36,1);}
+@media (hover:hover) and (pointer:fine){.ss-art:hover{box-shadow:0 4px 12px rgba(19,44,67,.12);}.ss-art:hover .ss-art-t{color:#296093;}}
+.ss-art:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+.ss-ph{display:flex;align-items:center;justify-content:center;background:#EFF2F5;color:#C8D0D8;border-radius:12px;}
+.ss-sort{position:relative;display:inline-flex;align-items:center;height:44px;border:0;padding:0 2px;background:none;font:inherit;font-size:15px;font-weight:600;color:#55616C;cursor:pointer;white-space:nowrap;transition:color .12s cubic-bezier(.22,.61,.36,1);}
+@media (hover:hover) and (pointer:fine){.ss-sort:hover{color:#296093;}}
+.ss-sort:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);border-radius:6px;}
+.ss-sort::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;border-radius:3px 3px 0 0;background:transparent;transition:background-color .12s cubic-bezier(.22,.61,.36,1);}
+.ss-sort[aria-pressed="true"]{color:#1C2229;}
+.ss-sort[aria-pressed="true"]::after{background:#FBB255;}
+</style>
+</helmet>
+<div style="width:100%;background:#FFFFFF;font-family:Archivo,Helvetica,Arial,sans-serif;color:#1C2229">
+  <dc-import name="Hlavicka" style="position:sticky;top:0;z-index:200" ledMode="{{ ledMode }}" hint-size="100%,180px"></dc-import>
+  <dc-import name="PrezentacniLista" items="{{ presItems }}" onToggle="{{ onPresToggle }}" hint-size="320px,52px"></dc-import>
+
+  <main>
+    <section style="width:100%;background:#FFFFFF">
+      <div style="{{ innerTop }}">
+        <h1 style="margin:0 0 8px;font-size:{{ h1Size }};line-height:1.1">Výsledky pro „postele“ (126)</h1>
+        <p style="margin:0;font-size:15px;color:#3D4750">Pro upřesnění výsledků použijte filtr.</p>
+
+        <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:24px">
+          <button type="button" class="ss-seg" aria-pressed="{{ tabCatPressed }}" onClick="{{ pickCat }}">Kategorie (8)</button>
+          <button type="button" class="ss-seg" aria-pressed="{{ tabArtPressed }}" onClick="{{ pickArt }}">Články (10)</button>
+        </div>
+
+        <sc-if value="{{ isCat }}" hint-placeholder-val="{{ true }}">
+          <div style="margin-top:20px">
+            <h2 style="margin:0 0 12px;font-size:13px;letter-spacing:.1em;color:#55616C">Kategorie</h2>
+            <div style="display:grid;grid-template-columns:{{ catTemplate }};gap:12px">
+              <sc-for list="{{ categories }}" as="c" hint-placeholder-count="8">
+                <a class="ss-cat" href="{{ c.href }}">
+                  <span class="ss-ph" style="flex:none;width:40px;height:40px;border-radius:6px"><dc-import name="Ikony" iconName="photo" size="20" hint-size="20px,20px"></dc-import></span>
+                  <span style="display:flex;flex-direction:column;gap:2px;min-width:0">
+                    <span style="font-size:15px;font-weight:600;line-height:1.3;color:#21507B">{{ c.label }}</span>
+                    <span style="font-size:13px;color:#5B6874">{{ c.countText }}</span>
+                  </span>
+                </a>
+              </sc-for>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isArt }}" hint-placeholder-val="{{ false }}">
+          <div style="margin-top:20px">
+            <h2 style="margin:0 0 12px;font-size:13px;letter-spacing:.1em;color:#55616C">Články</h2>
+            <div style="display:grid;grid-template-columns:{{ artTemplate }};gap:20px">
+              <sc-for list="{{ articles }}" as="a" hint-placeholder-count="4">
+                <a class="ss-art" href="{{ a.href }}">
+                  <span class="ss-ph" style="height:180px"><dc-import name="Ikony" iconName="photo" size="28" hint-size="28px,28px"></dc-import></span>
+                  <span class="ss-art-t" style="font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:19px;line-height:1.25;transition:color .12s cubic-bezier(.22,.61,.36,1)">{{ a.title }}</span>
+                  <span style="font-size:14px;line-height:1.55;color:#3D4750">{{ a.perex }}</span>
+                </a>
+              </sc-for>
+            </div>
+          </div>
+        </sc-if>
+      </div>
+    </section>
+
+    <section style="width:100%;background:#FFFFFF">
+      <div style="{{ innerResults }}">
+        <div style="display:grid;grid-template-columns:{{ resultsTemplate }};gap:{{ resultsGap }};align-items:start">
+
+          <sc-if value="{{ hasSidebar }}" hint-placeholder-val="{{ true }}">
+            <dc-import name="FiltrPanel" selected="{{ selected }}" onToggleOption="{{ onToggleOption }}" priceFrom="{{ priceFrom }}" priceTo="{{ priceTo }}" onPriceChange="{{ onPrice }}" onClearAll="{{ onClearAll }}" hint-size="300px,720px"></dc-import>
+          </sc-if>
+
+          <div style="min-width:0;display:flex;flex-direction:column;gap:20px">
+            <sc-if value="{{ hasSidebar }}" hint-placeholder-val="{{ true }}">
+              <div style="display:flex;flex-wrap:wrap;align-items:center;gap:0 24px;border-bottom:1px solid #E1E6EB">
+                <sc-for list="{{ sorts }}" as="s" hint-placeholder-count="6">
+                  <button type="button" class="ss-sort" aria-pressed="{{ s.pressed }}" onClick="{{ s.onPick }}">{{ s.label }}</button>
+                </sc-for>
+                <span style="margin-left:auto;font-size:13px;font-weight:600;color:#3D4750;white-space:nowrap">{{ totalText }}</span>
+              </div>
+            </sc-if>
+            <sc-if value="{{ noSidebar }}" hint-placeholder-val="{{ false }}">
+              <dc-import name="FiltracniLista" total="{{ total }}" sort="{{ sort }}" sortOptions="{{ sortOptions }}" onSort="{{ onSort }}" inStockOnly="{{ inStockOnly }}" onToggleInStock="{{ onToggleStock }}" onOpenFilters="{{ openFilters }}" hint-size="100%,72px"></dc-import>
+            </sc-if>
+
+            <h2 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0">Produkty</h2>
+            <div style="display:grid;grid-template-columns:{{ productTemplate }};gap:20px">
+              <sc-for list="{{ products }}" as="p" hint-placeholder-count="9">
+                <dc-import name="ProduktovaKarta" product="{{ p.data }}" onFavourite="{{ p.onFav }}" hint-size="100%,560px"></dc-import>
+              </sc-for>
+            </div>
+
+            <dc-import name="Paginace" page="{{ page }}" totalPages="{{ 6 }}" perPage="{{ 24 }}" totalItems="{{ total }}" onPage="{{ onPage }}" onLoadMore="{{ onLoadMore }}" hint-size="100%,160px"></dc-import>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <dc-import name="FiltrDrawer" open="{{ filtersOpen }}" resultCount="{{ total }}" selected="{{ selected }}" onToggleOption="{{ onToggleOption }}" onClearAll="{{ onClearAll }}" onClose="{{ closeFilters }}" priceFrom="{{ priceFrom }}" priceTo="{{ priceTo }}" onPriceChange="{{ onPrice }}" hint-size="0,0"></dc-import>
+  <dc-import name="Paticka" ledMode="{{ ledMode }}" hint-size="100%,700px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:1200}}">
+class Component extends DCLogic {
+  state = {
+    width: typeof window !== 'undefined' ? document.documentElement.clientWidth : 1440,
+    tab: 'kategorie', sort: 'doporucene', inStockOnly: false, filtersOpen: false,
+    selected: {}, priceFrom: 0, priceTo: 40000, page: 1, led: true,
+    products: null, facets: null
+  };
+  componentDidMount() {
+    this._resize = () => this.setState({ width: document.documentElement.clientWidth });
+    window.addEventListener('resize', this._resize);
+    import('./produkty.js').then(m => this.setState({ products: m.PRODUKTY, facets: m.FACETY }));
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this._resize); }
+  plural(n) {
+    if (n === 1) return '1 produkt celkem';
+    if (n >= 2 && n <= 4) return n + ' produkty celkem';
+    return n + ' produktů celkem';
+  }
+  renderVals() {
+    const w = this.state.width;
+    const narrow = w < 820;
+    const sidebar = w >= 1000;
+    const inner = { maxWidth: '1560px', margin: '0 auto', padding: narrow ? '0 16px' : '0 32px' };
+    const base = this.state.products || [];
+    const products = base.concat(base).slice(0, 9);
+    const selected = this.state.selected;
+    const total = 126;
+    return {
+      ledMode: this.state.led ? 'on' : 'off',
+      presItems: [{ label: 'LED', value: this.state.led }],
+      onPresToggle: () => this.setState(s => ({ led: !s.led })),
+      innerTop: Object.assign({}, inner, { padding: narrow ? '32px 16px 0' : '48px 32px 0' }),
+      innerResults: Object.assign({}, inner, { padding: narrow ? '32px 16px 48px' : '48px 32px 80px' }),
+      h1Size: narrow ? '28px' : '40px',
+      isCat: this.state.tab === 'kategorie',
+      isArt: this.state.tab === 'clanky',
+      tabCatPressed: this.state.tab === 'kategorie' ? 'true' : 'false',
+      tabArtPressed: this.state.tab === 'clanky' ? 'true' : 'false',
+      pickCat: () => this.setState({ tab: 'kategorie' }),
+      pickArt: () => this.setState({ tab: 'clanky' }),
+      catTemplate: w >= 1150 ? 'repeat(4,minmax(0,1fr))' : w >= 820 ? 'repeat(3,minmax(0,1fr))' : w >= 550 ? 'repeat(2,minmax(0,1fr))' : 'minmax(0,1fr)',
+      artTemplate: w >= 1150 ? 'repeat(4,minmax(0,1fr))' : w >= 820 ? 'repeat(2,minmax(0,1fr))' : 'minmax(0,1fr)',
+      categories: [
+        { label: 'Manželské postele', count: 46, href: '#manzelske-postele' },
+        { label: 'Čalouněné postele', count: 46, href: '#calounene-postele' },
+        { label: 'Patrové postele', count: 46, href: '#patrove-postele' },
+        { label: 'Jednolůžkové postele', count: 46, href: '#jednoluzkove-postele' },
+        { label: 'Boxspring — americké postele', count: 46, href: '#boxspring' },
+        { label: 'Postele s úložným prostorem', count: 46, href: '#uloz-prostor' },
+        { label: 'Postele s nočními stolky', count: 46, href: '#postele-se-stolky' },
+        { label: 'Postele na míru', count: 46, href: '#na-miru' }
+      ].map(c => ({ label: c.label, href: c.href, countText: '(' + c.count + ')' })),
+      articles: [
+        { title: 'Proč se vyplatí investovat do postele z masivu?', perex: 'Kvalita povrchu závisí na použitém materiálu. Ukážeme, podle čeho poznáte dřevo, které vydrží dvacet let.', href: '#clanek' },
+        { title: 'Jakou postel vybrat do malé ložnice', perex: 'Úložný prostor, výklopný rošt nebo nižší rám? Tři cesty, jak ušetřit metr čtvereční bez ztráty pohodlí.', href: '#clanek' },
+        { title: 'Masiv, nebo čalouněná postel?', perex: 'Srovnání životnosti, údržby a ceny za deset let používání. Rozdíl není tam, kde ho čekáte.', href: '#clanek' },
+        { title: 'Jak vysoká má být postel', perex: 'Výška lože rozhoduje o tom, jak snadno se vstává. Jednoduché měření podle výšky kolen.', href: '#clanek' }
+      ],
+      hasSidebar: sidebar,
+      noSidebar: !sidebar,
+      resultsTemplate: sidebar ? '300px minmax(0,1fr)' : 'minmax(0,1fr)',
+      resultsGap: sidebar ? '32px' : '0',
+      productTemplate: sidebar
+        ? (w >= 1560 ? 'repeat(4,minmax(0,1fr))' : 'repeat(3,minmax(0,1fr))')
+        : (w >= 820 ? 'repeat(3,minmax(0,1fr))' : w >= 550 ? 'repeat(2,minmax(0,1fr))' : 'minmax(0,1fr)'),
+      facets: (this.state.facets || []).map(f => ({
+        title: f.title,
+        options: (f.options || []).map(o => ({
+          label: o.label, count: o.count,
+          checked: (selected[f.id] || []).indexOf(o.id) !== -1,
+          onToggle: () => this.toggleOption(f.id, o.id)
+        }))
+      })),
+      selected,
+      onToggleOption: (g, o) => this.toggleOption(g, o),
+      onClearAll: () => this.setState({ selected: {}, priceFrom: 0, priceTo: 40000 }),
+      priceFrom: this.state.priceFrom,
+      priceTo: this.state.priceTo,
+      onPrice: (from, to) => this.setState({ priceFrom: from, priceTo: to }),
+      sorts: [
+        { id: 'doporucene', label: 'Doporučujeme' },
+        { id: 'nejlevnejsi', label: 'Nejlevnější' },
+        { id: 'nejdrazsi', label: 'Nejdražší' },
+        { id: 'nejprodavanejsi', label: 'Nejprodávanější' },
+        { id: 'sleva', label: 'Nejvyšší sleva' },
+        { id: 'abecedne', label: 'Abecedně' }
+      ].map(s => ({
+        label: s.label,
+        pressed: this.state.sort === s.id ? 'true' : 'false',
+        onPick: () => this.setState({ sort: s.id })
+      })),
+      sort: this.state.sort,
+      sortOptions: [
+        { value: 'doporucene', label: 'Doporučujeme' },
+        { value: 'nejlevnejsi', label: 'Nejlevnější' },
+        { value: 'nejdrazsi', label: 'Nejdražší' },
+        { value: 'nejprodavanejsi', label: 'Nejprodávanější' },
+        { value: 'sleva', label: 'Nejvyšší sleva' },
+        { value: 'abecedne', label: 'Abecedně' }
+      ],
+      onSort: (v) => this.setState({ sort: v }),
+      inStockOnly: this.state.inStockOnly,
+      onToggleStock: (v) => this.setState({ inStockOnly: v }),
+      total,
+      totalText: this.plural(total),
+      products: products.map((d, i) => ({ data: d, onFav: () => {} })),
+      page: this.state.page,
+      onPage: (p) => this.setState({ page: p }),
+      onLoadMore: () => {},
+      filtersOpen: this.state.filtersOpen,
+      openFilters: () => this.setState({ filtersOpen: true }),
+      closeFilters: () => this.setState({ filtersOpen: false })
+    };
+  }
+  toggleOption(group, option) {
+    this.setState(s => {
+      const cur = (s.selected[group] || []).slice();
+      const i = cur.indexOf(option);
+      if (i === -1) cur.push(option); else cur.splice(i, 1);
+      return { selected: Object.assign({}, s.selected, { [group]: cur }) };
+    });
+  }
+}
+</script>
+</body>
+</html>

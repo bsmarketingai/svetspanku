@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Archivo,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:800!important;font-stretch:75%;text-transform:uppercase;letter-spacing:-0.005em;}
+
+.ss-bc a{text-decoration:none;color:#5B6874;border-radius:4px;transition:color .12s cubic-bezier(.22,.61,.36,1);}
+.ss-bc a:hover{color:#296093;text-decoration:underline;text-underline-offset:3px;}
+.ss-bc a:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+</style>
+</helmet>
+<nav class="ss-bc" aria-label="Drobečková navigace" style="font-family:Archivo,Helvetica,Arial,sans-serif;font-size:13px;min-width:0">
+  <ol style="list-style:none;margin:0;padding:16px 0;display:flex;flex-wrap:wrap;align-items:center;gap:6px">
+    <sc-for list="{{ items }}" as="i" hint-placeholder-count="3">
+      <li style="display:flex;align-items:center;gap:6px;min-width:0">
+        <sc-if value="{{ i.isLink }}" hint-placeholder-val="{{ true }}">
+          <a href="{{ i.href }}" style="display:inline-flex;align-items:center;min-height:24px">{{ i.label }}</a>
+        </sc-if>
+        <sc-if value="{{ i.isCurrent }}" hint-placeholder-val="{{ false }}">
+          <span aria-current="page" style="color:#3D4750;font-weight:600">{{ i.label }}</span>
+        </sc-if>
+        <sc-if value="{{ i.hasSep }}" hint-placeholder-val="{{ true }}">
+          <span aria-hidden="true" style="display:flex;color:#9AA6B2"><dc-import name="Ikony" iconName="chevron-right" size="14" hint-size="14px,14px"></dc-import></span>
+        </sc-if>
+      </li>
+    </sc-for>
+  </ol>
+</nav>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:720,&quot;height&quot;:60},&quot;items&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;{label: string, href?: string}[]&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const items = this.props.items && this.props.items.length ? this.props.items : [
+      { label: 'Domů', href: '#domu' },
+      { label: 'Matrace', href: '#matrace' },
+      { label: 'Taštičkové matrace', href: '#tastickove' },
+      { label: 'Matrace Spring Variant 22 cm' }
+    ];
+    const last = items.length - 1;
+    return {
+      items: items.map((i, idx) => ({
+        label: i.label,
+        href: i.href || '#',
+        isLink: idx !== last && !!i.href,
+        isCurrent: idx === last || !i.href,
+        hasSep: idx !== last
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>

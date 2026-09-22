@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Archivo,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:800!important;font-stretch:75%;text-transform:uppercase;letter-spacing:-0.005em;}
+
+.ss-mob,.ss-mob *{box-sizing:border-box;}
+.ss-mob{font-family:Archivo,Helvetica,Arial,sans-serif;display:flex;flex-direction:column;height:100%;width:100%;background:#FFFFFF;min-width:0;overflow-x:hidden;}
+.ss-mob-row{display:flex;align-items:center;gap:12px;width:100%;min-height:48px;padding:0 16px;margin:0;border:0;background:none;font:inherit;font-size:15px;color:#1C2229;text-align:left;text-decoration:none;cursor:pointer;transition:background-color .12s cubic-bezier(.22,.61,.36,1);}
+.ss-mob-row:hover{background:#F7F9FB;}
+.ss-mob-row:active{background:#EFF2F5;}
+.ss-mob-row:focus-visible{outline:none;box-shadow:inset 0 0 0 3px rgba(41,96,147,.35);}
+.ss-mob-icon{display:flex;color:#55616C;flex:none;}
+</style>
+</helmet>
+<div class="ss-mob">
+  <div style="display:flex;align-items:center;gap:8px;min-height:56px;padding:0 8px 0 16px;border-bottom:1px solid #E1E6EB;flex:none">
+    <sc-if value="{{ atRoot }}" hint-placeholder-val="{{ true }}">
+      <span style="font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:19px">Menu</span>
+    </sc-if>
+    <sc-if value="{{ inCategory }}" hint-placeholder-val="{{ false }}">
+      <button type="button" class="ss-mob-row" style="width:auto;padding:0 8px;min-height:44px;font-weight:600;color:#21507B;border-radius:6px" onClick="{{ goBack }}">
+        <span class="ss-mob-icon" style="color:#21507B"><dc-import name="Ikony" iconName="chevron-left" size="20" hint-size="20px,20px"></dc-import></span>
+        <span>{{ currentTitle }}</span>
+      </button>
+    </sc-if>
+    <button type="button" class="ss-mob-row" style="width:44px;height:44px;min-height:44px;padding:0;margin-left:auto;justify-content:center;border-radius:6px" onClick="{{ close }}" aria-label="Zavřít menu">
+      <span class="ss-mob-icon"><dc-import name="Ikony" iconName="x" size="22" hint-size="22px,22px"></dc-import></span>
+    </button>
+  </div>
+
+  <div style="flex:1;overflow:hidden;min-height:0">
+    <div style="display:flex;width:200%;height:100%;transition:transform .4s cubic-bezier(.22,.61,.36,1);transform:{{ trackTransform }}">
+      <div style="width:50%;height:100%;overflow-y:auto;-webkit-overflow-scrolling:touch">
+        <nav aria-label="Hlavní kategorie" style="display:flex;flex-direction:column;padding:8px 0">
+          <sc-for list="{{ categories }}" as="c" hint-placeholder-count="8">
+            <sc-if value="{{ c.hasChildren }}" hint-placeholder-val="{{ true }}">
+              <button type="button" class="ss-mob-row" onClick="{{ c.onOpen }}" style="{{ c.style }}">
+                <span style="flex:1;min-width:0">{{ c.label }}</span>
+                <span class="ss-mob-icon"><dc-import name="Ikony" iconName="chevron-right" size="20" hint-size="20px,20px"></dc-import></span>
+              </button>
+            </sc-if>
+            <sc-if value="{{ c.isLeaf }}" hint-placeholder-val="{{ false }}">
+              <a class="ss-mob-row" href="{{ c.href }}" style="{{ c.style }}">{{ c.label }}</a>
+            </sc-if>
+          </sc-for>
+        </nav>
+          <button type="button" class="ss-mob-row" style="color:#3D4750" onClick="{{ toggleStores }}" aria-expanded="{{ storesExpanded }}">
+            <span class="ss-mob-icon"><dc-import name="Ikony" iconName="map-pin" size="20" hint-size="20px,20px"></dc-import></span>
+            <span style="flex:1;min-width:0">Prodejny (5)</span>
+            <span class="ss-mob-icon"><dc-import name="Ikony" iconName="{{ storesChevron }}" size="20" hint-size="20px,20px"></dc-import></span>
+          </button>
+          <sc-if value="{{ storesOpen }}" hint-placeholder-val="{{ false }}">
+            <div style="padding:0 0 8px">
+              <dc-import name="ProdejnyMenu" compact="{{ true }}" hint-size="100%,420px"></dc-import>
+            </div>
+          </sc-if>
+        <div style="border-top:1px solid #E1E6EB;padding:8px 0 24px;display:flex;flex-direction:column">
+          <sc-for list="{{ utility }}" as="u" hint-placeholder-count="4">
+            <a class="ss-mob-row" href="{{ u.href }}" style="color:#3D4750">{{ u.label }}</a>
+          </sc-for>
+          <a class="ss-mob-row" href="#prihlaseni" style="color:#3D4750">
+            <span class="ss-mob-icon"><dc-import name="Ikony" iconName="user" size="20" hint-size="20px,20px"></dc-import></span>
+            <span>Přihlášení a registrace</span>
+          </a>
+          <a class="ss-mob-row" href="#oblibene" style="color:#3D4750">
+            <span class="ss-mob-icon"><dc-import name="Ikony" iconName="heart" size="20" hint-size="20px,20px"></dc-import></span>
+            <span>Oblíbené</span>
+          </a>
+          <a class="ss-mob-row" href="#porovnani" style="color:#3D4750">
+            <span class="ss-mob-icon"><dc-import name="Ikony" iconName="arrows-diff" size="20" hint-size="20px,20px"></dc-import></span>
+            <span>Porovnání</span>
+          </a>
+        </div>
+      </div>
+
+      <div style="width:50%;height:100%;overflow-y:auto;-webkit-overflow-scrolling:touch" aria-hidden="{{ subHidden }}">
+        <div style="padding:8px 0 24px;display:flex;flex-direction:column;gap:16px">
+          <a class="ss-mob-row" href="{{ currentHref }}" style="font-weight:600;color:#296093">
+            <span>Zobrazit vše — {{ currentTitle }}</span>
+            <span class="ss-mob-icon" style="color:#296093;margin-left:auto"><dc-import name="Ikony" iconName="chevron-right" size="20" hint-size="20px,20px"></dc-import></span>
+          </a>
+          <sc-for list="{{ currentGroups }}" as="g" hint-placeholder-count="2">
+            <div style="display:flex;flex-direction:column">
+              <h3 style="margin:0;padding:12px 16px 6px;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#55616C">{{ g.title }}</h3>
+              <sc-for list="{{ g.items }}" as="i" hint-placeholder-count="4">
+                <a class="ss-mob-row" href="{{ i.href }}">
+                  <span style="flex:1;min-width:0">{{ i.label }}</span>
+                  <span style="font-size:13px;color:#5B6874">{{ i.count }}</span>
+                </a>
+              </sc-for>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:380,&quot;height&quot;:700},&quot;open&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;categories&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;MenuCategory[]&quot;},&quot;utility&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;{label: string, href: string}[]&quot;},&quot;onClose&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;() =&gt; void&quot;}}">
+class Component extends DCLogic {
+  state = { level: 0, index: 0, cats: null };
+  componentDidMount() {
+    if (!this.props.categories) import('./menu.js').then(m => this.setState({ cats: m.MENU, util: m.UTILITY }));
+  }
+  componentDidUpdate(prev) {
+    if (prev.open && !this.props.open && this.state.level !== 0) this.setState({ level: 0 });
+  }
+  renderVals() {
+    const p = this.props;
+    const cats = p.categories || this.state.cats || [];
+    const utility = p.utility || this.state.util || [];
+    const level = this.state.level;
+    const current = cats[this.state.index] || {};
+    return {
+      categories: cats.map((c, i) => ({
+        label: c.label,
+        href: c.href || '#',
+        hasChildren: !!(c.groups && c.groups.length),
+        isLeaf: !(c.groups && c.groups.length),
+        style: c.highlight ? { color: '#B3261E', fontWeight: 600 } : { fontWeight: 500 },
+        onOpen: () => this.setState({ level: 1, index: i })
+      })),
+      utility,
+      atRoot: level === 0,
+      inCategory: level === 1,
+      subHidden: level === 1 ? undefined : 'true',
+      currentTitle: current.label || '',
+      currentHref: current.href || '#',
+      currentGroups: (current.groups || []).map(g => ({ title: g.title, items: g.items || [] })),
+      trackTransform: level === 1 ? 'translateX(-50%)' : 'translateX(0)',
+      storesOpen: !!this.state.storesOpen,
+      storesExpanded: this.state.storesOpen ? 'true' : 'false',
+      storesChevron: this.state.storesOpen ? 'chevron-up' : 'chevron-down',
+      toggleStores: () => this.setState(s => ({ storesOpen: !s.storesOpen })),
+      goBack: () => this.setState({ level: 0 }),
+      close: () => { if (p.onClose) p.onClose(); }
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Archivo,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:800!important;font-stretch:75%;text-transform:uppercase;letter-spacing:-0.005em;}
+
+.ss-range{position:relative;height:24px;display:flex;align-items:center;}
+.ss-range input[type=range]{position:absolute;left:0;right:0;width:100%;margin:0;height:24px;background:none;pointer-events:none;-webkit-appearance:none;appearance:none;}
+.ss-range input[type=range]:focus-visible{outline:none;}
+.ss-range input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;pointer-events:auto;width:20px;height:20px;border-radius:999px;background:#FFFFFF;box-shadow:0 0 0 2px #296093,0 2px 6px rgba(19,44,67,.2);cursor:pointer;}
+.ss-range input[type=range]::-moz-range-thumb{pointer-events:auto;width:20px;height:20px;border:0;border-radius:999px;background:#FFFFFF;box-shadow:0 0 0 2px #296093,0 2px 6px rgba(19,44,67,.2);cursor:pointer;}
+.ss-range input[type=range]:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 2px #296093,0 0 0 6px rgba(41,96,147,.35);}
+.ss-range input[type=range]:focus-visible::-moz-range-thumb{box-shadow:0 0 0 2px #296093,0 0 0 6px rgba(41,96,147,.35);}
+</style>
+</helmet>
+<div style="font-family:Archivo,Helvetica,Arial,sans-serif;display:flex;flex-direction:column;gap:16px;width:100%;min-width:0">
+  <div style="display:flex;align-items:flex-end;gap:12px;min-width:0">
+    <div style="flex:1;min-width:0">
+      <dc-import name="Input" label="Od" type="number" size="compact" bordered="{{ true }}" value="{{ fromText }}" onChange="{{ onFromText }}" onBlur="{{ commitFrom }}" onEnter="{{ commitFrom }}" hint-size="100%,64px"></dc-import>
+    </div>
+    <span style="height:36px;display:flex;align-items:center;color:#5B6874">–</span>
+    <div style="flex:1;min-width:0">
+      <dc-import name="Input" label="Do" type="number" size="compact" bordered="{{ true }}" value="{{ toText }}" onChange="{{ onToText }}" onBlur="{{ commitTo }}" onEnter="{{ commitTo }}" hint-size="100%,64px"></dc-import>
+    </div>
+    <span style="height:36px;display:flex;align-items:center;font-size:14px;color:#3D4750">Kč</span>
+  </div>
+
+  <div class="ss-range">
+    <span style="position:absolute;left:0;right:0;height:4px;border-radius:999px;background:#E1E6EB"></span>
+    <span style="position:absolute;height:4px;border-radius:999px;background:#296093;left:{{ trackLeft }};right:{{ trackRight }}"></span>
+    <input type="range" min="{{ min }}" max="{{ max }}" step="{{ step }}" value="{{ from }}" onChange="{{ onFromRange }}" aria-label="Cena od" />
+    <input type="range" min="{{ min }}" max="{{ max }}" step="{{ step }}" value="{{ to }}" onChange="{{ onToRange }}" aria-label="Cena do" />
+  </div>
+
+  <div style="display:flex;justify-content:space-between;font-size:13px;color:#5B6874">
+    <span>{{ minText }}</span>
+    <span>{{ maxText }}</span>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:320,&quot;height&quot;:180},&quot;min&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:0,&quot;min&quot;:0,&quot;max&quot;:100000,&quot;tsType&quot;:&quot;number&quot;},&quot;max&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:40000,&quot;min&quot;:1000,&quot;max&quot;:200000,&quot;tsType&quot;:&quot;number&quot;},&quot;step&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:500,&quot;min&quot;:100,&quot;max&quot;:5000,&quot;tsType&quot;:&quot;number&quot;},&quot;from&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:0,&quot;min&quot;:0,&quot;max&quot;:200000,&quot;tsType&quot;:&quot;number&quot;},&quot;to&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:40000,&quot;min&quot;:0,&quot;max&quot;:200000,&quot;tsType&quot;:&quot;number&quot;},&quot;onChange&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(from: number, to: number) =&gt; void&quot;}}">
+class Component extends DCLogic {
+  state = { draftFrom: null, draftTo: null };
+  fmt(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0') + '\u00A0Kč'; }
+  renderVals() {
+    const p = this.props;
+    const min = p.min ?? 0, max = p.max ?? 40000, step = p.step ?? 500;
+    const from = Math.min(p.from ?? min, p.to ?? max);
+    const to = Math.max(p.to ?? max, from);
+    const pct = (v) => ((v - min) / (max - min)) * 100;
+    const emit = (f, t) => { if (p.onChange) p.onChange(f, t); };
+    return {
+      min, max, step, from, to,
+      fromText: this.state.draftFrom ?? String(from),
+      toText: this.state.draftTo ?? String(to),
+      commitFrom: (v) => {
+        const n = parseInt(String(v).replace(/\s/g, ''), 10);
+        this.setState({ draftFrom: null });
+        if (!isNaN(n)) emit(Math.max(min, Math.min(n, to)), to);
+      },
+      commitTo: (v) => {
+        const n = parseInt(String(v).replace(/\s/g, ''), 10);
+        this.setState({ draftTo: null });
+        if (!isNaN(n)) emit(from, Math.min(max, Math.max(n, from)));
+      },
+      minText: this.fmt(min), maxText: this.fmt(max),
+      trackLeft: pct(from).toFixed(1) + '%',
+      trackRight: (100 - pct(to)).toFixed(1) + '%',
+      onFromRange: (e) => { const v = Math.min(Number(e.target.value), to - step); emit(Math.max(min, v), to); },
+      onToRange: (e) => { const v = Math.max(Number(e.target.value), from + step); emit(from, Math.min(max, v)); },
+      onFromText: (v) => this.setState({ draftFrom: v }),
+      onToText: (v) => this.setState({ draftTo: v })
+    };
+  }
+}
+</script>
+</body>
+</html>

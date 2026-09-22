@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Archivo,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:800!important;font-stretch:75%;text-transform:uppercase;letter-spacing:-0.005em;}
+
+.ss-pg-num{display:inline-flex;align-items:center;justify-content:center;min-width:44px;height:44px;padding:0 10px;border:0;border-radius:6px;background:none;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:16px;color:#1C2229;cursor:pointer;transition:background-color .12s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1);}
+.ss-pg-num:hover{background:#F0F5FA;color:#296093;}
+.ss-pg-num:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+.ss-pg-num[aria-current="page"]{background:#296093;color:#FFFFFF;}
+.ss-pg-gap{display:inline-flex;align-items:center;justify-content:center;min-width:24px;height:44px;color:#9AA6B2;}
+</style>
+</helmet>
+<nav aria-label="Stránkování" style="font-family:Archivo,Helvetica,Arial,sans-serif;display:flex;flex-direction:column;align-items:center;gap:16px;width:100%;min-width:0">
+  <sc-if value="{{ showLoadMore }}" hint-placeholder-val="{{ true }}">
+    <dc-import name="Tlacitko" label="Načíst další produkty" variant="secondary" size="large" onClick="{{ onLoadMore }}" hint-size="240px,52px"></dc-import>
+  </sc-if>
+
+  <span style="font-size:14px;color:#5B6874">{{ summary }}</span>
+
+  <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:4px">
+    <dc-import name="Tlacitko" label="{{ prevLabel }}" variant="ghost" size="standard" iconLeft="chevron-left" disabled="{{ prevDisabled }}" onClick="{{ onPrev }}" hint-size="120px,36px"></dc-import>
+    <sc-for list="{{ pages }}" as="p" hint-placeholder-count="5">
+      <sc-if value="{{ p.isPage }}" hint-placeholder-val="{{ true }}">
+        <button type="button" class="ss-pg-num" onClick="{{ p.onClick }}" aria-current="{{ p.current }}" aria-label="{{ p.aria }}">{{ p.label }}</button>
+      </sc-if>
+      <sc-if value="{{ p.isGap }}" hint-placeholder-val="{{ false }}">
+        <span class="ss-pg-gap" aria-hidden="true">…</span>
+      </sc-if>
+    </sc-for>
+    <dc-import name="Tlacitko" label="{{ nextLabel }}" variant="ghost" size="standard" iconRight="chevron-right" disabled="{{ nextDisabled }}" onClick="{{ onNext }}" hint-size="120px,36px"></dc-import>
+  </div>
+</nav>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:720,&quot;height&quot;:220},&quot;page&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:1,&quot;min&quot;:1,&quot;max&quot;:99,&quot;tsType&quot;:&quot;number&quot;},&quot;totalPages&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:9,&quot;min&quot;:1,&quot;max&quot;:99,&quot;tsType&quot;:&quot;number&quot;},&quot;perPage&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:24,&quot;min&quot;:6,&quot;max&quot;:96,&quot;tsType&quot;:&quot;number&quot;},&quot;totalItems&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:128,&quot;min&quot;:0,&quot;max&quot;:9999,&quot;tsType&quot;:&quot;number&quot;},&quot;onPage&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(page: number) =&gt; void&quot;},&quot;onLoadMore&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;() =&gt; void&quot;}}">
+class Component extends DCLogic {
+  state = { width: typeof window !== 'undefined' ? document.documentElement.clientWidth : 1440 };
+  componentDidMount() {
+    this._mq = () => this.setState({ width: document.documentElement.clientWidth });
+    window.addEventListener('resize', this._mq);
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this._mq); }
+  renderVals() {
+    const p = this.props;
+    const page = p.page ?? 1;
+    const total = p.totalPages ?? 9;
+    const w = this.state.width;
+    const windowSize = w < 420 ? 1 : w < 550 ? 2 : w < 820 ? 3 : 5;
+    const go = (n) => () => { if (p.onPage) p.onPage(n); };
+
+    const nums = [];
+    const add = (n) => nums.push({ isPage: true, isGap: false, label: String(n), aria: 'Stránka ' + n, current: n === page ? 'page' : undefined, onClick: go(n) });
+    const gap = () => nums.push({ isPage: false, isGap: true });
+    const half = Math.floor(windowSize / 2);
+    let start = Math.max(1, page - half);
+    let end = Math.min(total, start + windowSize - 1);
+    start = Math.max(1, Math.min(start, end - windowSize + 1));
+    if (start > 1) { add(1); if (start > 2) gap(); }
+    for (let i = start; i <= end; i++) add(i);
+    if (end < total) { if (end < total - 1) gap(); add(total); }
+
+    const perPage = p.perPage ?? 24;
+    const totalItems = p.totalItems ?? 128;
+    const shown = Math.min(page * perPage, totalItems);
+    return {
+      pages: nums,
+      summary: 'Zobrazeno ' + shown + ' z ' + totalItems + ' produktů',
+      showLoadMore: shown < totalItems,
+      onLoadMore: () => { if (p.onLoadMore) p.onLoadMore(); },
+      prevLabel: w < 550 ? '' : 'Předchozí',
+      nextLabel: w < 550 ? '' : 'Další',
+      prevDisabled: page <= 1,
+      nextDisabled: page >= total,
+      onPrev: go(Math.max(1, page - 1)),
+      onNext: go(Math.min(total, page + 1))
+    };
+  }
+}
+</script>
+</body>
+</html>

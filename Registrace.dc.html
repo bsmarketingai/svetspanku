@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Archivo,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:800!important;font-stretch:75%;text-transform:uppercase;letter-spacing:-0.005em;}
+
+html,body{margin:0!important;padding:0!important;}
+#dc-root{margin:0!important;padding:0!important;width:100%!important;max-width:none!important;border:0!important;}
+#dc-root>.sc-host{margin:0!important;padding:0!important;width:100%!important;}
+a{color:#296093;}
+a:hover{color:#21507B;}
+.ss-reg-soc{box-sizing:border-box;min-width:0;display:flex;align-items:center;gap:12px;width:100%;min-height:48px;padding:10px 16px;line-height:1.3;border-radius:6px;font-family:Archivo,Helvetica,Arial,sans-serif;font-size:15px;font-weight:600;text-decoration:none;transition:background-color .12s cubic-bezier(.22,.61,.36,1);}
+.ss-reg-soc:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+.ss-reg-fb{background:#3B5998;color:#FFFFFF;}
+.ss-reg-fb:hover{background:#31497D;color:#FFFFFF;}
+.ss-reg-gg{background:#FFFFFF;color:#1C2229;box-shadow:inset 0 0 0 1px #E1E6EB;}
+.ss-reg-gg:hover{background:#F7F9FB;color:#1C2229;}
+.ss-reg-sz{background:#CC0000;color:#FFFFFF;}
+.ss-reg-sz:hover{background:#A80000;color:#FFFFFF;}
+.ss-reg-ap{background:#1C2229;color:#FFFFFF;}
+.ss-reg-ap:hover{background:#2A323A;color:#FFFFFF;}
+</style>
+</helmet>
+<div style="width:100%;background:#FFFFFF;font-family:Archivo,Helvetica,Arial,sans-serif;color:#1C2229">
+  <dc-import name="Hlavicka" style="position:sticky;top:0;z-index:200" hint-size="100%,180px"></dc-import>
+
+  <main>
+    <section style="width:100%;background:#FFFFFF">
+      <div style="{{ inner }}">
+        <div style="padding:{{ headPad }};display:flex;flex-direction:column;gap:12px">
+          <h1 style="margin:0;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:{{ h1Size }};line-height:1.08;max-width:24ch">Zvažujete, že si u nás něco koupíte? Registrace se vyplatí!</h1>
+          <p style="margin:0;max-width:60ch;font-size:17px;line-height:1.55;color:#3D4750">Automaticky se stanete členem věrnostního programu rodiny Světa spánku a budete sbírat slevy za každý svůj nákup.</p>
+        </div>
+
+        <div style="display:grid;grid-template-columns:{{ splitTemplate }};gap:{{ splitGap }};padding-bottom:{{ bottomPad }};align-items:start">
+          <div style="display:flex;flex-direction:column;gap:32px;min-width:0">
+            <div style="display:flex;flex-direction:column;gap:16px">
+              <h2 style="margin:0;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:26px">Registrujte se</h2>
+              <div style="display:grid;grid-template-columns:{{ socialTemplate }};gap:12px">
+                <a class="ss-reg-soc ss-reg-fb" href="#registrace-facebook">
+                  <span style="display:flex"><dc-import name="Ikony" iconName="brand-facebook" size="22" hint-size="22px,22px"></dc-import></span>
+                  <span>Registrovat přes Facebook</span>
+                </a>
+                <a class="ss-reg-soc ss-reg-gg" href="#registrace-google">
+                  <img src="logo-google.svg" alt="" aria-hidden="true" style="display:block;width:22px;height:22px" />
+                  <span>Registrovat přes Google</span>
+                </a>
+                <a class="ss-reg-soc ss-reg-sz" href="#registrace-seznam">
+                  <img src="logo-seznam-znak.svg" alt="" aria-hidden="true" style="display:block;width:22px;height:22px;object-fit:contain;filter:brightness(0) invert(1)" />
+                  <span>Registrovat přes Seznam</span>
+                </a>
+                <a class="ss-reg-soc ss-reg-ap" href="#registrace-apple">
+                  <span style="display:flex"><dc-import name="Ikony" iconName="brand-apple-filled" size="22" hint-size="22px,22px"></dc-import></span>
+                  <span>Registrovat přes Apple ID</span>
+                </a>
+              </div>
+              <div style="display:flex;align-items:center;gap:16px">
+                <span style="flex:1;height:1px;background:#E1E6EB"></span>
+                <span style="font-size:14px;color:#5B6874">nebo</span>
+                <span style="flex:1;height:1px;background:#E1E6EB"></span>
+              </div>
+            </div>
+
+            <form style="display:flex;flex-direction:column;gap:20px" onSubmit="{{ submit }}">
+              <h2 style="margin:0;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:21px">Osobní údaje</h2>
+              <dc-import name="Input" label="E-mail *" type="email" placeholder="vas@email.cz" value="{{ email }}" onChange="{{ onEmail }}" hint-size="100%,72px"></dc-import>
+              <dc-import name="Input" label="Heslo *" type="password" hint="Alespoň 8 znaků" value="{{ pass }}" onChange="{{ onPass }}" hint-size="100%,72px"></dc-import>
+              <dc-import name="Input" label="Heslo (kontrola) *" type="password" value="{{ pass2 }}" onChange="{{ onPass2 }}" hint="{{ passError }}" invalid="{{ passInvalid }}" hint-size="100%,72px"></dc-import>
+              <dc-import name="Checkbox" label="Nepřeji si dostávat exkluzivní slevy a tipy do e-mailu." checked="{{ noMail }}" onChange="{{ onNoMail }}" hint-size="100%,24px"></dc-import>
+              <p style="margin:0;font-size:14px;line-height:1.6;color:#5B6874">Registrací souhlasíte s <a href="#obchodni-podminky">obchodními podmínkami</a> a <a href="#ochrana-udaju">podmínkami ochrany osobních údajů</a>.</p>
+              <dc-import name="Tlacitko" label="Registrovat" variant="buy" size="large" fullWidth="{{ true }}" onClick="{{ submitClick }}" hint-size="100%,52px"></dc-import>
+            </form>
+          </div>
+
+          <div style="{{ asideStyle }}">
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <span style="font-size:15px;color:#5B6874">Co získáte</span>
+              <h2 style="margin:0;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:24px">Registrujte se a získejte všechny výhody</h2>
+            </div>
+            <div style="display:grid;grid-template-columns:{{ benefitTemplate }};gap:28px 40px;align-items:start">
+              <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:14px;min-width:0">
+                <sc-for list="{{ benefits }}" as="b" hint-placeholder-count="6">
+                  <li style="display:flex;align-items:flex-start;gap:12px;font-size:15px;font-weight:600;line-height:1.5;color:#1C2229">
+                    <span style="display:flex;color:#157A41;flex:none;margin-top:1px"><dc-import name="Ikony" iconName="circle-check" size="20" hint-size="20px,20px"></dc-import></span>
+                    <span style="min-width:0">{{ b }}</span>
+                  </li>
+                </sc-for>
+              </ul>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:12px;align-items:flex-start;max-width:420px">
+              <span style="font-size:15px;color:#5B6874">Máte již účet? Přihlaste se</span>
+              <div style="width:100%">
+                <dc-import name="Tlacitko" label="Přihlásit se" variant="secondary" size="large" href="#prihlaseni" fullWidth="{{ true }}" hint-size="100%,52px"></dc-import>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <dc-import name="Paticka" hint-size="100%,700px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:1000}}">
+class Component extends DCLogic {
+  state = { width: typeof window !== 'undefined' ? document.documentElement.clientWidth : 1440, email: '', pass: '', pass2: '', noMail: false, touched: false };
+  componentDidMount() {
+    this._resize = () => this.setState({ width: document.documentElement.clientWidth });
+    window.addEventListener('resize', this._resize);
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this._resize); }
+  renderVals() {
+    const w = this.state.width;
+    const narrow = w < 820;
+    const split = w >= 1000;
+    const mismatch = this.state.touched && this.state.pass2 && this.state.pass !== this.state.pass2;
+    return {
+      inner: { maxWidth: '1560px', margin: '0 auto', padding: narrow ? '0 16px' : '0 32px' },
+      headPad: narrow ? '32px 0 24px' : '56px 0 40px',
+      bottomPad: narrow ? '48px' : '80px',
+      h1Size: narrow ? '32px' : '44px',
+      splitTemplate: split ? 'minmax(0,1fr) minmax(0,1.15fr)' : 'minmax(0,1fr)',
+      splitGap: split ? '64px' : '40px',
+      socialTemplate: w >= 550 ? 'repeat(2,minmax(0,1fr))' : 'minmax(0,1fr)',
+      benefitTemplate: w >= 1150 ? 'minmax(0,1.3fr) minmax(0,1fr)' : 'minmax(0,1fr)',
+      asideStyle: {
+        display: 'flex', flexDirection: 'column', gap: '28px', minWidth: 0,
+        borderLeft: split ? '1px dashed #C8D0D8' : 'none',
+        borderTop: split ? 'none' : '1px dashed #C8D0D8',
+        paddingLeft: split ? '64px' : 0,
+        paddingTop: split ? 0 : '40px'
+      },
+      benefits: [
+        '90 dní na vrácení bez udání důvodu',
+        'Sleva na další nákup',
+        'Doprava zdarma na další objednávku',
+        'Sleva 50 % na dopravu a případně i montáž na další objednávku',
+        'Vlastní wishlist s možností konzultace přímo s pracovníkem vybrané prodejny — a při nákupu 5% sleva',
+        'Speciální slevy a akce pouze pro registrované',
+        'Věrnostní program',
+        'Informace o stavu vaší objednávky',
+        'Historie všech nákupů'
+      ],
+
+      email: this.state.email,
+      pass: this.state.pass,
+      pass2: this.state.pass2,
+      noMail: this.state.noMail,
+      passError: mismatch ? 'Hesla se neshodují.' : undefined,
+      passInvalid: !!mismatch,
+      onEmail: (v) => this.setState({ email: v }),
+      onPass: (v) => this.setState({ pass: v }),
+      onPass2: (v) => this.setState({ pass2: v, touched: true }),
+      onNoMail: (v) => this.setState({ noMail: v }),
+      submit: (e) => { e.preventDefault(); this.setState({ touched: true }); },
+      submitClick: () => this.setState({ touched: true })
+    };
+  }
+}
+</script>
+</body>
+</html>

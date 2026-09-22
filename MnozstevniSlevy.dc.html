@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+</helmet>
+<div style="font-family:Archivo,Helvetica,Arial,sans-serif;width:100%;min-width:0;display:flex;flex-direction:column;gap:12px">
+  <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:8px">
+    <h3 style="margin:0;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:19px;color:#1C2229">Množstevní slevy</h3>
+    <p style="margin:0;font-size:13px;color:#5B6874">Sleva se v košíku načte automaticky.</p>
+  </div>
+  <div style="overflow-x:auto;background:#FFFFFF;border-radius:12px;box-shadow:inset 0 0 0 1px #E1E6EB">
+    <table style="width:100%;border-collapse:collapse;font-size:14px;min-width:360px">
+      <caption style="text-align:left;padding:12px 16px 0;font-size:13px;color:#5B6874">Ceny jsou uvedeny za kus včetně DPH.</caption>
+      <thead>
+        <tr>
+          <th scope="col" style="text-align:left;padding:12px 16px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#55616C;font-weight:600;border-bottom:1px solid #E1E6EB">Počet kusů</th>
+          <th scope="col" style="text-align:left;padding:12px 16px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#55616C;font-weight:600;border-bottom:1px solid #E1E6EB">Cena za kus</th>
+          <th scope="col" style="text-align:left;padding:12px 16px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#55616C;font-weight:600;border-bottom:1px solid #E1E6EB">Sleva</th>
+        </tr>
+      </thead>
+      <tbody>
+        <sc-for list="{{ tiers }}" as="t" hint-placeholder-count="3">
+          <tr style="{{ t.rowStyle }}">
+            <td style="padding:12px 16px;border-bottom:1px solid #EFF2F5;font-weight:600">{{ t.range }}</td>
+            <td style="padding:12px 16px;border-bottom:1px solid #EFF2F5;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:16px">{{ t.price }}</td>
+            <td style="padding:12px 16px;border-bottom:1px solid #EFF2F5;color:{{ t.discountColor }};font-weight:600">{{ t.discount }}</td>
+          </tr>
+        </sc-for>
+      </tbody>
+    </table>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:520,&quot;height&quot;:300},&quot;qty&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:1,&quot;min&quot;:1,&quot;max&quot;:50,&quot;tsType&quot;:&quot;number&quot;},&quot;tiers&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;{from: number, to: number|null, price: string, discount: string}[]&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const p = this.props;
+    const qty = p.qty ?? 1;
+    const raw = p.tiers && p.tiers.length ? p.tiers : [
+      { from: 1, to: 1, price: '11 290 Kč', discount: '—' },
+      { from: 2, to: 3, price: '10 720 Kč', discount: '−5 %' },
+      { from: 4, to: 9, price: '10 160 Kč', discount: '−10 %' },
+      { from: 10, to: null, price: '9 590 Kč', discount: '−15 %' }
+    ];
+    return {
+      tiers: raw.map(t => {
+        const active = qty >= t.from && (t.to === null || qty <= t.to);
+        return {
+          range: t.to === null ? t.from + ' a více' : (t.from === t.to ? String(t.from) : t.from + '–' + t.to),
+          price: t.price,
+          discount: t.discount,
+          discountColor: t.discount === '—' ? '#5B6874' : '#157A41',
+          rowStyle: active ? { background: '#EEF9F1' } : undefined
+        };
+      })
+    };
+  }
+}
+</script>
+</body>
+</html>

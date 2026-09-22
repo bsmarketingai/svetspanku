@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Archivo,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:800!important;font-stretch:75%;text-transform:uppercase;letter-spacing:-0.005em;}
+
+.ss-fd-close{display:flex;align-items:center;justify-content:center;width:44px;height:44px;border:0;border-radius:6px;background:none;color:#3D4750;cursor:pointer;transition:background-color .12s cubic-bezier(.22,.61,.36,1);}
+.ss-fd-close:hover{background:#F0F5FA;}
+.ss-fd-close:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+</style>
+</helmet>
+<sc-if value="{{ mounted }}" hint-placeholder-val="{{ true }}">
+  <div style="{{ overlayStyle }}" onClick="{{ close }}" aria-hidden="true"></div>
+  <div ref="{{ panelRef }}" role="dialog" aria-modal="true" aria-label="Filtry" style="{{ panelStyle }}">
+    <div style="display:flex;align-items:center;gap:8px;padding:12px 12px 12px 20px;border-bottom:1px solid #E1E6EB;flex:none">
+      <h2 style="margin:0;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:21px;color:#1C2229">Filtry</h2>
+      <button type="button" class="ss-fd-close" style="margin-left:auto" onClick="{{ close }}" aria-label="Zavřít filtry">
+        <dc-import name="Ikony" iconName="x" size="22" hint-size="22px,22px"></dc-import>
+      </button>
+    </div>
+
+    <div style="flex:1;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:28px;min-height:0">
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <h3 style="margin:0;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#55616C">Cena</h3>
+        <dc-import name="CenovyFiltr" from="{{ priceFrom }}" to="{{ priceTo }}" min="{{ priceMin }}" max="{{ priceMax }}" onChange="{{ onPrice }}" hint-size="100%,160px"></dc-import>
+      </div>
+      <sc-for list="{{ facets }}" as="f" hint-placeholder-count="4">
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <h3 style="margin:0 0 4px;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#55616C">{{ f.title }}</h3>
+          <sc-for list="{{ f.options }}" as="o" hint-placeholder-count="4">
+            <dc-import name="Checkbox" label="{{ o.label }}" size="compact" count="{{ o.count }}" checked="{{ o.checked }}" onChange="{{ o.onToggle }}" hint-size="100%,32px"></dc-import>
+          </sc-for>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="flex:none;display:flex;gap:12px;padding:16px 20px;border-top:1px solid #E1E6EB;background:#FFFFFF">
+      <dc-import name="Tlacitko" label="Smazat vše" variant="secondary" onClick="{{ clear }}" hint-size="130px,44px"></dc-import>
+      <div style="flex:1;min-width:0">
+        <dc-import name="Tlacitko" label="{{ applyLabel }}" variant="primary" fullWidth="{{ true }}" onClick="{{ close }}" hint-size="100%,44px"></dc-import>
+      </div>
+    </div>
+  </div>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:480,&quot;height&quot;:720},&quot;open&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;resultCount&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:128,&quot;min&quot;:0,&quot;max&quot;:9999,&quot;tsType&quot;:&quot;number&quot;},&quot;priceFrom&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:0,&quot;min&quot;:0,&quot;max&quot;:100000,&quot;tsType&quot;:&quot;number&quot;},&quot;priceTo&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:40000,&quot;min&quot;:0,&quot;max&quot;:100000,&quot;tsType&quot;:&quot;number&quot;},&quot;facets&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;Facet[]&quot;},&quot;selected&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;Record&lt;string,string[]&gt;&quot;},&quot;onToggleOption&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(group: string, option: string) =&gt; void&quot;},&quot;onPriceChange&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(from: number, to: number) =&gt; void&quot;},&quot;onClearAll&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;() =&gt; void&quot;},&quot;onClose&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;() =&gt; void&quot;}}">
+class Component extends DCLogic {
+  state = { facets: null, visible: false, mounted: false };
+  componentDidMount() {
+    if (!this.props.facets) import('./produkty.js').then(m => this.setState({ facets: m.FACETY }));
+    this._key = (e) => { if (e.key === 'Escape' && this.props.open) this.close(); };
+    this._trap = (e) => {
+      if (e.key !== 'Tab' || !this.props.open || !this._panel) return;
+      const f = this._panel.querySelectorAll('a[href],button:not([disabled]),input:not([type="hidden"]),select');
+      if (!f.length) return;
+      const first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    };
+    document.addEventListener('keydown', this._key);
+    document.addEventListener('keydown', this._trap);
+    if (this.props.open) this.onOpen();
+  }
+  componentDidUpdate(prev) {
+    if (!prev.open && this.props.open) this.onOpen();
+    if (prev.open && !this.props.open) this.onClose();
+  }
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this._key);
+    document.removeEventListener('keydown', this._trap);
+    this.unlock();
+    clearTimeout(this._t);
+  }
+  lock() { if (this._prev === undefined) { this._prev = document.body.style.overflow; document.body.style.overflow = 'hidden'; } }
+  unlock() { if (this._prev !== undefined) { document.body.style.overflow = this._prev; this._prev = undefined; } }
+  onOpen() {
+    this._returnFocus = document.activeElement;
+    this.lock();
+    this.setState({ mounted: true });
+    clearTimeout(this._t);
+    this._t = setTimeout(() => {
+      this.setState({ visible: true });
+      if (this._panel) { const f = this._panel.querySelector('button,a[href],input'); if (f) f.focus(); }
+    }, 20);
+  }
+  onClose() {
+    this.unlock();
+    this.setState({ visible: false });
+    clearTimeout(this._t);
+    this._t = setTimeout(() => {
+      this.setState({ mounted: false });
+      if (this._returnFocus && this._returnFocus.focus) this._returnFocus.focus();
+    }, 400);
+  }
+  close = () => { if (this.props.onClose) this.props.onClose(); };
+  renderVals() {
+    const p = this.props;
+    const visible = this.state.visible;
+    const selected = p.selected || {};
+    const facets = (p.facets || this.state.facets || []).map(f => ({
+      title: f.title,
+      options: (f.options || []).map(o => ({
+        label: o.label, count: o.count,
+        checked: (selected[f.id] || []).indexOf(o.id) !== -1,
+        onToggle: () => { if (p.onToggleOption) p.onToggleOption(f.id, o.id); }
+      }))
+    }));
+    return {
+      mounted: this.state.mounted,
+      facets,
+      overlayStyle: {
+        position: 'fixed', inset: 0, zIndex: 400, background: 'rgba(19,44,67,.5)',
+        opacity: visible ? 1 : 0, transition: 'opacity .4s cubic-bezier(.22,.61,.36,1)'
+      },
+      panelStyle: {
+        position: 'fixed', top: 0, right: 0, bottom: 0, zIndex: 410,
+        width: 'min(92vw,420px)', background: '#FFFFFF', display: 'flex', flexDirection: 'column',
+        boxShadow: '0 16px 40px rgba(19,44,67,.18)',
+        transform: visible ? 'translateX(0)' : 'translateX(100%)',
+        transition: 'transform .4s cubic-bezier(.22,.61,.36,1)'
+      },
+      priceFrom: p.priceFrom ?? 0,
+      priceTo: p.priceTo ?? 40000,
+      priceMin: p.priceMin ?? 0,
+      priceMax: p.priceMax ?? 40000,
+      onPrice: (f, t) => { if (p.onPriceChange) p.onPriceChange(f, t); },
+      applyLabel: p.resultCount !== undefined ? 'Zobrazit ' + p.resultCount + ' produktů' : 'Zobrazit výsledky',
+      clear: () => { if (p.onClearAll) p.onClearAll(); },
+      close: this.close,
+      panelRef: (el) => { this._panel = el; }
+    };
+  }
+}
+</script>
+</body>
+</html>

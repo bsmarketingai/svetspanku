@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Archivo,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:800!important;font-stretch:75%;text-transform:uppercase;letter-spacing:-0.005em;}
+
+.ss-input-wrap{font-family:Archivo,Helvetica,Arial,sans-serif;display:flex;flex-direction:column;gap:6px;min-width:0;}
+.ss-input-field{position:relative;display:flex;align-items:center;min-width:0;}
+.ss-input{font-family:inherit;color:#1C2229;width:100%;min-width:0;border:0;border-radius:6px;transition:background-color .12s cubic-bezier(.22,.61,.36,1),box-shadow .15s cubic-bezier(.22,.61,.36,1);}
+.ss-input::placeholder{color:#5B6874;}
+.ss-input:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35),inset 0 0 0 1px #296093;}
+.ss-input:disabled{background:#EFF2F5!important;color:#5B6874;cursor:not-allowed;}
+.ss-input-icon{position:absolute;left:12px;display:flex;pointer-events:none;color:#55616C;}
+@media (max-width:549px){.ss-input{font-size:16px!important;}}
+.ss-input[type=number]{-moz-appearance:textfield;appearance:textfield;}
+.ss-input[type=number]::-webkit-outer-spin-button,.ss-input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none;margin:0;}
+</style>
+</helmet>
+<div class="ss-input-wrap" style="{{ wrapStyle }}">
+  <sc-if value="{{ hasLabel }}" hint-placeholder-val="{{ true }}">
+    <label style="font-size:13px;font-weight:600;color:#3D4750" for="{{ id }}">{{ label }}</label>
+  </sc-if>
+  <div class="ss-input-field">
+    <sc-if value="{{ hasIcon }}" hint-placeholder-val="{{ false }}">
+      <span class="ss-input-icon"><dc-import name="Ikony" iconName="{{ icon }}" size="18" hint-size="18px,18px"></dc-import></span>
+    </sc-if>
+    <input class="ss-input" id="{{ id }}" type="{{ type }}" style="{{ inputStyle }}" style-hover="{{ hoverStyle }}" value="{{ value }}" placeholder="{{ placeholder }}" onChange="{{ handleChange }}" onBlur="{{ handleBlur }}" onKeyDown="{{ handleKeyDown }}" disabled="{{ disabled }}" aria-label="{{ ariaLabel }}" aria-invalid="{{ ariaInvalid }}" aria-describedby="{{ describedBy }}" />
+  </div>
+  <sc-if value="{{ hasHint }}" hint-placeholder-val="{{ false }}">
+    <span id="{{ hintId }}" style="{{ hintStyle }}">{{ hint }}</span>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:360,&quot;height&quot;:140},&quot;label&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;E-mail&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;placeholder&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;vas@email.cz&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;value&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;type&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;text&quot;,&quot;options&quot;:[&quot;text&quot;,&quot;email&quot;,&quot;tel&quot;,&quot;number&quot;,&quot;search&quot;,&quot;password&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;size&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;standard&quot;,&quot;options&quot;:[&quot;standard&quot;,&quot;compact&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;bordered&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;icon&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;hint&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;invalid&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;disabled&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;onChange&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(value: string) =&gt; void&quot;},&quot;onBlur&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(value: string) =&gt; void&quot;},&quot;onEnter&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(value: string) =&gt; void&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const p = this.props;
+    const compact = p.size === 'compact';
+    const h = compact ? 36 : 44;
+    const invalid = !!p.invalid;
+    const uid = this._id || (this._id = Math.random().toString(36).slice(2, 8));
+    const id = p.id || ('ss-input-' + uid);
+    const hint = p.hint;
+    return {
+      id, hintId: id + '-hint',
+      hasLabel: !!p.label, label: p.label ?? 'Popisek pole',
+      ariaLabel: p.label ? undefined : p.ariaLabel,
+      type: p.type || 'text',
+      value: p.value ?? '',
+      placeholder: p.placeholder ?? '',
+      disabled: !!p.disabled,
+      hasIcon: !!p.icon, icon: p.icon,
+      hasHint: !!hint, hint,
+      hintStyle: { fontSize: '13px', color: invalid ? '#B3261E' : '#5B6874' },
+      ariaInvalid: invalid ? 'true' : undefined,
+      describedBy: hint ? id + '-hint' : undefined,
+      wrapStyle: { width: p.fullWidth === false ? undefined : '100%' },
+      inputStyle: {
+        height: h + 'px', fontSize: (compact ? 14 : 15) + 'px',
+        padding: '0 14px 0 ' + (p.icon ? 38 : 14) + 'px',
+        background: p.bordered ? '#FFFFFF' : '#F7F9FB',
+        boxShadow: 'inset 0 0 0 1px ' + (invalid ? '#B3261E' : (p.bordered ? '#E1E6EB' : 'transparent'))
+      },
+      hoverStyle: p.disabled ? {} : (p.bordered ? { boxShadow: 'inset 0 0 0 1px ' + (invalid ? '#B3261E' : '#C8D0D8') } : { background: '#EFF2F5' }),
+      handleChange: (e) => { if (p.onChange) p.onChange(e.target.value); },
+      handleBlur: (e) => { if (p.onBlur) p.onBlur(e.target.value); },
+      handleKeyDown: (e) => {
+        if (p.onEnter && e.key === 'Enter') { e.preventDefault(); p.onEnter(e.target.value); }
+        if (p.onKeyDown) p.onKeyDown(e);
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>

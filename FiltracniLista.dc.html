@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+</helmet>
+<div style="{{ barStyle }}">
+  <div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding:{{ pad }}">
+    <div style="flex:none">
+      <dc-import name="Tlacitko" label="{{ filterLabel }}" variant="secondary" iconLeft="adjustments-horizontal" onClick="{{ onOpen }}" hint-size="140px,44px"></dc-import>
+    </div>
+    <div style="flex:none;min-width:200px">
+      <dc-import name="Select" ariaLabel="Řadit podle" value="{{ sort }}" onChange="{{ onSort }}" options="{{ sortOptions }}" hint-size="200px,44px"></dc-import>
+    </div>
+    <div style="flex:none">
+      <dc-import name="Checkbox" label="Jen skladem" checked="{{ inStockOnly }}" onChange="{{ onToggleStock }}" hint-size="150px,44px"></dc-import>
+    </div>
+    <span style="margin-left:auto;font-size:14px;color:#3D4750;white-space:nowrap">{{ totalText }}</span>
+  </div>
+  <sc-if value="{{ hasActive }}" hint-placeholder-val="{{ false }}">
+    <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:{{ padChips }}">
+      <sc-for list="{{ active }}" as="a" hint-placeholder-count="3">
+        <dc-import name="Chip" label="{{ a.label }}" variant="filter" size="small" active="{{ true }}" onClick="{{ a.onRemove }}" hint-size="120px,32px"></dc-import>
+      </sc-for>
+      <dc-import name="Tlacitko" label="Smazat filtry" variant="textDanger" size="standard" onClick="{{ onClear }}" hint-size="120px,24px"></dc-import>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1100,&quot;height&quot;:140},&quot;total&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:128,&quot;min&quot;:0,&quot;max&quot;:9999,&quot;tsType&quot;:&quot;number&quot;},&quot;sort&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;doporucene&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;inStockOnly&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;stickyTop&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;0px&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;active&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;{group: string, option: string, label: string}[]&quot;},&quot;activeCount&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;number&quot;},&quot;sortOptions&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;{value: string, label: string}[]&quot;},&quot;onSort&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(value: string) =&gt; void&quot;},&quot;onToggleInStock&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(on: boolean) =&gt; void&quot;},&quot;onRemoveFilter&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(group: string, option: string) =&gt; void&quot;},&quot;onClearAll&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;() =&gt; void&quot;},&quot;onOpenFilters&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;() =&gt; void&quot;}}">
+class Component extends DCLogic {
+  state = { width: typeof window !== 'undefined' ? document.documentElement.clientWidth : 1440 };
+  componentDidMount() {
+    this._resize = () => this.setState({ width: document.documentElement.clientWidth });
+    window.addEventListener('resize', this._resize);
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this._resize); }
+  plural(n) {
+    if (n === 1) return '1 produkt';
+    if (n >= 2 && n <= 4) return n + ' produkty';
+    return n + ' produktů';
+  }
+  renderVals() {
+    const p = this.props;
+    const narrow = this.state.width < 820;
+    const active = p.active || [];
+    const count = p.activeCount ?? active.length;
+    return {
+      barStyle: {
+        position: 'sticky', top: p.stickyTop ?? '0px', zIndex: 100, width: '100%',
+        background: '#FFFFFF', borderRadius: '12px', boxShadow: '0 2px 8px rgba(19,44,67,.08)'
+      },
+      pad: narrow ? '12px 16px' : '12px 20px',
+      padChips: narrow ? '0 16px 12px' : '0 20px 12px',
+      filterLabel: count > 0 ? 'Filtry (' + count + ')' : 'Filtry',
+      sort: p.sort ?? 'doporucene',
+      sortOptions: p.sortOptions || [
+        { value: 'doporucene', label: 'Doporučené' },
+        { value: 'nejlevnejsi', label: 'Od nejlevnějšího' },
+        { value: 'nejdrazsi', label: 'Od nejdražšího' },
+        { value: 'hodnoceni', label: 'Nejlépe hodnocené' },
+        { value: 'novinky', label: 'Novinky' }
+      ],
+      onSort: (v) => { if (p.onSort) p.onSort(v); },
+      inStockOnly: !!p.inStockOnly,
+      onToggleStock: (v) => { if (p.onToggleInStock) p.onToggleInStock(v); },
+      totalText: this.plural(p.total ?? 128),
+      hasActive: active.length > 0,
+      active: active.map(a => ({
+        label: a.label,
+        onRemove: () => { if (p.onRemoveFilter) p.onRemoveFilter(a.group, a.option); }
+      })),
+      onOpen: () => { if (p.onOpenFilters) p.onOpenFilters(); },
+      onClear: () => { if (p.onClearAll) p.onClearAll(); }
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Archivo,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:800!important;font-stretch:75%;text-transform:uppercase;letter-spacing:-0.005em;}
+
+.ss-chip{font-family:Archivo,Helvetica,Arial,sans-serif;display:inline-flex;align-items:center;gap:8px;border:0;margin:0;background:none;text-decoration:none;cursor:pointer;border-radius:999px;font-weight:600;white-space:nowrap;transition:background-color .12s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1),box-shadow .15s cubic-bezier(.22,.61,.36,1),transform .06s cubic-bezier(.22,.61,.36,1);}
+.ss-chip:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+.ss-chip:not([aria-disabled="true"]):active{transform:scale(.98);}
+.ss-chip[aria-disabled="true"]{opacity:.45;cursor:not-allowed;}
+</style>
+</helmet>
+<sc-if value="{{ isLink }}" hint-placeholder-val="{{ false }}">
+  <a class="ss-chip" href="{{ href }}" style="{{ chipStyle }}" style-hover="{{ hoverStyle }}">
+    <sc-if value="{{ hasIcon }}" hint-placeholder-val="{{ false }}"><dc-import name="Ikony" iconName="{{ icon }}" size="{{ iconSize }}" hint-size="18px,18px"></dc-import></sc-if>
+    <span>{{ label }}</span>
+    <sc-if value="{{ showCount }}" hint-placeholder-val="{{ false }}"><span style="{{ countStyle }}">{{ count }}</span></sc-if>
+  </a>
+</sc-if>
+<sc-if value="{{ isButton }}" hint-placeholder-val="{{ true }}">
+  <button type="button" class="ss-chip" style="{{ chipStyle }}" style-hover="{{ hoverStyle }}" onClick="{{ handleClick }}" aria-pressed="{{ ariaPressed }}" aria-disabled="{{ ariaDisabled }}">
+    <sc-if value="{{ hasIcon }}" hint-placeholder-val="{{ false }}"><dc-import name="Ikony" iconName="{{ icon }}" size="{{ iconSize }}" hint-size="18px,18px"></dc-import></sc-if>
+    <span>{{ label }}</span>
+    <sc-if value="{{ showCount }}" hint-placeholder-val="{{ false }}"><span style="{{ countStyle }}">{{ count }}</span></sc-if>
+    <sc-if value="{{ showRemove }}" hint-placeholder-val="{{ false }}"><span style="display:inline-flex;margin-right:-2px"><dc-import name="Ikony" iconName="x" size="{{ iconSize }}" hint-size="18px,18px"></dc-import></span></sc-if>
+  </button>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:320,&quot;height&quot;:100},&quot;label&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Matrace&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;variant&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;filter&quot;,&quot;options&quot;:[&quot;filter&quot;,&quot;primary&quot;,&quot;secondary&quot;,&quot;secondaryOutline&quot;,&quot;outline&quot;,&quot;sale&quot;,&quot;accent&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;size&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;standard&quot;,&quot;options&quot;:[&quot;standard&quot;,&quot;small&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;active&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;count&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string | number&quot;},&quot;icon&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;href&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;disabled&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;onClick&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;() =&gt; void&quot;}}">
+class Component extends DCLogic {
+  static VARIANTS = {
+    filter:          { bg: '#FFFFFF', fg: '#3D4750', border: '#C8D0D8', hoverBg: '#F7F9FB', hoverBorder: '#8DB3D3' },
+    filterActive:    { bg: '#296093', fg: '#FFFFFF', hoverBg: '#21507B' },
+    primary:         { bg: '#296093', fg: '#FFFFFF', hoverBg: '#21507B' },
+    secondary:       { bg: '#F0F5FA', fg: '#21507B', hoverBg: '#DCE8F2' },
+    secondaryOutline:{ bg: '#FFFFFF', fg: '#21507B', border: '#8DB3D3', hoverBg: '#F0F5FA' },
+    outline:         { bg: '#FFFFFF', fg: '#3D4750', border: '#C8D0D8', hoverBg: '#F7F9FB' },
+    sale:            { bg: '#B3261E', fg: '#FFFFFF', hoverBg: '#8E1E18' },
+    accent:          { bg: '#FBB255', fg: '#1C2229', hoverBg: '#F09A2C' }
+  };
+  static SIZES = { standard: { h: 40, pad: 18, font: 14, icon: 18 }, small: { h: 32, pad: 14, font: 13, icon: 16 } };
+  renderVals() {
+    const p = this.props;
+    const active = !!p.active;
+    const key = p.variant === 'filter' && active ? 'filterActive' : (p.variant || 'filter');
+    const v = Component.VARIANTS[key] || Component.VARIANTS.filter;
+    const s = Component.SIZES[p.size] || Component.SIZES.standard;
+    const disabled = !!p.disabled;
+    const chipStyle = {
+      height: s.h + 'px', padding: '0 ' + s.pad + 'px', fontSize: s.font + 'px',
+      background: v.bg, color: v.fg,
+      boxShadow: v.border ? 'inset 0 0 0 1px ' + v.border : undefined
+    };
+    const hoverStyle = disabled ? {} : {
+      background: v.hoverBg, boxShadow: v.hoverBorder ? 'inset 0 0 0 1px ' + v.hoverBorder : chipStyle.boxShadow
+    };
+    return {
+      isLink: !!p.href && !disabled,
+      isButton: !(p.href && !disabled),
+      href: p.href || '#',
+      label: p.label ?? 'Chip',
+      hasIcon: !!p.icon, icon: p.icon, iconSize: s.icon,
+      showCount: p.count !== undefined && p.count !== null && p.count !== '',
+      count: p.count,
+      countStyle: { fontSize: s.font - 1 + 'px', fontWeight: 500, opacity: .75 },
+      showRemove: p.variant === 'filter' && active && !p.href,
+      ariaPressed: p.ariaPressed || (p.variant === 'filter' ? (active ? 'true' : 'false') : undefined),
+      ariaDisabled: disabled ? 'true' : undefined,
+      chipStyle, hoverStyle,
+      handleClick: disabled ? (e) => e.preventDefault() : (p.onClick || (() => {}))
+    };
+  }
+}
+</script>
+</body>
+</html>

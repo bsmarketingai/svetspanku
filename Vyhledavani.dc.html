@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Archivo,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:800!important;font-stretch:75%;text-transform:uppercase;letter-spacing:-0.005em;}
+
+.ss-sg a{text-decoration:none;}
+.ss-sg-cat{display:flex;align-items:center;gap:8px;min-height:40px;font-size:16px;font-weight:600;color:#1C2229;border-radius:4px;transition:color .12s cubic-bezier(.22,.61,.36,1);}
+.ss-sg-cat:hover{color:#296093;text-decoration:underline;text-underline-offset:3px;}
+.ss-sg-cat:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+.ss-sg-art{display:flex;align-items:center;min-height:40px;font-size:15px;font-weight:600;color:#1C2229;border-radius:4px;}
+.ss-sg-art:hover{color:#296093;text-decoration:underline;text-underline-offset:3px;}
+.ss-sg-art:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+.ss-sg-prod{display:flex;align-items:flex-start;gap:16px;padding:8px;border-radius:12px;color:#1C2229;transition:background-color .12s cubic-bezier(.22,.61,.36,1);}
+.ss-sg-prod:hover{background:#F7F9FB;}
+.ss-sg-prod:hover .ss-sg-prod-t{color:#296093;}
+.ss-sg-prod:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+.ss-sg-close{display:flex;align-items:center;justify-content:center;width:44px;height:44px;border:0;border-radius:6px;background:none;color:#3D4750;cursor:pointer;transition:background-color .12s cubic-bezier(.22,.61,.36,1);}
+.ss-sg-close:hover{background:#F0F5FA;}
+.ss-sg-close:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+</style>
+</helmet>
+<div class="ss-sg" role="region" aria-label="Našeptávač vyhledávání" style="width:100%;background:#FFFFFF;border-radius:12px;box-shadow:0 16px 40px rgba(19,44,67,.18);font-family:Archivo,Helvetica,Arial,sans-serif;color:#1C2229;overflow:hidden">
+  <div style="display:grid;grid-template-columns:{{ shellTemplate }};gap:0">
+    <div style="padding:{{ padSide }};display:flex;flex-direction:column;gap:28px;min-width:0">
+      <sc-if value="{{ hasFrequent }}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <h2 style="margin:0;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#1C2229">Často hledáte</h2>
+          <div style="display:flex;flex-wrap:wrap;gap:8px">
+            <sc-for list="{{ frequent }}" as="f" hint-placeholder-count="2">
+              <dc-import name="Chip" label="{{ f.label }}" variant="primary" size="small" href="{{ f.href }}" hint-size="130px,32px"></dc-import>
+            </sc-for>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ hasCategories }}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <h2 style="margin:0 0 6px;font-size:15px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;text-decoration:underline;text-underline-offset:4px">Kategorie ({{ categoryCount }})</h2>
+          <sc-for list="{{ categories }}" as="c" hint-placeholder-count="6">
+            <a class="ss-sg-cat" href="{{ c.href }}">
+              <span>{{ c.label }}</span>
+              <sc-if value="{{ c.hasCount }}" hint-placeholder-val="{{ true }}">
+                <span style="font-size:14px;font-weight:400;color:#5B6874">({{ c.count }})</span>
+              </sc-if>
+            </a>
+          </sc-for>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ articlesAside }}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex;flex-direction:column;gap:4px">
+          <h2 style="margin:0 0 6px;font-size:15px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;text-decoration:underline;text-underline-offset:4px">Články ({{ articleCount }})</h2>
+          <sc-for list="{{ articles }}" as="a" hint-placeholder-count="2">
+            <a class="ss-sg-art" href="{{ a.href }}">{{ a.title }}</a>
+          </sc-for>
+        </div>
+      </sc-if>
+    </div>
+
+    <div style="{{ mainStyle }}">
+      <div style="display:flex;align-items:flex-start;gap:12px">
+        <h2 style="margin:0;font-size:15px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;text-decoration:underline;text-underline-offset:4px">Produkty ({{ total }})</h2>
+        <sc-if value="{{ showClose }}" hint-placeholder-val="{{ true }}">
+          <button type="button" class="ss-sg-close" style="margin-left:auto;margin-top:-8px" onClick="{{ close }}" aria-label="Zavřít našeptávač">
+            <dc-import name="Ikony" iconName="x" size="22" hint-size="22px,22px"></dc-import>
+          </button>
+        </sc-if>
+      </div>
+
+      <div style="display:grid;grid-template-columns:{{ productTemplate }};gap:12px 24px">
+        <sc-for list="{{ products }}" as="p" hint-placeholder-count="6">
+          <a class="ss-sg-prod" href="{{ p.href }}">
+            <span style="width:104px;height:104px;flex:none;border-radius:8px;background:#EFF2F5;display:flex;align-items:center;justify-content:center;color:#C8D0D8"><dc-import name="Ikony" iconName="photo" size="24" hint-size="24px,24px"></dc-import></span>
+            <span style="display:flex;flex-direction:column;gap:10px;min-width:0;padding-top:6px">
+              <span class="ss-sg-prod-t" style="font-size:15px;font-weight:500;line-height:1.35;transition:color .12s cubic-bezier(.22,.61,.36,1)">{{ p.title }}</span>
+              <span style="display:flex;flex-wrap:wrap;align-items:center;gap:14px">
+                <span style="font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:20px;white-space:nowrap">{{ p.price }}</span>
+                <dc-import name="Stitek" kind="{{ p.stock }}" label="{{ p.stockLabel }}" size="small" hint-size="90px,18px"></dc-import>
+              </span>
+            </span>
+          </a>
+        </sc-for>
+      </div>
+
+      <sc-if value="{{ articlesBelow }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:4px;padding-top:12px;border-top:1px solid #E1E6EB">
+          <h2 style="margin:0 0 6px;font-size:15px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;text-decoration:underline;text-underline-offset:4px">Články ({{ articleCount }})</h2>
+          <sc-for list="{{ articles }}" as="a" hint-placeholder-count="2">
+            <a class="ss-sg-art" href="{{ a.href }}">{{ a.title }}</a>
+          </sc-for>
+        </div>
+      </sc-if>
+
+      <div style="display:flex;justify-content:flex-start;padding-top:4px">
+        <dc-import name="Tlacitko" label="{{ allLabel }}" variant="primary" size="large" iconRight="chevron-right" href="{{ allHref }}" hint-size="280px,52px"></dc-import>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:620},&quot;total&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:126,&quot;min&quot;:0,&quot;max&quot;:9999,&quot;tsType&quot;:&quot;number&quot;},&quot;maxProducts&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:6,&quot;min&quot;:2,&quot;max&quot;:10,&quot;tsType&quot;:&quot;number&quot;},&quot;products&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;Product[]&quot;},&quot;categories&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;{label: string, count?: number, href?: string}[]&quot;},&quot;articles&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;{title: string, href: string}[]&quot;},&quot;frequent&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;string[]&quot;},&quot;onClose&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;() =&gt; void&quot;}}">
+class Component extends DCLogic {
+  state = { demo: null, width: typeof window !== 'undefined' ? document.documentElement.clientWidth : 1440 };
+  componentDidMount() {
+    if (!this.props.products) import('./produkty.js').then(m => this.setState({ demo: m.PRODUKTY }));
+    this._resize = () => this.setState({ width: document.documentElement.clientWidth });
+    window.addEventListener('resize', this._resize);
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this._resize); }
+  renderVals() {
+    const p = this.props;
+    const w = this.state.width;
+    const narrow = w < 1000;
+    const products = (p.products || this.state.demo || []).slice(0, p.maxProducts ?? 6).map(d => ({
+      href: d.href || '#produkt',
+      title: d.title,
+      price: d.price,
+      stock: d.stock || 'inStock',
+      stockLabel: d.stock === 'lowStock' ? 'Poslední kusy' : (d.stock === 'outOfStock' ? 'Nedostupné' : 'Skladem')
+    }));
+    const categories = (p.categories || [
+      { label: 'Manželské postele', count: 46, href: '#' },
+      { label: 'Boxspring — americké postele', count: 46, href: '#' },
+      { label: 'Čalouněné postele', count: 46, href: '#' },
+      { label: 'Postele s úložným prostorem', href: '#' },
+      { label: 'Patrové postele', count: 46, href: '#' },
+      { label: 'Postele s nočními stolky', count: 46, href: '#' },
+      { label: 'Jednolůžkové postele', count: 46, href: '#' }
+    ]).map(c => ({ label: c.label, count: c.count, hasCount: c.count !== undefined, href: c.href || '#' }));
+    const articles = p.articles || [
+      { title: 'Jak vybrat postel?', href: '#clanek' },
+      { title: 'Proč postel z masivu?', href: '#clanek' }
+    ];
+    const frequent = (p.frequent || ['Manželská postel', 'Dvojlůžko']).map(f => (typeof f === 'string' ? { label: f, href: '#' } : f));
+    return {
+      shellTemplate: narrow ? 'minmax(0,1fr)' : '320px minmax(0,1fr)',
+      padSide: narrow ? '20px 16px 0' : '28px 28px 32px',
+      padMain: narrow ? '20px 16px 24px' : '28px 28px 24px',
+      productTemplate: w >= 1150 ? 'repeat(2,minmax(0,1fr))' : 'minmax(0,1fr)',
+      products, categories, articles, frequent,
+      hasFrequent: frequent.length > 0,
+      hasCategories: categories.length > 0,
+      articlesAside: !narrow && articles.length > 0,
+      articlesBelow: narrow && articles.length > 0,
+      showClose: !narrow,
+      mainStyle: {
+        borderLeft: narrow ? 'none' : '1px solid #E1E6EB',
+        borderTop: narrow ? '1px solid #E1E6EB' : 'none',
+        padding: narrow ? '20px 16px 24px' : '28px 28px 24px',
+        margin: narrow ? '20px 0 0' : 0,
+        display: 'flex', flexDirection: 'column', gap: '20px', minWidth: 0
+      },
+      categoryCount: p.categoryCount ?? categories.length,
+      articleCount: p.articleCount ?? articles.length,
+      total: p.total ?? 126,
+      allHref: p.allHref || '#vysledky',
+      allLabel: 'Zobrazit všechny produkty (' + (p.total ?? 126) + ')',
+      close: () => { if (p.onClose) p.onClose(); }
+    };
+  }
+}
+</script>
+</body>
+</html>

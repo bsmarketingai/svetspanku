@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+html,body{margin:0!important;padding:0!important;}
+#dc-root{margin:0!important;padding:0!important;width:100%!important;max-width:none!important;border:0!important;}
+#dc-root>.sc-host{margin:0!important;padding:0!important;width:100%!important;}
+h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Archivo,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:800!important;font-stretch:75%;text-transform:uppercase;letter-spacing:-0.005em;}
+a{color:#296093;}a:hover{color:#1f4a72;}
+.ss-cl-wrap{width:100%;max-width:1160px;margin:0 auto;padding:0 32px;box-sizing:border-box;}
+.ss-cl-col{max-width:760px;}
+.ss-cl-body p{margin:0 0 16px;font-size:17px;line-height:1.7;color:#1C2229;text-wrap:pretty;}
+.ss-cl-body p:last-child{margin-bottom:0;}
+.ss-cl-h2{margin:0 0 16px;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:30px;line-height:1.15;color:#1C2229;}
+.ss-cl-h3{margin:0 0 12px;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:23px;line-height:1.2;color:#1C2229;}
+.ss-cl-img{display:block;width:100%;height:auto;border-radius:12px;}
+.ss-cl-media{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px;align-items:center;}
+.ss-cl-block{margin-top:48px;}
+.ss-cl-cap{display:block;margin-top:8px;font-size:13px;color:#5B6874;}
+.ss-cl-toc{background:#F7F9FB;border-left:3px solid #FBB255;border-radius:0 12px 12px 0;padding:20px 24px;}
+.ss-cl-toc a{display:inline-flex;align-items:center;min-height:30px;font-size:15px;font-weight:600;text-decoration:underline;text-underline-offset:3px;}
+.ss-cl-also{display:flex;gap:20px;align-items:center;background:#F7F9FB;border-radius:12px;padding:16px;text-decoration:none;color:#1C2229;}
+.ss-cl-also:hover .ss-cl-also-t{color:#296093;}
+.ss-cl-also:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+.ss-cl-ph{display:flex;align-items:center;justify-content:center;background:#F0F3F6;border-radius:12px;color:#9FB0BF;overflow:hidden;}
+.ss-cl-next{position:relative;display:flex;flex-direction:column;gap:12px;padding:8px;margin:-8px;text-decoration:none;color:#1C2229;border-radius:12px;}
+.ss-cl-next .ss-cl-ph{position:relative;height:200px;}
+.ss-cl-zoom{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;transition:transform .4s cubic-bezier(.22,.61,.36,1);}
+.ss-cl-cta{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) scale(.96);z-index:2;display:inline-flex;align-items:center;min-height:44px;padding:0 22px;border-radius:999px;background:#FFFFFF;color:#1C2229;font-size:15px;font-weight:600;box-shadow:0 4px 12px rgba(19,44,67,.12);opacity:0;pointer-events:none;transition:opacity .15s cubic-bezier(.22,.61,.36,1),transform .15s cubic-bezier(.22,.61,.36,1);}
+@media (hover:hover) and (pointer:fine){
+.ss-cl-next:hover .ss-cl-zoom{transform:scale(1.06);}
+.ss-cl-next:hover .ss-cl-cta{opacity:1;transform:translate(-50%,-50%) scale(1);}
+}
+.ss-cl-next:hover .ss-cl-next-t{color:#296093;}
+.ss-cl-next:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);border-radius:12px;}
+.ss-cl-list{margin:0 0 16px;padding-left:22px;font-size:17px;line-height:1.7;color:#1C2229;}
+.ss-cl-list li{margin-bottom:6px;}
+@media (max-width:1149px){.ss-cl-h2{font-size:26px;}}
+@media (max-width:819px){
+.ss-cl-wrap{padding:0 16px;}
+.ss-cl-media{grid-template-columns:minmax(0,1fr);gap:20px;}
+.ss-cl-flip{display:flex;flex-direction:column;}
+.ss-cl-block{margin-top:32px;}
+.ss-cl-also{flex-direction:column;align-items:flex-start;}
+.ss-cl-body p{font-size:16px;}
+.ss-cl-list{font-size:16px;}
+}
+</style>
+</helmet>
+<div style="width:100%;background:#FFFFFF;font-family:Archivo,Helvetica,Arial,sans-serif;color:#1C2229">
+  <dc-import name="Hlavicka" style="position:sticky;top:0;z-index:200" ledMode="{{ ledMode }}" hint-size="100%,180px"></dc-import>
+  <dc-import name="PrezentacniLista" items="{{ presItems }}" onToggle="{{ onPresToggle }}" choices="{{ presChoices }}" onPick="{{ onPresPick }}" hint-size="460px,52px"></dc-import>
+
+  <main>
+    <div class="ss-cl-wrap" style="padding-top:20px;padding-bottom:8px">
+      <dc-import name="Drobeckova" items="{{ crumbs }}" hint-size="100%,24px"></dc-import>
+    </div>
+
+    <article class="ss-cl-wrap" style="padding-bottom:16px">
+      <div class="ss-cl-col">
+        <h1 style="margin:0 0 14px;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:{{ h1Size }};line-height:1.08;letter-spacing:-0.01em">Proč kvalitní matrace vydrží déle?</h1>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:20px">
+          <dc-import name="Stitek" kind="neutral" label="Matrace" hint-size="80px,26px"></dc-import>
+          <span style="font-size:13px;color:#5B6874">Poradna Světa spánku</span>
+        </div>
+        <div class="ss-cl-body" style="font-weight:600">
+          <p>Když se řekne <strong>životnost matrace</strong>, většina lidí si představí jedno číslo. 5 let? 8 let? 15 let? Jenže odpověď na otázku „jak dlouho vydrží matrace“ není jednoduchá. Velmi totiž <strong>záleží na její kvalitě</strong>.</p>
+        </div>
+      </div>
+
+      <div class="ss-cl-block">
+        <img class="ss-cl-img" src="clanek-matrace-hero.png" alt="Ruka tlačí do potahu kvalitní matrace" />
+      </div>
+
+      <div class="ss-cl-block ss-cl-col">
+        <nav class="ss-cl-toc" aria-label="Obsah článku">
+          <h2 class="ss-cl-h3 ss-plain" style="margin-bottom:6px">Co v článku najdete</h2>
+          <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px">
+            <li><a href="#materialy">Klíč k dlouhé životnosti: kvalitní materiály</a></li>
+            <li><a href="#peny">Pěny, lepidla a pružiny</a></li>
+            <li><a href="#potah">Boční výztuha a potah</a></li>
+            <li><a href="#dum">Nekvalitní matrace jako špatně postavený dům</a></li>
+            <li><a href="#zaruka">Proč u nás najdete jen kvalitní matrace</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="ss-cl-block ss-cl-col ss-cl-body" id="materialy">
+        <p>U matrace nejde jen o první pocit pohodlí při ulehnutí. Důležité je, <strong>jak se matrace chová po stovkách a tisících nocí</strong>, kdy na ni působí váha těla, teplo, vlhkost a každodenní zatížení. Levná matrace může ztratit oporu už po pár nocích. Kvalitní matrace si naopak dokáže udržet pohodlí, pružnost a správnou podporu těla dlouhodobě.</p>
+        <p>Právě <strong>materiály rozhodují o tom, jestli matrace vydrží jen třeba 2 roky, nebo bude spolehlivě sloužit dlouhá léta</strong>.</p>
+      </div>
+
+      <div class="ss-cl-block ss-cl-media" id="peny">
+        <div>
+          <img class="ss-cl-img" src="clanek-peny.jpg" alt="Ruka ohýbá plát kvalitní pěny" />
+        </div>
+        <div class="ss-cl-body">
+          <h3 class="ss-cl-h3">Pěny</h3>
+          <p>Levnější matrace jsou vyrobeny z méně odolných pěn. Na první pohled mohou vypadat podobně jako kvalitnější modely, ale <strong>rozdíl se časem ukáže</strong>. Pěna se začne rychleji unavovat, matrace ztrácí pružnost a v nejvíce zatěžovaných místech se tvoří prohlubně.</p>
+          <p><strong>Kvalitní pěna odolává každodenní zátěži výrazně lépe.</strong> Po stlačení se vrací zpět do původního tvaru a pomaleji ztrácí své vlastnosti.</p>
+        </div>
+      </div>
+
+      <div class="ss-cl-block ss-cl-media ss-cl-flip">
+        <div class="ss-cl-body">
+          <h3 class="ss-cl-h3">Lepidla</h3>
+          <p>U vícevrstvých matrací je důležité, čím jsou vrstvy spojené. Nekvalitní lepidlo může časem povolovat, vrstvy se posouvají nebo oddělují a matrace ztrácí stabilitu.</p>
+          <p>Někteří výrobci používají lepidla s obsahem chemických rozpouštědel — toluenu, isokyanátů a dalších látek, které nejsou ideální pro zdraví ani pro životní prostředí. <strong>Kvalitní ekologická lepidla rozpustná ve vodě</strong> spojí vrstvy pevně a bez zbytečné chemické zátěže.</p>
+        </div>
+        <div>
+          <img class="ss-cl-img" src="clanek-tasticky.png" alt="Řez matrací s taštičkovým jádrem" />
+        </div>
+      </div>
+
+      <div class="ss-cl-block ss-cl-col ss-cl-body">
+        <h3 class="ss-cl-h3">Pružiny nebo taštičky</h3>
+        <p>U pružinových matrací se šetří hlavně na <strong>kvalitě jádra</strong>. Levnější pružiny mají horší pružnost nebo méně přesné zpracování, časem hůře reagují na tlak těla a v matraci se začnou tvořit nerovnosti. Nepříjemným znakem nekvalitních pružinových matrací je <strong>vrzání</strong>.</p>
+        <p>Taštičkové matrace fungují přesněji, protože každá pružina pracuje samostatně a je uložená v textilní taštičce. <strong>Kvalita jádra je proto ještě důležitější.</strong> Dobře zpracované taštičky si déle drží pružnost, stabilně podpírají tělo a pomáhají matraci zachovat tvar.</p>
+      </div>
+
+      <div class="ss-cl-block ss-cl-media" id="potah">
+        <div>
+          <img class="ss-cl-img" src="clanek-potah.jpg" alt="Detail prodyšného potahu matrace" />
+        </div>
+        <div class="ss-cl-body">
+          <h3 class="ss-cl-h3">Boční výztuha a potah</h3>
+          <p>Pokud okraj matrace nemá dostatečnou výztuhu, <strong>může se časem propadat a ztrácet pevnost</strong> — poznáte to při sezení na kraji postele nebo při vstávání. Slabší výztuha navíc zmenšuje využitelnou plochu matrace.</p>
+          <p>Levný potah bývá tenký, méně prodyšný a hůř odvádí vlhkost, což zkracuje <strong>hygienickou životnost matrace</strong>. Kvalitní potah pomáhá matraci dýchat a odvádí vlhkost od těla.</p>
+        </div>
+      </div>
+
+      <div class="ss-cl-block ss-cl-col ss-cl-body" id="dum">
+        <h2 class="ss-cl-h2">Nekvalitní matrace jako špatně postavený dům</h2>
+        <p><strong>Nekvalitní matrace je jako špatně postavený dům</strong>, který na první pohled může vypadat bezchybně, ale jeho skutečnou hodnotu neurčuje fasáda. Rozhodují základy, konstrukce, izolace a materiály, které nejsou hned vidět. Pokud se na nich šetří, projeví se to časem — prasklinami, vlhkostí, tepelnými ztrátami nebo rychlejším opotřebením.</p>
+      </div>
+
+      <div class="ss-cl-block">
+        <img class="ss-cl-img" src="clanek-dum.jpg" alt="Základy rozestavěného domu" />
+        <span class="ss-cl-cap">Na základech se nevyplatí šetřit — u domu ani u matrace.</span>
+      </div>
+
+      <div class="ss-cl-block ss-cl-col">
+        <span style="display:block;margin-bottom:10px;font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#55616C">Přečtěte si také</span>
+        <a class="ss-cl-also" href="#clanek">
+          <span class="ss-cl-ph" style="width:120px;height:90px;flex:none">
+            <dc-import name="Ikony" iconName="photo" size="28" hint-size="28px,28px"></dc-import>
+          </span>
+          <span style="display:flex;flex-direction:column;gap:6px;min-width:0">
+            <span class="ss-cl-also-t" style="font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:19px;line-height:1.25;transition:color .12s cubic-bezier(.22,.61,.36,1)">Jakou tvrdost matrace potřebujete podle váhy</span>
+            <span style="font-size:14px;line-height:1.55;color:#3D4750">H2, H3 nebo H4? Tabulka podle hmotnosti a polohy spánku.</span>
+          </span>
+        </a>
+      </div>
+
+      <div class="ss-cl-block ss-cl-col ss-cl-body" id="zaruka">
+        <h2 class="ss-cl-h2">Na Světspánku.cz najdete jen kvalitní matrace</h2>
+        <p><strong>Nenajdete u nás matrace s klasickou 2letou zárukou.</strong> Do nabídky vybíráme jen modely, které mají pevné jádro, odolné materiály a dávají smysl pro dlouhodobé každodenní spaní. Používáme jen ekologická lepidla, abychom chránili vaše zdraví i životní prostředí.</p>
+        <ul class="ss-cl-list">
+          <li>pevné jádro a odolné materiály</li>
+          <li>ekologická lepidla rozpustná ve vodě</li>
+          <li>90 nocí na vyzkoušení matrace</li>
+          <li>až <strong>10letá záruka</strong></li>
+        </ul>
+        <div style="margin-top:8px"><dc-import name="Tlacitko" label="Výběr kvalitních matrací" variant="primary" size="large" href="#matrace" iconRight="arrow-right" hint-size="260px,52px"></dc-import></div>
+      </div>
+    </article>
+
+    <section class="ss-cl-wrap" style="padding-top:64px;padding-bottom:64px">
+      <dc-import name="SouvisejiciProdukty" heading="Matrace s dlouhou životností" linkLabel="Zobrazit vše" linkHref="#matrace" count="{{ four }}" navPosition="{{ carNavPosition }}" hint-size="100%,560px"></dc-import>
+    </section>
+
+    <section class="ss-cl-wrap" style="padding-bottom:64px">
+      <h2 class="ss-cl-h2">Kam dále?</h2>
+      <div style="display:grid;grid-template-columns:{{ nextTemplate }};gap:40px">
+        <sc-for list="{{ nextArticles }}" as="a" hint-placeholder-count="4">
+          <a class="ss-cl-next" href="{{ a.href }}">
+            <span class="ss-cl-ph">
+              <span class="ss-cl-zoom" style="{{ a.photoStyle }}"></span>
+              <span class="ss-cl-cta">Přečíst</span>
+            </span>
+            <span class="ss-cl-next-t" style="font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:19px;line-height:1.25;transition:color .12s cubic-bezier(.22,.61,.36,1)">{{ a.title }}</span>
+            <span style="font-size:14px;line-height:1.55;color:#3D4750">{{ a.perex }}</span>
+          </a>
+        </sc-for>
+      </div>
+    </section>
+  </main>
+
+  <dc-import name="Paticka" ledMode="{{ ledMode }}" hint-size="100%,600px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+class Component extends DCLogic {
+  state = { width: typeof window !== 'undefined' ? document.documentElement.clientWidth : 1440, led: true, carNav: 'V1' };
+  componentDidMount() {
+    this._resize = () => this.setState({ width: document.documentElement.clientWidth });
+    window.addEventListener('resize', this._resize);
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this._resize); }
+  renderVals() {
+    const w = this.state.width;
+    const led = this.state.led !== false;
+    return {
+      ledMode: led ? 'on' : 'off',
+      presItems: [{ label: 'LED', value: led }],
+      onPresToggle: () => this.setState(s => ({ led: s.led === false })),
+      presChoices: [{ label: 'Navigace karuselů', value: this.state.carNav, options: ['V1', 'V2'] }],
+      onPresPick: (ci, opt) => this.setState({ carNav: opt }),
+      carNavPosition: this.state.carNav === 'V2' ? 'overlay' : 'below',
+      four: 4,
+      h1Size: w < 820 ? '30px' : w < 1150 ? '38px' : '46px',
+      nextTemplate: w >= 1150 ? 'repeat(4,minmax(0,1fr))' : w >= 820 ? 'repeat(2,minmax(0,1fr))' : 'minmax(0,1fr)',
+      crumbs: [
+        { label: 'Domů', href: 'index.dc.html' },
+        { label: 'Blog', href: '#magazin' },
+        { label: 'Proč kvalitní matrace vydrží déle?' }
+      ],
+      nextArticles: [
+        { title: 'Nová matrace na starém roštu? Chyba, která může zkrátit její životnost', perex: 'Rošt rozhoduje o tom, jak matrace pracuje i jak dlouho vydrží. Podle čeho poznáte, že je čas vyměnit i jeho.', href: 'Clanek.dc.html', image: 'clanek-rost.png' },
+        { title: 'Proč se vyplatí koupit postelový komplet místo jednotlivých částí', perex: 'Postel, rošt a matrace v jednom balení — ušetříte peníze i čas a všechny části do sebe pasují.', href: 'Clanek.dc.html', image: 'clanek-komplet.jpg' },
+        { title: 'Dovezeme, vyneseme, smontujeme. Vše zařídíme za vás', perex: 'Nová ložnice bez starostí — od dopravy až po odvoz obalů. Jak služba funguje a kam všude jezdíme.', href: 'Clanek.dc.html', image: 'clanek-doprava.jpg' },
+        { title: 'Postel s LED osvětlením: praktický pomocník i stylový doplněk ložnice', perex: 'Tlumené světlo u čela postele, které nevzbudí partnera. Jaké má varianty a kolik potřebuje energie.', href: 'Clanek.dc.html', image: 'clanek-led.jpg' }
+      ].map(a => Object.assign({}, a, {
+        photoStyle: { backgroundImage: 'url(' + a.image + ')', backgroundSize: 'cover', backgroundPosition: 'center' }
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>

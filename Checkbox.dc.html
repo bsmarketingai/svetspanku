@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Archivo,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:800!important;font-stretch:75%;text-transform:uppercase;letter-spacing:-0.005em;}
+
+.ss-check{font-family:Archivo,Helvetica,Arial,sans-serif;display:flex;align-items:center;gap:12px;cursor:pointer;border-radius:6px;transition:background-color .12s cubic-bezier(.22,.61,.36,1);}
+.ss-check:has(input:disabled){opacity:.45;cursor:not-allowed;}
+.ss-check input{position:absolute;opacity:0;width:0;height:0;}
+.ss-check-box{display:flex;align-items:center;justify-content:center;flex:none;width:20px;height:20px;border-radius:4px;background:#FFFFFF;box-shadow:inset 0 0 0 1px #C8D0D8;color:#FFFFFF;transition:background-color .12s cubic-bezier(.22,.61,.36,1),box-shadow .15s cubic-bezier(.22,.61,.36,1);}
+.ss-check input:checked + .ss-check-box{background:#296093;box-shadow:inset 0 0 0 1px #296093;}
+.ss-check input:focus-visible + .ss-check-box{box-shadow:0 0 0 3px rgba(41,96,147,.35),inset 0 0 0 1px #296093;}
+.ss-check-mark{opacity:0;transition:opacity .12s cubic-bezier(.22,.61,.36,1);}
+.ss-check input:checked + .ss-check-box .ss-check-mark{opacity:1;}
+</style>
+</helmet>
+<label class="ss-check" style="{{ rowStyle }}" style-hover="background:{{ hoverBg }}">
+  <input type="checkbox" checked="{{ checked }}" onChange="{{ handleChange }}" disabled="{{ disabled }}" />
+  <span class="ss-check-box">
+    <span class="ss-check-mark" style="display:flex"><dc-import name="Ikony" iconName="check" size="14" strokeWidth="{{ markStroke }}" hint-size="14px,14px"></dc-import></span>
+  </span>
+  <span style="{{ labelStyle }}">{{ label }}</span>
+  <sc-if value="{{ showCount }}" hint-placeholder-val="{{ false }}">
+    <span style="margin-left:auto;font-size:13px;color:#5B6874">{{ count }}</span>
+  </sc-if>
+</label>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:320,&quot;height&quot;:80},&quot;label&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Skladem&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;size&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;standard&quot;,&quot;options&quot;:[&quot;standard&quot;,&quot;compact&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;checked&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;count&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string | number&quot;},&quot;disabled&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;onChange&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(checked: boolean) =&gt; void&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const p = this.props;
+    return {
+      label: p.label ?? 'Skladem',
+      checked: !!p.checked,
+      disabled: !!p.disabled,
+      markStroke: 3,
+      hoverBg: p.hoverBg ?? '#F7F9FB',
+      showCount: p.count !== undefined && p.count !== null && p.count !== '',
+      count: p.count,
+      rowStyle: p.size === 'compact'
+        ? { minHeight: '32px', padding: '0 8px', margin: '0 -8px', gap: '10px' }
+        : { minHeight: '44px', padding: '0 8px', margin: '0 -8px' },
+      labelStyle: { fontSize: p.size === 'compact' ? '14px' : '15px', color: '#1C2229', lineHeight: 1.35 },
+      handleChange: (e) => { if (p.onChange) p.onChange(e.target.checked); }
+    };
+  }
+}
+</script>
+</body>
+</html>

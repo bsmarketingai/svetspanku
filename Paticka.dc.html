@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Archivo,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:800!important;font-stretch:75%;text-transform:uppercase;letter-spacing:-0.005em;}
+
+.ss-ft{font-family:Archivo,Helvetica,Arial,sans-serif;width:100%;background:#FFFFFF;color:#3D4750;border-top:1px solid #E1E6EB;}
+.ss-ft a{text-decoration:none;color:#3D4750;}
+.ss-ft-link{display:inline-flex;align-items:center;min-height:36px;font-size:15px;border-radius:4px;transition:color .12s cubic-bezier(.22,.61,.36,1);}
+.ss-ft-link:hover{color:#296093;text-decoration:underline;text-underline-offset:3px;}
+.ss-ft-link:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+.ss-ft-acc{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;min-height:48px;padding:0;border:0;background:none;font:inherit;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:17px;color:#1C2229;cursor:pointer;text-align:left;}
+.ss-ft-acc:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);border-radius:6px;}
+.ss-ft a.ss-ft-soc{display:inline-flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:999px;background:#FFFFFF;color:#21507B;box-shadow:inset 0 0 0 1px #E1E6EB;transition:background-color .12s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1);}
+.ss-ft a.ss-ft-soc:hover{background:#F7F9FB;}
+.ss-ft a.ss-ft-soc-fb{color:#1877F2;}
+.ss-ft a.ss-ft-soc-ig{color:#D6249F;}
+.ss-ft a.ss-ft-soc-yt{color:#FF0000;}
+.ss-ft-soc:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+@keyframes ss-ft-led{0%{box-shadow:0 0 0 0 rgba(21,122,65,.45);}70%{box-shadow:0 0 0 6px rgba(21,122,65,0);}100%{box-shadow:0 0 0 0 rgba(21,122,65,0);}}
+.ss-ft-led{display:inline-block;width:8px;height:8px;flex:none;border-radius:999px;background:#157A41;animation:ss-ft-led 1.8s cubic-bezier(.22,.61,.36,1) infinite;}
+@media (prefers-reduced-motion:reduce){.ss-ft-led{animation:none;}}
+.ss-ft-logo{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:500;color:#1C2229;min-height:40px;}
+
+.ss-ft[data-theme="blue"]{background:#296093;color:#DCE8F2;border-top-color:rgba(255,255,255,.14);}
+.ss-ft[data-theme="blue"] h2{color:#FFFFFF!important;}
+.ss-ft[data-theme="blue"] a{color:#DCE8F2;}
+.ss-ft[data-theme="blue"] .ss-ft-link{color:#DCE8F2!important;}
+.ss-ft[data-theme="blue"] .ss-ft-link:hover{color:#FFFFFF!important;text-decoration:underline;text-underline-offset:3px;}
+.ss-ft[data-theme="blue"] .ss-ft-tel,.ss-ft[data-theme="blue"] .ss-ft-mail{color:#FFFFFF!important;}
+.ss-ft[data-theme="blue"] .ss-ft-hours{color:#DCE8F2!important;}
+.ss-ft[data-theme="blue"] .ss-ft-acc{color:#FFFFFF;}
+.ss-ft[data-theme="blue"] .ss-ft-accrow{border-top-color:rgba(255,255,255,.18)!important;}
+.ss-ft[data-theme="blue"] .ss-ft-accicon{color:#DCE8F2!important;}
+.ss-ft[data-theme="blue"] a.ss-ft-soc{box-shadow:inset 0 0 0 1px rgba(255,255,255,.35);}
+.ss-ft[data-theme="blue"] a.ss-ft-soc:hover{background:#DCE8F2;}
+.ss-ft[data-theme="blue"] a.ss-ft-soc-fb{color:#1877F2;}
+.ss-ft[data-theme="blue"] a.ss-ft-soc-ig{color:#D6249F;}
+.ss-ft[data-theme="blue"] a.ss-ft-soc-yt{color:#FF0000;}
+.ss-ft[data-theme="blue"] .ss-ft-paybar{background:#21507B;}
+.ss-ft[data-theme="blue"] .ss-ft-legal{background:#132C43;border-top-color:rgba(255,255,255,.14)!important;color:#DCE8F2;}
+.ss-ft[data-theme="blue"] .ss-ft-caption{color:#FFFFFF!important;}
+.ss-ft[data-theme="blue"] .ss-ft-legaltext{color:#DCE8F2!important;}
+.ss-ft[data-theme="blue"] .ss-ft-logo{color:#FFFFFF;}
+.ss-ft[data-theme="blue"] .ss-ft-logoicon{color:#DCE8F2!important;}
+
+.ss-ft[data-theme="blue"] .ss-ft-link:focus-visible,.ss-ft[data-theme="blue"] .ss-ft-acc:focus-visible,.ss-ft[data-theme="blue"] .ss-ft-soc:focus-visible{box-shadow:0 0 0 3px rgba(251,178,85,.65);}
+</style>
+</helmet>
+<footer class="ss-ft" data-theme="{{ theme }}">
+  <div style="max-width:1560px;margin:0 auto;padding:{{ padTop }}">
+    <div style="display:grid;grid-template-columns:{{ colTemplate }};gap:32px 40px;align-items:start">
+      <div style="display:flex;flex-direction:column;gap:28px;min-width:0">
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <h2 style="margin:0;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:19px;color:#1C2229">Jsme tu pro vás</h2>
+          <div style="display:flex;align-items:center;gap:16px;min-width:0">
+            <img src="foto-poradce-v5.png" alt="Spánková specialistka zákaznické podpory" style="width:72px;height:72px;flex:none;border-radius:999px;object-fit:cover;background:#EFF2F5;display:block" />
+            <div style="display:flex;flex-direction:column;gap:2px;min-width:0">
+              <a class="ss-ft-tel" href="tel:+420543212855" style="font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:21px;color:#296093">+420 543 212 855</a>
+              <span class="ss-ft-hours" style="display:inline-flex;align-items:center;gap:6px;font-size:13px;color:#5B6874">
+                <sc-if value="{{ isOpenNow }}" hint-placeholder-val="{{ false }}">
+                  <span class="ss-ft-led" role="img" aria-label="Právě jsme online"></span>
+                </sc-if>
+                <span>Po–Pá 9.00–17.00</span>
+              </span>
+              <a class="ss-ft-link ss-ft-mail" href="mailto:podpora@svetspanku.cz" style="color:#296093;text-decoration:underline;text-underline-offset:3px;font-size:15px">podpora@svetspanku.cz</a>
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <h2 style="margin:0;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:17px;color:#1C2229">Sledujte nás na sociálních sítích</h2>
+          <div style="display:flex;gap:12px">
+            <a class="ss-ft-soc ss-ft-soc-fb" href="#facebook" aria-label="Facebook"><dc-import name="Ikony" iconName="brand-facebook" size="24" hint-size="24px,24px"></dc-import></a>
+            <a class="ss-ft-soc ss-ft-soc-ig" href="#instagram" aria-label="Instagram"><dc-import name="Ikony" iconName="brand-instagram" size="24" hint-size="24px,24px"></dc-import></a>
+            <a class="ss-ft-soc ss-ft-soc-yt" href="#youtube" aria-label="YouTube"><dc-import name="Ikony" iconName="brand-youtube" size="24" hint-size="24px,24px"></dc-import></a>
+          </div>
+        </div>
+      </div>
+
+      <sc-if value="{{ columnsMode }}" hint-placeholder-val="{{ true }}">
+        <sc-for list="{{ columns }}" as="c" hint-placeholder-count="3">
+          <nav aria-label="{{ c.title }}" style="display:flex;flex-direction:column;gap:2px;min-width:0">
+            <h2 style="margin:0 0 10px;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:19px;color:#1C2229">{{ c.title }}</h2>
+            <sc-for list="{{ c.items }}" as="i" hint-placeholder-count="5">
+              <a class="ss-ft-link" href="{{ i.href }}">{{ i.label }}</a>
+            </sc-for>
+          </nav>
+        </sc-for>
+      </sc-if>
+
+      <sc-if value="{{ accordionMode }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;min-width:0">
+          <sc-for list="{{ columns }}" as="c" hint-placeholder-count="3">
+            <div class="ss-ft-accrow" style="border-top:1px solid #E1E6EB;padding:4px 0">
+              <h2 style="margin:0">
+                <button type="button" class="ss-ft-acc" onClick="{{ c.onToggle }}" aria-expanded="{{ c.expanded }}">
+                  <span>{{ c.title }}</span>
+                  <span class="ss-ft-accicon" style="display:flex;color:#55616C"><dc-import name="Ikony" iconName="{{ c.chevron }}" size="20" hint-size="20px,20px"></dc-import></span>
+                </button>
+              </h2>
+              <sc-if value="{{ c.open }}" hint-placeholder-val="{{ false }}">
+                <nav aria-label="{{ c.title }}" style="display:flex;flex-direction:column;gap:2px;padding:4px 0 12px">
+                  <sc-for list="{{ c.items }}" as="i" hint-placeholder-count="5">
+                    <a class="ss-ft-link" href="{{ i.href }}" style="min-height:40px">{{ i.label }}</a>
+                  </sc-for>
+                </nav>
+              </sc-if>
+            </div>
+          </sc-for>
+        </div>
+      </sc-if>
+
+      <nav aria-label="Prodejny" style="{{ storesStyle }}">
+        <a class="ss-ft-link ss-ft-caption" href="#prodejny" style="color:#1C2229;font-weight:700;font-size:19px;font-family:'Archivo Narrow',Archivo,sans-serif;min-height:auto;margin-bottom:10px">5 prodejen</a>
+        <sc-for list="{{ stores }}" as="s" hint-placeholder-count="5">
+          <a class="ss-ft-link" href="{{ s.href }}">{{ s.label }}</a>
+        </sc-for>
+      </nav>
+    </div>
+  </div>
+
+  <div class="ss-ft-paybar">
+  <div style="max-width:1560px;margin:0 auto;padding:{{ padPay }}">
+    <div style="display:grid;grid-template-columns:{{ payTemplate }};gap:24px 40px;align-items:start">
+      <div style="display:flex;flex-direction:column;gap:12px;min-width:0">
+        <span class="ss-ft-caption" style="font-size:14px;font-weight:600;color:#1C2229">Možnosti dopravy</span>
+        <div style="display:flex;flex-wrap:wrap;gap:10px">
+          <sc-for list="{{ delivery }}" as="d" hint-placeholder-count="4">
+            <span class="ss-ft-logo" style="margin-right:12px">
+              <sc-if value="{{ d.isLogo }}" hint-placeholder-val="{{ true }}">
+                <img src="{{ d.src }}" alt="{{ d.label }}" style="display:block;max-width:100%;height:auto" />
+              </sc-if>
+              <sc-if value="{{ d.isIcon }}" hint-placeholder-val="{{ false }}">
+                <span class="ss-ft-logoicon" style="display:flex;color:#55616C"><dc-import name="Ikony" iconName="{{ d.icon }}" size="18" hint-size="18px,18px"></dc-import></span><span>{{ d.label }}</span>
+              </sc-if>
+            </span>
+          </sc-for>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;min-width:0">
+        <span class="ss-ft-caption" style="font-size:14px;font-weight:600;color:#1C2229">Možnosti platby</span>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center">
+          <sc-for list="{{ payment }}" as="pm" hint-placeholder-count="5">
+            <span class="ss-ft-logo" style="margin-right:12px">
+              <sc-if value="{{ pm.isLogo }}" hint-placeholder-val="{{ true }}">
+                <img src="{{ pm.src }}" alt="{{ pm.label }}" style="display:block;max-width:100%;height:auto" />
+              </sc-if>
+              <sc-if value="{{ pm.isIcon }}" hint-placeholder-val="{{ false }}">
+                <span class="ss-ft-logoicon" style="display:flex;color:#55616C"><dc-import name="Ikony" iconName="{{ pm.icon }}" size="18" hint-size="18px,18px"></dc-import></span><span>{{ pm.label }}</span>
+              </sc-if>
+            </span>
+          </sc-for>
+        </div>
+      </div>
+      <div style="{{ badgeWrapStyle }}">
+        <a class="ss-ft-badge" href="#recenze" style="display:flex;border-radius:999px" aria-label="Ověřeno zákazníky — Heureka">
+          <img src="logo-heureka-overeno.png" alt="Ověřeno zákazníky — Heureka" style="display:block;width:96px;height:auto" />
+        </a>
+      </div>
+    </div>
+  </div>
+
+  </div>
+
+  <div class="ss-ft-legal">
+  <div style="max-width:1560px;margin:0 auto;padding:{{ padLegal }};border-top:1px solid #E1E6EB">
+    <div class="ss-ft-legaltext" style="display:flex;flex-wrap:wrap;align-items:center;gap:12px 32px;font-size:14px;color:#3D4750">
+      <span>Copyright © 2026 LUCKÉ CZ GROUP s.r.o. — Všechna práva vyhrazena</span>
+      <span style="margin-left:auto;display:flex;flex-wrap:wrap;gap:12px 32px">
+        <span>UX/CX design od <a class="ss-ft-link" href="#design" style="text-decoration:underline;text-underline-offset:3px">Jiří Foret</a></span>
+        <a class="ss-ft-link" href="#bsshop" style="text-decoration:underline;text-underline-offset:3px">BSSHOP: e-shop napojený na Pohodu</a>
+      </span>
+    </div>
+  </div>
+  </div>
+</footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:760},&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;light&quot;,&quot;options&quot;:[&quot;light&quot;,&quot;blue&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;ledMode&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;auto&quot;,&quot;options&quot;:[&quot;auto&quot;,&quot;on&quot;,&quot;off&quot;],&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { width: typeof window !== 'undefined' ? document.documentElement.clientWidth : 1440, open: {} };
+  componentDidMount() {
+    this._resize = () => this.setState({ width: document.documentElement.clientWidth });
+    window.addEventListener('resize', this._resize);
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this._resize); }
+  renderVals() {
+    const w = this.state.width;
+    const accordion = w < 820;
+    const twoCols = w < 1150;
+    const base = [
+      { title: 'Zákaznický servis', items: [
+        ['Kontakt', '#kontakty'], ['Garance / Vrácení peněz', '#garance'], ['Doprava a platba', '#doprava'],
+        ['Obchodní podmínky', '#obchodni-podminky'], ['Podmínky ochrany osobních údajů', '#ochrana-udaju']
+      ] },
+      { title: 'O Světě spánku', items: [
+        ['O nás', '#o-nas'], ['Výroba postelí', '#vyroba-posteli'], ['Výroba matrací', '#vyroba-matraci'],
+        ['Magazín', '#magazin'], ['Volná místa', '#kariera'], ['Velkoobchod', '#velkoobchod']
+      ] },
+      { title: 'Poradíme vám', items: [
+        ['Jak vybrat matraci', '#jak-vybrat-matraci'], ['Jakou zvolit tuhost matrace', '#tvrdost'],
+        ['Proč zvolit postel z masivu', '#proc-masiv'], ['Jak vybrat potah na matraci', '#potahy'],
+        ['Jak vybrat rošt do postele', '#jak-vybrat-rost']
+      ] }
+    ];
+    const columns = base.map((c, i) => ({
+      title: c.title,
+      items: c.items.map(([label, href]) => ({ label, href })),
+      open: !!this.state.open[i],
+      expanded: this.state.open[i] ? 'true' : 'false',
+      chevron: this.state.open[i] ? 'chevron-up' : 'chevron-down',
+      onToggle: () => this.setState(s => ({ open: Object.assign({}, s.open, { [i]: !s.open[i] }) }))
+    }));
+    const narrow = accordion;
+    const p = this.props;
+    return {
+      theme: p.theme === 'blue' ? 'blue' : 'light',
+      isOpenNow: (() => {
+        if (p.ledMode === 'on') return true;
+        if (p.ledMode === 'off') return false;
+        const now = new Date();
+        const day = now.getDay();
+        const min = now.getHours() * 60 + now.getMinutes();
+        return day >= 1 && day <= 5 && min >= 9 * 60 && min < 17 * 60;
+      })(),
+      columns,
+      columnsMode: !accordion,
+      accordionMode: accordion,
+      colTemplate: accordion
+        ? 'minmax(0,1fr)'
+        : (twoCols ? 'repeat(2,minmax(0,1fr))' : 'minmax(0,1.1fr) repeat(3,minmax(0,1fr)) auto'),
+      storesStyle: { display: 'flex', flexDirection: 'column', gap: '2px', alignItems: 'flex-start', minWidth: 0 },
+      stores: [
+        ['Brno – H-Park', '#prodejna-brno'], ['Praha 5 – Butovice', '#prodejna-praha-5'],
+        ['Praha 10 – Kutnohorská', '#prodejna-praha-10'], ['Ostrava', '#prodejna-ostrava'],
+        ['Olomouc', '#prodejna-olomouc']
+      ].map(([label, href]) => ({ label, href })),
+      payTemplate: w >= 1150 ? 'minmax(0,1fr) minmax(0,1.2fr) auto' : (w >= 820 ? 'repeat(2,minmax(0,1fr))' : 'minmax(0,1fr)'),
+      badgeWrapStyle: { display: 'flex', alignItems: 'center', justifyContent: w >= 1150 ? 'flex-end' : 'flex-start' },
+      padTop: narrow ? '32px 16px 24px' : '56px 32px 40px',
+      padPay: narrow ? '8px 16px 24px' : '16px 32px 32px',
+      padLegal: narrow ? '20px 16px 28px' : '24px 32px 32px',
+      delivery: [
+        { label: 'PPL', src: 'logo-ppl.svg' },
+        { label: 'Zásilkovna', src: 'logo-zasilkovna.svg' },
+        { label: 'Vlastní doprava', icon: 'truck' },
+        { label: 'Osobní odběr', icon: 'map-pin' }
+      ].map(d => ({ label: d.label, src: d.src, icon: d.icon, isLogo: !!d.src, isIcon: !d.src })),
+      payment: [
+        { label: 'Převod', icon: 'coins' },
+        { label: 'Dobírka', icon: 'coin' },
+        { label: 'Hotově', icon: 'coin' },
+        { label: 'VISA / Mastercard', src: 'logo-visa-mastercard.svg' },
+        { label: 'Mastercard', src: 'logo-mastercard.svg' },
+        { label: 'Google Pay', src: 'logo-google-pay.svg' },
+        { label: 'Apple Pay', src: 'logo-apple-pay.svg' }
+      ].map(d => ({ label: d.label, src: d.src, icon: d.icon, isLogo: !!d.src, isIcon: !d.src }))
+    };
+  }
+}
+</script>
+</body>
+</html>

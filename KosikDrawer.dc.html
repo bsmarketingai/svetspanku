@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Archivo,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:800!important;font-stretch:75%;text-transform:uppercase;letter-spacing:-0.005em;}
+
+.ss-kd,.ss-kd *{box-sizing:border-box;}
+.ss-kd{font-family:Archivo,Helvetica,Arial,sans-serif;display:flex;flex-direction:column;height:100%;width:100%;background:#FFFFFF;color:#1C2229;overflow-x:hidden;}
+.ss-kd-icon{display:flex;align-items:center;justify-content:center;width:44px;height:44px;border:0;border-radius:6px;background:none;color:#55616C;cursor:pointer;transition:background-color .12s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1);}
+.ss-kd-icon:hover{background:#F0F5FA;color:#1C2229;}
+.ss-kd-icon:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+.ss-kd-title{font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:26px;margin:0;}
+.ss-kd-row{display:grid;grid-template-columns:88px minmax(0,1fr);gap:16px;padding:20px 0;border-bottom:1px solid #E1E6EB;}
+</style>
+</helmet>
+<div class="ss-kd">
+  <div style="display:flex;align-items:center;gap:16px;padding:{{ padX }};padding-top:20px;padding-bottom:12px;flex:none">
+    <span style="position:relative;display:flex;color:#1C2229">
+      <dc-import name="Ikony" iconName="shopping-bag" size="28" hint-size="28px,28px"></dc-import>
+      <sc-if value="{{ hasItems }}" hint-placeholder-val="{{ true }}">
+        <span aria-hidden="true" style="position:absolute;top:-8px;right:-10px;width:20px;height:20px;border-radius:999px;background:#132C43;color:#FFFFFF;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center">{{ count }}</span>
+      </sc-if>
+    </span>
+    <h2 class="ss-kd-title">Nákupní košík</h2>
+    <button type="button" class="ss-kd-icon" style="margin-left:auto" onClick="{{ close }}" aria-label="Zavřít košík">
+      <dc-import name="Ikony" iconName="x" size="24" hint-size="24px,24px"></dc-import>
+    </button>
+  </div>
+
+  <div style="flex:1;min-height:0;overflow-y:auto;padding:{{ padX }}">
+    <sc-if value="{{ hasItems }}" hint-placeholder-val="{{ true }}">
+      <div>
+        <sc-for list="{{ items }}" as="i" hint-placeholder-count="3">
+          <div class="ss-kd-row">
+            <span style="width:88px;height:88px;border-radius:8px;background:#EFF2F5;display:flex;align-items:center;justify-content:center;color:#C8D0D8"><dc-import name="Ikony" iconName="photo" size="22" hint-size="22px,22px"></dc-import></span>
+            <div style="display:flex;flex-direction:column;gap:10px;min-width:0">
+              <div style="display:flex;align-items:flex-start;gap:12px">
+                <a href="{{ i.href }}" style="font-size:15px;font-weight:600;line-height:1.35;color:#1C2229;text-decoration:none;min-width:0">{{ i.title }}</a>
+                <button type="button" class="ss-kd-icon" style="width:32px;height:32px;margin-left:auto;flex:none" onClick="{{ i.onRemove }}" aria-label="{{ i.removeLabel }}">
+                  <dc-import name="Ikony" iconName="x" size="18" hint-size="18px,18px"></dc-import>
+                </button>
+              </div>
+              <span style="font-size:13px;color:#5B6874">{{ i.variant }}</span>
+              <div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px">
+                <dc-import name="Kvantifikator" value="{{ i.qty }}" size="compact" onChange="{{ i.onQty }}" hint-size="112px,36px"></dc-import>
+                <span style="margin-left:auto;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:19px;white-space:nowrap">{{ i.price }}</span>
+              </div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+
+      <div style="display:flex;align-items:baseline;gap:16px;padding:20px 0;border-bottom:1px solid #E1E6EB">
+        <span style="font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#1C2229">Cena celkem</span>
+        <span style="margin-left:auto;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:26px;white-space:nowrap">{{ total }}</span>
+      </div>
+
+      <div style="display:flex;align-items:center;justify-content:center;gap:10px;padding:20px 0">
+        <span style="display:flex;color:#296093"><dc-import name="Ikony" iconName="truck" size="22" hint-size="22px,22px"></dc-import></span>
+        <span style="font-size:14px;font-weight:600;color:#296093">Vlastní doprava a montáž po celé ČR</span>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:12px;padding:64px 0;text-align:center">
+        <span style="display:flex;color:#C8D0D8"><dc-import name="Ikony" iconName="shopping-bag" size="40" hint-size="40px,40px"></dc-import></span>
+        <span style="font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:21px">Košík je zatím prázdný</span>
+        <p style="margin:0;max-width:40ch;font-size:14px;color:#3D4750">Vyberte postel, matraci nebo rošt — doporučení najdete v průvodci výběrem.</p>
+        <dc-import name="Tlacitko" label="Průvodce výběrem" variant="secondary" href="#pruvodce" hint-size="200px,44px"></dc-import>
+      </div>
+    </sc-if>
+  </div>
+
+  <sc-if value="{{ hasItems }}" hint-placeholder-val="{{ true }}">
+    <div style="flex:none;padding:{{ padX }};padding-top:16px;padding-bottom:24px;border-top:1px solid #E1E6EB;display:flex;flex-direction:column;gap:10px">
+      <dc-import name="Tlacitko" label="Ukázat košík" variant="buy" size="large" href="#kosik" fullWidth="{{ true }}" hint-size="100%,52px"></dc-import>
+      <dc-import name="Tlacitko" label="Pokračovat v nákupu" variant="text" onClick="{{ close }}" fullWidth="{{ true }}" hint-size="100%,36px"></dc-import>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:460,&quot;height&quot;:720},&quot;items&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;{title: string, variant: string, qty: number, price: string, href?: string}[]&quot;},&quot;total&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;49 870 Kč&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;compact&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;onClose&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;() =&gt; void&quot;},&quot;onRemove&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(index: number) =&gt; void&quot;},&quot;onQty&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(index: number, value: number) =&gt; void&quot;}}">
+class Component extends DCLogic {
+  state = { items: null };
+  componentDidMount() {
+    if (!this.props.items) {
+      this.setState({ items: [
+        { title: 'Manželská postel SANTE 45 dvoulůžko', variant: '200 × 180 cm · olej Teak · jádrový buk', qty: 2, price: '39 800 Kč' },
+        { title: 'Matrace Spring Variant 22 cm', variant: '180 × 200 cm · tuhost H3', qty: 1, price: '7 590 Kč' },
+        { title: 'Lamelový rošt Standard', variant: '180 × 200 cm · 28 lamel', qty: 1, price: '2 480 Kč' }
+      ] });
+    }
+  }
+  renderVals() {
+    const p = this.props;
+    const src = p.items || this.state.items || [];
+    const items = src.map((it, idx) => ({
+      title: it.title,
+      variant: it.variant,
+      qty: it.qty ?? 1,
+      price: it.price,
+      href: it.href || '#produkt',
+      removeLabel: 'Odebrat ' + it.title,
+      onRemove: () => { if (p.onRemove) p.onRemove(idx); },
+      onQty: (v) => { if (p.onQty) p.onQty(idx, v); }
+    }));
+    return {
+      items,
+      count: items.reduce((s, i) => s + (i.qty || 1), 0),
+      hasItems: items.length > 0,
+      isEmpty: items.length === 0,
+      total: p.total ?? '49 870 Kč',
+      padX: p.compact ? '0 16px' : '0 24px',
+      close: () => { if (p.onClose) p.onClose(); }
+    };
+  }
+}
+</script>
+</body>
+</html>

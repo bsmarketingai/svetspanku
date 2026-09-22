@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Archivo,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:800!important;font-stretch:75%;text-transform:uppercase;letter-spacing:-0.005em;}
+
+.ss-btn{box-sizing:border-box;font-family:Archivo,Helvetica,Arial,sans-serif;display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;background:none;margin:0;text-decoration:none;cursor:pointer;border-radius:6px;font-weight:600;white-space:nowrap;transition:background-color .12s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1),border-color .12s cubic-bezier(.22,.61,.36,1),box-shadow .15s cubic-bezier(.22,.61,.36,1),transform .06s cubic-bezier(.22,.61,.36,1);}
+.ss-btn:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+.ss-btn:not([aria-disabled="true"]):active{transform:scale(.98);}
+.ss-btn[aria-disabled="true"]{opacity:.45;cursor:not-allowed;}
+</style>
+</helmet>
+<sc-if value="{{ isLink }}" hint-placeholder-val="{{ false }}">
+  <a class="ss-btn" href="{{ href }}" target="{{ target }}" rel="{{ rel }}" style="{{ btnStyle }}" style-hover="{{ hoverStyle }}" aria-label="{{ ariaLabel }}">
+    <sc-if value="{{ hasIconLeft }}" hint-placeholder-val="{{ false }}"><dc-import name="Ikony" iconName="{{ iconLeft }}" size="{{ iconSize }}" hint-size="20px,20px"></dc-import></sc-if>
+    <sc-if value="{{ hasLabel }}" hint-placeholder-val="{{ true }}"><span>{{ label }}</span></sc-if>
+    <sc-if value="{{ hasIconRight }}" hint-placeholder-val="{{ false }}"><dc-import name="Ikony" iconName="{{ iconRight }}" size="{{ iconSize }}" hint-size="20px,20px"></dc-import></sc-if>
+  </a>
+</sc-if>
+<sc-if value="{{ isButton }}" hint-placeholder-val="{{ true }}">
+  <button type="button" class="ss-btn" style="{{ btnStyle }}" style-hover="{{ hoverStyle }}" onClick="{{ handleClick }}" aria-label="{{ ariaLabel }}" aria-disabled="{{ ariaDisabled }}">
+    <sc-if value="{{ hasIconLeft }}" hint-placeholder-val="{{ false }}"><dc-import name="Ikony" iconName="{{ iconLeft }}" size="{{ iconSize }}" hint-size="20px,20px"></dc-import></sc-if>
+    <sc-if value="{{ hasLabel }}" hint-placeholder-val="{{ true }}"><span>{{ label }}</span></sc-if>
+    <sc-if value="{{ hasIconRight }}" hint-placeholder-val="{{ false }}"><dc-import name="Ikony" iconName="{{ iconRight }}" size="{{ iconSize }}" hint-size="20px,20px"></dc-import></sc-if>
+  </button>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:360,&quot;height&quot;:120},&quot;label&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Do košíku&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;variant&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;primary&quot;,&quot;options&quot;:[&quot;primary&quot;,&quot;secondary&quot;,&quot;buy&quot;,&quot;danger&quot;,&quot;dangerSecondary&quot;,&quot;ghost&quot;,&quot;text&quot;,&quot;textDanger&quot;,&quot;ontint&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;size&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;medium&quot;,&quot;options&quot;:[&quot;standard&quot;,&quot;medium&quot;,&quot;large&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;iconLeft&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Ikony&quot;},&quot;iconRight&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Ikony&quot;},&quot;iconOnly&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Ikony&quot;},&quot;ariaLabel&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Ikony&quot;},&quot;href&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;fullWidth&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;disabled&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;onClick&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;() =&gt; void&quot;}}">
+class Component extends DCLogic {
+  static VARIANTS = {
+    primary:         { bg: '#296093', fg: '#FFFFFF', hoverBg: '#21507B' },
+    secondary:       { bg: '#FFFFFF', fg: '#21507B', hoverBg: '#F0F5FA', border: '1px solid #C8D0D8', hoverBorder: '1px solid #8DB3D3' },
+    buy:             { bg: '#157A41', fg: '#FFFFFF', hoverBg: '#106134' },
+    danger:          { bg: '#B3261E', fg: '#FFFFFF', hoverBg: '#8E1E18' },
+    dangerSecondary: { bg: '#FFFFFF', fg: '#B3261E', hoverBg: '#FCF2F1', border: '1px solid #E3B9B6', hoverBorder: '1px solid #B3261E' },
+    ghost:           { bg: 'transparent', fg: '#21507B', hoverBg: '#F0F5FA' },
+    text:            { bg: 'transparent', fg: '#296093', hoverBg: 'transparent', hoverFg: '#21507B', bare: true, underline: true },
+    textDanger:      { bg: 'transparent', fg: '#B3261E', hoverBg: 'transparent', hoverFg: '#8E1E18', bare: true, underline: true },
+    ontint:          { bg: 'rgba(255,255,255,.14)', fg: '#FFFFFF', hoverBg: 'rgba(255,255,255,.26)', border: '1px solid rgba(255,255,255,.55)' }
+  };
+  static SIZES = {
+    standard: { h: 36, pad: 14, font: 14, icon: 18 },
+    medium:   { h: 44, pad: 20, font: 15, icon: 20 },
+    large:    { h: 52, pad: 28, font: 16, icon: 20 }
+  };
+  renderVals() {
+    const p = this.props;
+    const v = Component.VARIANTS[p.variant] || Component.VARIANTS.primary;
+    const s = Component.SIZES[p.size] || Component.SIZES.medium;
+    const label = p.label ?? 'Tlačítko';
+    const iconOnly = !!p.iconOnly;
+    const disabled = !!p.disabled;
+    const hasLabel = !iconOnly && !!label;
+    const padX = v.bare ? 0 : (iconOnly ? 0 : s.pad);
+    const btnStyle = {
+      height: v.bare ? 'auto' : s.h + 'px',
+      width: iconOnly ? s.h + 'px' : (p.fullWidth ? '100%' : undefined),
+      minWidth: iconOnly ? s.h + 'px' : undefined,
+      padding: '0 ' + padX + 'px',
+      fontSize: s.font + 'px',
+      background: v.bg,
+      color: v.fg,
+      boxShadow: v.border ? 'inset 0 0 0 1px ' + v.border.split(' ').slice(2).join(' ') : undefined,
+      borderRadius: v.bare ? '4px' : '6px',
+      textDecoration: v.underline ? 'underline' : 'none',
+      textUnderlineOffset: v.underline ? '3px' : undefined
+    };
+    const hoverStyle = disabled ? {} : {
+      background: v.hoverBg,
+      color: v.hoverFg || v.fg,
+      boxShadow: v.hoverBorder ? 'inset 0 0 0 1px ' + v.hoverBorder.split(' ').slice(2).join(' ') : btnStyle.boxShadow
+    };
+    return {
+      isLink: !!p.href && !disabled,
+      isButton: !(p.href && !disabled),
+      href: p.href || '#',
+      target: p.newTab ? '_blank' : undefined,
+      rel: p.newTab ? 'noopener noreferrer' : undefined,
+      label, hasLabel,
+      hasIconLeft: iconOnly ? !!(p.iconLeft || p.iconRight) : !!p.iconLeft,
+      iconLeft: iconOnly ? (p.iconLeft || p.iconRight) : p.iconLeft,
+      hasIconRight: !iconOnly && !!p.iconRight,
+      iconRight: p.iconRight,
+      iconSize: s.icon,
+      ariaLabel: iconOnly ? (p.ariaLabel || label) : (p.ariaLabel || undefined),
+      ariaDisabled: disabled ? 'true' : undefined,
+      btnStyle, hoverStyle,
+      handleClick: disabled ? (e) => e.preventDefault() : (p.onClick || (() => {}))
+    };
+  }
+}
+</script>
+</body>
+</html>

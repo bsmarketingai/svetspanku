@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Archivo,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:800!important;font-stretch:75%;text-transform:uppercase;letter-spacing:-0.005em;}
+
+html,body{margin:0!important;padding:0!important;}
+#dc-root{margin:0!important;padding:0!important;width:100%!important;max-width:none!important;border:0!important;}
+#dc-root>.sc-host{margin:0!important;padding:0!important;width:100%!important;}
+a{color:#296093;text-decoration:underline;text-underline-offset:2px;}
+a:hover{color:#21507B;}
+</style>
+</helmet>
+<div style="width:100%;background:#FFFFFF;color:#1C2229;font-family:Archivo,'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:15px;line-height:1.55;padding-bottom:96px">
+
+  <header style="width:100%;background:#132C43;color:#FFFFFF">
+    <div style="max-width:1560px;margin:0 auto;padding:48px 32px 40px;display:flex;flex-direction:column;gap:16px">
+      <span style="font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:600;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#FBB255">Světspánku.cz · zdroj pravdy</span>
+      <h1 style="margin:0;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:56px;line-height:1.05;letter-spacing:-0.01em">Design systém</h1>
+      <p style="margin:0;max-width:72ch;font-size:17px;color:#DCE8F2">Barvy, typografie, spacing, rádiusy, elevace, motion, rozměry, breakpointy a interaktivní stavy. Jediné platné hodnoty pro celý prototyp. Jen světlý režim.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:8px">
+        <span style="display:inline-flex;align-items:center;gap:8px;background:#21507B;border-radius:999px;padding:8px 16px;font-size:13px;font-weight:500">Značka #296093</span>
+        <span style="display:inline-flex;align-items:center;gap:8px;background:#21507B;border-radius:999px;padding:8px 16px;font-size:13px;font-weight:500">Akcent #FBB255</span>
+        <span style="display:inline-flex;align-items:center;gap:8px;background:#21507B;border-radius:999px;padding:8px 16px;font-size:13px;font-weight:500">Konverze #157A41</span>
+        <span style="display:inline-flex;align-items:center;gap:8px;background:#21507B;border-radius:999px;padding:8px 16px;font-size:13px;font-weight:500">Archivo / Archivo Narrow</span>
+      </div>
+    </div>
+  </header>
+
+  <section style="width:100%">
+    <div style="max-width:1560px;margin:0 auto;padding:64px 32px 0">
+      <h2 style="margin:0 0 8px;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:34px;line-height:1.15">1 · Barvy</h2>
+      <p style="margin:0 0 32px;max-width:76ch;color:#55616C">Čtyři škály po deseti krocích. Meziodstíny se nevytvářejí. Barvy loga (600 primární, 400 sekundární) se neupravují — jsou pevně dané logomanuálem.</p>
+      <sc-for list="{{ scales }}" as="s" hint-placeholder-count="4">
+        <div style="margin-bottom:36px">
+          <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:12px;margin-bottom:12px">
+            <h3 style="margin:0;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:600;font-size:20px">{{ s.title }}</h3>
+            <p style="margin:0;font-size:13px;color:#55616C">{{ s.note }}</p>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(94px,1fr));gap:4px">
+            <sc-for list="{{ s.steps }}" as="c" hint-placeholder-count="10">
+              <div style="border-radius:6px;overflow:hidden;background:#F7F9FB">
+                <div style="height:72px;background:{{ c.hex }}"></div>
+                <div style="padding:8px 10px 10px;display:flex;flex-direction:column;gap:2px">
+                  <span style="font-size:13px;font-weight:600">{{ c.step }}</span>
+                  <code style="font-family:ui-monospace,Menlo,monospace;font-size:11px;color:#55616C">{{ c.hex }}</code>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="width:100%;background:#F7F9FB;margin-top:32px">
+    <div style="max-width:1560px;margin:0 auto;padding:64px 32px">
+      <h2 style="margin:0 0 8px;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:34px;line-height:1.15">2 · Sémantické tokeny</h2>
+      <p style="margin:0 0 28px;max-width:76ch;color:#55616C">V komponentách se používají jen tato jména, nikdy číslo ze škály. Kontrast každého textového tokenu je spočítaný proti jeho pozadí — pod 4,5 : 1 se token přemapoval.</p>
+      <div style="overflow-x:auto;background:#FFFFFF;border-radius:12px;padding:8px">
+        <table style="width:100%;border-collapse:collapse;font-size:14px;min-width:820px">
+          <thead>
+            <tr style="text-align:left">
+              <th style="padding:12px 16px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#55616C;font-weight:600;border-bottom:1px solid #E1E6EB">Token</th>
+              <th style="padding:12px 16px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#55616C;font-weight:600;border-bottom:1px solid #E1E6EB">Hodnota</th>
+              <th style="padding:12px 16px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#55616C;font-weight:600;border-bottom:1px solid #E1E6EB">Použití</th>
+              <th style="padding:12px 16px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#55616C;font-weight:600;border-bottom:1px solid #E1E6EB">Na pozadí</th>
+              <th style="padding:12px 16px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#55616C;font-weight:600;border-bottom:1px solid #E1E6EB">Kontrast</th>
+            </tr>
+          </thead>
+          <tbody>
+            <sc-for list="{{ tokens }}" as="t" hint-placeholder-count="14">
+              <tr>
+                <td style="padding:12px 16px;border-bottom:1px solid #EFF2F5;vertical-align:top"><code style="font-family:ui-monospace,Menlo,monospace;font-size:13px;color:#1C2229">{{ t.name }}</code></td>
+                <td style="padding:12px 16px;border-bottom:1px solid #EFF2F5;vertical-align:top">
+                  <span style="display:inline-flex;align-items:center;gap:8px"><span style="width:18px;height:18px;border-radius:4px;flex:none;border:1px solid #E1E6EB;background:{{ t.hex }}"></span><code style="font-family:ui-monospace,Menlo,monospace;font-size:12px;color:#55616C">{{ t.hex }}</code></span>
+                </td>
+                <td style="padding:12px 16px;border-bottom:1px solid #EFF2F5;vertical-align:top;color:#3D4750">{{ t.use }}</td>
+                <td style="padding:12px 16px;border-bottom:1px solid #EFF2F5;vertical-align:top"><code style="font-family:ui-monospace,Menlo,monospace;font-size:12px;color:#55616C">{{ t.onName }}</code></td>
+                <td style="padding:12px 16px;border-bottom:1px solid #EFF2F5;vertical-align:top;white-space:nowrap">{{ t.verdict }}</td>
+              </tr>
+            </sc-for>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin:20px 0 0;max-width:76ch;font-size:13px;color:#55616C">Přemapováno: <code style="font-family:ui-monospace,Menlo,monospace">neutral-500 #6B7986</code> mělo být <code style="font-family:ui-monospace,Menlo,monospace">text.muted</code>, ale na bílé dává 4,46 : 1 — text.muted je proto <code style="font-family:ui-monospace,Menlo,monospace">#5B6874</code>. <code style="font-family:ui-monospace,Menlo,monospace">green-500 #1E914F</code> (4,02 : 1) a <code style="font-family:ui-monospace,Menlo,monospace">apricot-500 #F09A2C</code> nesmí nést text — konverzní plocha používá green-600, textová meruňková apricot-700. Meruňková je vždy podklad pro tmavý text, nikdy text na bílé.</p>
+    </div>
+  </section>
+
+  <section style="width:100%">
+    <div style="max-width:1560px;margin:0 auto;padding:64px 32px">
+      <h2 style="margin:0 0 8px;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:34px;line-height:1.15">3 · Typografie</h2>
+      <p style="margin:0 0 32px;max-width:76ch;color:#55616C">Nimbus Sans L Condensed z logomanuálu není na webu dostupný. Nadpisy a číselné údaje nesou <strong style="font-weight:600">Archivo Narrow</strong> (nejblíž kondenzovanému Black z loga), běžný text <strong style="font-weight:600">Archivo</strong>. Minimum 13 px. Mobilní sada se přepíná skokem na 820 px, ne přes clamp().</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:24px">
+        <div style="background:#F7F9FB;border-radius:12px;padding:28px">
+          <span style="display:block;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#55616C;font-weight:600;margin-bottom:20px">Desktop · ≥ 820 px</span>
+          <p style="margin:0 0 18px;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:48px;line-height:1.08;letter-spacing:-0.01em">heading.h1 · 48/52</p>
+          <p style="margin:0 0 18px;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:34px;line-height:1.15">heading.h2 · 34/39</p>
+          <p style="margin:0 0 18px;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:600;font-size:24px;line-height:1.25">heading.h3 · 24/30</p>
+          <p style="margin:0 0 18px;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:600;font-size:19px;line-height:1.3">heading.h4 · 19/25</p>
+          <p style="margin:0 0 14px;font-size:17px;line-height:1.55">body.large · 17/26 — popisné odstavce, perex kategorie.</p>
+          <p style="margin:0 0 14px;font-size:15px;line-height:1.55">body.medium · 15/23 — základní text webu.</p>
+          <p style="margin:0 0 14px;font-size:13px;font-weight:600;line-height:1.4">label.small · 13/18 semibold — popisky polí, chipsy.</p>
+          <p style="margin:0 0 14px;font-size:13px;color:#5B6874">caption · 13/18 — doplňkový údaj, poznámka.</p>
+          <p style="margin:0;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#21507B">overline · 13 uppercase</p>
+        </div>
+        <div style="background:#F7F9FB;border-radius:12px;padding:28px">
+          <span style="display:block;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#55616C;font-weight:600;margin-bottom:20px">Mobil · &lt; 820 px (skok)</span>
+          <p style="margin:0 0 18px;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:32px;line-height:1.1">heading.h1 · 32/35</p>
+          <p style="margin:0 0 18px;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:26px;line-height:1.15">heading.h2 · 26/30</p>
+          <p style="margin:0 0 18px;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:600;font-size:21px;line-height:1.25">heading.h3 · 21/26</p>
+          <p style="margin:0 0 18px;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:600;font-size:18px;line-height:1.3">heading.h4 · 18/23</p>
+          <p style="margin:0 0 14px;font-size:16px;line-height:1.5">body.large · 16/24</p>
+          <p style="margin:0 0 14px;font-size:15px;line-height:1.55">body.medium · 15/23 (stejné)</p>
+          <p style="margin:0 0 14px;font-size:13px;font-weight:600;line-height:1.4">label.small · 13/18 (stejné)</p>
+          <p style="margin:0 0 14px;font-size:13px;color:#5B6874">caption · 13/18 (stejné)</p>
+          <p style="margin:0;font-size:16px;color:#5B6874">Pole formulářů pod 550 px: <code style="font-family:ui-monospace,Menlo,monospace;font-size:14px">font-size:16px</code> — iOS jinak zoomuje.</p>
+        </div>
+      </div>
+      <h3 style="margin:36px 0 16px;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:600;font-size:20px">Commerce tokeny</h3>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px">
+        <div style="background:#FFFFFF;border-radius:12px;padding:20px;box-shadow:0 0 0 1px #E1E6EB">
+          <span style="display:block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#55616C;font-weight:600;margin-bottom:10px">price.primary · 26 Narrow 700</span>
+          <span style="font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:26px;color:#1C2229">7 590 Kč</span>
+          <p style="margin:8px 0 0;font-size:13px;color:#5B6874">Vždy s DPH, formát „7 590 Kč“ s pevnou mezerou.</p>
+        </div>
+        <div style="background:#FFFFFF;border-radius:12px;padding:20px;box-shadow:0 0 0 1px #E1E6EB">
+          <span style="display:block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#55616C;font-weight:600;margin-bottom:10px">price.before · 15 line-through</span>
+          <span style="font-size:15px;color:#5B6874;text-decoration:line-through">9 490 Kč</span>
+          <p style="margin:8px 0 0;font-size:13px;color:#5B6874">Původní cena vedle slevové ceny, nikdy sama.</p>
+        </div>
+        <div style="background:#FFFFFF;border-radius:12px;padding:20px;box-shadow:0 0 0 1px #E1E6EB">
+          <span style="display:block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#55616C;font-weight:600;margin-bottom:10px">product.title · 15/21 600</span>
+          <span style="font-size:15px;font-weight:600;line-height:1.4">Partnerská matrace Spring Variant 22 cm</span>
+        </div>
+        <div style="background:#FFFFFF;border-radius:12px;padding:20px;box-shadow:0 0 0 1px #E1E6EB">
+          <span style="display:block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#55616C;font-weight:600;margin-bottom:10px">stock · 13/18 600</span>
+          <span style="display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:#157A41"><span style="width:8px;height:8px;border-radius:999px;background:#157A41"></span>Skladem · odesíláme do 24 h</span>
+          <p style="margin:8px 0 0;font-size:13px;color:#5B6874">Význam nese text i tvar, nikdy jen barva.</p>
+        </div>
+        <div style="background:#FFFFFF;border-radius:12px;padding:20px;box-shadow:0 0 0 1px #E1E6EB">
+          <span style="display:block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#55616C;font-weight:600;margin-bottom:10px">orderNo · 13 mono</span>
+          <code style="font-family:ui-monospace,Menlo,monospace;font-size:13px;color:#5B6874">Obj. číslo 428170</code>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="width:100%;background:#F7F9FB">
+    <div style="max-width:1560px;margin:0 auto;padding:64px 32px">
+      <h2 style="margin:0 0 8px;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:34px;line-height:1.15">4 · Spacing</h2>
+      <p style="margin:0 0 28px;max-width:76ch;color:#55616C">4px grid, space-1 až space-13. Mezihodnoty jsou zakázané — když hodnota nesedí, mění se layout, ne token.</p>
+      <div style="display:flex;flex-direction:column;gap:6px;background:#FFFFFF;border-radius:12px;padding:20px">
+        <sc-for list="{{ spacing }}" as="s" hint-placeholder-count="13">
+          <div style="display:flex;align-items:center;gap:16px">
+            <code style="font-family:ui-monospace,Menlo,monospace;font-size:13px;width:92px;flex:none;color:#1C2229">{{ s.name }}</code>
+            <code style="font-family:ui-monospace,Menlo,monospace;font-size:13px;width:56px;flex:none;color:#55616C">{{ s.px }}</code>
+            <span style="height:14px;border-radius:3px;background:#8DB3D3;width:{{ s.px }}"></span>
+            <span style="font-size:13px;color:#5B6874">{{ s.use }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section style="width:100%">
+    <div style="max-width:1560px;margin:0 auto;padding:64px 32px">
+      <h2 style="margin:0 0 8px;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:34px;line-height:1.15">5 · Rádiusy, elevace, motion, rozměry</h2>
+      <p style="margin:0 0 32px;max-width:76ch;color:#55616C">Karty v klidu nemají border ani stín — drží je jen pozadí a mezera. Stín vzniká až interakcí nebo vrstvením.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:20px">
+        <div style="background:#F7F9FB;border-radius:12px;padding:24px">
+          <h3 style="margin:0 0 16px;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:600;font-size:20px">Rádiusy</h3>
+          <div style="display:flex;gap:12px;align-items:flex-end;margin-bottom:12px">
+            <div style="width:64px;height:64px;background:#DCE8F2;border-radius:6px"></div>
+            <div style="width:64px;height:64px;background:#DCE8F2;border-radius:12px"></div>
+            <div style="width:88px;height:44px;background:#DCE8F2;border-radius:999px"></div>
+          </div>
+          <p style="margin:0;font-size:13px;color:#5B6874">sm 6 px pole a tlačítka · md 12 px karty a panely · pill 999 px chipsy, avatar, počítadlo</p>
+        </div>
+        <div style="background:#F7F9FB;border-radius:12px;padding:24px">
+          <h3 style="margin:0 0 16px;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:600;font-size:20px">Elevace</h3>
+          <div style="display:flex;flex-wrap:wrap;gap:16px;margin-bottom:14px">
+            <div style="width:84px;height:56px;background:#FFFFFF;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:12px;color:#55616C">rest</div>
+            <div style="width:84px;height:56px;background:#FFFFFF;border-radius:8px;box-shadow:0 4px 12px rgba(19,44,67,.12);display:flex;align-items:center;justify-content:center;font-size:12px;color:#55616C">hover</div>
+            <div style="width:84px;height:56px;background:#FFFFFF;border-radius:8px;box-shadow:0 2px 8px rgba(19,44,67,.08);display:flex;align-items:center;justify-content:center;font-size:12px;color:#55616C">sticky</div>
+            <div style="width:84px;height:56px;background:#FFFFFF;border-radius:8px;box-shadow:0 16px 40px rgba(19,44,67,.18);display:flex;align-items:center;justify-content:center;font-size:12px;color:#55616C">overlay</div>
+            <div style="width:84px;height:56px;background:#FFFFFF;border-radius:8px;box-shadow:0 0 0 3px rgba(41,96,147,.35);display:flex;align-items:center;justify-content:center;font-size:12px;color:#55616C">focus</div>
+          </div>
+          <p style="margin:0;font-size:13px;color:#5B6874">focus ring 0 0 0 3px rgba(41,96,147,.35) + outline:none až po nastavení ringu.</p>
+        </div>
+        <div style="background:#F7F9FB;border-radius:12px;padding:24px">
+          <h3 style="margin:0 0 16px;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:600;font-size:20px">Motion</h3>
+          <ul style="margin:0;padding-left:18px;font-size:14px;color:#3D4750;display:flex;flex-direction:column;gap:6px">
+            <li>60 ms — stisk (transform, scale .98)</li>
+            <li>120 ms — barvy a border</li>
+            <li>150 ms — stíny a elevace</li>
+            <li>400 ms — panely, drawery, drill-down</li>
+          </ul>
+          <p style="margin:12px 0 0;font-size:13px;color:#5B6874">Křivka cubic-bezier(.22,.61,.36,1). prefers-reduced-motion vypíná posuny, ne barvy.</p>
+        </div>
+        <div style="background:#F7F9FB;border-radius:12px;padding:24px">
+          <h3 style="margin:0 0 16px;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:600;font-size:20px">Rozměry</h3>
+          <ul style="margin:0;padding-left:18px;font-size:14px;color:#3D4750;display:flex;flex-direction:column;gap:6px">
+            <li>size.control 44 px — výchozí výška ovládacího prvku</li>
+            <li>size.control.compact 36 px — v hustých lištách</li>
+            <li>size.control.large 52 px — hlavní konverzní tlačítko</li>
+            <li>size.row 48 px — řádek seznamu, menu, tabulky</li>
+            <li>min. klikací plocha 24 × 24 px, zvětšuje ::after</li>
+          </ul>
+        </div>
+      </div>
+      <h3 style="margin:36px 0 16px;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:600;font-size:20px">Z-index registr</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:8px">
+        <sc-for list="{{ zindex }}" as="z" hint-placeholder-count="9">
+          <span style="display:inline-flex;align-items:baseline;gap:8px;background:#F0F5FA;border-radius:999px;padding:8px 16px;font-size:13px"><code style="font-family:ui-monospace,Menlo,monospace;color:#21507B;font-weight:600">{{ z.v }}</code>{{ z.name }}</span>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section style="width:100%;background:#F7F9FB">
+    <div style="max-width:1560px;margin:0 auto;padding:64px 32px">
+      <h2 style="margin:0 0 8px;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:34px;line-height:1.15">6 · Breakpointy</h2>
+      <p style="margin:0 0 28px;max-width:76ch;color:#55616C">Sedm pásem na hranicích 1560 · 1150 · 1000 · 820 · 550 · 420. Toto je jediné platné názvosloví — „mobil / tablet / desktop“ se v projektu nepoužívá.</p>
+      <div style="overflow-x:auto;background:#FFFFFF;border-radius:12px;padding:8px">
+        <table style="width:100%;border-collapse:collapse;font-size:14px;min-width:760px">
+          <thead>
+            <tr style="text-align:left">
+              <th style="padding:12px 16px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#55616C;font-weight:600;border-bottom:1px solid #E1E6EB">Pásmo</th>
+              <th style="padding:12px 16px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#55616C;font-weight:600;border-bottom:1px solid #E1E6EB">Rozsah</th>
+              <th style="padding:12px 16px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#55616C;font-weight:600;border-bottom:1px solid #E1E6EB">Produktový grid</th>
+              <th style="padding:12px 16px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#55616C;font-weight:600;border-bottom:1px solid #E1E6EB">Co se mění</th>
+            </tr>
+          </thead>
+          <tbody>
+            <sc-for list="{{ bands }}" as="b" hint-placeholder-count="7">
+              <tr>
+                <td style="padding:12px 16px;border-bottom:1px solid #EFF2F5;font-weight:600">{{ b.name }}</td>
+                <td style="padding:12px 16px;border-bottom:1px solid #EFF2F5;color:#3D4750;white-space:nowrap">{{ b.range }}</td>
+                <td style="padding:12px 16px;border-bottom:1px solid #EFF2F5;color:#3D4750;white-space:nowrap">{{ b.grid }}</td>
+                <td style="padding:12px 16px;border-bottom:1px solid #EFF2F5;color:#3D4750">{{ b.change }}</td>
+              </tr>
+            </sc-for>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin:20px 0 0;max-width:76ch;font-size:13px;color:#55616C">Full-bleed vzorec: sekce jde přes celou šířku viewportu, omezený je až vnitřní obal — max-width 1560 px, margin 0 auto, padding 0 32px (pod 820 px 0 16px). Produktový grid má pevné počty sloupců, ne auto-fill minmax(). Gap 20 px.</p>
+    </div>
+  </section>
+
+  <section style="width:100%">
+    <div style="max-width:1560px;margin:0 auto;padding:64px 32px">
+      <h2 style="margin:0 0 8px;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:34px;line-height:1.15">7 · Interaktivní stavy</h2>
+      <p style="margin:0 0 28px;max-width:76ch;color:#55616C">Hover se nezjišťuje šířkou okna, ale dotazem (hover:hover) and (pointer:fine). Focus ring je vidět vždy, i na myši.</p>
+      <div style="overflow-x:auto;background:#F7F9FB;border-radius:12px;padding:8px">
+        <table style="width:100%;border-collapse:collapse;font-size:14px;min-width:900px">
+          <thead>
+            <tr style="text-align:left">
+              <th style="padding:12px 16px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#55616C;font-weight:600;border-bottom:1px solid #E1E6EB">Prvek</th>
+              <th style="padding:12px 16px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#55616C;font-weight:600;border-bottom:1px solid #E1E6EB">Hover</th>
+              <th style="padding:12px 16px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#55616C;font-weight:600;border-bottom:1px solid #E1E6EB">Active</th>
+              <th style="padding:12px 16px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#55616C;font-weight:600;border-bottom:1px solid #E1E6EB">Focus</th>
+              <th style="padding:12px 16px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#55616C;font-weight:600;border-bottom:1px solid #E1E6EB">Disabled</th>
+            </tr>
+          </thead>
+          <tbody>
+            <sc-for list="{{ states }}" as="r" hint-placeholder-count="8">
+              <tr>
+                <td style="padding:12px 16px;border-bottom:1px solid #E1E6EB;font-weight:600">{{ r.el }}</td>
+                <td style="padding:12px 16px;border-bottom:1px solid #E1E6EB;color:#3D4750">{{ r.hover }}</td>
+                <td style="padding:12px 16px;border-bottom:1px solid #E1E6EB;color:#3D4750">{{ r.active }}</td>
+                <td style="padding:12px 16px;border-bottom:1px solid #E1E6EB;color:#3D4750">{{ r.focus }}</td>
+                <td style="padding:12px 16px;border-bottom:1px solid #E1E6EB;color:#3D4750">{{ r.disabled }}</td>
+              </tr>
+            </sc-for>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section style="width:100%;background:#132C43;color:#FFFFFF">
+    <div style="max-width:1560px;margin:0 auto;padding:56px 32px">
+      <h2 style="margin:0 0 8px;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:34px;line-height:1.15">8 · Co je rozhodnuté a nevrací se k tomu</h2>
+      <ul style="margin:16px 0 0;padding-left:20px;display:flex;flex-direction:column;gap:10px;font-size:15px;color:#DCE8F2;max-width:88ch">
+        <li>Jen světlý režim. Dark mode se nedělá.</li>
+        <li>Písmo Archivo + Archivo Narrow. Nimbus Sans L Condensed zůstává v logu a v tiskových výstupech.</li>
+        <li>Konverzní barva je zelená škála vedle značky — meruňková zůstává akcent a podklad, ne „koupit“.</li>
+        <li>Ceny s DPH, jen CZK, jen čeština. Přepínač měny ani jazyka v prototypu není.</li>
+        <li>Názvosloví pásem XXS–XXL. Slova mobil / tablet / desktop se nepoužívají.</li>
+        <li>Ikony jen z registru Ikony.dc.html, sada Tabler, 24 × 24, stroke 2.</li>
+      </ul>
+    </div>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  lum(hex) {
+    const c = [1, 3, 5].map(i => parseInt(hex.slice(i, i + 2), 16) / 255)
+      .map(v => v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4));
+    return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
+  }
+  ratio(a, b) {
+    const x = this.lum(a), y = this.lum(b);
+    return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05);
+  }
+  renderVals() {
+    const scales = [
+      { title: 'Primární — modrá značky', note: '600 je barva loga #296093, neupravuje se', prefix: 'blue',
+        hex: ['#F0F5FA','#DCE8F2','#B9D0E5','#8DB3D3','#5B8FBC','#3A76A9','#296093','#21507B','#1A3E5F','#132C43'] },
+      { title: 'Sekundární — meruňková akcent', note: '400 je barva loga #FBB255; nikdy text na bílé', prefix: 'apricot',
+        hex: ['#FFF8EE','#FEEDD4','#FDDCAA','#FCC77D','#FBB255','#F09A2C','#D07C13','#A4600C','#7A4708','#4F2D05'] },
+      { title: 'Konverzní — zelená', note: 'koupit, skladem, potvrzení; text a plochy od 600', prefix: 'green',
+        hex: ['#EEF9F1','#D3F0DC','#A8E1BB','#71CC92','#3EB06C','#1E914F','#157A41','#106134','#0C4A28','#08321B'] },
+      { title: 'Neutrální', note: 'plochy, bordery, text; 500 nesmí nést text', prefix: 'neutral',
+        hex: ['#F7F9FB','#EFF2F5','#E1E6EB','#C8D0D8','#9AA6B2','#6B7986','#55616C','#3D4750','#2A323A','#1C2229'] }
+    ].map(s => ({
+      title: s.title, note: s.note,
+      steps: s.hex.map((hex, i) => ({ hex, step: s.prefix + '-' + [50,100,200,300,400,500,600,700,800,900][i] }))
+    }));
+
+    const raw = [
+      ['surface.page', '#FFFFFF', 'pozadí stránky', null, null],
+      ['surface.subtle', '#F7F9FB', 'sekce, pole, karta v klidu', null, null],
+      ['surface.muted', '#EFF2F5', 'oddělení bloku, placeholder fotky', null, null],
+      ['surface.brand', '#132C43', 'tmavé pásy, patička', null, null],
+      ['surface.accent', '#FFF8EE', 'zvýrazněný blok s meruňkovým akcentem', null, null],
+      ['border.subtle', '#E1E6EB', 'linka v tabulce, oddělovač', null, null],
+      ['border.strong', '#C8D0D8', 'obrys pole a outline tlačítka', null, null],
+      ['text.primary', '#1C2229', 'nadpisy, cena, název produktu', 'surface.page', '#FFFFFF'],
+      ['text.secondary', '#3D4750', 'běžný text odstavce', 'surface.page', '#FFFFFF'],
+      ['text.muted', '#5B6874', 'caption, obj. číslo, poznámka', 'surface.page', '#FFFFFF'],
+      ['text.onBrand', '#FFFFFF', 'text na tmavém pásu', 'surface.brand', '#132C43'],
+      ['text.onAccent', '#1C2229', 'text na meruňkové ploše', 'apricot-400', '#FBB255'],
+      ['link.onLight', '#296093', 'odkaz v textu', 'surface.page', '#FFFFFF'],
+      ['link.onLight.hover', '#21507B', 'odkaz hover', 'surface.page', '#FFFFFF'],
+      ['action.primary', '#296093', 'primární tlačítko (bílý text)', 'text.onPrimary', '#FFFFFF'],
+      ['action.primary.hover', '#21507B', 'primární tlačítko hover', 'text.onPrimary', '#FFFFFF'],
+      ['action.buy', '#157A41', 'Koupit, Do košíku (bílý text)', 'text.onBuy', '#FFFFFF'],
+      ['action.buy.hover', '#106134', 'Koupit hover', 'text.onBuy', '#FFFFFF'],
+      ['action.danger', '#B3261E', 'odebrat, zrušit (bílý text)', 'text.onDanger', '#FFFFFF'],
+      ['status.inStock', '#157A41', 'Skladem', 'surface.page', '#FFFFFF'],
+      ['status.lowStock', '#A4600C', 'Poslední kusy', 'surface.page', '#FFFFFF'],
+      ['status.outOfStock', '#55616C', 'Nedostupné', 'surface.page', '#FFFFFF'],
+      ['commerce.priceNow', '#1C2229', 'aktuální cena s DPH', 'surface.page', '#FFFFFF'],
+      ['commerce.priceBefore', '#5B6874', 'původní cena, přeškrtnutá', 'surface.page', '#FFFFFF'],
+      ['commerce.sale', '#B3261E', 'sleva, akční štítek (bílý text)', 'text.onSale', '#FFFFFF'],
+      ['focus.ring', 'rgba(41,96,147,.35)', 'focus ring 3 px', null, null]
+    ];
+    const tokens = raw.map(([name, hex, use, onName, onHex]) => {
+      let verdict = '—';
+      if (onHex && hex.charAt(0) === '#') {
+        const r = this.ratio(hex, onHex);
+        verdict = r.toFixed(2) + ' : 1 ' + (r >= 4.5 ? 'AA ✓' : 'AA ✗');
+      }
+      return { name, hex, use, onName: onName || '—', verdict };
+    });
+
+    const spacing = [
+      ['space-1','4px','ikona a text v jednom řádku'],
+      ['space-2','8px','uvnitř chipsu, mezi štítky'],
+      ['space-3','12px','řádky v kartě'],
+      ['space-4','16px','padding karty na mobilu, gutter pod 820'],
+      ['space-5','20px','gap produktového gridu'],
+      ['space-6','24px','padding karty, mezera prvků v sekci'],
+      ['space-7','32px','gutter stránky, mezera bloků'],
+      ['space-8','40px','mezera mezi skupinami'],
+      ['space-9','48px','vnitřní odsazení sekce na mobilu'],
+      ['space-10','64px','vertikální rytmus sekce'],
+      ['space-11','80px','velká sekce'],
+      ['space-12','96px','oddělení hlavních částí stránky'],
+      ['space-13','128px','hero a prázdné stavy']
+    ].map(([name, px, use]) => ({ name, px, use }));
+
+    const zindex = [
+      ['0','base'],['100','sticky lišta filtrů'],['200','hlavička'],['300','našeptávač a mega menu'],
+      ['400','overlay draweru'],['410','drawer a mobilní menu'],['500','modál'],['600','toast'],
+      ['900','DebugBar'],['950','PrezentacniLista']
+    ].map(([v, name]) => ({ v, name }));
+
+    const bands = [
+      ['XXL','≥ 1560 px','5 sloupců','plná šířka obalu 1560, mega menu, miniatury galerie'],
+      ['XL','1150–1559','4 sloupce','beze změn proti XXL, jen užší obal'],
+      ['L','1000–1149','4 sloupce','patička 4 → 2 sloupce odkazů'],
+      ['M','820–999','3 sloupce','hamburger a mobilní vyhledávání, mega menu pryč'],
+      ['S','550–819','2 sloupce','mobilní typografická sada, gutter 16 px, miniatury galerie pryč, patička akordeon'],
+      ['XS','420–549','1 sloupec','pole formulářů 16 px, kvantifikátor a Koupit pod sebou'],
+      ['XXS','< 420 px','1 sloupec','zúžené okno paginace, jednosloupcové lišty']
+    ].map(([name, range, grid, change]) => ({ name, range, grid, change }));
+
+    const states = [
+      ['Tlačítko primary','pozadí action.primary.hover, stín hover','scale .98, 60 ms','ring 3 px + posun barvy','opacity .45, cursor not-allowed, aria-disabled'],
+      ['Tlačítko buy','action.buy.hover','scale .98','ring 3 px','opacity .45'],
+      ['Tlačítko ghost / text','pozadí surface.subtle','pozadí surface.muted','ring 3 px','opacity .45'],
+      ['Odkaz','link.onLight.hover, podtržení zůstává','bez změny','ring 3 px','—'],
+      ['Chip filter','border.strong → blue-400','scale .98','ring 3 px','opacity .45'],
+      ['Produktová karta','stín hover, název na link.onLight','bez posunu','ring 3 px na krycím odkazu','—'],
+      ['Pole / select','border.strong → blue-400','—','ring 3 px, border blue-600','pozadí surface.muted, text.muted'],
+      ['Záložka navigace','underline 2 px apricot-400','—','ring 3 px','—'],
+      ['Řádek menu (48 px)','pozadí surface.subtle','pozadí surface.muted','ring 3 px','—']
+    ].map(([el, hover, active, focus, disabled]) => ({ el, hover, active, focus, disabled }));
+
+    return { scales, tokens, spacing, zindex, bands, states };
+  }
+}
+</script>
+</body>
+</html>

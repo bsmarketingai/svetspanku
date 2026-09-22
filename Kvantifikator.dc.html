@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Archivo,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:800!important;font-stretch:75%;text-transform:uppercase;letter-spacing:-0.005em;}
+
+.ss-qty{font-family:Archivo,Helvetica,Arial,sans-serif;display:inline-flex;align-items:center;background:#F7F9FB;border-radius:6px;overflow:hidden;}
+.ss-qty button{font-family:inherit;border:0;background:none;margin:0;padding:0;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#21507B;transition:background-color .12s cubic-bezier(.22,.61,.36,1),box-shadow .15s cubic-bezier(.22,.61,.36,1);}
+.ss-qty button:hover{background:#EFF2F5;}
+.ss-qty button:focus-visible{outline:none;box-shadow:inset 0 0 0 3px rgba(41,96,147,.35);}
+.ss-qty button[aria-disabled="true"]{opacity:.4;cursor:not-allowed;}
+.ss-qty input{font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:600;text-align:center;border:0;background:transparent;color:#1C2229;-moz-appearance:textfield;min-width:0;}
+.ss-qty input::-webkit-outer-spin-button,.ss-qty input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0;}
+.ss-qty input:focus-visible{outline:none;box-shadow:inset 0 0 0 3px rgba(41,96,147,.35);border-radius:4px;}
+@media (max-width:549px){.ss-qty input{font-size:16px!important;}}
+</style>
+</helmet>
+<div class="ss-qty" style="{{ wrapStyle }}">
+  <button type="button" style="{{ btnStyle }}" onClick="{{ dec }}" aria-label="Snížit množství" aria-disabled="{{ decDisabled }}">
+    <dc-import name="Ikony" iconName="minus" size="18" hint-size="18px,18px"></dc-import>
+  </button>
+  <input type="number" style="{{ inputStyle }}" value="{{ value }}" onChange="{{ handleChange }}" aria-label="{{ ariaLabel }}" />
+  <button type="button" style="{{ btnStyle }}" onClick="{{ inc }}" aria-label="Zvýšit množství" aria-disabled="{{ incDisabled }}">
+    <dc-import name="Ikony" iconName="plus" size="18" hint-size="18px,18px"></dc-import>
+  </button>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:220,&quot;height&quot;:80},&quot;value&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:1,&quot;min&quot;:1,&quot;max&quot;:99,&quot;tsType&quot;:&quot;number&quot;},&quot;min&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:1,&quot;min&quot;:0,&quot;max&quot;:10,&quot;tsType&quot;:&quot;number&quot;},&quot;max&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:99,&quot;min&quot;:1,&quot;max&quot;:999,&quot;tsType&quot;:&quot;number&quot;},&quot;size&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;standard&quot;,&quot;options&quot;:[&quot;standard&quot;,&quot;compact&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;onChange&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(value: number) =&gt; void&quot;}}">
+class Component extends DCLogic {
+  state = { internal: null };
+  get value() {
+    const p = this.props;
+    if (p.value !== undefined && p.value !== null) return Number(p.value);
+    return this.state.internal === null ? 1 : this.state.internal;
+  }
+  set(v) {
+    const p = this.props;
+    const min = p.min ?? 1, max = p.max ?? 99;
+    const next = Math.min(max, Math.max(min, v));
+    if (p.onChange) p.onChange(next);
+    if (p.value === undefined || p.value === null) this.setState({ internal: next });
+  }
+  renderVals() {
+    const p = this.props;
+    const compact = p.size === 'compact';
+    const h = compact ? 36 : 44;
+    const min = p.min ?? 1, max = p.max ?? 99;
+    const v = this.value;
+    return {
+      value: v,
+      ariaLabel: p.ariaLabel || 'Množství',
+      wrapStyle: { height: h + 'px' },
+      btnStyle: { width: h + 'px', height: h + 'px' },
+      inputStyle: { width: (compact ? 36 : 44) + 'px', height: h + 'px', fontSize: (compact ? 15 : 16) + 'px' },
+      decDisabled: v <= min ? 'true' : undefined,
+      incDisabled: v >= max ? 'true' : undefined,
+      dec: () => this.set(v - 1),
+      inc: () => this.set(v + 1),
+      handleChange: (e) => { const n = parseInt(e.target.value, 10); if (!isNaN(n)) this.set(n); }
+    };
+  }
+}
+</script>
+</body>
+</html>

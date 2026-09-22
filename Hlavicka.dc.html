@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Archivo,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:800!important;font-stretch:75%;text-transform:uppercase;letter-spacing:-0.005em;}
+
+.ss-hd{font-family:Archivo,Helvetica,Arial,sans-serif;}
+.ss-hd a{text-decoration:none;}
+.ss-hd-util{color:#3D4750;font-size:13px;display:inline-flex;align-items:center;min-height:24px;padding:0 6px;border-radius:4px;transition:color .12s cubic-bezier(.22,.61,.36,1);}
+.ss-hd-util:hover{color:#296093;}
+.ss-hd-util:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+.ss-hd-action{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-width:56px;height:52px;border:0;background:none;padding:0 8px;border-radius:8px;color:#21507B;font:inherit;font-size:12px;font-weight:500;cursor:pointer;transition:background-color .12s cubic-bezier(.22,.61,.36,1);}
+.ss-hd-action:hover{background:#F0F5FA;}
+.ss-hd-action:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+.ss-hd-tab{position:relative;display:inline-flex;align-items:center;height:48px;padding:0 14px;border:0;background:none;font:inherit;font-size:15px;font-weight:600;color:#1C2229;cursor:pointer;transition:color .12s cubic-bezier(.22,.61,.36,1);}
+.ss-hd-tab:hover{color:#296093;}
+.ss-hd-tab:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);border-radius:6px;}
+.ss-hd-tab::after{content:"";position:absolute;left:14px;right:14px;bottom:0;height:3px;border-radius:3px 3px 0 0;background:transparent;transition:background-color .12s cubic-bezier(.22,.61,.36,1);}
+.ss-hd-tab[data-open="true"]::after,.ss-hd-tab[aria-current="page"]::after{background:#FBB255;}
+.ss-hd-sug{display:flex;align-items:center;gap:12px;width:100%;min-height:48px;padding:0 16px;border:0;background:none;font:inherit;font-size:15px;color:#1C2229;text-align:left;text-decoration:none;cursor:pointer;}
+.ss-hd-sug:hover{background:#F7F9FB;}
+.ss-hd-sug:focus-visible{outline:none;box-shadow:inset 0 0 0 3px rgba(41,96,147,.35);}
+@keyframes ss-led{0%{box-shadow:0 0 0 0 rgba(21,122,65,.45);}70%{box-shadow:0 0 0 6px rgba(21,122,65,0);}100%{box-shadow:0 0 0 0 rgba(21,122,65,0);}}
+.ss-hd-led{display:inline-block;width:8px;height:8px;flex:none;border-radius:999px;background:#157A41;animation:ss-led 1.8s cubic-bezier(.22,.61,.36,1) infinite;}
+@media (prefers-reduced-motion:reduce){.ss-hd-led{animation:none;}}
+
+.ss-hd[data-theme="blue"] .ss-hd-topbar{background:#1A3E5F!important;border-bottom-color:rgba(255,255,255,.14)!important;}
+.ss-hd[data-theme="blue"] .ss-hd-main{background:#296093!important;}
+.ss-hd[data-theme="blue"] .ss-hd-nav{background:#132C43!important;border-top-color:rgba(255,255,255,.14)!important;}
+.ss-hd[data-theme="blue"] .ss-hd-util{color:#DCE8F2;}
+.ss-hd[data-theme="blue"] .ss-hd-util:hover{color:#FFFFFF;background:rgba(255,255,255,.14);}
+.ss-hd[data-theme="blue"] .ss-hd-sep{color:rgba(255,255,255,.45)!important;}
+.ss-hd[data-theme="blue"] .ss-hd-action{color:#FFFFFF;}
+.ss-hd[data-theme="blue"] .ss-hd-action:hover{background:rgba(255,255,255,.16);}
+.ss-hd[data-theme="blue"] .ss-hd-burger{color:#FFFFFF!important;}
+.ss-hd[data-theme="blue"] .ss-hd-tab{color:#FFFFFF;}
+.ss-hd[data-theme="blue"] .ss-hd-tab:hover{color:#FBB255;}
+.ss-hd[data-theme="blue"] .ss-hd-tab[data-hl="true"]:hover{color:#FCC77D!important;}
+.ss-hd[data-theme="blue"] .ss-hd-tel{color:#FFFFFF!important;}
+.ss-hd[data-theme="blue"] .ss-hd-hours{color:#DCE8F2!important;}
+.ss-hd[data-theme="blue"] .ss-hd-telicon{color:#FBB255!important;}
+.ss-hd[data-theme="blue"] .ss-hd-logo-pos{display:none!important;}
+.ss-hd[data-theme="blue"] .ss-hd-logo-neg{display:block!important;}
+.ss-hd[data-theme="blue"] .ss-hd-util:focus-visible,.ss-hd[data-theme="blue"] .ss-hd-action:focus-visible,.ss-hd[data-theme="blue"] .ss-hd-tab:focus-visible{box-shadow:0 0 0 3px rgba(251,178,85,.65);}
+</style>
+</helmet>
+<header class="ss-hd" data-theme="{{ theme }}" ref="{{ headerRef }}" style="{{ headerStyle }}">
+  <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
+    <div style="{{ topBarStyle }}">
+    <div class="ss-hd-topbar" style="width:100%;background:#F7F9FB;border-bottom:1px solid #E1E6EB">
+      <div style="max-width:1560px;margin:0 auto;padding:6px 32px;display:flex;align-items:center;gap:20px;flex-wrap:wrap">
+        <nav aria-label="Doplňkové odkazy" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+          <sc-for list="{{ utility }}" as="u" hint-placeholder-count="4">
+            <a class="ss-hd-util" href="{{ u.href }}">{{ u.label }}</a>
+          </sc-for>
+        </nav>
+        <div style="margin-left:auto;display:flex;align-items:center;gap:8px">
+          <a class="ss-hd-util" href="Registrace.dc.html">Registrace</a>
+          <span class="ss-hd-sep" style="color:#C8D0D8">·</span>
+          <a class="ss-hd-util" href="#prihlaseni" onClick="{{ openLogin }}">Přihlášení</a>
+        </div>
+      </div>
+    </div>
+    </div>
+  </sc-if>
+
+  <div class="ss-hd-main" style="width:100%;background:#FFFFFF;position:relative">
+    <div style="max-width:1560px;margin:0 auto;padding:{{ mainPad }};display:flex;align-items:center;gap:{{ mainGap }}">
+      <a class="ss-hd-logo" href="#domu" style="display:flex;align-items:center;flex:none;border-radius:6px;padding:4px" aria-label="Světspánku.cz — domů">
+        <img class="ss-hd-logo-pos" src="logo-svetspanku.png" alt="Světspánku.cz" style="display:block;height:{{ logoSize }};width:auto" />
+        <img class="ss-hd-logo-neg" src="logo-svetspanku-negativ.png" alt="Světspánku.cz" style="display:none;height:{{ logoSize }};width:auto" /></a>
+
+      <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
+        <div style="flex:1;min-width:0;position:relative">
+          <form style="display:flex;gap:8px;align-items:center" onSubmit="{{ submitSearch }}" role="search">
+            <div style="flex:1;min-width:0">
+              <dc-import name="Input" label="" placeholder="Co hledáte? Postel, matrace, rošt…" icon="search" bordered="{{ onTint }}" value="{{ query }}" onChange="{{ onQuery }}" ariaLabel="Hledat v e-shopu" hint-size="100%,44px"></dc-import>
+            </div>
+            <dc-import name="Tlacitko" label="Hledat" variant="{{ searchVariant }}" onClick="{{ doSearch }}" hint-size="110px,44px"></dc-import>
+          </form>
+        </div>
+
+        <sc-if value="{{ showPhone }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex;align-items:center;gap:8px;line-height:1.25;flex:none">
+            <span class="ss-hd-telicon" style="display:flex;color:#296093;flex:none"><dc-import name="Ikony" iconName="phone" size="20" hint-size="20px,20px"></dc-import></span>
+            <div style="display:flex;flex-direction:column;min-width:0">
+            <a class="ss-hd-tel" href="tel:+420543212855" style="font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:18px;color:#1C2229;text-decoration:none">+420 543 212 855</a>
+            <span class="ss-hd-hours" style="display:inline-flex;align-items:center;gap:6px;font-size:12px;color:#5B6874">
+              <sc-if value="{{ isOpenNow }}" hint-placeholder-val="{{ false }}">
+                <span class="ss-hd-led" role="img" aria-label="Právě jsme online"></span>
+              </sc-if>
+              <span>Po–Pá 9.00–17.00</span>
+            </span>
+            </div>
+          </div>
+        </sc-if>
+
+        <div style="display:flex;align-items:center;gap:4px;flex:none">
+          <a class="ss-hd-action" href="#porovnani">
+            <dc-import name="Ikony" iconName="arrows-diff" size="22" hint-size="22px,22px"></dc-import>
+            <span>Porovnat</span>
+          </a>
+          <a class="ss-hd-action" href="#oblibene">
+            <dc-import name="Ikony" iconName="heart" size="22" hint-size="22px,22px"></dc-import>
+            <span>Oblíbené</span>
+          </a>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ narrow }}" hint-placeholder-val="{{ false }}">
+        <div style="margin-left:auto;display:flex;align-items:center;gap:2px;flex:none">
+          <a class="ss-hd-action" href="#prihlaseni" onClick="{{ openLogin }}" style="min-width:44px;height:44px;padding:0" aria-label="Přihlášení">
+            <dc-import name="Ikony" iconName="user" size="24" hint-size="24px,24px"></dc-import>
+          </a>
+          <dc-import name="Kosik" onClick="{{ openCart }}" count="{{ cartCount }}" total="{{ cartTotal }}" compact="{{ true }}" hideTotal="{{ true }}" onTint="{{ onTint }}" hint-size="56px,44px"></dc-import>
+          <button type="button" class="ss-hd-action ss-hd-burger" style="width:44px;min-width:44px;height:44px;padding:0;gap:0;line-height:0;display:flex;align-items:center;justify-content:center;color:#1C2229" onClick="{{ openMobile }}" aria-label="Otevřít menu" aria-expanded="{{ mobileExpanded }}">
+            <dc-import name="Ikony" iconName="menu-2" size="26" hint-size="26px,26px"></dc-import>
+          </button>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
+        <div style="flex:none">
+          <dc-import name="Kosik" onClick="{{ openCart }}" count="{{ cartCount }}" total="{{ cartTotal }}" onTint="{{ onTint }}" hint-size="150px,44px"></dc-import>
+        </div>
+      </sc-if>
+    </div>
+
+    <sc-if value="{{ narrow }}" hint-placeholder-val="{{ false }}">
+      <div style="max-width:1560px;margin:0 auto;padding:0 16px 12px">
+        <form onSubmit="{{ submitSearch }}" role="search">
+          <dc-import name="Input" label="" placeholder="Napište co hledáte…" icon="search" bordered="{{ onTint }}" value="{{ query }}" onChange="{{ onQuery }}" ariaLabel="Hledat v e-shopu" hint-size="100%,44px"></dc-import>
+        </form>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ suggestOpen }}" hint-placeholder-val="{{ false }}">
+      <div style="position:absolute;top:100%;left:0;right:0;z-index:300;padding:{{ suggestPad }}">
+        <div style="max-width:1560px;margin:0 auto">
+          <dc-import name="Vyhledavani" products="{{ suggestProducts }}" categories="{{ suggestCategories }}" total="{{ suggestTotal }}" onClose="{{ closeSuggest }}" hint-size="100%,520px"></dc-import>
+        </div>
+      </div>
+    </sc-if>
+  </div>
+
+  <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
+    <div class="ss-hd-nav" style="width:100%;background:#FFFFFF;border-top:1px solid #E1E6EB;position:relative" onMouseLeave="{{ closeMega }}">
+      <div style="max-width:1560px;margin:0 auto;padding:0 32px;display:flex;align-items:center;gap:4px">
+        <nav aria-label="Hlavní navigace" style="display:flex;align-items:center;flex-wrap:wrap;min-width:0">
+          <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="8">
+            <button type="button" class="ss-hd-tab" style="{{ t.style }}" data-hl="{{ t.highlight }}" data-open="{{ t.open }}" onMouseEnter="{{ t.onEnter }}" onFocus="{{ t.onEnter }}" onClick="{{ t.onClick }}" aria-expanded="{{ t.expanded }}" aria-current="{{ t.current }}">{{ t.label }}</button>
+          </sc-for>
+        </nav>
+        <button type="button" class="ss-hd-util" style="{{ storesBtnStyle }}" onMouseEnter="{{ openStores }}" onFocus="{{ openStores }}" onClick="{{ toggleStores }}" aria-expanded="{{ storesExpanded }}">
+          <dc-import name="Ikony" iconName="map-pin" size="18" hint-size="18px,18px"></dc-import>
+          <span>Prodejny (5)</span>
+        </button>
+      </div>
+      <sc-if value="{{ megaOpen }}" hint-placeholder-val="{{ false }}">
+        <div style="position:absolute;top:100%;left:0;right:0;z-index:300">
+          <dc-import name="MegaMenu" category="{{ megaCategory }}" hint-size="100%,380px"></dc-import>
+        </div>
+      </sc-if>
+      <sc-if value="{{ storesOpen }}" hint-placeholder-val="{{ false }}">
+        <div style="position:absolute;top:100%;left:0;right:0;z-index:300">
+          <dc-import name="ProdejnyMenu" hint-size="100%,420px"></dc-import>
+        </div>
+      </sc-if>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ loginOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed;inset:0;z-index:500;background:rgba(19,44,67,.5);display:flex;align-items:center;justify-content:center;padding:16px" onClick="{{ closeLogin }}"></div>
+    <div ref="{{ loginRef }}" role="dialog" aria-modal="true" aria-label="Přihlášení" style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:510;width:min(92vw,420px);max-height:92vh;overflow-y:auto">
+      <dc-import name="PrihlaseniModal" onClose="{{ closeLogin }}" hint-size="100%,560px"></dc-import>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ cartOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed;inset:0;z-index:400;background:rgba(19,44,67,.5)" onClick="{{ closeCart }}"></div>
+    <div ref="{{ cartRef }}" role="dialog" aria-modal="true" aria-label="Nákupní košík" style="{{ cartStyle }}">
+      <dc-import name="KosikDrawer" onClose="{{ closeCart }}" compact="{{ narrow }}" items="{{ cartItems }}" total="{{ cartTotal }}" onQty="{{ onCartQty }}" onRemove="{{ onCartRemove }}" style="position:absolute;inset:0;height:100%" hint-size="100%,100%"></dc-import>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ mobileOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="{{ overlayStyle }}" onClick="{{ closeMobile }}"></div>
+    <div ref="{{ drawerRef }}" role="dialog" aria-modal="true" aria-label="Hlavní menu" style="{{ drawerStyle }}">
+      <dc-import name="MobilniMenu" open="{{ mobileOpen }}" onClose="{{ closeMobile }}" style="position:absolute;inset:0;height:100%" hint-size="100%,100%"></dc-import>
+    </div>
+  </sc-if>
+</header>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:320},&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;light&quot;,&quot;options&quot;:[&quot;light&quot;,&quot;blue&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;cartCount&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:2,&quot;min&quot;:0,&quot;max&quot;:99,&quot;tsType&quot;:&quot;number&quot;},&quot;cartTotal&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;2 480 Kč&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;activeCategory&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;onSearch&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(query: string) =&gt; void&quot;}}">
+class Component extends DCLogic {
+  state = { width: typeof window !== 'undefined' ? document.documentElement.clientWidth : 1440, open: -1, mobileOpen: false, query: '', cats: null, util: [] };
+
+  componentDidMount() {
+    import('./menu.js').then(m => this.setState({ cats: m.MENU, util: m.UTILITY }));
+    import('./produkty.js').then(m => this.setState({ products: m.PRODUKTY }));
+    import('./kosik.js').then(m => this.setState({ cart: m.KOSIK.map(i => Object.assign({}, i)), fmt: m.formatKc }));
+    this._stick = () => {
+      const host = this._header && this._header.parentElement;
+      if (host && host.classList.contains('sc-host') && getComputedStyle(host).position === 'static') {
+        host.style.position = 'sticky'; host.style.top = '0'; host.style.zIndex = '200';
+      }
+    };
+    setTimeout(this._stick, 0);
+    this._measure = () => { if (this._header) this.setState({ headerH: Math.round(this._header.getBoundingClientRect().bottom) }); };
+    this._resize = () => { this.setState({ width: document.documentElement.clientWidth }); this._measure(); };
+    setTimeout(this._measure, 60);
+    window.addEventListener('resize', this._resize);
+    this._tick = setInterval(() => this.forceUpdate(), 60000);
+    this._key = (e) => {
+      if (e.key !== 'Escape') return;
+      if (this.state.loginOpen) { this.unlock(); this.setState({ loginOpen: false }); }
+      else if (this.state.cartOpen) { this.unlock(); this.setState({ cartOpen: false }); }
+      else if (this.state.mobileOpen) this.closeMobile();
+      else if (this.state.storesOpen) this.setState({ storesOpen: false });
+      else if (this.state.open >= 0) this.setState({ open: -1 });
+      else if (this.state.query) this.setState({ query: '' });
+    };
+    document.addEventListener('keydown', this._key);
+    this._trap = (e) => {
+      if (e.key !== 'Tab') return;
+      const panel = this.state.cartOpen ? this._cart : (this.state.mobileOpen ? this._drawer : null);
+      if (!panel) return;
+      const f = panel.querySelectorAll('a[href],button:not([disabled]),input,select,textarea,[tabindex]:not([tabindex="-1"])');
+      if (!f.length) return;
+      const first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    };
+    document.addEventListener('keydown', this._trap);
+    this._scroll = (e) => {
+      const t = e && e.target;
+      const y = (t && t.nodeType === 1 && t !== document.documentElement && t !== document.body)
+        ? t.scrollTop
+        : (window.pageYOffset || document.documentElement.scrollTop || 0);
+      const s = y > 8;
+      if (s !== !!this.state.scrolled) this.setState({ scrolled: s }, () => { if (this._measure) this._measure(); });
+    };
+    document.addEventListener('scroll', this._scroll, true);
+    window.addEventListener('scroll', this._scroll, { passive: true });
+  }
+  componentWillUnmount() {
+    clearInterval(this._tick);
+    window.removeEventListener('resize', this._resize);
+    document.removeEventListener('keydown', this._key);
+    document.removeEventListener('keydown', this._trap);
+    document.removeEventListener('scroll', this._scroll, true);
+    window.removeEventListener('scroll', this._scroll);
+    this.unlock();
+  }
+  lock() { this._prevOverflow = document.body.style.overflow; document.body.style.overflow = 'hidden'; }
+  unlock() { if (this._prevOverflow !== undefined) { document.body.style.overflow = this._prevOverflow; this._prevOverflow = undefined; } }
+  openMobile = () => {
+    this._returnFocus = document.activeElement;
+    if (this._measure) this._measure();
+    this.lock();
+    this.setState({ mobileOpen: true, open: -1 }, () => {
+      setTimeout(() => { if (this._drawer) { const f = this._drawer.querySelector('button,a[href]'); if (f) f.focus(); } }, 20);
+    });
+  };
+  closeMobile = () => {
+    this.unlock();
+    this.setState({ mobileOpen: false }, () => { if (this._returnFocus && this._returnFocus.focus) this._returnFocus.focus(); });
+  };
+
+  renderVals() {
+    const p = this.props;
+    const w = this.state.width;
+    const narrow = w < 1000;
+    const cats = this.state.cats || [];
+    const query = this.state.query;
+    const openIndex = this.state.open;
+
+    const cart = this.state.cart || [];
+    const fmt = this.state.fmt || ((n) => String(n) + ' Kč');
+    const cartCount = cart.reduce((s, i) => s + (i.qty || 1), 0);
+    const cartTotal = fmt(cart.reduce((s, i) => s + (i.unit || 0) * (i.qty || 1), 0));
+    const q = query.trim().toLowerCase();
+    const catPool = [];
+    cats.forEach(c => {
+      catPool.push({ label: c.label, href: c.href || '#' });
+      (c.groups || []).forEach(g => (g.items || []).forEach(i => catPool.push({ label: i.label, href: i.href || '#' })));
+    });
+    const products = this.state.products || [];
+    const match = (t) => String(t).toLowerCase().indexOf(q) !== -1;
+    const suggestCategories = q.length >= 2 ? catPool.filter(c => match(c.label)).slice(0, 7) : [];
+    const suggestProducts = q.length >= 2 ? products.filter(p2 => match(p2.title)).slice(0, 6) : [];
+    const open = q.length >= 2 && (suggestCategories.length > 0 || suggestProducts.length > 0);
+
+    const blue = p.theme === 'blue';
+    return {
+      theme: blue ? 'blue' : 'light',
+      onTint: blue,
+      searchVariant: blue ? 'ontint' : 'primary',
+      storesBtnStyle: {
+        marginLeft: 'auto', gap: '8px', fontSize: '14px', fontWeight: 600,
+        color: blue ? '#FFFFFF' : '#21507B', minHeight: '44px', padding: '0 10px',
+        border: 0, background: 'none', fontFamily: 'inherit', cursor: 'pointer'
+      },
+      wide: !narrow,
+      narrow,
+      utility: this.state.util,
+      showPhone: w >= 1150,
+      isOpenNow: (() => {
+        if (p.ledMode === 'on') return true;
+        if (p.ledMode === 'off') return false;
+        const now = new Date();
+        const day = now.getDay();
+        const min = now.getHours() * 60 + now.getMinutes();
+        return day >= 1 && day <= 5 && min >= 9 * 60 && min < 17 * 60;
+      })(),
+      topBarStyle: {
+        overflow: 'hidden',
+        maxHeight: this.state.scrolled ? '0px' : '48px',
+        opacity: this.state.scrolled ? 0 : 1,
+        transition: 'max-height .15s cubic-bezier(.22,.61,.36,1),opacity .12s cubic-bezier(.22,.61,.36,1)'
+      },
+      logoSize: narrow ? '28px' : '34px',
+      mainPad: narrow ? '10px 16px' : '14px 32px',
+      mainGap: narrow ? '8px' : '20px',
+      headerStyle: {
+        position: 'sticky', top: 0, zIndex: 200, width: '100%',
+        background: blue ? '#296093' : '#FFFFFF', boxShadow: '0 2px 8px rgba(19,44,67,.08)'
+      },
+      cartCount,
+      cartTotal,
+      cartItems: cart,
+      onCartQty: (idx, v) => this.setState(s => {
+        const next = s.cart.map((it, i) => i === idx ? Object.assign({}, it, { qty: v, price: fmt(it.unit * v) }) : it);
+        return { cart: next };
+      }),
+      onCartRemove: (idx) => this.setState(s => ({ cart: s.cart.filter((_, i) => i !== idx) })),
+      query,
+      onQuery: (v) => this.setState({ query: v }),
+      submitSearch: (e) => { e.preventDefault(); if (p.onSearch) p.onSearch(query); },
+      doSearch: () => { if (p.onSearch) p.onSearch(query); },
+      suggestOpen: open,
+      suggestProducts,
+      suggestCategories,
+      suggestTotal: suggestProducts.length,
+      suggestPad: narrow ? '0 16px' : '0 32px',
+      closeSuggest: () => this.setState({ query: '' }),
+      tabs: cats.map((c, i) => ({
+        label: c.label,
+        open: openIndex === i ? 'true' : 'false',
+        expanded: (c.groups && c.groups.length) ? (openIndex === i ? 'true' : 'false') : undefined,
+        current: p.activeCategory === c.label ? 'page' : undefined,
+        highlight: c.highlight ? 'true' : undefined,
+        style: c.highlight ? { color: blue ? '#FBB255' : '#B3261E' } : undefined,
+        onEnter: () => this.setState({ open: (c.groups && c.groups.length) ? i : -1, storesOpen: false }),
+        onClick: () => { window.location.hash = (c.href || '#').replace('#', ''); }
+      })),
+      megaOpen: !narrow && openIndex >= 0 && !!(cats[openIndex] && cats[openIndex].groups),
+      megaCategory: cats[openIndex],
+      closeMega: () => {
+        if (this.state.open >= 0) this.setState({ open: -1 });
+        if (this.state.storesOpen) this.setState({ storesOpen: false });
+      },
+      storesOpen: !narrow && !!this.state.storesOpen,
+      storesExpanded: this.state.storesOpen ? 'true' : 'false',
+      openStores: () => this.setState({ storesOpen: true, open: -1 }),
+      toggleStores: () => this.setState(s => ({ storesOpen: !s.storesOpen, open: -1 })),
+      mobileOpen: this.state.mobileOpen,
+      mobileExpanded: this.state.mobileOpen ? 'true' : 'false',
+      openMobile: this.openMobile,
+      closeMobile: this.closeMobile,
+      drawerRef: (el) => { this._drawer = el; },
+      headerRef: (el) => { this._header = el; },
+      cartRef: (el) => { this._cart = el; },
+      loginRef: (el) => { this._login = el; },
+      loginOpen: !!this.state.loginOpen,
+      openLogin: (e) => {
+        if (e && e.preventDefault) e.preventDefault();
+        this._returnFocus = document.activeElement;
+        this.lock();
+        this.setState({ loginOpen: true, open: -1, mobileOpen: false }, () => {
+          setTimeout(() => { if (this._login) { const f = this._login.querySelector('input,button,a[href]'); if (f) f.focus(); } }, 20);
+        });
+      },
+      closeLogin: () => {
+        this.unlock();
+        this.setState({ loginOpen: false }, () => { if (this._returnFocus && this._returnFocus.focus) this._returnFocus.focus(); });
+      },
+      cartOpen: !!this.state.cartOpen,
+      cartStyle: {
+        position: 'fixed', top: 0, right: 0, bottom: 0, zIndex: 410,
+        width: narrow ? '100%' : 'min(92vw,460px)', background: '#FFFFFF', overflow: 'hidden',
+        boxShadow: '0 16px 40px rgba(19,44,67,.18)'
+      },
+      openCart: () => {
+        this._returnFocus = document.activeElement;
+        this.lock();
+        this.setState({ cartOpen: true, open: -1 }, () => {
+          setTimeout(() => { if (this._cart) { const f = this._cart.querySelector('button,a[href]'); if (f) f.focus(); } }, 20);
+        });
+      },
+      closeCart: () => {
+        this.unlock();
+        this.setState({ cartOpen: false }, () => { if (this._returnFocus && this._returnFocus.focus) this._returnFocus.focus(); });
+      },
+      overlayStyle: {
+        position: 'fixed', top: (this.state.headerH || 0) + 'px', left: 0, right: 0, bottom: 0,
+        zIndex: 400, background: 'rgba(19,44,67,.5)'
+      },
+      drawerStyle: {
+        position: 'fixed', top: (this.state.headerH || 0) + 'px', left: 0, right: 0,
+        bottom: 0, zIndex: 410, overflow: 'hidden',
+        boxShadow: '0 16px 40px rgba(19,44,67,.18)'
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>

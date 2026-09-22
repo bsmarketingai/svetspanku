@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Archivo,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:800!important;font-stretch:75%;text-transform:uppercase;letter-spacing:-0.005em;}
+.ss-pm,.ss-pm *{box-sizing:border-box;}
+.ss-pm{font-family:Archivo,Helvetica,Arial,sans-serif;}
+.ss-pm a{text-decoration:none;}
+.ss-pm-card{position:relative;display:flex;flex-direction:column;gap:10px;min-width:0;padding:10px;border-radius:12px;background:#FFFFFF;transition:box-shadow .15s cubic-bezier(.22,.61,.36,1),background-color .12s cubic-bezier(.22,.61,.36,1);}
+.ss-pm-card:hover{background:#F7F9FB;box-shadow:0 4px 12px rgba(19,44,67,.12);}
+.ss-pm-title{font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:19px;color:#1C2229;}
+.ss-pm-title:hover{color:#296093;}
+.ss-pm-title:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);border-radius:6px;}
+.ss-pm-tel{position:relative;z-index:2;display:inline-flex;align-items:center;gap:8px;min-height:24px;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:16px;color:#21507B;border-radius:6px;}
+.ss-pm-tel:hover{color:#296093;text-decoration:underline;text-underline-offset:3px;}
+.ss-pm-tel:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+.ss-pm-row{position:relative;display:flex;align-items:center;gap:12px;width:100%;min-height:72px;padding:8px 4px;border-bottom:1px solid #E1E6EB;}
+.ss-pm-row:hover{background:#F7F9FB;}
+.ss-pm-all{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 8px;font-size:14px;font-weight:600;color:#21507B;border-radius:6px;}
+.ss-pm-all:hover{color:#296093;text-decoration:underline;text-underline-offset:3px;}
+.ss-pm-all:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+</style>
+</helmet>
+<div class="ss-pm" style="{{ shellStyle }}">
+  <div style="{{ innerStyle }}">
+
+    <div style="{{ topStyle }}">
+      <div style="display:flex;flex-direction:column;gap:2px;min-width:0">
+        <h2 class="ss-plain" style="margin:0;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:19px;color:#1C2229">Přijďte si vybrat osobně</h2>
+        <span style="font-size:14px;color:#3D4750">5 specializovaných prodejen po celé ČR</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-left:auto">
+        <sc-if value="{{ statusText }}" hint-placeholder-val="{{ false }}">
+          <span style="{{ statusStyle }}">
+            <span style="display:flex;flex:none;margin-top:1px"><dc-import name="Ikony" iconName="map-pin" size="16" hint-size="16px,16px"></dc-import></span>
+            <span>{{ statusText }}</span>
+          </span>
+        </sc-if>
+        <dc-import name="Tlacitko" label="{{ geoLabel }}" variant="secondary" size="medium" iconLeft="current-location" onClick="{{ locate }}" hint-size="230px,44px"></dc-import>
+      </div>
+    </div>
+
+    <sc-if value="{{ hasNearest }}" hint-placeholder-val="{{ false }}">
+      <div style="{{ nearestStyle }}">
+        <span style="display:flex;color:#296093;flex:none"><dc-import name="Ikony" iconName="map-pin" size="20" hint-size="20px,20px"></dc-import></span>
+        <span style="font-size:15px;line-height:1.35;color:#1C2229;min-width:0">Nejbližší prodejna: <strong>{{ nearestCity }}</strong> — {{ nearestKm }} od vás</span>
+        <span style="margin-left:auto">
+          <dc-import name="Tlacitko" label="Navigovat" variant="primary" size="medium" iconLeft="navigation" href="{{ navHref }}" newTab="{{ true }}" ariaLabel="{{ navLabel }}" hint-size="150px,44px"></dc-import>
+        </span>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
+      <div style="{{ gridStyle }}">
+        <sc-for list="{{ stores }}" as="s" hint-placeholder-count="5">
+          <div class="ss-pm-card">
+            <div style="position:relative;border-radius:8px;overflow:hidden;background:#EFF2F5">
+              <img src="{{ s.photo }}" alt="" style="display:block;width:100%;aspect-ratio:4/3;object-fit:cover" />
+            </div>
+            <a class="ss-pm-title" href="{{ s.href }}" style-after="content:'';position:absolute;inset:0;z-index:1;border-radius:12px">{{ s.city }}</a>
+            <div style="display:flex;flex-direction:column;gap:6px;min-width:0">
+              <span style="display:flex;align-items:flex-start;gap:8px;font-size:14px;line-height:1.4;color:#3D4750">
+                <span style="display:flex;color:#5B6874;flex:none;margin-top:2px"><dc-import name="Ikony" iconName="map-pin" size="16" hint-size="16px,16px"></dc-import></span>
+                <span>{{ s.address }}</span>
+              </span>
+              <span style="display:flex;align-items:flex-start;gap:8px;font-size:14px;line-height:1.4;color:#3D4750">
+                <span style="display:flex;color:#5B6874;flex:none;margin-top:2px"><dc-import name="Ikony" iconName="clock" size="16" hint-size="16px,16px"></dc-import></span>
+                <span>{{ s.hours }}</span>
+              </span>
+            </div>
+            <a class="ss-pm-tel" href="{{ s.tel }}">
+              <span style="display:flex;color:#296093;flex:none"><dc-import name="Ikony" iconName="phone" size="16" hint-size="16px,16px"></dc-import></span>
+              <span>{{ s.phone }}</span>
+            </a>
+            <div style="position:relative;z-index:2;margin-top:auto;padding-top:4px">
+              <dc-import name="Tlacitko" label="Detail prodejny" variant="secondary" size="medium" iconRight="chevron-right" href="{{ s.href }}" ariaLabel="{{ s.detailLabel }}" hint-size="100%,44px"></dc-import>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ narrow }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;flex-direction:column">
+        <sc-for list="{{ stores }}" as="s" hint-placeholder-count="5">
+          <div class="ss-pm-row">
+            <img src="{{ s.photo }}" alt="" style="display:block;width:64px;height:56px;flex:none;border-radius:8px;object-fit:cover;background:#EFF2F5" />
+            <div style="display:flex;flex-direction:column;gap:2px;flex:1;min-width:0">
+              <a class="ss-pm-title" href="{{ s.href }}" style="font-size:16px" style-after="content:'';position:absolute;inset:0;z-index:1">{{ s.city }}</a>
+              <span style="font-size:13px;line-height:1.35;color:#3D4750">{{ s.hours }}</span>
+              <sc-if value="{{ s.dist }}" hint-placeholder-val="{{ false }}">
+                <span style="font-size:13px;font-weight:600;color:#21507B">{{ s.dist }}</span>
+              </sc-if>
+            </div>
+            <a class="ss-pm-tel" href="{{ s.tel }}" style="width:44px;height:44px;flex:none;justify-content:center;background:#F0F5FA" aria-label="{{ s.telLabel }}">
+              <span style="display:flex;color:#296093"><dc-import name="Ikony" iconName="phone" size="20" hint-size="20px,20px"></dc-import></span>
+            </a>
+          </div>
+        </sc-for>
+      </div>
+    </sc-if>
+
+    <div style="display:flex;align-items:center;justify-content:flex-end;padding:4px 0 16px">
+      <dc-import name="Tlacitko" label="Všechny prodejny a kontakty" variant="primary" size="medium" iconRight="chevron-right" href="#prodejny" hint-size="270px,44px"></dc-import>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:520},&quot;compact&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  state = { width: typeof window !== 'undefined' ? document.documentElement.clientWidth : 1440, stores: [], geo: 'idle', pos: null };
+
+  componentDidMount() {
+    import('./prodejny.js').then(m => this.setState({ stores: m.PRODEJNY, dist: m.vzdalenostKm }));
+    this._resize = () => this.setState({ width: document.documentElement.clientWidth });
+    window.addEventListener('resize', this._resize);
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this._resize); }
+
+  locate = () => {
+    if (!navigator.geolocation) { this.setState({ geo: 'error' }); return; }
+    this.setState({ geo: 'pending' });
+    navigator.geolocation.getCurrentPosition(
+      (p) => this.setState({ geo: 'ok', pos: { lat: p.coords.latitude, lng: p.coords.longitude } }),
+      () => this.setState({ geo: 'demo', pos: { lat: 50.0810, lng: 14.4260 } }),
+      { timeout: 8000, maximumAge: 300000 }
+    );
+  };
+
+  renderVals() {
+    const w = this.props.compact ? 0 : this.state.width;
+    const narrow = w < 820;
+    const geo = this.state.geo;
+    const pos = this.state.pos;
+    const calc = this.state.dist;
+
+    let list = (this.state.stores || []).map(s => Object.assign({}, s));
+    if ((geo === 'ok' || geo === 'demo') && pos && calc) {
+      list.forEach(s => { s.km = calc(pos.lat, pos.lng, s.lat, s.lng); });
+    }
+    const stores = list.map(s => ({
+      city: s.city, address: s.address, hours: s.hours, phone: s.phone,
+      photo: s.photo, href: s.href, tel: 'tel:' + s.phone.replace(/\s/g, ''),
+      telLabel: 'Zavolat na prodejnu ' + s.city,
+      detailLabel: 'Detail prodejny ' + s.city,
+      dist: s.km === undefined ? '' : Math.max(1, Math.round(s.km)) + ' km od vás'
+    }));
+
+    const near = (geo === 'ok' || geo === 'demo') && list.length
+      ? list.reduce((a, b) => (b.km < a.km ? b : a))
+      : null;
+
+    return {
+      hasNearest: !!near,
+      nearestCity: near ? near.city : '',
+      nearestKm: near ? Math.max(1, Math.round(near.km)) + ' km' : '',
+      navLabel: near ? 'Navigovat do prodejny ' + near.city + ' — otevře Mapy Google v novém okně' : 'Navigovat',
+      navHref: near && pos
+        ? 'https://www.google.com/maps/dir/?api=1&origin=' + pos.lat + ',' + pos.lng + '&destination=' + near.lat + ',' + near.lng
+        : '#prodejny',
+      nearestStyle: {
+        display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap',
+        padding: narrow ? '12px' : '12px 16px', marginBottom: narrow ? '12px' : '20px',
+        borderRadius: '12px', background: '#F0F5FA'
+      },
+      wide: !narrow,
+      narrow,
+      stores,
+      shellStyle: {
+        width: '100%', background: '#FFFFFF',
+        boxShadow: this.props.compact ? 'none' : '0 16px 40px rgba(19,44,67,.18)',
+        borderRadius: this.props.compact ? '0' : '0 0 12px 12px'
+      },
+      innerStyle: { maxWidth: '1560px', margin: '0 auto', padding: narrow ? '0 16px' : '0 32px' },
+      topStyle: {
+        display: 'flex', alignItems: 'center', gap: '16px', flexWrap: 'wrap',
+        padding: narrow ? '16px 0 12px' : '20px 0 16px',
+        borderBottom: '1px solid #E1E6EB', marginBottom: narrow ? '8px' : '20px'
+      },
+      gridStyle: {
+        display: 'grid',
+        gridTemplateColumns: 'repeat(' + (w >= 1560 ? 5 : w >= 1150 ? 4 : 3) + ',minmax(0,1fr))',
+        gap: '20px', marginBottom: '20px'
+      },
+      geoLabel: geo === 'pending' ? 'Hledám polohu…' : (geo === 'idle' ? 'Najít nejbližší prodejnu' : 'Přepočítat vzdálenosti'),
+      locate: this.locate,
+      statusText: geo === 'ok' ? 'Vzdálenosti počítáme od vaší aktuální polohy.'
+        : (geo === 'demo' ? 'Vaše poloha: Praha 1, Václavské náměstí.' : ''),
+      statusStyle: {
+        display: 'flex', alignItems: 'flex-start', gap: '6px', lineHeight: 1.35,
+        fontSize: '13px', color: '#3D4750', maxWidth: '40ch'
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>
