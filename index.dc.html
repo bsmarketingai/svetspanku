@@ -81,7 +81,7 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
             <span style="font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:21px;line-height:1.2">Cenově zvýhodněné komplety se slevou až 30 %</span>
             <span style="font-size:14px;color:var(--ss-text-secondary,#3D4750)">Postel, rošt a matrace v jedné objednávce</span>
           </a>
-          <div class="ss-hp-tile" style="background:#132C43;color:#FFFFFF">
+          <div class="ss-hp-tile" style="background:linear-gradient(to top,rgba(9,18,27,.92) 0%,rgba(9,18,27,.72) 35%,rgba(9,18,27,.2) 70%,rgba(9,18,27,0) 90%),url(pruvodce-matrace-lifestyle.png) center 30% / cover no-repeat,#132C43;color:#FFFFFF">
             <span style="font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:21px;line-height:1.2">Najít moji matraci</span>
             <span style="font-size:14px;color:#DCE8F2">Osm otázek a doporučíme model podle vaší váhy a polohy spánku</span>
             <div style="margin-top:4px"><dc-import name="Tlacitko" label="Průvodce výběrem" variant="primary" href="#pruvodce" iconRight="arrow-right" hint-size="200px,44px"></dc-import></div>
@@ -303,7 +303,7 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
             <dc-import name="Chip" label="{{ c.label }}" size="small" variant="{{ c.variant }}" ariaPressed="{{ c.pressed }}" onClick="{{ c.onPick }}" hint-size="130px,32px"></dc-import>
           </sc-for>
         </div>
-        <div style="display:grid;grid-template-columns:{{ storeTemplate }};gap:20px;align-items:start">
+        <div style="display:grid;grid-template-columns:{{ storeTemplate }};gap:20px;align-items:stretch">
           <div class="ss-elev" style="background:var(--ss-surface-page,#FFFFFF);border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:16px;min-width:0">
             <h3 style="margin:0;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:21px">{{ storeTitle }}</h3>
             <div style="display:flex;flex-wrap:wrap;gap:8px">
@@ -344,7 +344,7 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
             <p style="margin:0;max-width:60ch;font-size:15px;line-height:1.6;color:var(--ss-text-secondary,#3D4750)">Odpovíte na osm otázek o váze, poloze spánku a rozpočtu. Doporučíme tři modely a řekneme, proč zrovna je.</p>
             <div style="margin-top:4px"><dc-import name="Tlacitko" label="Najít dokonalou matraci" variant="buy" size="large" href="#pruvodce" iconRight="arrow-right" hint-size="260px,52px"></dc-import></div>
           </div>
-          <div class="ss-hp-ph" style="min-height:200px;background:var(--ss-surface-accent-strong,#FDDCAA);color:var(--ss-status-warning,#A4600C)"><dc-import name="Ikony" iconName="photo" size="32" hint-size="32px,32px"></dc-import></div>
+          <div role="img" aria-label="Rodina zkouší matraci na prodejně" style="min-height:240px;height:100%;border-radius:12px;background:url(pruvodce-matrace-lifestyle.png) center 35% / cover no-repeat,var(--ss-surface-accent-strong,#FDDCAA)"></div>
         </div>
       </div>
     </section>

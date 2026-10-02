@@ -137,7 +137,7 @@ a:hover{color:var(--ss-hover-text,#A4600C);}
                     </button>
                   </div>
                   <a href="{{ c.href }}" style="{{ mediaStyle }}" aria-hidden="true" tabindex="-1">
-                    <span style="color:var(--ss-text-disabled,#9AA6B2);display:flex"><dc-import name="Ikony" iconName="photo" size="32" hint-size="32px,32px"></dc-import></span>
+                    <sc-if value="{{ c.hasImage }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;inset:8px;background:center / contain no-repeat;background-image:{{ c.bg }}"></span></sc-if><sc-if value="{{ c.noImage }}" hint-placeholder-val="{{ true }}"><span style="color:var(--ss-text-disabled,#9AA6B2);display:flex"><dc-import name="Ikony" iconName="photo" size="32" hint-size="32px,32px"></dc-import></span></sc-if>
                   </a>
                   <h2 class="ss-plain" style="margin:0"><a class="ss-cmp-title" href="{{ c.href }}">{{ c.title }}</a></h2>
                   <p style="margin:0;font-size:14px;line-height:1.5;color:var(--ss-text-secondary,#3D4750);text-wrap:pretty">{{ c.perex }}</p>
@@ -211,19 +211,19 @@ class Component extends DCLogic {
   };
   static ORDER = ['rozmer','material','odstin','nosnost','vyska','tuhost','konstrukce','jadro','potah','zony','celo','ulozny','rost','rostvceni','zaruka'];
   static DATA = [
-    { id: 'm20', kat: 'matrace', title: 'Matrace Spring Variant 20 cm', href: '#produkt', stock: 'inStock',
+    { id: 'm20', image: 'produkt-matrace-spring-variant.png', kat: 'matrace', title: 'Matrace Spring Variant 20 cm', href: '#produkt', stock: 'inStock',
       perex: 'Partnerská matrace s tuhostí volitelnou pro každou polovinu samostatně. Už žádná mezera uprostřed.',
       price: '7 950 Kč',
       params: { rozmer: '80 × 200 cm', nosnost: '120 kg', vyska: '19 cm', tuhost: '3/5 – středně tuhá', konstrukce: 'Pěnová', jadro: 'Studená pěna HR', potah: 'Úplet Silver, snímatelný', zony: '5 zón', rost: 'Ano', zaruka: '5 let' } },
-    { id: 'm22', kat: 'matrace', title: 'Matrace Spring Variant 22 cm', href: '#produkt', stock: 'inStock',
+    { id: 'm22', image: 'produkt-matrace-leda-duo.png', kat: 'matrace', title: 'Matrace Spring Variant 22 cm', href: '#produkt', stock: 'inStock',
       perex: 'Partnerská matrace s tuhostí volitelnou pro každou polovinu samostatně. Už žádná mezera uprostřed.',
       price: '8 950 Kč', priceBefore: '9 950 Kč',
       params: { rozmer: '80 × 200 cm', nosnost: '140 kg', vyska: '21 cm', tuhost: '4/5 – tuhá', konstrukce: 'Pěnová', jadro: 'Studená pěna HR + latex', potah: 'Úplet Silver, snímatelný', zony: '7 zón', rost: 'Ano', zaruka: '5 let' } },
-    { id: 'm24', kat: 'matrace', title: 'Matrace Spring Variant 24 cm', href: '#produkt', stock: 'lowStock',
+    { id: 'm24', image: 'produkt-matrace-duo-comfort.png', kat: 'matrace', title: 'Matrace Spring Variant 24 cm', href: '#produkt', stock: 'lowStock',
       perex: 'Nejvyšší z řady. Taštičkové jádro s latexovou deskou pro vyšší hmotnost spících.',
       price: '9 950 Kč',
       params: { rozmer: '80 × 200 cm', nosnost: '160 kg', vyska: '23 cm', tuhost: '3/5 – středně tuhá', konstrukce: 'Taštičková', jadro: 'Taštičkové pružiny + latex', potah: 'Úplet Silver, snímatelný', zony: '7 zón', rost: 'Ne', zaruka: '7 let' } },
-    { id: 'b1', kat: 'postele', title: 'Postel z masivu LEVITA', href: '#produkt', stock: 'inStock',
+    { id: 'b1', image: 'levita-hlavni.png', kat: 'postele', title: 'Postel z masivu LEVITA', href: '#produkt', stock: 'inStock',
       perex: 'Smrkový masiv s úložným prostorem po celé ploše lože a plynovými písty.',
       price: '21 390 Kč',
       params: { rozmer: '180 × 200 cm', material: 'Smrkový masiv', odstin: 'Bílá lazura', nosnost: '250 kg', celo: 'Dřevěné plné', ulozny: 'Ano, po celé ploše', rostvceni: 'Ne', zaruka: '5 let' } },
@@ -298,7 +298,7 @@ class Component extends DCLogic {
 
     const rows = keys.map((k, ri) => {
       const zebra = ri % 2 === 1;
-      const bg = zebra ? '#F7F9FB' : '#FFFFFF';
+      const bg = zebra ? 'var(--ss-surface-subtle,#F7F9FB)' : 'var(--ss-surface-page,#FFFFFF)';
       return {
         label: Component.LABELS[k],
         cells: active.map(d => ({ value: d.params[k] || '—' })),
@@ -328,6 +328,7 @@ class Component extends DCLogic {
       },
       stock: d.stock, stockLabel: Component.STOCK[d.stock],
       removeLabel: 'Odebrat ' + d.title + ' z porovnání',
+          hasImage: !!d.image, noImage: !d.image, bg: d.image ? 'url(' + d.image + ')' : 'none',
       fav: this.state.fav.indexOf(d.id) !== -1,
       favIcon: this.state.fav.indexOf(d.id) !== -1 ? 'heart-filled' : 'heart',
       favColor: this.state.fav.indexOf(d.id) !== -1 ? 'var(--ss-status-error,#B3261E)' : 'var(--ss-text-muted,#5B6874)',
@@ -389,7 +390,7 @@ class Component extends DCLogic {
         display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '12px',
         padding: narrow ? '4px 0 16px' : '8px 0 16px'
       },
-      headCornerStyle: { position: 'sticky', left: 0, zIndex: 1, background: 'var(--ss-surface-page,#FFFFFF)' },
+      headCornerStyle: { position: 'sticky', left: 0, zIndex: 1, background: 'transparent' },
       headCellStyle: {
         display: 'flex', flexDirection: 'column', gap: '10px', minWidth: 0, height: '100%',
         padding: narrow ? '0 16px 0 0' : '0 16px',
@@ -397,7 +398,7 @@ class Component extends DCLogic {
       },
       mediaStyle: {
         display: 'flex', alignItems: 'center', justifyContent: 'center',
-        aspectRatio: '4 / 3', background: 'var(--ss-surface-muted,#EDF1F5)', borderRadius: '6px', width: '100%'
+        position: 'relative', aspectRatio: '4 / 3', background: '#FFFFFF', borderRadius: '8px', width: '100%'
       },
       priceRowStyle: {
         display: 'flex', flexDirection: colW >= 260 ? 'row' : 'column',
