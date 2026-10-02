@@ -8,25 +8,27 @@
 <body>
 <x-dc>
 <helmet>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./tmavy-rezim.css">
+<script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')!=='light')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h',localStorage.getItem('ss-font-h')||'alt');d.setAttribute('data-font-b',localStorage.getItem('ss-font-b')||'alt');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
-h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Archivo,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:800!important;font-stretch:75%;text-transform:uppercase;letter-spacing:-0.005em;}
+h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
 
-.ss-var{display:flex;align-items:center;gap:10px;border:0;background:#FFFFFF;font:inherit;font-family:Archivo,Helvetica,Arial,sans-serif;color:#1C2229;cursor:pointer;border-radius:6px;box-shadow:inset 0 0 0 1px #C8D0D8;transition:box-shadow .15s cubic-bezier(.22,.61,.36,1),background-color .12s cubic-bezier(.22,.61,.36,1);}
-.ss-var:hover{box-shadow:inset 0 0 0 1px #8DB3D3;}
-.ss-var:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35),inset 0 0 0 1px #296093;}
-.ss-var[aria-checked="true"]{box-shadow:inset 0 0 0 2px #296093;background:#F0F5FA;}
+.ss-var{display:flex;align-items:center;gap:10px;border:0;background:var(--ss-surface-page,#FFFFFF);font:inherit;font-family:Roboto,Helvetica,Arial,sans-serif;color:var(--ss-text-primary,#1C2229);cursor:pointer;border-radius:6px;box-shadow:inset 0 0 0 1px var(--ss-border-strong,#C8D0D8);transition:box-shadow .15s cubic-bezier(.22,.61,.36,1),background-color .12s cubic-bezier(.22,.61,.36,1);}
+.ss-var:hover{box-shadow:inset 0 0 0 1px var(--ss-border-hover,#8DB3D3);}
+.ss-var:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35),inset 0 0 0 1px var(--ss-border-action,#296093);}
+.ss-var[aria-checked="true"]{box-shadow:inset 0 0 0 2px var(--ss-border-action,#296093);background:var(--ss-surface-hover,#F0F5FA);}
 .ss-var[aria-disabled="true"]{opacity:.45;cursor:not-allowed;}
 </style>
 </helmet>
-<div style="font-family:Archivo,Helvetica,Arial,sans-serif;display:flex;flex-direction:column;gap:10px;width:100%;min-width:0">
+<div style="font-family:Roboto,Helvetica,Arial,sans-serif;display:flex;flex-direction:column;gap:10px;width:100%;min-width:0">
   <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:8px">
-    <span style="font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#55616C">{{ title }}</span>
+    <span style="font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ss-text-muted,#55616C)">{{ title }}</span>
     <sc-if value="{{ hasSelectedLabel }}" hint-placeholder-val="{{ true }}">
-      <span style="font-size:14px;font-weight:600;color:#1C2229">{{ selectedLabel }}</span>
+      <span style="font-size:14px;font-weight:600;color:var(--ss-text-primary,#1C2229)">{{ selectedLabel }}</span>
     </sc-if>
     <sc-if value="{{ hasHelp }}" hint-placeholder-val="{{ false }}">
-      <a href="{{ helpHref }}" style="margin-left:auto;font-size:13px;color:#296093">{{ helpLabel }}</a>
+      <a href="{{ helpHref }}" style="margin-left:auto;font-size:13px;color:var(--ss-link,#296093)">{{ helpLabel }}</a>
     </sc-if>
   </div>
 
@@ -34,9 +36,9 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
     <div role="radiogroup" aria-label="{{ title }}" style="display:flex;flex-wrap:wrap;gap:8px">
       <sc-for list="{{ options }}" as="o" hint-placeholder-count="4">
         <button type="button" class="ss-var" style="min-height:52px;padding:8px 16px;flex-direction:column;align-items:flex-start;gap:2px" role="radio" aria-checked="{{ o.checked }}" aria-disabled="{{ o.disabled }}" onClick="{{ o.onPick }}">
-          <span style="font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:16px">{{ o.label }}</span>
+          <span style="font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:16px">{{ o.label }}</span>
           <sc-if value="{{ o.hasNote }}" hint-placeholder-val="{{ false }}">
-            <span style="font-size:12px;color:#5B6874">{{ o.note }}</span>
+            <span style="font-size:12px;color:var(--ss-text-muted,#5B6874)">{{ o.note }}</span>
           </sc-if>
         </button>
       </sc-for>
@@ -49,7 +51,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
         <button type="button" class="ss-var" style="width:100%;min-height:48px;padding:8px 16px" role="radio" aria-checked="{{ o.checked }}" aria-disabled="{{ o.disabled }}" onClick="{{ o.onPick }}">
           <span style="flex:1;min-width:0;text-align:left;font-size:15px;font-weight:500">{{ o.label }}</span>
           <sc-if value="{{ o.hasNote }}" hint-placeholder-val="{{ false }}">
-            <span style="font-size:13px;color:#5B6874">{{ o.note }}</span>
+            <span style="font-size:13px;color:var(--ss-text-muted,#5B6874)">{{ o.note }}</span>
           </sc-if>
         </button>
       </sc-for>

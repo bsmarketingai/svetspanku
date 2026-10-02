@@ -8,48 +8,50 @@
 <body>
 <x-dc>
 <helmet>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./tmavy-rezim.css">
+<script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')!=='light')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h',localStorage.getItem('ss-font-h')||'alt');d.setAttribute('data-font-b',localStorage.getItem('ss-font-b')||'alt');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
-h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Archivo,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:800!important;font-stretch:75%;text-transform:uppercase;letter-spacing:-0.005em;}
+h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
 
 html,body{margin:0!important;padding:0!important;}
 #dc-root{margin:0!important;padding:0!important;width:100%!important;max-width:none!important;border:0!important;}
 #dc-root>.sc-host{margin:0!important;padding:0!important;width:100%!important;}
-a{color:#296093;}a:hover{color:#21507B;}
+a{color:var(--ss-link,#296093);}a:hover{color:var(--ss-hover-text,#A4600C);}
 </style>
 </helmet>
-<div style="width:100%;background:#FFFFFF;color:#1C2229;font-family:Archivo,Helvetica,Arial,sans-serif;font-size:15px;line-height:1.55">
-  <header style="width:100%;background:#F7F9FB;border-bottom:1px solid #E1E6EB">
+<div style="width:100%;background:var(--ss-surface-page,#FFFFFF);color:var(--ss-text-primary,#1C2229);font-family:Roboto,Helvetica,Arial,sans-serif;font-size:15px;line-height:1.55">
+  <header style="width:100%;background:var(--ss-surface-subtle,#F7F9FB);border-bottom:1px solid var(--ss-border-subtle,#E1E6EB)">
     <div style="max-width:1560px;margin:0 auto;padding:40px 32px">
-      <span style="display:block;font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#21507B;margin-bottom:12px">Katalog</span>
-      <h1 style="margin:0 0 12px;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:44px;line-height:1.08">Komponenty</h1>
-      <p style="margin:0;max-width:76ch;color:#3D4750">Jediné místo, kde se komponenty ladí a předvádějí. Každá komponenta je samostatný <code style="font-family:ui-monospace,Menlo,monospace;font-size:13px">.dc.html</code> v kořeni, importovaný přes <code style="font-family:ui-monospace,Menlo,monospace;font-size:13px">dc-import</code>. Tokeny drží <a href="DesignSystem.dc.html">DesignSystem.dc.html</a>.</p>
+      <span style="display:block;font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ss-link-hover,#21507B);margin-bottom:12px">Katalog</span>
+      <h1 style="margin:0 0 12px;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:44px;line-height:1.08">Komponenty</h1>
+      <p style="margin:0;max-width:76ch;color:var(--ss-text-secondary,#3D4750)">Jediné místo, kde se komponenty ladí a předvádějí. Každá komponenta je samostatný <code style="font-family:ui-monospace,Menlo,monospace;font-size:13px">.dc.html</code> v kořeni, importovaný přes <code style="font-family:ui-monospace,Menlo,monospace;font-size:13px">dc-import</code>. Tokeny drží <a href="DesignSystem.dc.html">DesignSystem.dc.html</a>.</p>
     </div>
   </header>
 
   <section style="width:100%">
     <div style="max-width:1560px;margin:0 auto;padding:48px 32px">
       <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:12px;margin-bottom:8px">
-        <h2 style="margin:0;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:28px">Ikony</h2>
-        <code style="font-family:ui-monospace,Menlo,monospace;font-size:13px;color:#55616C">Ikony.dc.html · prop iconName, size, strokeWidth</code>
+        <h2 style="margin:0;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:28px">Ikony</h2>
+        <code style="font-family:ui-monospace,Menlo,monospace;font-size:13px;color:var(--ss-text-muted,#55616C)">Ikony.dc.html · prop iconName, size, strokeWidth</code>
       </div>
-      <p style="margin:0 0 24px;max-width:76ch;color:#3D4750">Kurátorská sada klienta, Tabler 24 × 24, stroke 2, <code style="font-family:ui-monospace,Menlo,monospace;font-size:13px">currentColor</code>. Bez propu <code style="font-family:ui-monospace,Menlo,monospace;font-size:13px">iconName</code> komponenta vykreslí celý registr, s propem jednu ikonu.</p>
-      <div style="border-radius:12px;overflow:hidden;box-shadow:0 0 0 1px #E1E6EB">
+      <p style="margin:0 0 24px;max-width:76ch;color:var(--ss-text-secondary,#3D4750)">Kurátorská sada klienta, Tabler 24 × 24, stroke 2, <code style="font-family:ui-monospace,Menlo,monospace;font-size:13px">currentColor</code>. Bez propu <code style="font-family:ui-monospace,Menlo,monospace;font-size:13px">iconName</code> komponenta vykreslí celý registr, s propem jednu ikonu.</p>
+      <div style="border-radius:12px;overflow:hidden;box-shadow:0 0 0 1px var(--ss-border-subtle,#E1E6EB)">
         <dc-import name="Ikony" hint-size="100%,560px"></dc-import>
       </div>
     </div>
   </section>
 
-  <section style="width:100%;background:#F7F9FB;border-top:1px solid #E1E6EB">
+  <section style="width:100%;background:var(--ss-surface-subtle,#F7F9FB);border-top:1px solid var(--ss-border-subtle,#E1E6EB)">
     <div style="max-width:1560px;margin:0 auto;padding:48px 32px">
       <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:12px;margin-bottom:8px">
-        <h2 style="margin:0;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:28px">Tlačítka</h2>
-        <code style="font-family:ui-monospace,Menlo,monospace;font-size:13px;color:#55616C">Tlacitko.dc.html · label, variant, size, iconLeft, iconRight, iconOnly, href, fullWidth, disabled</code>
+        <h2 style="margin:0;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:28px">Tlačítka</h2>
+        <code style="font-family:ui-monospace,Menlo,monospace;font-size:13px;color:var(--ss-text-muted,#55616C)">Tlacitko.dc.html · label, variant, size, iconLeft, iconRight, iconOnly, href, fullWidth, disabled</code>
       </div>
-      <p style="margin:0 0 24px;max-width:76ch;color:#3D4750">Jediný zdroj tlačítek. Vždy <code style="font-family:ui-monospace,Menlo,monospace;font-size:13px">&lt;button type="button"&gt;</code> nebo <code style="font-family:ui-monospace,Menlo,monospace;font-size:13px">&lt;a href&gt;</code>. Ikona jen z registru.</p>
-      <div style="background:#FFFFFF;border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:28px">
+      <p style="margin:0 0 24px;max-width:76ch;color:var(--ss-text-secondary,#3D4750)">Jediný zdroj tlačítek. Vždy <code style="font-family:ui-monospace,Menlo,monospace;font-size:13px">&lt;button type="button"&gt;</code> nebo <code style="font-family:ui-monospace,Menlo,monospace;font-size:13px">&lt;a href&gt;</code>. Ikona jen z registru.</p>
+      <div style="background:var(--ss-surface-page,#FFFFFF);border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:28px">
         <div style="display:flex;flex-direction:column;gap:12px">
-          <span style="font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#55616C">Varianty · velikost medium 44</span>
+          <span style="font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ss-text-muted,#55616C)">Varianty · velikost medium 44</span>
           <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
             <dc-import name="Tlacitko" label="Zobrazit nabídku" variant="primary" hint-size="180px,44px"></dc-import>
             <dc-import name="Tlacitko" label="Více informací" variant="secondary" hint-size="160px,44px"></dc-import>
@@ -62,7 +64,7 @@ a{color:#296093;}a:hover{color:#21507B;}
           </div>
         </div>
         <div style="display:flex;flex-direction:column;gap:12px">
-          <span style="font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#55616C">Velikosti · standard 36 / medium 44 / large 52</span>
+          <span style="font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ss-text-muted,#55616C)">Velikosti · standard 36 / medium 44 / large 52</span>
           <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
             <dc-import name="Tlacitko" label="Standard" variant="primary" size="standard" hint-size="120px,36px"></dc-import>
             <dc-import name="Tlacitko" label="Medium" variant="primary" size="medium" hint-size="120px,44px"></dc-import>
@@ -70,7 +72,7 @@ a{color:#296093;}a:hover{color:#21507B;}
           </div>
         </div>
         <div style="display:flex;flex-direction:column;gap:12px">
-          <span style="font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#55616C">Ikonové konfigurace</span>
+          <span style="font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ss-text-muted,#55616C)">Ikonové konfigurace</span>
           <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
             <dc-import name="Tlacitko" label="Vyhledat" variant="secondary" iconLeft="search" hint-size="140px,44px"></dc-import>
             <dc-import name="Tlacitko" label="Bez ikony" variant="secondary" hint-size="130px,44px"></dc-import>
@@ -93,11 +95,11 @@ a{color:#296093;}a:hover{color:#21507B;}
   <section style="width:100%">
     <div style="max-width:1560px;margin:0 auto;padding:48px 32px">
       <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:12px;margin-bottom:8px">
-        <h2 style="margin:0;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:28px">Chipsy</h2>
-        <code style="font-family:ui-monospace,Menlo,monospace;font-size:13px;color:#55616C">Chip.dc.html · label, variant, size, active, count, icon, href</code>
+        <h2 style="margin:0;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:28px">Chipsy</h2>
+        <code style="font-family:ui-monospace,Menlo,monospace;font-size:13px;color:var(--ss-text-muted,#55616C)">Chip.dc.html · label, variant, size, active, count, icon, href</code>
       </div>
-      <p style="margin:0 0 24px;max-width:76ch;color:#3D4750">Aktivní filtrační chip nese ✕ a <code style="font-family:ui-monospace,Menlo,monospace;font-size:13px">aria-pressed</code>. S <code style="font-family:ui-monospace,Menlo,monospace;font-size:13px">href</code> se vykreslí jako odkaz.</p>
-      <div style="background:#F7F9FB;border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:24px">
+      <p style="margin:0 0 24px;max-width:76ch;color:var(--ss-text-secondary,#3D4750)">Aktivní filtrační chip nese ✕ a <code style="font-family:ui-monospace,Menlo,monospace;font-size:13px">aria-pressed</code>. S <code style="font-family:ui-monospace,Menlo,monospace;font-size:13px">href</code> se vykreslí jako odkaz.</p>
+      <div style="background:var(--ss-surface-subtle,#F7F9FB);border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:24px">
         <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center">
           <dc-import name="Chip" label="Matrace" variant="filter" hint-size="110px,40px"></dc-import>
           <dc-import name="Chip" label="Tvrdost H3" variant="filter" active="{{ true }}" hint-size="140px,40px"></dc-import>
@@ -109,7 +111,7 @@ a{color:#296093;}a:hover{color:#21507B;}
           <dc-import name="Chip" label="Doprava zdarma" variant="accent" icon="truck" hint-size="180px,40px"></dc-import>
         </div>
         <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center">
-          <span style="font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#55616C;width:100%">Velikost small 32</span>
+          <span style="font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ss-text-muted,#55616C);width:100%">Velikost small 32</span>
           <dc-import name="Chip" label="Latexové" variant="outline" size="small" hint-size="110px,32px"></dc-import>
           <dc-import name="Chip" label="Dětské postele" variant="outline" size="small" hint-size="140px,32px"></dc-import>
           <dc-import name="Chip" label="Pěnové" variant="filter" size="small" active="{{ true }}" hint-size="120px,32px"></dc-import>
@@ -118,14 +120,14 @@ a{color:#296093;}a:hover{color:#21507B;}
     </div>
   </section>
 
-  <section style="width:100%;background:#F7F9FB">
+  <section style="width:100%;background:var(--ss-surface-subtle,#F7F9FB)">
     <div style="max-width:1560px;margin:0 auto;padding:48px 32px">
       <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:12px;margin-bottom:8px">
-        <h2 style="margin:0;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:28px">Formulářové prvky</h2>
-        <code style="font-family:ui-monospace,Menlo,monospace;font-size:13px;color:#55616C">Select · Input · Checkbox · Kvantifikator</code>
+        <h2 style="margin:0;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:28px">Formulářové prvky</h2>
+        <code style="font-family:ui-monospace,Menlo,monospace;font-size:13px;color:var(--ss-text-muted,#55616C)">Select · Input · Checkbox · Kvantifikator</code>
       </div>
-      <p style="margin:0 0 24px;max-width:76ch;color:#3D4750">Výška 44 px (compact 36), rádius 6, pozadí <code style="font-family:ui-monospace,Menlo,monospace;font-size:13px">surface.subtle</code>. Pod 550 px mají pole 16 px, aby iOS nezoomoval.</p>
-      <div style="background:#FFFFFF;border-radius:12px;padding:28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:24px;align-items:start">
+      <p style="margin:0 0 24px;max-width:76ch;color:var(--ss-text-secondary,#3D4750)">Výška 44 px (compact 36), rádius 6, pozadí <code style="font-family:ui-monospace,Menlo,monospace;font-size:13px">surface.subtle</code>. Pod 550 px mají pole 16 px, aby iOS nezoomoval.</p>
+      <div style="background:var(--ss-surface-page,#FFFFFF);border-radius:12px;padding:28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:24px;align-items:start">
         <div style="display:flex;flex-direction:column;gap:16px">
           <dc-import name="Select" label="Řadit podle" hint-size="100%,72px"></dc-import>
           <dc-import name="Select" label="Rozměr" variant="outline" size="compact" hint-size="100%,64px"></dc-import>
@@ -150,11 +152,11 @@ a{color:#296093;}a:hover{color:#21507B;}
   <section style="width:100%">
     <div style="max-width:1560px;margin:0 auto;padding:48px 32px">
       <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:12px;margin-bottom:8px">
-        <h2 style="margin:0;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:28px">Štítky a hodnocení</h2>
-        <code style="font-family:ui-monospace,Menlo,monospace;font-size:13px;color:#55616C">Stitek.dc.html · Hodnoceni.dc.html</code>
+        <h2 style="margin:0;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:28px">Štítky a hodnocení</h2>
+        <code style="font-family:ui-monospace,Menlo,monospace;font-size:13px;color:var(--ss-text-muted,#55616C)">Stitek.dc.html · Hodnoceni.dc.html</code>
       </div>
-      <p style="margin:0 0 24px;max-width:76ch;color:#3D4750">Skladovost nese tečku i text — význam nikdy jen barvou. Formulace jsou ustálené a nemění se napříč webem.</p>
-      <div style="background:#F7F9FB;border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:20px">
+      <p style="margin:0 0 24px;max-width:76ch;color:var(--ss-text-secondary,#3D4750)">Skladovost nese tečku i text — význam nikdy jen barvou. Formulace jsou ustálené a nemění se napříč webem.</p>
+      <div style="background:var(--ss-surface-subtle,#F7F9FB);border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:20px">
         <div style="display:flex;flex-wrap:wrap;gap:20px;align-items:center">
           <dc-import name="Stitek" kind="inStock" hint-size="220px,20px"></dc-import>
           <dc-import name="Stitek" kind="lowStock" hint-size="120px,20px"></dc-import>
@@ -177,20 +179,20 @@ a{color:#296093;}a:hover{color:#21507B;}
     </div>
   </section>
 
-  <section style="width:100%;background:#F7F9FB;border-top:1px solid #E1E6EB">
+  <section style="width:100%;background:var(--ss-surface-subtle,#F7F9FB);border-top:1px solid var(--ss-border-subtle,#E1E6EB)">
     <div style="max-width:1560px;margin:0 auto;padding:48px 32px">
       <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:12px;margin-bottom:8px">
-        <h2 style="margin:0;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:28px">Navigace a rámec webu</h2>
-        <code style="font-family:ui-monospace,Menlo,monospace;font-size:13px;color:#55616C">Hlavicka · Kosik · MegaMenu · MobilniMenu · Drobeckova · Paticka · data menu.js</code>
+        <h2 style="margin:0;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:28px">Navigace a rámec webu</h2>
+        <code style="font-family:ui-monospace,Menlo,monospace;font-size:13px;color:var(--ss-text-muted,#55616C)">Hlavicka · Kosik · MegaMenu · MobilniMenu · Drobeckova · Paticka · data menu.js</code>
       </div>
-      <p style="margin:0 0 24px;max-width:76ch;color:#3D4750">Hlavička drží sticky pozici, vlastní stín, přepnutí na hamburger pod 1000 px, Escape, focus trap a zámek scrollu. Mega menu a mobilní menu jsou bezstavové panely nad sdílenými daty <code style="font-family:ui-monospace,Menlo,monospace;font-size:13px">menu.js</code>. Najeďte na záložku v navigaci.</p>
-      <div style="background:#FFFFFF;border-radius:12px;overflow:hidden;box-shadow:0 0 0 1px #E1E6EB">
+      <p style="margin:0 0 24px;max-width:76ch;color:var(--ss-text-secondary,#3D4750)">Hlavička drží sticky pozici, vlastní stín, přepnutí na hamburger pod 1000 px, Escape, focus trap a zámek scrollu. Mega menu a mobilní menu jsou bezstavové panely nad sdílenými daty <code style="font-family:ui-monospace,Menlo,monospace;font-size:13px">menu.js</code>. Najeďte na záložku v navigaci.</p>
+      <div style="background:var(--ss-surface-page,#FFFFFF);border-radius:12px;overflow:hidden;box-shadow:0 0 0 1px var(--ss-border-subtle,#E1E6EB)">
         <dc-import name="Hlavicka" hint-size="100%,180px"></dc-import>
         <div style="padding:20px 32px 28px;display:flex;flex-direction:column;gap:20px">
           <dc-import name="Drobeckova" hint-size="100%,24px"></dc-import>
           <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:20px;align-items:start">
             <div style="display:flex;flex-direction:column;gap:10px">
-              <span style="font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#55616C">Košík v hlavičce</span>
+              <span style="font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ss-text-muted,#55616C)">Košík v hlavičce</span>
               <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
                 <dc-import name="Kosik" hint-size="150px,44px"></dc-import>
                 <dc-import name="Kosik" count="0" total="0 Kč" compact="{{ true }}" hint-size="100px,44px"></dc-import>
@@ -200,31 +202,31 @@ a{color:#296093;}a:hover{color:#21507B;}
               </div>
             </div>
             <div style="display:flex;flex-direction:column;gap:10px">
-              <span style="font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#55616C">Mobilní menu · drill-down 400 ms</span>
-              <div style="width:min(100%,360px);height:520px;border-radius:12px;overflow:hidden;box-shadow:0 0 0 1px #E1E6EB">
+              <span style="font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ss-text-muted,#55616C)">Mobilní menu · drill-down 400 ms</span>
+              <div style="width:min(100%,360px);height:520px;border-radius:12px;overflow:hidden;box-shadow:0 0 0 1px var(--ss-border-subtle,#E1E6EB)">
                 <dc-import name="MobilniMenu" open="{{ true }}" hint-size="100%,100%"></dc-import>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div style="margin-top:24px;border-radius:12px;overflow:hidden;box-shadow:0 0 0 1px #E1E6EB">
-        <span style="display:block;background:#FFFFFF;padding:16px 24px 0;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#55616C">Mega menu · kategorie Matrace</span>
+      <div style="margin-top:24px;border-radius:12px;overflow:hidden;box-shadow:0 0 0 1px var(--ss-border-subtle,#E1E6EB)">
+        <span style="display:block;background:var(--ss-surface-page,#FFFFFF);padding:16px 24px 0;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ss-text-muted,#55616C)">Mega menu · kategorie Matrace</span>
         <dc-import name="MegaMenu" hint-size="100%,380px"></dc-import>
       </div>
-      <div style="margin-top:24px;border-radius:12px;overflow:hidden;box-shadow:0 0 0 1px #E1E6EB">
+      <div style="margin-top:24px;border-radius:12px;overflow:hidden;box-shadow:0 0 0 1px var(--ss-border-subtle,#E1E6EB)">
         <dc-import name="Paticka" hint-size="100%,700px"></dc-import>
       </div>
     </div>
   </section>
 
-  <section style="width:100%;border-top:1px solid #E1E6EB">
+  <section style="width:100%;border-top:1px solid var(--ss-border-subtle,#E1E6EB)">
     <div style="max-width:1560px;margin:0 auto;padding:48px 32px">
       <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:12px;margin-bottom:8px">
-        <h2 style="margin:0;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:28px">Výpis produktů</h2>
-        <code style="font-family:ui-monospace,Menlo,monospace;font-size:13px;color:#55616C">ProduktovaKarta · FiltracniLista · FiltrDrawer · CenovyFiltr · Paginace · PrazdnyStav · data produkty.js</code>
+        <h2 style="margin:0;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:28px">Výpis produktů</h2>
+        <code style="font-family:ui-monospace,Menlo,monospace;font-size:13px;color:var(--ss-text-muted,#55616C)">ProduktovaKarta · FiltracniLista · FiltrDrawer · CenovyFiltr · Paginace · PrazdnyStav · data produkty.js</code>
       </div>
-      <p style="margin:0 0 24px;max-width:76ch;color:#3D4750">Karta je jediný zdroj vzhledu produktu: fotka v pevném poměru bez ořezu, název, hodnocení, obj. číslo, skladovost, ceny, kvantifikátor a Koupit, porovnat. Celá karta je klikací krycím odkazem, vnitřní tlačítka leží nad ním. Grid má pevné počty sloupců podle pásma, ne <code style="font-family:ui-monospace,Menlo,monospace;font-size:13px">auto-fill</code>.</p>
+      <p style="margin:0 0 24px;max-width:76ch;color:var(--ss-text-secondary,#3D4750)">Karta je jediný zdroj vzhledu produktu: fotka v pevném poměru bez ořezu, název, hodnocení, obj. číslo, skladovost, ceny, kvantifikátor a Koupit, porovnat. Celá karta je klikací krycím odkazem, vnitřní tlačítka leží nad ním. Grid má pevné počty sloupců podle pásma, ne <code style="font-family:ui-monospace,Menlo,monospace;font-size:13px">auto-fill</code>.</p>
 
       <div style="display:flex;flex-direction:column;gap:20px">
         <dc-import name="FiltracniLista" total="{{ total }}" active="{{ activeFilters }}" onOpenFilters="{{ openDrawer }}" onClearAll="{{ clearFilters }}" onRemoveFilter="{{ removeFilter }}" hint-size="100%,72px"></dc-import>
@@ -239,14 +241,14 @@ a{color:#296093;}a:hover{color:#21507B;}
 
       <div style="margin-top:40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:24px;align-items:start">
         <div style="display:flex;flex-direction:column;gap:10px">
-          <span style="font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#55616C">Cenový filtr — bezstavový</span>
-          <div style="background:#F7F9FB;border-radius:12px;padding:20px">
+          <span style="font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ss-text-muted,#55616C)">Cenový filtr — bezstavový</span>
+          <div style="background:var(--ss-surface-subtle,#F7F9FB);border-radius:12px;padding:20px">
             <dc-import name="CenovyFiltr" from="{{ priceFrom }}" to="{{ priceTo }}" onChange="{{ onPrice }}" hint-size="100%,170px"></dc-import>
           </div>
         </div>
         <div style="display:flex;flex-direction:column;gap:10px">
-          <span style="font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#55616C">Drawer filtrů — dialog, Escape, focus trap</span>
-          <div style="background:#F7F9FB;border-radius:12px;padding:20px;display:flex">
+          <span style="font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ss-text-muted,#55616C)">Drawer filtrů — dialog, Escape, focus trap</span>
+          <div style="background:var(--ss-surface-subtle,#F7F9FB);border-radius:12px;padding:20px;display:flex">
             <dc-import name="Tlacitko" label="Otevřít filtry" variant="secondary" iconLeft="adjustments-horizontal" onClick="{{ openDrawer }}" hint-size="160px,44px"></dc-import>
           </div>
         </div>
@@ -255,27 +257,27 @@ a{color:#296093;}a:hover{color:#21507B;}
     </div>
   </section>
 
-  <section style="width:100%;background:#F7F9FB;border-top:1px solid #E1E6EB">
+  <section style="width:100%;background:var(--ss-surface-subtle,#F7F9FB);border-top:1px solid var(--ss-border-subtle,#E1E6EB)">
     <div style="max-width:1560px;margin:0 auto;padding:48px 32px">
       <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:12px;margin-bottom:24px">
-        <h2 style="margin:0;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:28px">Rozcestník kategorií</h2>
-        <code style="font-family:ui-monospace,Menlo,monospace;font-size:13px;color:#55616C">VypisKategorii · KategorickaDlazdice (standard / kompaktni)</code>
+        <h2 style="margin:0;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:28px">Rozcestník kategorií</h2>
+        <code style="font-family:ui-monospace,Menlo,monospace;font-size:13px;color:var(--ss-text-muted,#55616C)">VypisKategorii · KategorickaDlazdice (standard / kompaktni)</code>
       </div>
-      <div style="background:#FFFFFF;border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:36px">
+      <div style="background:var(--ss-surface-page,#FFFFFF);border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:36px">
         <dc-import name="VypisKategorii" heading="Nejoblíbenější kategorie" subheading="Vše pro zdravý spánek" popular="{{ popularChips }}" hint-size="100%,360px"></dc-import>
         <dc-import name="VypisKategorii" heading="Podkategorie" variant="kompaktni" hint-size="100%,180px"></dc-import>
       </div>
     </div>
   </section>
 
-  <section style="width:100%;border-top:1px solid #E1E6EB">
+  <section style="width:100%;border-top:1px solid var(--ss-border-subtle,#E1E6EB)">
     <div style="max-width:1560px;margin:0 auto;padding:48px 32px">
       <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:12px;margin-bottom:8px">
-        <h2 style="margin:0;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:28px">Detail produktu</h2>
-        <code style="font-family:ui-monospace,Menlo,monospace;font-size:13px;color:#55616C">Galerie · VyberVariant · NakupniBox · Zalozky · MnozstevniSlevy · SouvisejiciProdukty</code>
+        <h2 style="margin:0;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:28px">Detail produktu</h2>
+        <code style="font-family:ui-monospace,Menlo,monospace;font-size:13px;color:var(--ss-text-muted,#55616C)">Galerie · VyberVariant · NakupniBox · Zalozky · MnozstevniSlevy · SouvisejiciProdukty</code>
       </div>
-      <p style="margin:0 0 24px;max-width:76ch;color:#3D4750">Jedna osa variant = jedna instance <code style="font-family:ui-monospace,Menlo,monospace;font-size:13px">VyberVariant</code>. Pod 820 px zmizí sloupec miniatur galerie a zůstanou šipky, swipe a ukazatel „1 / N“.</p>
-      <div style="background:#FFFFFF;border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:32px;box-shadow:0 0 0 1px #E1E6EB">
+      <p style="margin:0 0 24px;max-width:76ch;color:var(--ss-text-secondary,#3D4750)">Jedna osa variant = jedna instance <code style="font-family:ui-monospace,Menlo,monospace;font-size:13px">VyberVariant</code>. Pod 820 px zmizí sloupec miniatur galerie a zůstanou šipky, swipe a ukazatel „1 / N“.</p>
+      <div style="background:var(--ss-surface-page,#FFFFFF);border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:32px;box-shadow:0 0 0 1px var(--ss-border-subtle,#E1E6EB)">
         <div style="display:grid;grid-template-columns:{{ detailTemplate }};gap:32px;align-items:start">
           <dc-import name="Galerie" count="6" badge="sale" badgeLabel="Sleva 20 %" hint-size="100%,420px"></dc-import>
           <div style="display:flex;flex-direction:column;gap:20px;min-width:0">
@@ -291,19 +293,19 @@ a{color:#296093;}a:hover{color:#21507B;}
     </div>
   </section>
 
-  <section style="width:100%;background:#F7F9FB;border-top:1px solid #E1E6EB">
+  <section style="width:100%;background:var(--ss-surface-subtle,#F7F9FB);border-top:1px solid var(--ss-border-subtle,#E1E6EB)">
     <div style="max-width:1560px;margin:0 auto;padding:48px 32px">
-      <h2 style="margin:0 0 8px;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:28px">Pořadí stavby (Fáze 2)</h2>
-      <p style="margin:0 0 24px;max-width:76ch;color:#3D4750">Hotové komponenty se doplňují do tohoto katalogu s ukázkovými daty a tweaky pro varianty.</p>
+      <h2 style="margin:0 0 8px;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:28px">Pořadí stavby (Fáze 2)</h2>
+      <p style="margin:0 0 24px;max-width:76ch;color:var(--ss-text-secondary,#3D4750)">Hotové komponenty se doplňují do tohoto katalogu s ukázkovými daty a tweaky pro varianty.</p>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:20px">
         <sc-for list="{{ groups }}" as="g" hint-placeholder-count="5">
-          <div style="background:#FFFFFF;border-radius:12px;padding:24px">
-            <h3 style="margin:0 0 14px;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:600;font-size:19px">{{ g.title }}</h3>
+          <div style="background:var(--ss-surface-page,#FFFFFF);border-radius:12px;padding:24px">
+            <h3 style="margin:0 0 14px;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:600;font-size:19px">{{ g.title }}</h3>
             <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px">
               <sc-for list="{{ g.items }}" as="i" hint-placeholder-count="6">
                 <li style="display:flex;align-items:baseline;gap:10px;font-size:14px">
                   <span style="flex:none;font-size:12px;font-weight:600;color:{{ i.color }};min-width:58px">{{ i.state }}</span>
-                  <code style="font-family:ui-monospace,Menlo,monospace;font-size:13px;color:#3D4750">{{ i.name }}</code>
+                  <code style="font-family:ui-monospace,Menlo,monospace;font-size:13px;color:var(--ss-text-secondary,#3D4750)">{{ i.name }}</code>
                 </li>
               </sc-for>
             </ul>
@@ -328,7 +330,7 @@ class Component extends DCLogic {
   }
   componentWillUnmount() { window.removeEventListener('resize', this._resize); }
   renderVals() {
-    const mark = (name, done) => ({ name, state: done ? 'hotovo' : 'čeká', color: done ? '#157A41' : '#5B6874' });
+    const mark = (name, done) => ({ name, state: done ? 'hotovo' : 'čeká', color: done ? 'var(--ss-status-success,#157A41)' : 'var(--ss-text-muted,#5B6874)' });
     const w = this.state.width;
     const cols = w >= 1560 ? 5 : w >= 1000 ? 4 : w >= 820 ? 3 : w >= 550 ? 2 : 1;
     const labels = { h3: 'Tuhá H3', '180x200': '180 × 200 cm' };

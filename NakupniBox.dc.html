@@ -8,16 +8,18 @@
 <body>
 <x-dc>
 <helmet>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./tmavy-rezim.css">
+<script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')!=='light')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h',localStorage.getItem('ss-font-h')||'alt');d.setAttribute('data-font-b',localStorage.getItem('ss-font-b')||'alt');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
 </helmet>
-<div style="font-family:Archivo,Helvetica,Arial,sans-serif;width:100%;min-width:0;background:#F7F9FB;border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:16px">
+<div class="ss-elev" style="font-family:Roboto,Helvetica,Arial,sans-serif;width:100%;min-width:0;background:var(--ss-surface-subtle,#F7F9FB);border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:16px">
   <div style="display:flex;flex-wrap:wrap;align-items:flex-end;gap:12px">
     <div style="display:flex;flex-direction:column;gap:2px;min-width:0">
       <sc-if value="{{ hasBefore }}" hint-placeholder-val="{{ false }}">
-        <span style="font-size:15px;color:#5B6874;text-decoration:line-through">{{ priceBefore }}</span>
+        <span style="font-size:15px;color:var(--ss-text-muted,#5B6874);text-decoration:line-through">{{ priceBefore }}</span>
       </sc-if>
-      <span style="font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:34px;line-height:1.05;color:{{ priceColor }}">{{ price }}</span>
-      <span style="font-size:13px;color:#5B6874">{{ vatNote }}</span>
+      <span style="font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:34px;line-height:1.05;color:{{ priceColor }}">{{ price }}</span>
+      <span style="font-size:13px;color:var(--ss-text-muted,#5B6874)">{{ vatNote }}</span>
     </div>
     <sc-if value="{{ hasSaving }}" hint-placeholder-val="{{ false }}">
       <span style="margin-left:auto"><dc-import name="Stitek" kind="sale" label="{{ saving }}" hint-size="120px,26px"></dc-import></span>
@@ -35,18 +37,18 @@
 
   <div style="display:flex;flex-direction:column;gap:10px;padding-top:4px">
     <sc-for list="{{ perks }}" as="p" hint-placeholder-count="3">
-      <span style="display:flex;align-items:flex-start;gap:10px;font-size:14px;color:#3D4750">
-        <span style="display:flex;color:#157A41;flex:none"><dc-import name="Ikony" iconName="{{ p.icon }}" size="18" hint-size="18px,18px"></dc-import></span>
+      <span style="display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--ss-text-secondary,#3D4750)">
+        <span style="display:flex;color:var(--ss-status-success,#157A41);flex:none"><dc-import name="Ikony" iconName="{{ p.icon }}" size="18" hint-size="18px,18px"></dc-import></span>
         <span style="min-width:0">{{ p.label }}</span>
       </span>
     </sc-for>
   </div>
 
-  <div style="display:flex;flex-wrap:wrap;gap:4px;align-items:center;padding-top:4px;border-top:1px solid #E1E6EB;margin-top:4px">
+  <div style="display:flex;flex-wrap:wrap;gap:4px;align-items:center;padding-top:4px;border-top:1px solid var(--ss-border-subtle,#E1E6EB);margin-top:4px">
     <dc-import name="Tlacitko" label="Porovnat" variant="text" size="standard" iconLeft="arrows-diff" onClick="{{ onCompare }}" hint-size="110px,24px"></dc-import>
-    <span style="color:#C8D0D8">·</span>
+    <span style="color:var(--ss-text-decor,#C8D0D8)">·</span>
     <dc-import name="Tlacitko" label="{{ favLabel }}" variant="text" size="standard" iconLeft="{{ favIcon }}" onClick="{{ onFav }}" hint-size="140px,24px"></dc-import>
-    <span style="color:#C8D0D8">·</span>
+    <span style="color:var(--ss-text-decor,#C8D0D8)">·</span>
     <dc-import name="Tlacitko" label="Dostupnost na prodejnách" variant="text" size="standard" iconLeft="map-pin" href="#prodejny" hint-size="200px,24px"></dc-import>
   </div>
 </div>
@@ -61,7 +63,7 @@ class Component extends DCLogic {
       price: p.price || '11 290 Kč',
       priceBefore: p.priceBefore,
       hasBefore: !!p.priceBefore,
-      priceColor: p.priceBefore ? '#B3261E' : '#1C2229',
+      priceColor: p.priceBefore ? 'var(--ss-status-error,#B3261E)' : 'var(--ss-text-primary,#1C2229)',
       vatNote: 'Cena včetně DPH',
       hasSaving: !!p.saving,
       saving: p.saving,

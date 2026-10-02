@@ -8,20 +8,22 @@
 <body>
 <x-dc>
 <helmet>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./tmavy-rezim.css">
+<script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')!=='light')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h',localStorage.getItem('ss-font-h')||'alt');d.setAttribute('data-font-b',localStorage.getItem('ss-font-b')||'alt');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
-h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Archivo,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:800!important;font-stretch:75%;text-transform:uppercase;letter-spacing:-0.005em;}
+h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
 
-.ss-fd-close{display:flex;align-items:center;justify-content:center;width:44px;height:44px;border:0;border-radius:6px;background:none;color:#3D4750;cursor:pointer;transition:background-color .12s cubic-bezier(.22,.61,.36,1);}
-.ss-fd-close:hover{background:#F0F5FA;}
+.ss-fd-close{display:flex;align-items:center;justify-content:center;width:44px;height:44px;border:0;border-radius:6px;background:none;color:var(--ss-text-secondary,#3D4750);cursor:pointer;transition:background-color .12s cubic-bezier(.22,.61,.36,1);}
+.ss-fd-close:hover{background:var(--ss-hover-bg,#FFF5E6);color:var(--ss-hover-text,#A4600C)}
 .ss-fd-close:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
 </style>
 </helmet>
 <sc-if value="{{ mounted }}" hint-placeholder-val="{{ true }}">
-  <div style="{{ overlayStyle }}" onClick="{{ close }}" aria-hidden="true"></div>
+  <div class="ss-scrim" style="{{ overlayStyle }}" onClick="{{ close }}" aria-hidden="true"></div>
   <div ref="{{ panelRef }}" role="dialog" aria-modal="true" aria-label="Filtry" style="{{ panelStyle }}">
-    <div style="display:flex;align-items:center;gap:8px;padding:12px 12px 12px 20px;border-bottom:1px solid #E1E6EB;flex:none">
-      <h2 style="margin:0;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:21px;color:#1C2229">Filtry</h2>
+    <div style="display:flex;align-items:center;gap:8px;padding:12px 12px 12px 20px;border-bottom:1px solid var(--ss-border-subtle,#E1E6EB);flex:none">
+      <h2 style="margin:0;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:21px;color:var(--ss-text-primary,#1C2229)">Filtry</h2>
       <button type="button" class="ss-fd-close" style="margin-left:auto" onClick="{{ close }}" aria-label="Zavřít filtry">
         <dc-import name="Ikony" iconName="x" size="22" hint-size="22px,22px"></dc-import>
       </button>
@@ -29,12 +31,12 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 
     <div style="flex:1;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:28px;min-height:0">
       <div style="display:flex;flex-direction:column;gap:12px">
-        <h3 style="margin:0;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#55616C">Cena</h3>
+        <h3 style="margin:0;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:13px;letter-spacing:.1em;color:var(--ss-text-muted,#55616C)">Cena</h3>
         <dc-import name="CenovyFiltr" from="{{ priceFrom }}" to="{{ priceTo }}" min="{{ priceMin }}" max="{{ priceMax }}" onChange="{{ onPrice }}" hint-size="100%,160px"></dc-import>
       </div>
       <sc-for list="{{ facets }}" as="f" hint-placeholder-count="4">
         <div style="display:flex;flex-direction:column;gap:6px">
-          <h3 style="margin:0 0 4px;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#55616C">{{ f.title }}</h3>
+          <h3 style="margin:0 0 4px;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:13px;letter-spacing:.1em;color:var(--ss-text-muted,#55616C)">{{ f.title }}</h3>
           <sc-for list="{{ f.options }}" as="o" hint-placeholder-count="4">
             <dc-import name="Checkbox" label="{{ o.label }}" size="compact" count="{{ o.count }}" checked="{{ o.checked }}" onChange="{{ o.onToggle }}" hint-size="100%,32px"></dc-import>
           </sc-for>
@@ -42,7 +44,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
       </sc-for>
     </div>
 
-    <div style="flex:none;display:flex;gap:12px;padding:16px 20px;border-top:1px solid #E1E6EB;background:#FFFFFF">
+    <div style="flex:none;display:flex;gap:12px;padding:16px 20px;border-top:1px solid var(--ss-border-subtle,#E1E6EB);background:var(--ss-surface-page,#FFFFFF)">
       <dc-import name="Tlacitko" label="Smazat vše" variant="secondary" onClick="{{ clear }}" hint-size="130px,44px"></dc-import>
       <div style="flex:1;min-width:0">
         <dc-import name="Tlacitko" label="{{ applyLabel }}" variant="primary" fullWidth="{{ true }}" onClick="{{ close }}" hint-size="100%,44px"></dc-import>
@@ -117,12 +119,12 @@ class Component extends DCLogic {
       mounted: this.state.mounted,
       facets,
       overlayStyle: {
-        position: 'fixed', inset: 0, zIndex: 400, background: 'rgba(19,44,67,.5)',
+        position: 'fixed', inset: 0, zIndex: 400, 
         opacity: visible ? 1 : 0, transition: 'opacity .4s cubic-bezier(.22,.61,.36,1)'
       },
       panelStyle: {
         position: 'fixed', top: 0, right: 0, bottom: 0, zIndex: 410,
-        width: 'min(92vw,420px)', background: '#FFFFFF', display: 'flex', flexDirection: 'column',
+        width: (typeof document !== 'undefined' && document.documentElement.clientWidth < 420) ? '100%' : 'min(92vw,420px)', background: 'var(--ss-surface-page,#FFFFFF)', display: 'flex', flexDirection: 'column',
         boxShadow: '0 16px 40px rgba(19,44,67,.18)',
         transform: visible ? 'translateX(0)' : 'translateX(100%)',
         transition: 'transform .4s cubic-bezier(.22,.61,.36,1)'

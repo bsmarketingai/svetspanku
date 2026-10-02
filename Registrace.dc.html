@@ -8,44 +8,46 @@
 <body>
 <x-dc>
 <helmet>
+<link rel="stylesheet" href="./tmavy-rezim.css">
+<script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')!=='light')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h',localStorage.getItem('ss-font-h')||'alt');d.setAttribute('data-font-b',localStorage.getItem('ss-font-b')||'alt');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
-h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Archivo,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:800!important;font-stretch:75%;text-transform:uppercase;letter-spacing:-0.005em;}
+h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
 
 html,body{margin:0!important;padding:0!important;}
 #dc-root{margin:0!important;padding:0!important;width:100%!important;max-width:none!important;border:0!important;}
 #dc-root>.sc-host{margin:0!important;padding:0!important;width:100%!important;}
-a{color:#296093;}
-a:hover{color:#21507B;}
-.ss-reg-soc{box-sizing:border-box;min-width:0;display:flex;align-items:center;gap:12px;width:100%;min-height:48px;padding:10px 16px;line-height:1.3;border-radius:6px;font-family:Archivo,Helvetica,Arial,sans-serif;font-size:15px;font-weight:600;text-decoration:none;transition:background-color .12s cubic-bezier(.22,.61,.36,1);}
+a{color:var(--ss-link,#296093);}
+a:hover{color:var(--ss-hover-text,#A4600C);}
+.ss-reg-soc{box-sizing:border-box;min-width:0;display:flex;align-items:center;gap:12px;width:100%;min-height:48px;padding:10px 16px;line-height:1.3;border-radius:6px;font-family:Roboto,Helvetica,Arial,sans-serif;font-size:15px;font-weight:600;text-decoration:none;transition:background-color .12s cubic-bezier(.22,.61,.36,1);}
 .ss-reg-soc:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
 .ss-reg-fb{background:#3B5998;color:#FFFFFF;}
 .ss-reg-fb:hover{background:#31497D;color:#FFFFFF;}
-.ss-reg-gg{background:#FFFFFF;color:#1C2229;box-shadow:inset 0 0 0 1px #E1E6EB;}
-.ss-reg-gg:hover{background:#F7F9FB;color:#1C2229;}
+.ss-reg-gg{background:var(--ss-surface-page,#FFFFFF);color:var(--ss-text-primary,#1C2229);box-shadow:inset 0 0 0 1px var(--ss-border-subtle,#E1E6EB);}
+.ss-reg-gg:hover{background:var(--ss-hover-bg,#FFF5E6);color:var(--ss-hover-text,#A4600C);}
 .ss-reg-sz{background:#CC0000;color:#FFFFFF;}
 .ss-reg-sz:hover{background:#A80000;color:#FFFFFF;}
 .ss-reg-ap{background:#1C2229;color:#FFFFFF;}
 .ss-reg-ap:hover{background:#2A323A;color:#FFFFFF;}
 </style>
 </helmet>
-<div style="width:100%;background:#FFFFFF;font-family:Archivo,Helvetica,Arial,sans-serif;color:#1C2229">
+<div style="width:100%;background:var(--ss-surface-page,#FFFFFF);font-family:Roboto,Helvetica,Arial,sans-serif;color:var(--ss-text-primary,#1C2229)">
   <dc-import name="Hlavicka" style="position:sticky;top:0;z-index:200" hint-size="100%,180px"></dc-import>
 
   <main>
-    <section style="width:100%;background:#FFFFFF">
+    <section style="width:100%;background:var(--ss-surface-page,#FFFFFF)">
       <div style="{{ inner }}">
         <div style="padding:{{ headPad }};display:flex;flex-direction:column;gap:12px">
-          <h1 style="margin:0;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:{{ h1Size }};line-height:1.08;max-width:24ch">Zvažujete, že si u nás něco koupíte? Registrace se vyplatí!</h1>
-          <p style="margin:0;max-width:60ch;font-size:17px;line-height:1.55;color:#3D4750">Automaticky se stanete členem věrnostního programu rodiny Světa spánku a budete sbírat slevy za každý svůj nákup.</p>
+          <h1 style="margin:0;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:{{ h1Size }};line-height:1.08;max-width:24ch">Zvažujete, že si u nás něco koupíte? Registrace se vyplatí!</h1>
+          <p style="margin:0;max-width:60ch;font-size:17px;line-height:1.55;color:var(--ss-text-secondary,#3D4750)">Automaticky se stanete členem věrnostního programu rodiny Světa spánku a budete sbírat slevy za každý svůj nákup.</p>
         </div>
 
         <div style="display:grid;grid-template-columns:{{ splitTemplate }};gap:{{ splitGap }};padding-bottom:{{ bottomPad }};align-items:start">
           <div style="display:flex;flex-direction:column;gap:32px;min-width:0">
             <div style="display:flex;flex-direction:column;gap:16px">
-              <h2 style="margin:0;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:26px">Registrujte se</h2>
+              <h2 style="margin:0;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:26px">Registrujte se</h2>
               <div style="display:grid;grid-template-columns:{{ socialTemplate }};gap:12px">
                 <a class="ss-reg-soc ss-reg-fb" href="#registrace-facebook">
                   <span style="display:flex"><dc-import name="Ikony" iconName="brand-facebook" size="22" hint-size="22px,22px"></dc-import></span>
@@ -65,40 +67,40 @@ a:hover{color:#21507B;}
                 </a>
               </div>
               <div style="display:flex;align-items:center;gap:16px">
-                <span style="flex:1;height:1px;background:#E1E6EB"></span>
-                <span style="font-size:14px;color:#5B6874">nebo</span>
-                <span style="flex:1;height:1px;background:#E1E6EB"></span>
+                <span style="flex:1;height:1px;background:var(--ss-surface-strong,#E1E6EB)"></span>
+                <span style="font-size:14px;color:var(--ss-text-muted,#5B6874)">nebo</span>
+                <span style="flex:1;height:1px;background:var(--ss-surface-strong,#E1E6EB)"></span>
               </div>
             </div>
 
             <form style="display:flex;flex-direction:column;gap:20px" onSubmit="{{ submit }}">
-              <h2 style="margin:0;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:21px">Osobní údaje</h2>
+              <h2 style="margin:0;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:21px">Osobní údaje</h2>
               <dc-import name="Input" label="E-mail *" type="email" placeholder="vas@email.cz" value="{{ email }}" onChange="{{ onEmail }}" hint-size="100%,72px"></dc-import>
               <dc-import name="Input" label="Heslo *" type="password" hint="Alespoň 8 znaků" value="{{ pass }}" onChange="{{ onPass }}" hint-size="100%,72px"></dc-import>
               <dc-import name="Input" label="Heslo (kontrola) *" type="password" value="{{ pass2 }}" onChange="{{ onPass2 }}" hint="{{ passError }}" invalid="{{ passInvalid }}" hint-size="100%,72px"></dc-import>
               <dc-import name="Checkbox" label="Nepřeji si dostávat exkluzivní slevy a tipy do e-mailu." checked="{{ noMail }}" onChange="{{ onNoMail }}" hint-size="100%,24px"></dc-import>
-              <p style="margin:0;font-size:14px;line-height:1.6;color:#5B6874">Registrací souhlasíte s <a href="#obchodni-podminky">obchodními podmínkami</a> a <a href="#ochrana-udaju">podmínkami ochrany osobních údajů</a>.</p>
+              <p style="margin:0;font-size:14px;line-height:1.6;color:var(--ss-text-muted,#5B6874)">Registrací souhlasíte s <a href="#obchodni-podminky">obchodními podmínkami</a> a <a href="#ochrana-udaju">podmínkami ochrany osobních údajů</a>.</p>
               <dc-import name="Tlacitko" label="Registrovat" variant="buy" size="large" fullWidth="{{ true }}" onClick="{{ submitClick }}" hint-size="100%,52px"></dc-import>
             </form>
           </div>
 
           <div style="{{ asideStyle }}">
             <div style="display:flex;flex-direction:column;gap:8px">
-              <span style="font-size:15px;color:#5B6874">Co získáte</span>
-              <h2 style="margin:0;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:24px">Registrujte se a získejte všechny výhody</h2>
+              <span style="font-size:15px;color:var(--ss-text-muted,#5B6874)">Co získáte</span>
+              <h2 style="margin:0;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:24px">Registrujte se a získejte všechny výhody</h2>
             </div>
             <div style="display:grid;grid-template-columns:{{ benefitTemplate }};gap:28px 40px;align-items:start">
               <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:14px;min-width:0">
                 <sc-for list="{{ benefits }}" as="b" hint-placeholder-count="6">
-                  <li style="display:flex;align-items:flex-start;gap:12px;font-size:15px;font-weight:600;line-height:1.5;color:#1C2229">
-                    <span style="display:flex;color:#157A41;flex:none;margin-top:1px"><dc-import name="Ikony" iconName="circle-check" size="20" hint-size="20px,20px"></dc-import></span>
+                  <li style="display:flex;align-items:flex-start;gap:12px;font-size:15px;font-weight:600;line-height:1.5;color:var(--ss-text-primary,#1C2229)">
+                    <span style="display:flex;color:var(--ss-status-success,#157A41);flex:none;margin-top:1px"><dc-import name="Ikony" iconName="circle-check" size="20" hint-size="20px,20px"></dc-import></span>
                     <span style="min-width:0">{{ b }}</span>
                   </li>
                 </sc-for>
               </ul>
             </div>
             <div style="display:flex;flex-direction:column;gap:12px;align-items:flex-start;max-width:420px">
-              <span style="font-size:15px;color:#5B6874">Máte již účet? Přihlaste se</span>
+              <span style="font-size:15px;color:var(--ss-text-muted,#5B6874)">Máte již účet? Přihlaste se</span>
               <div style="width:100%">
                 <dc-import name="Tlacitko" label="Přihlásit se" variant="secondary" size="large" href="#prihlaseni" fullWidth="{{ true }}" hint-size="100%,52px"></dc-import>
               </div>
@@ -136,8 +138,8 @@ class Component extends DCLogic {
       benefitTemplate: w >= 1150 ? 'minmax(0,1.3fr) minmax(0,1fr)' : 'minmax(0,1fr)',
       asideStyle: {
         display: 'flex', flexDirection: 'column', gap: '28px', minWidth: 0,
-        borderLeft: split ? '1px dashed #C8D0D8' : 'none',
-        borderTop: split ? 'none' : '1px dashed #C8D0D8',
+        borderLeft: split ? '1px dashed var(--ss-border-strong,#C8D0D8)' : 'none',
+        borderTop: split ? 'none' : '1px dashed var(--ss-border-strong,#C8D0D8)',
         paddingLeft: split ? '64px' : 0,
         paddingTop: split ? 0 : '40px'
       },

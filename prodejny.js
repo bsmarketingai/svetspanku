@@ -3,50 +3,50 @@ export const PRODEJNY = [
     id: 'brno',
     city: 'Brno – H-Park',
     address: 'Heršpická 11f, 639 00 Brno-střed',
-    hours: 'Po–Pá 9.00–18.00 · So 10.00–18.00',
+    hours: 'Po–Pá 9:00–18:00 · So 10:00–18:00',
     phone: '+420 543 212 855',
     photo: 'prodejna-brno.jpg',
-    href: '#prodejna-brno',
+    href: 'https://showroomy.svetspanku.cz/prodejna/brno',
     lat: 49.174158, lng: 16.604449
   },
   {
     id: 'praha-butovice',
     city: 'Praha 5 – Butovice',
     address: 'Galerie Butovice, Radlická 117, Praha 5',
-    hours: 'Po–Ne 9.00–20.00',
+    hours: 'Po–Ne 9:00–20:00',
     phone: '+420 222 261 497',
     photo: 'prodejna-praha-butovice.jpg',
-    href: '#prodejna-praha-5',
+    href: 'https://showroomy.svetspanku.cz/prodejna/butovice',
     lat: 50.047164, lng: 14.354621
   },
   {
     id: 'praha-10',
     city: 'Praha 10 – Kutnohorská',
     address: 'Kutnohorská 532, Praha 10 – Dolní Měcholupy',
-    hours: 'Po–Ne 9.00–20.00',
+    hours: 'Po–Ne 9:00–20:00',
     phone: '+420 272 656 213',
     photo: 'prodejna-praha-10.jpg',
-    href: '#prodejna-praha-10',
+    href: 'https://showroomy.svetspanku.cz/prodejna/sterboholy',
     lat: 50.066794, lng: 14.5492
   },
   {
     id: 'ostrava',
     city: 'Ostrava',
     address: 'Varenská 50, 702 00 Ostrava',
-    hours: 'Po–Ne 9.00–20.00',
+    hours: 'Po–Ne 9:00–20:00',
     phone: '+420 596 633 911',
     photo: 'prodejna-ostrava.jpg',
-    href: '#prodejna-ostrava',
+    href: 'https://showroomy.svetspanku.cz/prodejna/ostrava',
     lat: 49.8335365, lng: 18.2680417
   },
   {
     id: 'olomouc',
     city: 'Olomouc',
     address: 'OC Haná, Kafkova 15, 783 01 Olomouc-Slavonín',
-    hours: 'Po–Pá 9.00–20.00 · So–Ne 9.00–19.00',
+    hours: 'Po–Pá 9:00–20:00 · So–Ne 9:00–19:00',
     phone: '+420 581 277 810',
     photo: 'prodejna-olomouc.jpg',
-    href: '#prodejna-olomouc',
+    href: 'https://showroomy.svetspanku.cz/prodejna/olomouc',
     lat: 49.572849, lng: 17.223726
   }
 ];

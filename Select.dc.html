@@ -8,63 +8,103 @@
 <body>
 <x-dc>
 <helmet>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./tmavy-rezim.css">
+<script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')!=='light')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h',localStorage.getItem('ss-font-h')||'alt');d.setAttribute('data-font-b',localStorage.getItem('ss-font-b')||'alt');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
-h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Archivo,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:800!important;font-stretch:75%;text-transform:uppercase;letter-spacing:-0.005em;}
-
-.ss-select-wrap{font-family:Archivo,Helvetica,Arial,sans-serif;display:inline-flex;flex-direction:column;gap:6px;min-width:0;}
-.ss-select-field{position:relative;display:flex;align-items:center;min-width:0;}
-.ss-select{appearance:none;-webkit-appearance:none;font-family:inherit;font-weight:500;color:#1C2229;width:100%;min-width:0;border:0;border-radius:6px;cursor:pointer;transition:background-color .12s cubic-bezier(.22,.61,.36,1),box-shadow .15s cubic-bezier(.22,.61,.36,1);}
-.ss-select:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35),inset 0 0 0 1px #296093;}
+h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
+.ss-select-wrap{font-family:Roboto,Helvetica,Arial,sans-serif;display:inline-flex;flex-direction:column;gap:6px;min-width:0;}
+.ss-select-field{position:relative;display:flex;min-width:0;}
+.ss-select{appearance:none;font-family:inherit;font-weight:500;color:var(--ss-text-primary,#1C2229);width:100%;min-width:0;border:0;border-radius:6px;cursor:pointer;display:flex;align-items:center;text-align:left;transition:background-color .12s cubic-bezier(.22,.61,.36,1),box-shadow .15s cubic-bezier(.22,.61,.36,1);}
+.ss-select:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35),inset 0 0 0 1px var(--ss-border-action,#296093)!important;}
 .ss-select:disabled{opacity:.45;cursor:not-allowed;}
-.ss-select-arrow{position:absolute;right:12px;display:flex;pointer-events:none;color:#55616C;}
-@media (max-width:549px){.ss-select{font-size:16px!important;}}
+.ss-select-arrow{position:absolute;right:12px;top:0;bottom:0;display:flex;align-items:center;pointer-events:none;color:var(--ss-text-muted,#5B6874);transition:transform .15s cubic-bezier(.22,.61,.36,1),color .12s;}
+.ss-select[aria-expanded="true"]+.ss-select-arrow{transform:rotate(180deg);color:var(--ss-hover-text,#A4600C);}
+.ss-select-list{position:absolute;left:0;right:0;top:calc(100% + 4px);z-index:300;margin:0;padding:4px;list-style:none;background:var(--ss-surface-page,#FFFFFF);border-radius:12px;box-shadow:0 16px 40px rgba(19,44,67,.18),inset 0 0 0 1px var(--ss-border-subtle,#E1E6EB);outline:none;animation:ssSelIn .15s cubic-bezier(.22,.61,.36,1);}
+@keyframes ssSelIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+.ss-select-opt{display:flex;align-items:center;gap:8px;min-height:40px;padding:0 12px;border-radius:6px;font-size:15px;color:var(--ss-text-primary,#1C2229);cursor:pointer;transition:background-color .12s,color .12s;}
+.ss-select-opt[data-active="true"]{background:var(--ss-hover-bg,#FFF5E6);color:var(--ss-hover-text,#A4600C);}
+.ss-select-opt[aria-selected="true"]{font-weight:600;}
+.ss-select-check{margin-left:auto;display:flex;color:var(--ss-action-primary,#296093);}
+.ss-select-opt[data-active="true"] .ss-select-check{color:inherit;}
+@media (max-width:549px){.ss-select,.ss-select-opt{font-size:16px!important;}}
 </style>
 </helmet>
-<div class="ss-select-wrap" style="{{ wrapStyle }}">
+<div class="ss-select-wrap" style="{{ wrapStyle }}" ref="{{ wrapRef }}">
   <sc-if value="{{ hasLabel }}" hint-placeholder-val="{{ false }}">
-    <label style="font-size:13px;font-weight:600;color:#3D4750" for="{{ id }}">{{ label }}</label>
+    <span id="{{ labelId }}" style="font-size:13px;font-weight:600;color:var(--ss-text-secondary,#3D4750)">{{ label }}</span>
   </sc-if>
   <div class="ss-select-field">
-    <select class="ss-select" id="{{ id }}" style="{{ selectStyle }}" style-hover="{{ hoverStyle }}" value="{{ value }}" onChange="{{ handleChange }}" disabled="{{ disabled }}" aria-label="{{ ariaLabel }}">
-      <sc-for list="{{ options }}" as="o" hint-placeholder-count="3">
-        <option value="{{ o.value }}">{{ o.label }}</option>
-      </sc-for>
-    </select>
+    <button type="button" class="ss-select" id="{{ id }}" ref="{{ btnRef }}" style="{{ selectStyle }}" style-hover="{{ hoverStyle }}" disabled="{{ disabled }}" aria-haspopup="listbox" aria-expanded="{{ openStr }}" aria-controls="{{ listId }}" aria-labelledby="{{ labelledBy }}" aria-label="{{ ariaLabel }}" onClick="{{ toggle }}" onKeyDown="{{ onBtnKey }}"><span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ currentLabel }}</span></button>
     <span class="ss-select-arrow"><dc-import name="Ikony" iconName="chevron-down" size="18" hint-size="18px,18px"></dc-import></span>
+    <sc-if value="{{ open }}" hint-placeholder-val="{{ false }}">
+      <ul class="ss-select-list" role="listbox" id="{{ listId }}" ref="{{ listRef }}" tabindex="-1" aria-labelledby="{{ labelledBy }}" aria-label="{{ ariaLabel }}" aria-activedescendant="{{ activeId }}" onKeyDown="{{ onListKey }}">
+        <sc-for list="{{ rows }}" as="o" hint-placeholder-count="3">
+          <li class="ss-select-opt" role="option" id="{{ o.id }}" aria-selected="{{ o.sel }}" data-active="{{ o.active }}" onClick="{{ o.pick }}" onMouseEnter="{{ o.hover }}">
+            <span>{{ o.label }}</span>
+            <sc-if value="{{ o.isSel }}" hint-placeholder-val="{{ false }}"><span class="ss-select-check"><dc-import name="Ikony" iconName="check" size="18" hint-size="18px,18px"></dc-import></span></sc-if>
+          </li>
+        </sc-for>
+      </ul>
+    </sc-if>
   </div>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:320,&quot;height&quot;:120},&quot;label&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Řadit podle&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;variant&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;subtle&quot;,&quot;options&quot;:[&quot;subtle&quot;,&quot;outline&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;size&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;standard&quot;,&quot;options&quot;:[&quot;standard&quot;,&quot;compact&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;value&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;fullWidth&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;disabled&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;options&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;{value: string, label: string}[]&quot;},&quot;onChange&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(value: string) =&gt; void&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:320,&quot;height&quot;:320},&quot;label&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Řadit podle&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;variant&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;subtle&quot;,&quot;options&quot;:[&quot;subtle&quot;,&quot;outline&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;size&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;standard&quot;,&quot;options&quot;:[&quot;standard&quot;,&quot;compact&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;value&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;fullWidth&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;disabled&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;options&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;{value: string, label: string}[]&quot;},&quot;onChange&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(value: string) =&gt; void&quot;}}">
 class Component extends DCLogic {
-  renderVals() {
-    const p = this.props;
-    const compact = p.size === 'compact';
-    const h = compact ? 36 : 44;
-    const outline = p.variant === 'outline';
-    const options = (p.options && p.options.length ? p.options : [
-      { value: 'doporucene', label: 'Doporučené' },
-      { value: 'nejlevnejsi', label: 'Od nejlevnějšího' },
-      { value: 'nejdrazsi', label: 'Od nejdražšího' },
-      { value: 'novinky', label: 'Novinky' }
+  state = { open: false, active: 0 };
+  wrapRef = React.createRef(); btnRef = React.createRef(); listRef = React.createRef();
+  componentWillUnmount() { this.unbind(); }
+  bind() { this._doc = (e) => { if (this.wrapRef.current && !this.wrapRef.current.contains(e.target)) this.close(false); }; document.addEventListener('mousedown', this._doc); }
+  unbind() { if (this._doc) document.removeEventListener('mousedown', this._doc); this._doc = null; }
+  opts() {
+    return (this.props.options && this.props.options.length ? this.props.options : [
+      { value: 'doporucene', label: 'Doporučené' }, { value: 'nejlevnejsi', label: 'Od nejlevnějšího' },
+      { value: 'nejdrazsi', label: 'Od nejdražšího' }, { value: 'novinky', label: 'Novinky' }
     ]).map(o => (typeof o === 'string' ? { value: o, label: o } : o));
+  }
+  selIndex() { const o = this.opts(); const v = this.props.value ?? o[0].value; return Math.max(0, o.findIndex(x => x.value === v)); }
+  openList() { if (this.props.disabled) return; this.setState({ open: true, active: this.selIndex() }, () => { this.listRef.current && this.listRef.current.focus(); this.scrollActive(); }); this.bind(); }
+  close(focus = true) { this.unbind(); this.setState({ open: false }); if (focus && this.btnRef.current) this.btnRef.current.focus(); }
+  pick(i) { const o = this.opts()[i]; if (o && this.props.onChange) this.props.onChange(o.value); this.close(); }
+  scrollActive() { const l = this.listRef.current; if (!l) return; const el = l.children[this.state.active]; if (el) { if (el.offsetTop < l.scrollTop) l.scrollTop = el.offsetTop - 4; else if (el.offsetTop + el.offsetHeight > l.scrollTop + l.clientHeight) l.scrollTop = el.offsetTop + el.offsetHeight - l.clientHeight + 4; } }
+  move(i) { const n = this.opts().length; this.setState({ active: Math.max(0, Math.min(n - 1, i)) }, () => this.scrollActive()); }
+  renderVals() {
+    const p = this.props, s = this.state;
+    const compact = p.size === 'compact', outline = p.variant === 'outline';
+    const uid = p.id || ('ss-select-' + (this._id || (this._id = Math.random().toString(36).slice(2, 8))));
+    const options = this.opts(), sel = this.selIndex();
     return {
-      id: p.id || ('ss-select-' + (this._id || (this._id = Math.random().toString(36).slice(2, 8)))),
-      hasLabel: !!p.label,
-      label: p.label,
+      id: uid, listId: uid + '-list', labelId: uid + '-label',
+      hasLabel: !!p.label, label: p.label,
+      labelledBy: p.label ? uid + '-label ' + uid : undefined,
       ariaLabel: p.label ? undefined : (p.ariaLabel || 'Výběr'),
-      options,
-      value: p.value ?? options[0].value,
+      currentLabel: options[sel].label,
+      open: s.open, openStr: s.open ? 'true' : 'false',
+      activeId: uid + '-o' + s.active,
       disabled: !!p.disabled,
+      wrapRef: this.wrapRef, btnRef: this.btnRef, listRef: this.listRef,
+      rows: options.map((o, i) => ({ id: uid + '-o' + i, label: o.label, isSel: i === sel, sel: i === sel ? 'true' : 'false', active: i === s.active ? 'true' : 'false', pick: () => this.pick(i), hover: () => this.state.active !== i && this.setState({ active: i }) })),
       wrapStyle: { width: p.fullWidth ? '100%' : undefined },
       selectStyle: {
-        height: h + 'px', fontSize: (compact ? 14 : 15) + 'px',
-        padding: '0 38px 0 ' + (compact ? 12 : 14) + 'px',
-        background: outline ? '#FFFFFF' : '#F7F9FB',
-        boxShadow: 'inset 0 0 0 1px ' + (outline ? '#C8D0D8' : 'transparent')
+        height: (compact ? 36 : 44) + 'px', fontSize: (compact ? 14 : 15) + 'px',
+        padding: '0 40px 0 ' + (compact ? 12 : 16) + 'px',
+        background: outline ? 'var(--ss-surface-page,#FFFFFF)' : 'var(--ss-surface-subtle,#F7F9FB)',
+        boxShadow: 'inset 0 0 0 1px ' + (s.open ? 'var(--ss-border-action,#296093)' : outline ? 'var(--ss-border-strong,#C8D0D8)' : 'transparent')
       },
-      hoverStyle: p.disabled ? {} : { background: outline ? '#F7F9FB' : '#EFF2F5', boxShadow: 'inset 0 0 0 1px ' + (outline ? '#8DB3D3' : 'transparent') },
-      handleChange: (e) => { if (p.onChange) p.onChange(e.target.value); }
+      hoverStyle: p.disabled ? {} : { background: outline ? 'var(--ss-surface-subtle,#F7F9FB)' : 'var(--ss-surface-muted,#EFF2F5)', boxShadow: 'inset 0 0 0 1px ' + (s.open ? 'var(--ss-border-action,#296093)' : outline ? 'var(--ss-border-hover,#8DB3D3)' : 'transparent') },
+      toggle: () => (s.open ? this.close() : this.openList()),
+      onBtnKey: (e) => { if (['ArrowDown', 'ArrowUp', 'Enter', ' '].includes(e.key)) { e.preventDefault(); this.openList(); } },
+      onListKey: (e) => {
+        const n = options.length, a = this.state.active;
+        if (e.key === 'ArrowDown') { e.preventDefault(); this.move(a + 1); }
+        else if (e.key === 'ArrowUp') { e.preventDefault(); this.move(a - 1); }
+        else if (e.key === 'Home') { e.preventDefault(); this.move(0); }
+        else if (e.key === 'End') { e.preventDefault(); this.move(n - 1); }
+        else if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); this.pick(a); }
+        else if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); this.close(); }
+        else if (e.key === 'Tab') { this.close(false); }
+      }
     };
   }
 }

@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans+Condensed:wght@400;500;600;700&display=swap');
+/* Tmavý režim — přepíná html[data-mode="dark"]. Světlý režim = fallback hodnoty v var(). */
+html[data-mode="dark"]{color-scheme:dark;
+  --ss-border-accent-subtle:#5A4425;
+  --ss-border-action:#8DB3D3;
+  --ss-border-action-hover:#B9D0E5;
+  --ss-border-error:#F4A39C;
+  --ss-border-error-subtle:#7A3A35;
+  --ss-border-faint:#1E3850;
+  --ss-border-hover:#5B8FBC;
+  --ss-border-strong:#3A5A7A;
+  --ss-border-subtle:#24405B;
+  --ss-border-success-subtle:#2C5A40;
+  --ss-link:#8DB3D3;
+  --ss-link-hover:#B9D0E5;
+  --ss-usp-from-c:#8DB3D3;
+  --ss-usp-to-c:#FBB255;
+  --ss-text-apricot:#FBB255;
+  --ss-hover-text:#FBB255;
+  --ss-hover-bg:rgba(251,178,85,.12);
+  --ss-status-error:#F4A39C;
+  --ss-status-error-strong:#F4B6B1;
+  --ss-status-error-surface:#3A1A18;
+  --ss-status-success:#71CC92;
+  --ss-status-success-strong:#A8E1BB;
+  --ss-status-success-surface:#12301F;
+  --ss-status-warning:#FCC77D;
+  --ss-surface-accent:#2B2318;
+  --ss-surface-accent-strong:#3A2C17;
+  --ss-surface-hover:#1A3A58;
+  --ss-surface-muted:#183049;
+  --ss-surface-page:#0E1F2F;
+  --ss-surface-selected:#1F4669;
+  --ss-surface-strong:#22405C;
+  --ss-surface-subtle:#13283C;
+  --ss-text-decor:#4A6683;
+  --ss-text-disabled:#7F94A8;
+  --ss-text-muted:#9DB0C2;
+  --ss-text-primary:#EEF3F8;
+  --ss-text-secondary:#C5D2DE;
+}
+html[data-mode="dark"],html[data-mode="dark"] body{background:#0E1F2F;}
+html[data-mode="dark"] .ss-hd-logo-pos{display:none!important;}
+html[data-mode="dark"] .ss-hd-logo-neg{display:block!important;}
+html[data-mode="dark"][data-logo="a"] .ss-hd-logo-neg,html[data-mode="dark"][data-logo="b"] .ss-hd-logo-neg,html[data-mode="dark"][data-logo="c"] .ss-hd-logo-neg,html[data-mode="dark"][data-logo="d"] .ss-hd-logo-neg{display:none!important;}
+html[data-mode="dark"][data-logo="a"] .ss-hd-logo-a,html[data-mode="dark"][data-logo="b"] .ss-hd-logo-b,html[data-mode="dark"][data-logo="c"] .ss-hd-logo-c,html[data-mode="dark"][data-logo="d"] .ss-hd-logo-d{display:block!important;}
+html[data-mode="dark"] img{filter:none;}
+
+/* Oddělení hlavičky a overlay panelů v tmavém režimu */
+html[data-mode="dark"] .ss-hd{box-shadow:0 1px 0 rgba(141,179,211,.18),0 8px 24px rgba(0,0,0,.45)!important;}
+/* Hlavička: horní lišta a hlavní řádek průsvitné s background blur, menu (.ss-hd-nav) zůstává plné */
+html[data-mode="dark"] .ss-hd{background:transparent!important;}
+html[data-mode="dark"] .ss-hd-topbar{background-color:rgba(19,40,60,.72)!important;-webkit-backdrop-filter:blur(16px) saturate(140%);backdrop-filter:blur(16px) saturate(140%);}
+html[data-mode="dark"] .ss-hd-main{background-color:rgba(14,31,47,.72)!important;-webkit-backdrop-filter:blur(16px) saturate(140%);backdrop-filter:blur(16px) saturate(140%);}
+html[data-mode="dark"] .ss-hd-topbar{border-bottom-color:transparent!important;}
+html[data-mode="dark"] .ss-hd-nav{border-top-color:transparent!important;background-color:#13283C!important;background-image:linear-gradient(180deg,#13283C 0%,#102336 100%)!important;}
+html[data-mode="dark"] .ss-mm{background:#13283C!important;box-shadow:inset 0 1px 0 rgba(141,179,211,.18),0 0 0 1px rgba(141,179,211,.14),0 24px 48px rgba(0,0,0,.6)!important;}
+html[data-mode="dark"] .ss-hd .ss-pm{background:#13283C!important;box-shadow:inset 0 1px 0 rgba(141,179,211,.18),0 0 0 1px rgba(141,179,211,.14),0 24px 48px rgba(0,0,0,.6)!important;}
+html[data-mode="dark"] .ss-pm-card{background:#13283C;}
+html[data-mode="dark"] .ss-pm-card:hover{background:#13283C!important;box-shadow:none!important;color:inherit!important;}
+html[data-mode="dark"] .ss-pm-row:hover{background:transparent!important;box-shadow:none!important;color:inherit!important;}
+
+/* Ostrůvek světlého režimu (popupy nad fotkami — produktové fotky mají bílé pozadí) */
+html[data-mode="dark"] .ss-light{color-scheme:light;
+  --ss-hover-text:initial;
+  --ss-hover-bg:initial;
+  --ss-text-apricot:initial;
+  --ss-border-accent-subtle:initial;
+  --ss-border-action:initial;
+  --ss-border-action-hover:initial;
+  --ss-border-error:initial;
+  --ss-border-error-subtle:initial;
+  --ss-border-faint:initial;
+  --ss-border-hover:initial;
+  --ss-border-strong:initial;
+  --ss-border-subtle:initial;
+  --ss-border-success-subtle:initial;
+  --ss-link:initial;
+  --ss-link-hover:initial;
+  --ss-status-error:initial;
+  --ss-status-error-strong:initial;
+  --ss-status-error-surface:initial;
+  --ss-status-success:initial;
+  --ss-status-success-strong:initial;
+  --ss-status-success-surface:initial;
+  --ss-status-warning:initial;
+  --ss-surface-accent:initial;
+  --ss-surface-accent-strong:initial;
+  --ss-surface-hover:initial;
+  --ss-surface-muted:initial;
+  --ss-surface-page:initial;
+  --ss-surface-selected:initial;
+  --ss-surface-strong:initial;
+  --ss-surface-subtle:initial;
+  --ss-text-decor:initial;
+  --ss-text-disabled:initial;
+  --ss-text-muted:initial;
+  --ss-text-primary:initial;
+  --ss-text-secondary:initial;
+}
+
+/* Hlavička v tmavém režimu: bez dělicí linky nad menu */
+html[data-mode="dark"] .ss-hd-nav{border-top-color:transparent!important;}
+/* Karty: v tmavém režimu bez hover podkladu a stínu, mění se jen barva nadpisu */
+html[data-mode="dark"] .ss-ct:hover,html[data-mode="dark"] .ss-cat:hover,html[data-mode="dark"] .ss-art:hover,html[data-mode="dark"] .ss-mm-ban:hover,html[data-mode="dark"] .ss-pc:hover,html[data-mode="dark"] .ss-hp-tile:hover{box-shadow:none!important;}
+/* Produktová karta: v tmavém režimu bez podkladu, tmavá modrá jen na hover; karty blíž k sobě */
+html[data-mode="dark"] .ss-pc{background:transparent;padding:18px;transition:background-color .15s cubic-bezier(.22,.61,.36,1);}
+@media (hover:hover) and (pointer:fine){html[data-mode="dark"] .ss-pc:hover{background:#0E1F2F;}}
+html[data-mode="dark"] .ss-car{gap:8px;}
+html[data-mode="dark"] .ss-pgrid{gap:4px!important;}
+/* Hover obtažení: 1px gradientní linka, světle modré světlo z levého horního rohu */
+html[data-mode="dark"] .ss-pc::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;pointer-events:none;background:radial-gradient(ellipse 90% 70% at 0% 0%,rgba(141,179,211,.95) 0%,rgba(141,179,211,.45) 35%,rgba(141,179,211,.16) 65%,rgba(141,179,211,.06) 100%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);opacity:0;transition:opacity .15s cubic-bezier(.22,.61,.36,1);}
+@media (hover:hover) and (pointer:fine){html[data-mode="dark"] .ss-pc:hover::before{opacity:1;}}
+html[data-mode="dark"] .ss-pm-card:hover .ss-pm-title,html[data-mode="dark"] .ss-pm-row:hover .ss-pm-title,html[data-mode="dark"] .ss-pc:hover .ss-pc-title,html[data-mode="dark"] .ss-mm-ban:hover{color:#FBB255!important;}
+
+/* Podklad webu: jemný radiální gradient ze středu viewportu (hloubka). Fixní → plynule přes všechny sekce. */
+main,main>section{background-image:radial-gradient(ellipse 70% 60% at 50% 45%,rgba(255,255,255,0) 0%,rgba(19,44,67,.044) 100%)!important;background-attachment:fixed!important;}
+html[data-mode="dark"] main,html[data-mode="dark"] main>section{background-image:radial-gradient(ellipse 60% 55% at 50% 45%,rgba(141,179,211,.101) 0%,rgba(141,179,211,.038) 45%,rgba(0,0,0,0) 80%)!important;}
+html[data-bg="off"] main,html[data-bg="off"] main>section{background-image:none!important;}
+/* Gradient Zap: elevace všech ploch, které by na gradientu splývaly (karty, filtry, video, boxy). Gradient Vyp = beze změny. */
+html[data-bg="on"] .ss-elev,html[data-bg="on"] .ss-ct,html[data-bg="on"] .ss-cat,html[data-bg="on"] .ss-hp-tile,html[data-bg="on"] .ss-pd-row,html[data-bg="on"] .ss-mm-art{box-shadow:0 2px 8px rgba(19,44,67,.08)!important;}
+html[data-bg="on"][data-mode="dark"] .ss-elev,html[data-bg="on"][data-mode="dark"] .ss-ct,html[data-bg="on"][data-mode="dark"] .ss-cat,html[data-bg="on"][data-mode="dark"] .ss-hp-tile,html[data-bg="on"][data-mode="dark"] .ss-pd-row{box-shadow:inset 0 1px 0 rgba(141,179,211,.14),0 0 0 1px rgba(141,179,211,.10),0 2px 8px rgba(0,0,0,.35)!important;}
+@media (hover:hover) and (pointer:fine){
+html[data-bg="on"] a.ss-elev:hover,html[data-bg="on"] button.ss-elev:hover,html[data-bg="on"] .ss-ct:hover,html[data-bg="on"] .ss-cat:hover,html[data-bg="on"] .ss-hp-tile:hover,html[data-bg="on"] .ss-pd-row:hover{box-shadow:0 4px 12px rgba(19,44,67,.12)!important;}
+html[data-bg="on"][data-mode="dark"] a.ss-elev:hover,html[data-bg="on"][data-mode="dark"] button.ss-elev:hover,html[data-bg="on"][data-mode="dark"] .ss-ct:hover,html[data-bg="on"][data-mode="dark"] .ss-cat:hover,html[data-bg="on"][data-mode="dark"] .ss-hp-tile:hover,html[data-bg="on"][data-mode="dark"] .ss-pd-row:hover{box-shadow:inset 0 1px 0 rgba(141,179,211,.18),0 0 0 1px rgba(141,179,211,.14),0 8px 24px rgba(0,0,0,.45)!important;}
+}
+html[data-bg="on"] .ss-elev:focus-visible{box-shadow:0 0 0 3px rgba(41,96,147,.35)!important;}
+
+/* Prezentační přepínač fontů — html[data-font-h|data-font-b]="alt" */
+html[data-font-h="alt"] h1:not(.ss-plain),html[data-font-h="alt"] h2:not(.ss-plain),html[data-font-h="alt"] h3:not(.ss-plain),html[data-font-h="alt"] h4:not(.ss-plain),html[data-font-h="alt"] [style*="Oswald"]{font-family:'Barlow Condensed',Oswald,Helvetica,Arial,sans-serif!important;}
+html[data-font-b="alt"] body,html[data-font-b="alt"] [style*="Roboto"]:not([style*="Archivo"]):not([style*="Oswald"]),html[data-font-b="alt"] input,html[data-font-b="alt"] button,html[data-font-b="alt"] select,html[data-font-b="alt"] textarea{font-family:'IBM Plex Sans Condensed',Roboto,Helvetica,Arial,sans-serif!important;}
+html[data-mode="dark"] .ss-ct:hover .ss-ct-title,html[data-mode="dark"] .ss-hp-art:hover .ss-hp-art-t,html[data-mode="dark"] .ss-mag-lead:hover .ss-hp-art-t{color:#FBB255;}
+
+/* Centrální scrim pro všechny modály a drawery (oba režimy): blur 16 px, diagonální závoj, teplé bodové světlo z levého horního rohu */
+.ss-scrim{background:radial-gradient(ellipse 75% 65% at 0% 0%,rgba(251,178,85,.34) 0%,rgba(251,178,85,.12) 40%,rgba(251,178,85,0) 70%),radial-gradient(ellipse 70% 60% at 100% 100%,rgba(240,154,44,.36) 0%,rgba(240,154,44,.12) 40%,rgba(240,154,44,0) 70%),linear-gradient(135deg,rgba(9,18,27,.6) 0%,rgba(9,18,27,.74) 50%,rgba(6,12,18,.8) 100%);-webkit-backdrop-filter:blur(16px) saturate(.9);backdrop-filter:blur(16px) saturate(.9);}
+/* Vyhledávání v hlavičce: teplé bodové světlo na podkladu pole (tmavý režim) */
+html[data-mode="dark"] .ss-hd .ss-input{background-image:radial-gradient(ellipse 45% 140% at 0% 0%,rgba(251,178,85,.20) 0%,rgba(251,178,85,.07) 45%,rgba(251,178,85,0) 75%)!important;}
+html[data-mode="dark"] .ss-hd .ss-input:focus{background-image:radial-gradient(ellipse 55% 160% at 0% 0%,rgba(251,178,85,.28) 0%,rgba(251,178,85,.10) 45%,rgba(251,178,85,0) 80%)!important;}

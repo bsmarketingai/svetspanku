@@ -8,58 +8,60 @@
 <body>
 <x-dc>
 <helmet>
+<link rel="stylesheet" href="./tmavy-rezim.css">
+<script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')!=='light')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h',localStorage.getItem('ss-font-h')||'alt');d.setAttribute('data-font-b',localStorage.getItem('ss-font-b')||'alt');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
-h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Archivo,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:800!important;font-stretch:75%;text-transform:uppercase;letter-spacing:-0.005em;}
+h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
 
 html,body{margin:0!important;padding:0!important;}
 #dc-root{margin:0!important;padding:0!important;width:100%!important;max-width:none!important;border:0!important;}
 #dc-root>.sc-host{margin:0!important;padding:0!important;width:100%!important;}
-a{color:#296093;}
-a:hover{color:#21507B;}
+a{color:var(--ss-link,#296093);}
+a:hover{color:var(--ss-hover-text,#A4600C);}
 
-.ss-cmp-tab{box-sizing:border-box;font-family:Archivo,Helvetica,Arial,sans-serif;display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 20px;border:0;margin:0;cursor:pointer;border-radius:6px;font-size:15px;font-weight:600;white-space:nowrap;background:#FFFFFF;color:#21507B;box-shadow:inset 0 0 0 1px #C8D0D8;transition:background-color .12s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1),box-shadow .15s cubic-bezier(.22,.61,.36,1);}
-.ss-cmp-tab:focus-visible{outline:none;box-shadow:inset 0 0 0 1px #C8D0D8,0 0 0 3px rgba(41,96,147,.35);}
+.ss-cmp-tab{box-sizing:border-box;font-family:Roboto,Helvetica,Arial,sans-serif;display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 20px;border:0;margin:0;cursor:pointer;border-radius:6px;font-size:15px;font-weight:600;white-space:nowrap;background:var(--ss-surface-page,#FFFFFF);color:var(--ss-link-hover,#21507B);box-shadow:inset 0 0 0 1px var(--ss-border-strong,#C8D0D8);transition:background-color .12s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1),box-shadow .15s cubic-bezier(.22,.61,.36,1);}
+.ss-cmp-tab:focus-visible{outline:none;box-shadow:inset 0 0 0 1px var(--ss-border-strong,#C8D0D8),0 0 0 3px rgba(41,96,147,.35);}
 .ss-cmp-tab[aria-pressed="true"]{background:#296093;color:#FFFFFF;box-shadow:none;}
 .ss-cmp-tab[aria-pressed="true"]:focus-visible{box-shadow:0 0 0 3px rgba(41,96,147,.35);}
 @media (hover:hover) and (pointer:fine){
-  .ss-cmp-tab:hover{background:#F0F5FA;}
+  .ss-cmp-tab:hover{background:var(--ss-hover-bg,#FFF5E6);color:var(--ss-hover-text,#A4600C)}
   .ss-cmp-tab[aria-pressed="true"]:hover{background:#21507B;color:#FFFFFF;}
 }
 
-.ss-cmp-icon{box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border:0;margin:0;padding:0;background:transparent;color:#5B6874;border-radius:6px;cursor:pointer;transition:background-color .12s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1),box-shadow .15s cubic-bezier(.22,.61,.36,1);}
+.ss-cmp-icon{box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border:0;margin:0;padding:0;background:transparent;color:var(--ss-text-muted,#5B6874);border-radius:6px;cursor:pointer;transition:background-color .12s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1),box-shadow .15s cubic-bezier(.22,.61,.36,1);}
 .ss-cmp-icon:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
 .ss-cmp-icon[aria-disabled="true"]{opacity:.35;cursor:not-allowed;}
 .ss-cmp-icon::after{content:"";position:absolute;inset:-4px;}
-@media (hover:hover) and (pointer:fine){ .ss-cmp-icon:not([aria-disabled="true"]):hover{background:#F0F5FA;color:#21507B;} }
+@media (hover:hover) and (pointer:fine){ .ss-cmp-icon:not([aria-disabled="true"]):hover{background:var(--ss-hover-bg,#FFF5E6);color:var(--ss-hover-text,#A4600C);} }
 
-.ss-cmp-fav{box-sizing:border-box;font-family:Archivo,Helvetica,Arial,sans-serif;display:inline-flex;align-items:center;gap:8px;min-height:36px;padding:0 6px;border:0;margin:0;background:transparent;color:#3D4750;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;transition:color .12s cubic-bezier(.22,.61,.36,1),box-shadow .15s cubic-bezier(.22,.61,.36,1);}
+.ss-cmp-fav{box-sizing:border-box;font-family:Roboto,Helvetica,Arial,sans-serif;display:inline-flex;align-items:center;gap:8px;min-height:36px;padding:0 6px;border:0;margin:0;background:transparent;color:var(--ss-text-secondary,#3D4750);border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;transition:color .12s cubic-bezier(.22,.61,.36,1),box-shadow .15s cubic-bezier(.22,.61,.36,1);}
 .ss-cmp-fav:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
-@media (hover:hover) and (pointer:fine){ .ss-cmp-fav:hover{color:#21507B;} }
+@media (hover:hover) and (pointer:fine){ .ss-cmp-fav:hover{color:var(--ss-hover-text,#A4600C);} }
 
-.ss-cmp-title{font-family:Archivo,Helvetica,Arial,sans-serif;font-size:16px;font-weight:700;line-height:1.3;color:#1C2229;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px;}
-.ss-cmp-title:hover{color:#21507B;}
+.ss-cmp-title{font-family:Roboto,Helvetica,Arial,sans-serif;font-size:16px;font-weight:700;line-height:1.3;color:var(--ss-text-primary,#1C2229);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px;}
+.ss-cmp-title:hover{color:var(--ss-hover-text,#A4600C);}
 @keyframes ss-cmp-led{0%{box-shadow:0 0 0 0 rgba(21,122,65,.45);}70%{box-shadow:0 0 0 6px rgba(21,122,65,0);}100%{box-shadow:0 0 0 0 rgba(21,122,65,0);}}
 .ss-cmp-led{display:inline-block;width:8px;height:8px;flex:none;border-radius:999px;background:#157A41;animation:ss-cmp-led 1.8s cubic-bezier(.22,.61,.36,1) infinite;}
 @media (prefers-reduced-motion:reduce){.ss-cmp-led{animation:none;}}
 .ss-cmp-scroll{overflow-x:auto;overflow-y:visible;-webkit-overflow-scrolling:touch;scrollbar-width:thin;}
 </style>
 </helmet>
-<div style="width:100%;background:#FFFFFF;font-family:Archivo,Helvetica,Arial,sans-serif;color:#1C2229">
+<div style="width:100%;background:var(--ss-surface-page,#FFFFFF);font-family:Roboto,Helvetica,Arial,sans-serif;color:var(--ss-text-primary,#1C2229)">
   <dc-import name="Hlavicka" style="position:sticky;top:0;z-index:200" ledMode="{{ ledMode }}" hint-size="100%,180px"></dc-import>
   <dc-import name="PrezentacniLista" items="{{ presItems }}" onToggle="{{ onPresToggle }}" hint-size="320px,52px"></dc-import>
 
   <main>
-    <section style="width:100%;background:#FFFFFF">
+    <section style="width:100%;background:var(--ss-surface-page,#FFFFFF)">
       <div style="{{ inner }}">
 
         <div style="{{ topGrid }}">
           <div style="display:flex;flex-direction:column;gap:20px;min-width:0">
             <div style="display:flex;flex-direction:column;gap:12px">
-              <h1 style="margin:0;font-size:{{ h1Size }};line-height:1.08">Porovnání produktů <span style="font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:600;font-stretch:100%;color:#5B6874">({{ totalCount }})</span></h1>
-              <p style="margin:0;max-width:56ch;font-size:17px;line-height:1.55;color:#3D4750;text-wrap:pretty">Vyberte produkty, které chcete porovnat, a v přehledné tabulce zkontrolujete, v čem se liší, který má jaké výhody a co bude pro vás nejvhodnější.</p>
+              <h1 style="margin:0;font-size:{{ h1Size }};line-height:1.08">Porovnání produktů <span style="font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:600;font-stretch:100%;color:var(--ss-text-muted,#5B6874)">({{ totalCount }})</span></h1>
+              <p style="margin:0;max-width:56ch;font-size:17px;line-height:1.55;color:var(--ss-text-secondary,#3D4750);text-wrap:pretty">Vyberte produkty, které chcete porovnat, a v přehledné tabulce zkontrolujete, v čem se liší, který má jaké výhody a co bude pro vás nejvhodnější.</p>
             </div>
             <div style="display:flex;flex-wrap:wrap;gap:12px">
               <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="3">
@@ -71,12 +73,12 @@ a:hover{color:#21507B;}
           <sc-if value="{{ showAdvisor }}" hint-placeholder-val="{{ true }}">
             <div style="{{ advisorStyle }}">
               <h2 style="margin:0;font-size:22px;line-height:1.2">Nevíte si rady s výběrem?</h2>
-              <p style="margin:0;font-size:15px;line-height:1.5;color:#3D4750">Naši spánkoví specialisté vám poradí on-line nebo přímo na pobočce.</p>
+              <p style="margin:0;font-size:15px;line-height:1.5;color:var(--ss-text-secondary,#3D4750)">Naši spánkoví specialisté vám poradí on-line nebo přímo na pobočce.</p>
               <div style="{{ advisorGrid }}">
-                <div style="background:#FFFFFF;border-radius:6px;padding:16px;display:flex;flex-direction:column;gap:10px;min-width:0">
+                <div style="background:var(--ss-surface-page,#FFFFFF);border-radius:6px;padding:16px;display:flex;flex-direction:column;gap:10px;min-width:0">
                   <h3 style="margin:0;font-size:15px;line-height:1.3">Chcete poradit on-line?</h3>
-                  <a href="tel:+420543212855" style="font-family:'Archivo Narrow',Archivo,sans-serif;font-size:19px;font-weight:700;text-decoration:none">+420 543 212 855</a>
-                  <span style="display:inline-flex;align-items:center;gap:8px;font-size:13px;color:#3D4750">
+                  <a href="tel:+420543212855" style="font-family:'Archivo Narrow',Roboto,sans-serif;font-size:19px;font-weight:700;text-decoration:none">+420 543 212 855</a>
+                  <span style="display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--ss-text-secondary,#3D4750)">
                     <sc-if value="{{ isOpenNow }}" hint-placeholder-val="{{ true }}">
                       <span class="ss-cmp-led" role="img" aria-label="Právě jsme online"></span>
                     </sc-if>
@@ -84,7 +86,7 @@ a:hover{color:#21507B;}
                   </span>
                   <a href="mailto:info@svetspanku.cz" style="font-size:14px;font-weight:600">info@svetspanku.cz</a>
                 </div>
-                <div style="background:#FFFFFF;border-radius:6px;padding:16px;display:flex;flex-direction:column;gap:12px;align-items:flex-start;min-width:0">
+                <div style="background:var(--ss-surface-page,#FFFFFF);border-radius:6px;padding:16px;display:flex;flex-direction:column;gap:12px;align-items:flex-start;min-width:0">
                   <h3 style="margin:0;font-size:15px;line-height:1.3">Chcete si produkty vyzkoušet osobně na pobočce?</h3>
                   <dc-import name="Tlacitko" label="Vybrat pobočku" variant="secondary" size="medium" href="#prodejny" iconLeft="map-pin" hint-size="180px,44px"></dc-import>
                 </div>
@@ -112,7 +114,7 @@ a:hover{color:#21507B;}
                 <button type="button" class="ss-cmp-icon" style="position:relative" aria-label="Předchozí produkt" onClick="{{ scrollPrev }}">
                   <dc-import name="Ikony" iconName="chevron-left" size="22" hint-size="22px,22px"></dc-import>
                 </button>
-                <span aria-hidden="true" style="width:1px;height:20px;background:#E1E6EB"></span>
+                <span aria-hidden="true" style="width:1px;height:20px;background:var(--ss-surface-strong,#E1E6EB)"></span>
                 <button type="button" class="ss-cmp-icon" style="position:relative" aria-label="Další produkt" onClick="{{ scrollNext }}">
                   <dc-import name="Ikony" iconName="chevron-right" size="22" hint-size="22px,22px"></dc-import>
                 </button>
@@ -135,15 +137,15 @@ a:hover{color:#21507B;}
                     </button>
                   </div>
                   <a href="{{ c.href }}" style="{{ mediaStyle }}" aria-hidden="true" tabindex="-1">
-                    <span style="color:#9AA6B2;display:flex"><dc-import name="Ikony" iconName="photo" size="32" hint-size="32px,32px"></dc-import></span>
+                    <span style="color:var(--ss-text-disabled,#9AA6B2);display:flex"><dc-import name="Ikony" iconName="photo" size="32" hint-size="32px,32px"></dc-import></span>
                   </a>
                   <h2 class="ss-plain" style="margin:0"><a class="ss-cmp-title" href="{{ c.href }}">{{ c.title }}</a></h2>
-                  <p style="margin:0;font-size:14px;line-height:1.5;color:#3D4750;text-wrap:pretty">{{ c.perex }}</p>
+                  <p style="margin:0;font-size:14px;line-height:1.5;color:var(--ss-text-secondary,#3D4750);text-wrap:pretty">{{ c.perex }}</p>
                   <div style="{{ priceRowStyle }}">
                     <dc-import name="Stitek" kind="{{ c.stock }}" label="{{ c.stockLabel }}" size="small" hint-size="120px,20px"></dc-import>
                     <span style="{{ priceStackStyle }}">
                       <span style="{{ c.beforeStyle }}" aria-hidden="{{ c.beforeHidden }}">{{ c.priceBefore }}</span>
-                      <span style="font-family:'Archivo Narrow',Archivo,sans-serif;font-size:19px;font-weight:700;white-space:nowrap">{{ c.price }}</span>
+                      <span style="font-family:'Archivo Narrow',Roboto,sans-serif;font-size:19px;font-weight:700;white-space:nowrap">{{ c.price }}</span>
                     </span>
                   </div>
                   <div style="width:100%;min-width:0">
@@ -169,18 +171,18 @@ a:hover{color:#21507B;}
         </sc-if>
 
         <sc-if value="{{ noDiff }}" hint-placeholder-val="{{ false }}">
-          <p style="margin:24px 0 0;font-size:15px;color:#3D4750">Vybrané produkty se v uvedených parametrech neliší. Vypněte <strong>Jen rozdíly</strong> a uvidíte celou tabulku.</p>
+          <p style="margin:24px 0 0;font-size:15px;color:var(--ss-text-secondary,#3D4750)">Vybrané produkty se v uvedených parametrech neliší. Vypněte <strong>Jen rozdíly</strong> a uvidíte celou tabulku.</p>
         </sc-if>
 
         <div style="{{ supportWrapStyle }}">
           <div style="{{ supportCardStyle }}">
             <h2 style="margin:0;font-size:20px;line-height:1.15;max-width:8ch">Jsme tu pro vás</h2>
-            <span aria-hidden="true" style="display:inline-flex;align-items:center;justify-content:center;width:56px;height:56px;border-radius:999px;background:#F0F5FA;color:#21507B;flex:none">
+            <span aria-hidden="true" style="display:inline-flex;align-items:center;justify-content:center;width:56px;height:56px;border-radius:999px;background:var(--ss-surface-hover,#F0F5FA);color:var(--ss-link-hover,#21507B);flex:none">
               <dc-import name="Ikony" iconName="phone" size="26" hint-size="26px,26px"></dc-import>
             </span>
             <span style="display:flex;flex-direction:column;gap:6px">
-              <a href="tel:+420543212855" style="font-family:'Archivo Narrow',Archivo,sans-serif;font-size:22px;font-weight:700;text-decoration:none">+420 543 212 855</a>
-              <span style="display:inline-flex;align-items:center;gap:8px;font-size:13px;color:#3D4750">
+              <a href="tel:+420543212855" style="font-family:'Archivo Narrow',Roboto,sans-serif;font-size:22px;font-weight:700;text-decoration:none">+420 543 212 855</a>
+              <span style="display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--ss-text-secondary,#3D4750)">
                 <sc-if value="{{ isOpenNow }}" hint-placeholder-val="{{ true }}">
                   <span class="ss-cmp-led" role="img" aria-label="Právě jsme online"></span>
                 </sc-if>
@@ -304,14 +306,14 @@ class Component extends DCLogic {
           ? Object.assign({}, rowBase, { gridTemplateColumns: 'repeat(' + Math.max(1, n) + ',' + colW + 'px)' })
           : rowBase,
         labelCellStyle: narrow
-          ? { gridColumn: '1 / -1', background: '#FFFFFF', padding: '14px 0 6px' }
-          : { display: 'flex', alignItems: 'center', padding: '14px 16px 14px 0', background: bg, borderTop: '1px solid #E1E6EB', minWidth: 0, position: 'sticky', left: 0, zIndex: 1 },
+          ? { gridColumn: '1 / -1', background: 'var(--ss-surface-page,#FFFFFF)', padding: '14px 0 6px' }
+          : { display: 'flex', alignItems: 'center', padding: '14px 16px 14px 0', background: bg, borderTop: '1px solid var(--ss-border-subtle,#E1E6EB)', minWidth: 0, position: 'sticky', left: 0, zIndex: 1 },
         labelStyle: narrow
-          ? { position: 'sticky', left: 0, display: 'inline-block', paddingRight: '12px', background: '#FFFFFF', fontSize: '13px', fontWeight: 600, letterSpacing: '.08em', textTransform: 'uppercase', color: '#5B6874' }
-          : { fontSize: '13px', fontWeight: 600, letterSpacing: '.08em', textTransform: 'uppercase', color: '#5B6874' },
+          ? { position: 'sticky', left: 0, display: 'inline-block', paddingRight: '12px', background: 'var(--ss-surface-page,#FFFFFF)', fontSize: '13px', fontWeight: 600, letterSpacing: '.08em', textTransform: 'uppercase', color: 'var(--ss-text-muted,#5B6874)' }
+          : { fontSize: '13px', fontWeight: 600, letterSpacing: '.08em', textTransform: 'uppercase', color: 'var(--ss-text-muted,#5B6874)' },
         cellStyle: narrow
-          ? { padding: '12px 16px 12px 0', background: '#F7F9FB', fontSize: '15px', lineHeight: 1.4, color: '#1C2229', minWidth: 0, textWrap: 'pretty' }
-          : { padding: '14px 16px', background: bg, borderTop: '1px solid #E1E6EB', fontSize: '15px', lineHeight: 1.4, color: '#1C2229', minWidth: 0, textWrap: 'pretty' }
+          ? { padding: '12px 16px 12px 0', background: 'var(--ss-surface-subtle,#F7F9FB)', fontSize: '15px', lineHeight: 1.4, color: 'var(--ss-text-primary,#1C2229)', minWidth: 0, textWrap: 'pretty' }
+          : { padding: '14px 16px', background: bg, borderTop: '1px solid var(--ss-border-subtle,#E1E6EB)', fontSize: '15px', lineHeight: 1.4, color: 'var(--ss-text-primary,#1C2229)', minWidth: 0, textWrap: 'pretty' }
       };
     });
 
@@ -320,15 +322,15 @@ class Component extends DCLogic {
       priceBefore: d.priceBefore || '\u00A0',
       beforeHidden: !d.priceBefore,
       beforeStyle: {
-        fontFamily: "'Archivo Narrow', Archivo, sans-serif", fontSize: '13px', fontWeight: 600,
-        color: '#5B6874', textDecoration: d.priceBefore ? 'line-through' : 'none',
+        fontFamily: "'Archivo Narrow', Roboto, sans-serif", fontSize: '13px', fontWeight: 600,
+        color: 'var(--ss-text-muted,#5B6874)', textDecoration: d.priceBefore ? 'line-through' : 'none',
         visibility: d.priceBefore ? 'visible' : 'hidden'
       },
       stock: d.stock, stockLabel: Component.STOCK[d.stock],
       removeLabel: 'Odebrat ' + d.title + ' z porovnání',
       fav: this.state.fav.indexOf(d.id) !== -1,
       favIcon: this.state.fav.indexOf(d.id) !== -1 ? 'heart-filled' : 'heart',
-      favColor: this.state.fav.indexOf(d.id) !== -1 ? '#B3261E' : '#5B6874',
+      favColor: this.state.fav.indexOf(d.id) !== -1 ? 'var(--ss-status-error,#B3261E)' : 'var(--ss-text-muted,#5B6874)',
       favLabel: this.state.fav.indexOf(d.id) !== -1 ? 'V oblíbených' : 'Přidat do oblíbených',
       onRemove: () => this.setState(s => ({ removed: s.removed.concat(d.id) })),
       onFav: () => this.setState(s => ({ fav: s.fav.indexOf(d.id) === -1 ? s.fav.concat(d.id) : s.fav.filter(x => x !== d.id) }))
@@ -353,7 +355,7 @@ class Component extends DCLogic {
         padding: narrow ? '32px 0 24px' : '56px 0 40px'
       },
       advisorStyle: {
-        background: '#F7F9FB', borderRadius: '12px', padding: narrow ? '20px' : '24px',
+        background: 'var(--ss-surface-subtle,#F7F9FB)', borderRadius: '12px', padding: narrow ? '20px' : '24px',
         display: 'flex', flexDirection: 'column', gap: '16px', minWidth: 0
       },
       advisorGrid: {
@@ -387,7 +389,7 @@ class Component extends DCLogic {
         display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '12px',
         padding: narrow ? '4px 0 16px' : '8px 0 16px'
       },
-      headCornerStyle: { position: 'sticky', left: 0, zIndex: 1, background: '#FFFFFF' },
+      headCornerStyle: { position: 'sticky', left: 0, zIndex: 1, background: 'var(--ss-surface-page,#FFFFFF)' },
       headCellStyle: {
         display: 'flex', flexDirection: 'column', gap: '10px', minWidth: 0, height: '100%',
         padding: narrow ? '0 16px 0 0' : '0 16px',
@@ -395,7 +397,7 @@ class Component extends DCLogic {
       },
       mediaStyle: {
         display: 'flex', alignItems: 'center', justifyContent: 'center',
-        aspectRatio: '4 / 3', background: '#EDF1F5', borderRadius: '6px', width: '100%'
+        aspectRatio: '4 / 3', background: 'var(--ss-surface-muted,#EDF1F5)', borderRadius: '6px', width: '100%'
       },
       priceRowStyle: {
         display: 'flex', flexDirection: colW >= 260 ? 'row' : 'column',
@@ -414,7 +416,7 @@ class Component extends DCLogic {
         boxSizing: 'border-box', display: 'flex', flexWrap: 'wrap', alignItems: 'center',
         justifyContent: 'center', gap: narrow ? '20px' : '32px',
         padding: narrow ? '24px' : '28px 40px', borderRadius: '12px',
-        boxShadow: 'inset 0 0 0 1px #E1E6EB', maxWidth: '900px', width: '100%'
+        boxShadow: 'inset 0 0 0 1px var(--ss-border-subtle,#E1E6EB)', maxWidth: '900px', width: '100%'
       }
     };
   }

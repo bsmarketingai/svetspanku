@@ -8,27 +8,29 @@
 <body>
 <x-dc>
 <helmet>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./tmavy-rezim.css">
+<script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')!=='light')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h',localStorage.getItem('ss-font-h')||'alt');d.setAttribute('data-font-b',localStorage.getItem('ss-font-b')||'alt');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
-h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Archivo,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:800!important;font-stretch:75%;text-transform:uppercase;letter-spacing:-0.005em;}
-.ss-vd-close{display:flex;align-items:center;justify-content:center;width:44px;height:44px;border:0;border-radius:6px;background:none;color:#3D4750;cursor:pointer;transition:background-color .12s cubic-bezier(.22,.61,.36,1);}
-.ss-vd-close:hover{background:#F0F5FA;}
+h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
+.ss-vd-close{display:flex;align-items:center;justify-content:center;width:44px;height:44px;border:0;border-radius:6px;background:none;color:var(--ss-text-secondary,#3D4750);cursor:pointer;transition:background-color .12s cubic-bezier(.22,.61,.36,1);}
+.ss-vd-close:hover{background:var(--ss-hover-bg,#FFF5E6);color:var(--ss-hover-text,#A4600C)}
 .ss-vd-close:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
 .ss-vd-tile{display:flex;flex-direction:column;gap:6px;padding:0;border:0;background:none;cursor:pointer;font-family:inherit;text-align:left;border-radius:12px;}
 .ss-vd-tile:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
-.ss-vd-ph{position:relative;width:100%;aspect-ratio:1/1;border-radius:12px;overflow:hidden;background:#F7F9FB;transition:box-shadow .15s cubic-bezier(.22,.61,.36,1);}
-@media (hover:hover) and (pointer:fine){.ss-vd-tile:hover .ss-vd-ph{box-shadow:inset 0 0 0 2px #8DB3D3;}}
-.ss-vd-check{position:absolute;top:8px;right:8px;display:flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:999px;background:#296093;color:#FFFFFF;box-shadow:0 2px 8px rgba(19,44,67,.08);}
-.ss-vd-row{display:flex;align-items:flex-start;gap:14px;width:100%;padding:16px 0;border:0;border-bottom:1px dashed #C8D0D8;background:none;cursor:pointer;font-family:inherit;text-align:left;}
+.ss-vd-ph{position:relative;width:100%;aspect-ratio:1/1;border-radius:12px;overflow:hidden;background:var(--ss-surface-subtle,#F7F9FB);transition:box-shadow .15s cubic-bezier(.22,.61,.36,1);}
+@media (hover:hover) and (pointer:fine){.ss-vd-tile:hover .ss-vd-ph{box-shadow:inset 0 0 0 2px var(--ss-border-hover,#8DB3D3);}}
+.ss-vd-check{position:absolute;top:8px;right:8px;display:flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:999px;background:#FBB255;color:#1C2229;box-shadow:0 2px 8px rgba(19,44,67,.08);}
+.ss-vd-row{display:flex;align-items:flex-start;gap:14px;width:100%;padding:16px 0;border:0;border-bottom:1px dashed var(--ss-border-strong,#C8D0D8);background:none;cursor:pointer;font-family:inherit;text-align:left;}
 .ss-vd-row:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
-@media (hover:hover) and (pointer:fine){.ss-vd-row:hover .ss-vd-name{color:#296093;}}
+@media (hover:hover) and (pointer:fine){.ss-vd-row:hover .ss-vd-name{color:var(--ss-hover-text,#A4600C);}}
 </style>
 </helmet>
 <sc-if value="{{ mounted }}" hint-placeholder-val="{{ false }}">
-  <div style="{{ overlayStyle }}" onClick="{{ close }}" aria-hidden="true"></div>
+  <div class="ss-scrim" style="{{ overlayStyle }}" onClick="{{ close }}" aria-hidden="true"></div>
   <div ref="{{ panelRef }}" role="dialog" aria-modal="true" aria-label="{{ title }}" style="{{ panelStyle }}">
-    <div style="display:flex;align-items:center;gap:8px;padding:12px 12px 12px 20px;border-bottom:1px solid #E1E6EB;flex:none">
-      <h2 style="margin:0;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:21px;color:#1C2229">{{ title }}</h2>
+    <div style="display:flex;align-items:center;gap:8px;padding:12px 12px 12px 20px;border-bottom:1px solid var(--ss-border-subtle,#E1E6EB);flex:none">
+      <h2 style="margin:0;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:21px;color:var(--ss-text-primary,#1C2229)">{{ title }}</h2>
       <button type="button" class="ss-vd-close" style="margin-left:auto" onClick="{{ close }}" aria-label="Zavřít výběr">
         <dc-import name="Ikony" iconName="x" size="22" hint-size="22px,22px"></dc-import>
       </button>
@@ -36,14 +38,14 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 
     <div style="flex:1;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:28px;min-height:0">
       <sc-if value="{{ hasNote }}" hint-placeholder-val="{{ false }}">
-        <p style="margin:0;font-size:14px;line-height:1.6;color:#3D4750">{{ note }}</p>
+        <p style="margin:0;font-size:14px;line-height:1.6;color:var(--ss-text-secondary,#3D4750)">{{ note }}</p>
       </sc-if>
 
       <sc-if value="{{ isTiles }}" hint-placeholder-val="{{ false }}">
         <sc-for list="{{ groups }}" as="g" hint-placeholder-count="2">
-          <div style="display:flex;flex-direction:column;gap:14px;padding-bottom:4px;border-bottom:1px solid #E1E6EB">
+          <div style="display:flex;flex-direction:column;gap:14px;padding-bottom:4px;border-bottom:1px solid var(--ss-border-subtle,#E1E6EB)">
             <sc-if value="{{ g.hasTitle }}" hint-placeholder-val="{{ false }}">
-              <h3 style="margin:0;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#55616C">{{ g.title }}</h3>
+              <h3 style="margin:0;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:13px;letter-spacing:.1em;color:var(--ss-text-muted,#55616C)">{{ g.title }}</h3>
             </sc-if>
             <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;padding-bottom:20px">
               <sc-for list="{{ g.items }}" as="it" hint-placeholder-count="6">
@@ -56,7 +58,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
                       <span class="ss-vd-check"><dc-import name="Ikony" iconName="check" size="16" hint-size="16px,16px"></dc-import></span>
                     </sc-if>
                   </span>
-                  <span style="font-size:14px;font-weight:{{ it.weight }};color:#1C2229;line-height:1.3">{{ it.label }}</span>
+                  <span style="font-size:14px;font-weight:{{ it.weight }};color:var(--ss-text-primary,#1C2229);line-height:1.3">{{ it.label }}</span>
                   <sc-if value="{{ it.hasNote }}" hint-placeholder-val="{{ false }}">
                     <span style="font-size:13px;color:{{ it.noteColor }}">{{ it.note }}</span>
                   </sc-if>
@@ -76,7 +78,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
                   <dc-import name="Ikony" iconName="check" size="16" hint-size="16px,16px"></dc-import>
                 </sc-if>
               </span>
-              <span style="width:64px;height:48px;flex:none;border-radius:8px;overflow:hidden;background:#F7F9FB;display:flex;align-items:center;justify-content:center;color:#C8D0D8">
+              <span style="width:64px;height:48px;flex:none;border-radius:8px;overflow:hidden;background:var(--ss-surface-subtle,#F7F9FB);display:flex;align-items:center;justify-content:center;color:var(--ss-text-decor,#C8D0D8)">
                 <sc-if value="{{ r.hasImage }}" hint-placeholder-val="{{ false }}">
                   <img src="{{ r.image }}" alt="" style="display:block;width:100%;height:100%;object-fit:cover" />
                 </sc-if>
@@ -85,23 +87,23 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
                 </sc-if>
               </span>
               <span style="flex:1;min-width:0;display:flex;flex-direction:column;gap:6px">
-                <span class="ss-vd-name" style="font-size:15px;font-weight:600;color:#1C2229;line-height:1.35">{{ r.label }}</span>
+                <span class="ss-vd-name" style="font-size:15px;font-weight:600;color:var(--ss-text-primary,#1C2229);line-height:1.35">{{ r.label }}</span>
                 <sc-if value="{{ r.hasMeta }}" hint-placeholder-val="{{ false }}">
-                  <span style="font-size:13px;color:#5B6874">{{ r.meta }}</span>
+                  <span style="font-size:13px;color:var(--ss-text-muted,#5B6874)">{{ r.meta }}</span>
                 </sc-if>
                 <span style="display:flex;align-items:center;gap:6px;font-size:13px;color:{{ r.stockColor }}">
                   <span style="display:flex;color:{{ r.stockColor }}"><dc-import name="Ikony" iconName="{{ r.stockIcon }}" size="16" hint-size="16px,16px"></dc-import></span>
                   <span>{{ r.stock }}</span>
                 </span>
               </span>
-              <span style="font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:17px;color:#1C2229;white-space:nowrap">{{ r.price }}</span>
+              <span style="font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:17px;color:var(--ss-text-primary,#1C2229);white-space:nowrap">{{ r.price }}</span>
             </button>
           </sc-for>
         </div>
       </sc-if>
     </div>
 
-    <div style="flex:none;display:flex;gap:12px;padding:16px 20px;border-top:1px solid #E1E6EB;background:#FFFFFF">
+    <div style="flex:none;display:flex;gap:12px;padding:16px 20px;border-top:1px solid var(--ss-border-subtle,#E1E6EB);background:var(--ss-surface-page,#FFFFFF)">
       <div style="flex:1;min-width:0"><dc-import name="Tlacitko" label="Hotovo" variant="primary" size="large" fullWidth="{{ true }}" onClick="{{ close }}" hint-size="100%,52px"></dc-import></div>
     </div>
   </div>
@@ -168,7 +170,7 @@ class Component extends DCLogic {
         const sel = it.id === value;
         return {
           label: it.label, note: it.note, hasNote: !!it.note,
-          noteColor: it.note && it.note.indexOf('+') === 0 ? '#1C2229' : '#157A41',
+          noteColor: it.note && it.note.indexOf('+') === 0 ? 'var(--ss-text-primary,#1C2229)' : 'var(--ss-status-success,#157A41)',
           color: it.color || '#EFF2F5', image: it.image, hasImage: !!it.image,
           selected: sel, pressed: sel ? 'true' : 'false',
           ring: sel ? 'inset 0 0 0 2px #296093' : 'inset 0 0 0 1px rgba(19,44,67,.10)',
@@ -184,11 +186,11 @@ class Component extends DCLogic {
         image: r.image, hasImage: !!r.image, noImage: !r.image,
         stock: r.stock || 'Skladem',
         stockIcon: r.outOfStock ? 'clock' : 'circle-check',
-        stockColor: r.outOfStock ? '#5B6874' : '#157A41',
+        stockColor: r.outOfStock ? 'var(--ss-text-muted,#5B6874)' : 'var(--ss-status-success,#157A41)',
         selected: sel, pressed: sel ? 'true' : 'false',
-        dotBg: sel ? '#296093' : 'transparent',
-        dotColor: sel ? '#FFFFFF' : '#5B6874',
-        dotRing: sel ? 'none' : 'inset 0 0 0 1px #C8D0D8',
+        dotBg: sel ? '#FBB255' : 'transparent',
+        dotColor: sel ? '#1C2229' : '#5B6874',
+        dotRing: sel ? 'none' : 'inset 0 0 0 1px var(--ss-border-strong,#C8D0D8)',
         onPick: pick(r.id)
       };
     });
@@ -200,12 +202,12 @@ class Component extends DCLogic {
       isList: groups.length === 0,
       groups, rows,
       overlayStyle: {
-        position: 'fixed', inset: 0, zIndex: 400, background: 'rgba(19,44,67,.5)',
+        position: 'fixed', inset: 0, zIndex: 400, 
         opacity: visible ? 1 : 0, transition: 'opacity .4s cubic-bezier(.22,.61,.36,1)'
       },
       panelStyle: {
         position: 'fixed', top: 0, right: 0, bottom: 0, zIndex: 410,
-        width: 'min(92vw,480px)', background: '#FFFFFF', display: 'flex', flexDirection: 'column',
+        width: (typeof document !== 'undefined' && document.documentElement.clientWidth < 420) ? '100%' : 'min(92vw,480px)', background: 'var(--ss-surface-page,#FFFFFF)', display: 'flex', flexDirection: 'column',
         boxShadow: '0 16px 40px rgba(19,44,67,.18)',
         transform: visible ? 'translateX(0)' : 'translateX(100%)',
         transition: 'transform .4s cubic-bezier(.22,.61,.36,1)'

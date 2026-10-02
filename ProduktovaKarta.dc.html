@@ -8,32 +8,43 @@
 <body>
 <x-dc>
 <helmet>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./tmavy-rezim.css">
+<script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')!=='light')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h',localStorage.getItem('ss-font-h')||'alt');d.setAttribute('data-font-b',localStorage.getItem('ss-font-b')||'alt');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
-h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Archivo,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:800!important;font-stretch:75%;text-transform:uppercase;letter-spacing:-0.005em;}
+h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
 
-.ss-pc{position:relative;font-family:Archivo,Helvetica,Arial,sans-serif;display:flex;flex-direction:column;width:100%;min-width:0;height:100%;box-sizing:border-box;background:#FFFFFF;border-radius:12px;padding:16px;transition:box-shadow .15s cubic-bezier(.22,.61,.36,1);}
+.ss-pc{position:relative;font-family:Roboto,Helvetica,Arial,sans-serif;display:flex;flex-direction:column;width:100%;min-width:0;height:100%;box-sizing:border-box;background:var(--ss-surface-page,#FFFFFF);border-radius:12px;padding:16px;transition:box-shadow .15s cubic-bezier(.22,.61,.36,1);}
 .sc-host:has(>.ss-pc){display:flex;width:100%;height:100%;min-width:0;}
 .ss-pc:hover{box-shadow:0 4px 12px rgba(19,44,67,.12);}
 .ss-pc:focus-within{box-shadow:0 0 0 3px rgba(41,96,147,.35);}
 .ss-pc-cover{position:absolute;inset:0;z-index:1;border-radius:12px;}
 .ss-pc-cover:focus-visible{outline:none;}
-.ss-pc-title{margin:0;font-size:17px;font-weight:700;line-height:1.3;color:#1C2229;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px;transition:color .12s cubic-bezier(.22,.61,.36,1);}
-.ss-pc:hover .ss-pc-title{color:#296093;}
-.ss-pc-fav{position:absolute;top:8px;right:8px;z-index:2;display:flex;align-items:center;justify-content:center;width:40px;height:40px;border:0;border-radius:999px;background:#FFFFFF;color:#1C2229;cursor:pointer;box-shadow:0 2px 8px rgba(19,44,67,.08);transition:color .12s cubic-bezier(.22,.61,.36,1);}
-.ss-pc-fav:hover{color:#B3261E;}
+.ss-pc-title{margin:0;font-size:17px;font-weight:700;line-height:1.3;color:var(--ss-text-primary,#1C2229);text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px;transition:color .12s cubic-bezier(.22,.61,.36,1);}
+.ss-pc:hover .ss-pc-title{color:var(--ss-hover-text,#A4600C);}
+.ss-pc-fav{position:absolute;top:8px;right:8px;z-index:2;display:flex;align-items:center;justify-content:center;width:40px;height:40px;border:0;border-radius:999px;background:var(--ss-surface-page,#FFFFFF);color:var(--ss-text-primary,#1C2229);cursor:pointer;box-shadow:0 2px 8px rgba(19,44,67,.08);transition:color .12s cubic-bezier(.22,.61,.36,1);}
+.ss-pc-fav:hover{color:var(--ss-status-error,#B3261E);}
 .ss-pc-fav:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
-.ss-pc-param{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:#3D4750;line-height:1.35;}
-.ss-pc-more{position:relative;z-index:2;display:flex;align-items:flex-start;justify-content:center;width:100%;min-height:30px;box-sizing:border-box;text-align:center;font-size:13px;font-weight:600;color:#55616C;text-decoration:none;padding:8px 0 0;border-radius:4px;}
-.ss-pc-more:hover{color:#296093;text-decoration:underline;text-underline-offset:3px;}
+.ss-pc-param{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:var(--ss-text-secondary,#3D4750);line-height:1.35;}
+.ss-pc-more{position:relative;z-index:2;display:flex;align-items:flex-start;justify-content:center;width:100%;min-height:30px;box-sizing:border-box;text-align:center;font-size:13px;font-weight:600;color:var(--ss-text-muted,#55616C);text-decoration:none;padding:8px 0 0;border-radius:4px;}
+.ss-pc-more:hover{color:var(--ss-hover-text,#A4600C);text-decoration:underline;text-underline-offset:3px;}
 .ss-pc-more:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+.ss-pc-media[data-photo="true"]{background:#FFFFFF!important;}
+.ss-pc-img{transition:transform .4s cubic-bezier(.22,.61,.36,1);}
+@media (hover:hover) and (pointer:fine){.ss-pc:hover .ss-pc-img{transform:scale(1.04);}}
+@media (prefers-reduced-motion:reduce){.ss-pc-img{transition:none;}.ss-pc:hover .ss-pc-img{transform:none;}}
 </style>
 </helmet>
 <article class="ss-pc">
   <a class="ss-pc-cover" href="{{ href }}" aria-label="{{ title }}"></a>
 
-  <div style="position:relative;width:100%;aspect-ratio:1/1;background:#F7F9FB;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#C8D0D8;margin-bottom:14px">
-    <dc-import name="Ikony" iconName="photo" size="36" hint-size="36px,36px"></dc-import>
+  <div class="ss-pc-media" data-photo="{{ hasImage }}" style="position:relative;width:100%;aspect-ratio:1/1;background:var(--ss-surface-subtle,#F7F9FB);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--ss-text-decor,#C8D0D8);margin-bottom:14px;overflow:hidden">
+    <sc-if value="{{ hasImage }}" hint-placeholder-val="{{ false }}">
+      <img class="ss-pc-img" src="{{ image }}" alt="{{ title }}" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block" />
+    </sc-if>
+    <sc-if value="{{ noImage }}" hint-placeholder-val="{{ true }}">
+      <dc-import name="Ikony" iconName="photo" size="36" hint-size="36px,36px"></dc-import>
+    </sc-if>
     <div style="position:absolute;top:8px;left:8px;z-index:2;display:flex;flex-direction:column;align-items:flex-start;gap:6px">
       <sc-for list="{{ badges }}" as="b" hint-placeholder-count="1">
         <dc-import name="Stitek" kind="{{ b.kind }}" label="{{ b.label }}" icon="{{ b.icon }}" hint-size="90px,26px"></dc-import>
@@ -52,14 +63,14 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
     <h3 class="ss-pc-title ss-plain">{{ title }}</h3>
 
     <sc-if value="{{ hasPerex }}" hint-placeholder-val="{{ true }}">
-      <p style="margin:0;font-size:14px;line-height:1.55;color:#3D4750">{{ perex }}</p>
+      <p style="margin:0;font-size:14px;line-height:1.55;color:var(--ss-text-secondary,#3D4750)">{{ perex }}</p>
     </sc-if>
 
     <sc-if value="{{ hasParams }}" hint-placeholder-val="{{ true }}">
       <div style="display:flex;flex-direction:column;gap:4px">
         <sc-for list="{{ params }}" as="pm" hint-placeholder-count="3">
           <span class="ss-pc-param">
-            <span style="display:flex;color:#55616C;flex:none"><dc-import name="Ikony" iconName="{{ pm.icon }}" size="16" hint-size="16px,16px"></dc-import></span>
+            <span style="display:flex;color:var(--ss-text-muted,#55616C);flex:none"><dc-import name="Ikony" iconName="{{ pm.icon }}" size="16" hint-size="16px,16px"></dc-import></span>
             <span>{{ pm.label }}</span>
           </span>
         </sc-for>
@@ -71,9 +82,9 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
     <div style="padding-top:12px;display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px">
       <div style="display:flex;flex-direction:column;gap:2px;min-width:0">
         <sc-if value="{{ hasBefore }}" hint-placeholder-val="{{ false }}">
-          <span style="font-size:14px;color:#B3261E;text-decoration:line-through">{{ priceBefore }}</span>
+          <span style="font-size:14px;color:var(--ss-status-error,#B3261E);text-decoration:line-through">{{ priceBefore }}</span>
         </sc-if>
-        <span style="font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:24px;line-height:1.1;color:#1C2229;white-space:nowrap">{{ price }}</span>
+        <span style="font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:24px;line-height:1.1;color:var(--ss-text-primary,#1C2229);white-space:nowrap">{{ price }}</span>
       </div>
       <div style="position:relative;z-index:2;flex:none">
         <dc-import name="Tlacitko" label="{{ ctaLabel }}" variant="{{ ctaVariant }}" size="medium" href="{{ href }}" hint-size="130px,44px"></dc-import>
@@ -89,6 +100,7 @@ class Component extends DCLogic {
   renderVals() {
     const p = this.props;
     const d = p.product || {};
+    const hasImage = !!d.image;
     const stock = d.stock || 'inStock';
     const fav = this.state.fav === null ? !!d.favourite : this.state.fav;
     const badges = [];
@@ -97,6 +109,7 @@ class Component extends DCLogic {
     const price = d.price || '7 590 Kč';
     const from = d.priceFrom !== false;
     return {
+      hasImage, noImage: !hasImage, image: d.image,
       href: d.href || '#produkt',
       title: d.title || 'Matrace Spring Variant 22 cm',
       hasPerex: !!d.perex,
@@ -112,7 +125,7 @@ class Component extends DCLogic {
       price: from ? 'od ' + price : price,
       priceBefore: d.priceBefore ? (from ? 'od ' + d.priceBefore : d.priceBefore) : undefined,
       hasBefore: !!d.priceBefore,
-      ctaLabel: stock === 'outOfStock' ? 'Hlídat dostupnost' : 'Zobrazit',
+      ctaLabel: stock === 'outOfStock' ? 'Hlídat dostupnost' : (d.ctaLabel || 'Zobrazit'),
       ctaVariant: stock === 'outOfStock' ? 'secondary' : 'primary',
       favIcon: fav ? 'heart-filled' : 'heart',
       favPressed: fav ? 'true' : 'false',

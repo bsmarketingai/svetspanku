@@ -8,16 +8,18 @@
 <body>
 <x-dc>
 <helmet>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./tmavy-rezim.css">
+<script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')!=='light')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h',localStorage.getItem('ss-font-h')||'alt');d.setAttribute('data-font-b',localStorage.getItem('ss-font-b')||'alt');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
-h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Archivo,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:800!important;font-stretch:75%;text-transform:uppercase;letter-spacing:-0.005em;}
+h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
 
-.ss-qty{font-family:Archivo,Helvetica,Arial,sans-serif;display:inline-flex;align-items:center;background:#F7F9FB;border-radius:6px;overflow:hidden;}
-.ss-qty button{font-family:inherit;border:0;background:none;margin:0;padding:0;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#21507B;transition:background-color .12s cubic-bezier(.22,.61,.36,1),box-shadow .15s cubic-bezier(.22,.61,.36,1);}
-.ss-qty button:hover{background:#EFF2F5;}
+.ss-qty{font-family:Roboto,Helvetica,Arial,sans-serif;display:inline-flex;align-items:center;background:var(--ss-surface-subtle,#F7F9FB);border-radius:6px;overflow:hidden;}
+.ss-qty button{font-family:inherit;border:0;background:none;margin:0;padding:0;border-radius:6px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--ss-link-hover,#21507B);transition:background-color .12s cubic-bezier(.22,.61,.36,1),box-shadow .15s cubic-bezier(.22,.61,.36,1);}
+.ss-qty button:hover{background:var(--ss-surface-muted,#EFF2F5);}
 .ss-qty button:focus-visible{outline:none;box-shadow:inset 0 0 0 3px rgba(41,96,147,.35);}
 .ss-qty button[aria-disabled="true"]{opacity:.4;cursor:not-allowed;}
-.ss-qty input{font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:600;text-align:center;border:0;background:transparent;color:#1C2229;-moz-appearance:textfield;min-width:0;}
+.ss-qty input{font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:600;text-align:center;border:0;background:transparent;color:var(--ss-text-primary,#1C2229);-moz-appearance:textfield;min-width:0;}
 .ss-qty input::-webkit-outer-spin-button,.ss-qty input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0;}
 .ss-qty input:focus-visible{outline:none;box-shadow:inset 0 0 0 3px rgba(41,96,147,.35);border-radius:4px;}
 @media (max-width:549px){.ss-qty input{font-size:16px!important;}}

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="./tmavy-rezim.css">
+<script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')!=='light')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h',localStorage.getItem('ss-font-h')||'alt');d.setAttribute('data-font-b',localStorage.getItem('ss-font-b')||'alt');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
+a{color:var(--ss-link,#296093);}a:hover{color:var(--ss-hover-text,#A4600C);}
+.ss-pm-close{display:flex;align-items:center;justify-content:center;flex:none;width:44px;height:44px;border:0;border-radius:6px;background:none;color:var(--ss-text-muted,#5B6874);cursor:pointer;transition:background-color .12s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1);}
+@media (hover:hover) and (pointer:fine){.ss-pm-close:hover{background:var(--ss-hover-bg,#FFF5E6);color:var(--ss-hover-text,#A4600C);}}
+.ss-pm-close:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+</style>
+</helmet>
+<sc-if value="{{ open }}" hint-placeholder-val="{{ false }}">
+  <div class="ss-scrim" onClick="{{ onScrim }}" style="position:fixed;inset:0;z-index:500;display:flex;align-items:center;justify-content:center;padding:16px;box-sizing:border-box;font-family:Roboto,Helvetica,Arial,sans-serif">
+    <div role="dialog" aria-modal="true" aria-labelledby="ss-pm-title" ref="{{ dialogRef }}" style="width:100%;max-width:640px;max-height:calc(100vh - 32px);overflow-y:auto;box-sizing:border-box;background:var(--ss-surface-page,#FFFFFF);border-radius:12px;box-shadow:0 16px 40px rgba(19,44,67,.18);color:var(--ss-text-primary,#1C2229);padding:32px;display:flex;flex-direction:column;gap:24px">
+      <div style="display:flex;align-items:flex-start;gap:16px">
+        <span aria-hidden="true" style="display:flex;align-items:center;justify-content:center;flex:none;width:48px;height:48px;border-radius:6px;background:var(--ss-surface-hover,#F0F5FA);color:var(--ss-link,#296093)"><dc-import name="Ikony" iconName="help-circle" size="28" hint-size="28px,28px"></dc-import></span>
+        <h2 id="ss-pm-title" style="flex:1;min-width:0;margin:0;font-size:28px;line-height:1.15;text-wrap:balance">{{ title }}</h2>
+        <button type="button" class="ss-pm-close" ref="{{ closeRef }}" onClick="{{ close }}" aria-label="Zavřít">
+          <dc-import name="Ikony" iconName="x" size="24" hint-size="24px,24px"></dc-import>
+        </button>
+      </div>
+      <sc-if value="{{ hasImage }}" hint-placeholder-val="{{ false }}">
+        <img src="{{ image }}" alt="{{ imageAlt }}" style="display:block;width:100%;aspect-ratio:16 / 9;object-fit:cover;border-radius:6px">
+      </sc-if>
+      <p style="margin:0;font-size:17px;line-height:1.6;color:var(--ss-text-secondary,#3D4750);text-wrap:pretty">{{ intro }}</p>
+      <dl style="margin:0;display:flex;flex-direction:column;gap:16px">
+        <sc-for list="{{ items }}" as="it" hint-placeholder-count="4">
+          <div style="display:flex;flex-direction:column;gap:4px;padding-top:16px;border-top:1px solid var(--ss-border-subtle,#E1E6EB)">
+            <dt style="font-size:16px;font-weight:700;line-height:1.4">{{ it.h }}</dt>
+            <dd style="margin:0;font-size:16px;line-height:1.6;color:var(--ss-text-secondary,#3D4750);text-wrap:pretty">{{ it.t }}</dd>
+          </div>
+        </sc-for>
+      </dl>
+      <div style="display:flex;flex-wrap:wrap;gap:12px">
+        <dc-import name="Tlacitko" label="{{ ctaLabel }}" variant="primary" size="large" href="{{ ctaHref }}" hint-size="240px,52px"></dc-import>
+        <dc-import name="Tlacitko" label="Zavřít" variant="secondary" size="large" onClick="{{ close }}" hint-size="120px,52px"></dc-import>
+      </div>
+    </div>
+  </div>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:900,&quot;height&quot;:800},&quot;open&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;topic&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;{title:string,intro:string,items:{h:string,t:string}[],ctaLabel?:string,ctaHref?:string}&quot;},&quot;onClose&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;() =&gt; void&quot;}}">
+class Component extends DCLogic {
+  dialogRef = React.createRef();
+  closeRef = React.createRef();
+  componentDidMount() { if (this.props.open) this.activate(); }
+  componentDidUpdate(prev) {
+    if (this.props.open && !prev.open) this.activate();
+    if (!this.props.open && prev.open) this.deactivate(true);
+  }
+  componentWillUnmount() { this.deactivate(false); }
+  activate() {
+    this._ret = document.activeElement;
+    this._ov = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    this._key = (e) => {
+      if (e.key === 'Escape') { e.preventDefault(); this.doClose(); return; }
+      if (e.key !== 'Tab' || !this.dialogRef.current) return;
+      const f = Array.from(this.dialogRef.current.querySelectorAll('a[href],button:not([disabled]),input,select,textarea,[tabindex]:not([tabindex="-1"])'));
+      if (!f.length) return;
+      const first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    };
+    document.addEventListener('keydown', this._key);
+    requestAnimationFrame(() => { if (this.closeRef.current) this.closeRef.current.focus(); });
+  }
+  deactivate(restore) {
+    if (!this._key) return;
+    document.removeEventListener('keydown', this._key);
+    this._key = null;
+    document.body.style.overflow = this._ov || '';
+    if (restore && this._ret && this._ret.focus) this._ret.focus();
+  }
+  doClose() { if (this.props.onClose) this.props.onClose(); }
+  renderVals() {
+    const t = this.props.topic || {};
+    return {
+      open: !!this.props.open,
+      title: t.title || '',
+      intro: t.intro || '',
+      image: t.image || '',
+      imageAlt: t.imageAlt || '',
+      hasImage: !!t.image,
+      items: t.items || [],
+      ctaLabel: t.ctaLabel || 'Průvodce výběrem',
+      ctaHref: t.ctaHref || '#pruvodce',
+      dialogRef: this.dialogRef,
+      closeRef: this.closeRef,
+      close: () => this.doClose(),
+      onScrim: (e) => { if (e.target === e.currentTarget) this.doClose(); }
+    };
+  }
+}
+</script>
+</body>
+</html>

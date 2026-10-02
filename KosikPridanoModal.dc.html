@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="./tmavy-rezim.css">
+<script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')!=='light')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h',localStorage.getItem('ss-font-h')||'alt');d.setAttribute('data-font-b',localStorage.getItem('ss-font-b')||'alt');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
+.ss-kpm,.ss-kpm *{box-sizing:border-box;}
+.ss-kpm-close{display:flex;align-items:center;justify-content:center;width:44px;height:44px;flex:none;border:0;border-radius:6px;background:none;color:var(--ss-text-muted,#5B6874);cursor:pointer;transition:background-color .12s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1);}
+@media (hover:hover) and (pointer:fine){.ss-kpm-close:hover{background:var(--ss-hover-bg,#FFF5E6);color:var(--ss-hover-text,#A4600C);}}
+.ss-kpm-close:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+.ss-kpm-car{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:12px;margin:-12px;}
+.ss-kpm-car::-webkit-scrollbar{display:none;}
+.ss-kpm-car > *{scroll-snap-align:start;}
+.ss-kpm-arrow{display:flex;align-items:center;justify-content:center;width:44px;height:44px;border:0;border-radius:999px;background:none;color:var(--ss-text-primary,#1C2229);cursor:pointer;transition:background-color .12s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1);}
+@media (hover:hover) and (pointer:fine){.ss-kpm-arrow:hover{background:var(--ss-hover-bg,#FFF5E6);color:var(--ss-hover-text,#A4600C);}}
+.ss-kpm-arrow:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+</style>
+</helmet>
+<sc-if value="{{ open }}" hint-placeholder-val="{{ false }}">
+  <div class="ss-scrim ss-kpm" style="position:fixed;inset:0;z-index:500;display:flex;align-items:safe center;justify-content:center;overflow-y:auto;padding:{{ scrimPad }};font-family:Roboto,Helvetica,Arial,sans-serif" onClick="{{ onBackdrop }}">
+    <div role="dialog" aria-modal="true" aria-labelledby="ss-kpm-title" ref="{{ dialogRef }}" style="position:relative;width:100%;max-width:1040px;background:var(--ss-surface-page,#FFFFFF);color:var(--ss-text-primary,#1C2229);border-radius:12px;box-shadow:0 16px 40px rgba(19,44,67,.18);padding:{{ dialogPad }};display:flex;flex-direction:column;gap:24px">
+
+      <div style="display:flex;align-items:flex-start;gap:12px">
+        <span style="display:flex;flex:none;color:var(--ss-status-success,#157A41);padding-top:4px"><dc-import name="Ikony" iconName="circle-check" size="32" hint-size="32px,32px"></dc-import></span>
+        <h2 id="ss-kpm-title" style="margin:0;flex:1;min-width:0;font-size:{{ titleSize }};line-height:1.2;text-wrap:pretty;padding-top:4px">Zboží bylo úspěšně přidáno do košíku</h2>
+        <button type="button" class="ss-kpm-close" ref="{{ closeRef }}" onClick="{{ close }}" aria-label="Zavřít a pokračovat v nákupu">
+          <dc-import name="Ikony" iconName="x" size="24" hint-size="24px,24px"></dc-import>
+        </button>
+      </div>
+
+      <div style="display:grid;grid-template-columns:{{ itemCols }};gap:16px 24px;align-items:center;padding-bottom:24px;border-bottom:1px solid var(--ss-border-subtle,#E1E6EB)">
+        <div style="width:100%;aspect-ratio:4/3;background:var(--ss-surface-muted,#EEF1F4);border-radius:6px;overflow:hidden;grid-row:{{ imgRow }}">
+          <sc-if value="{{ hasImage }}" hint-placeholder-val="{{ false }}">
+            <img src="{{ image }}" alt="" style="display:block;width:100%;height:100%;object-fit:cover" />
+          </sc-if>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:4px;min-width:0">
+          <span style="font-size:17px;font-weight:700;line-height:1.3">{{ qtyTitle }}</span>
+          <span style="font-size:14px;line-height:1.45;color:var(--ss-text-secondary,#3D4750)">{{ variant }}</span>
+        </div>
+        <div style="min-width:0">
+          <dc-import name="Stitek" kind="{{ stockKind }}" label="{{ stockLabel }}" hint-size="200px,20px"></dc-import>
+        </div>
+        <div style="display:flex;align-items:baseline;justify-content:{{ totalJustify }};gap:8px;white-space:nowrap">
+          <span style="font-size:14px;color:var(--ss-text-muted,#5B6874)">Celkem</span>
+          <span style="font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:26px;line-height:1.1">{{ total }}</span>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:{{ actDir }};align-items:{{ actAlign }};gap:{{ actGap }};padding-bottom:24px;border-bottom:1px solid var(--ss-border-subtle,#E1E6EB)">
+        <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
+          <div style="flex:none">
+            <dc-import name="Tlacitko" label="Zpět do obchodu" variant="secondary" size="large" iconLeft="chevron-left" onClick="{{ close }}" hint-size="200px,52px"></dc-import>
+          </div>
+        </sc-if>
+        <p style="margin:0;flex:1;min-width:0;display:flex;align-items:flex-start;gap:12px;font-size:14px;line-height:1.5;color:var(--ss-text-secondary,#3D4750)">
+          <span style="display:flex;flex:none;color:var(--ss-text-muted,#5B6874)"><dc-import name="Ikony" iconName="truck" size="24" hint-size="24px,24px"></dc-import></span>
+          <span>Vybrané zboží vám umíme dovézt i smontovat. Dopravu a montáž si vyberete v košíku.</span>
+        </p>
+        <div style="flex:none;width:{{ ctaWidth }}">
+          <dc-import name="Tlacitko" label="Zobrazit košík" variant="buy" size="large" iconLeft="shopping-cart" href="{{ cartHref }}" fullWidth="{{ ctaFull }}" hint-size="200px,52px"></dc-import>
+        </div>
+        <sc-if value="{{ narrow }}" hint-placeholder-val="{{ false }}">
+          <div style="width:100%">
+            <dc-import name="Tlacitko" label="Zpět do obchodu" variant="secondary" size="large" iconLeft="chevron-left" fullWidth="{{ true }}" onClick="{{ close }}" hint-size="100%,52px"></dc-import>
+          </div>
+        </sc-if>
+      </div>
+
+      <section aria-labelledby="ss-kpm-rec" style="display:flex;flex-direction:column;gap:20px">
+        <h3 id="ss-kpm-rec" style="margin:0;font-size:{{ recSize }};line-height:1.2;text-align:{{ recAlign }}">Ostatní zákazníci také nakoupili</h3>
+        <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
+          <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px">
+            <sc-for list="{{ recs }}" as="r" hint-placeholder-count="3">
+              <div style="display:flex;min-width:0">
+                <dc-import name="ProduktovaKarta" product="{{ r }}" hint-size="100%,520px"></dc-import>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+        <sc-if value="{{ narrow }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div class="ss-kpm-car" ref="{{ trackRef }}">
+              <sc-for list="{{ recs }}" as="r" hint-placeholder-count="2">
+                <div style="display:flex;flex:none;width:{{ cardW }};min-width:0">
+                  <dc-import name="ProduktovaKarta" product="{{ r }}" hint-size="100%,520px"></dc-import>
+                </div>
+              </sc-for>
+            </div>
+            <div style="display:flex;justify-content:flex-end;gap:8px">
+              <button type="button" class="ss-kpm-arrow" onClick="{{ prev }}" aria-label="Předchozí produkty">
+                <dc-import name="Ikony" iconName="arrow-left" size="24" hint-size="24px,24px"></dc-import>
+              </button>
+              <button type="button" class="ss-kpm-arrow" onClick="{{ next }}" aria-label="Další produkty">
+                <dc-import name="Ikony" iconName="arrow-right" size="24" hint-size="24px,24px"></dc-import>
+              </button>
+            </div>
+          </div>
+        </sc-if>
+      </section>
+    </div>
+  </div>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1200,&quot;height&quot;:900},&quot;open&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;title&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Manželská postel SANTE 45 dvoulůžko&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;qty&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:2,&quot;min&quot;:1,&quot;tsType&quot;:&quot;number&quot;},&quot;variant&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;200 × 180 cm · olej Teak · jádrový buk&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;image&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;stockKind&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;onWay&quot;,&quot;options&quot;:[&quot;inStock&quot;,&quot;lowStock&quot;,&quot;onWay&quot;,&quot;outOfStock&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;stockLabel&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Vyrobíme během 2–4 týdnů&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;total&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;39 800 Kč&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;cartHref&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Kosik.dc.html&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;items&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;Product[]&quot;},&quot;onClose&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;() =&gt; void&quot;}}">
+class Component extends DCLogic {
+  state = { width: typeof window !== 'undefined' ? document.documentElement.clientWidth : 1440, recs: null };
+  componentDidMount() {
+    this._resize = () => this.setState({ width: document.documentElement.clientWidth });
+    window.addEventListener('resize', this._resize);
+    if (!this.props.items) import('./produkty.js').then(m => this.setState({ recs: m.PRODUKTY.slice(0, 3) }));
+    if (this.props.open ?? true) this.activate();
+  }
+  componentDidUpdate(prev) {
+    if (this.props.open && !prev.open) this.activate();
+    if (!this.props.open && prev.open) this.deactivate();
+  }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this._resize);
+    this.deactivate();
+  }
+  activate() {
+    this._last = document.activeElement;
+    document.body.style.overflow = 'hidden';
+    this._key = (e) => {
+      if (e.key === 'Escape') { e.preventDefault(); this.requestClose(); }
+      else if (e.key === 'Tab') this.trap(e);
+    };
+    window.addEventListener('keydown', this._key);
+    setTimeout(() => { if (this._closeBtn) this._closeBtn.focus(); }, 30);
+  }
+  deactivate() {
+    if (!this._key) return;
+    window.removeEventListener('keydown', this._key);
+    this._key = null;
+    document.body.style.overflow = '';
+    if (this._last && this._last.focus) this._last.focus();
+  }
+  trap(e) {
+    const root = this._dialog;
+    if (!root) return;
+    const f = Array.from(root.querySelectorAll('button, a[href], input:not([disabled]), select, textarea')).filter(el => el.offsetParent !== null);
+    if (!f.length) return;
+    const first = f[0], last = f[f.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  }
+  requestClose() { if (this.props.onClose) this.props.onClose(); }
+  scroll(dir) {
+    const el = this._track;
+    if (!el) return;
+    const card = el.firstElementChild;
+    el.scrollBy({ left: dir * (card ? card.getBoundingClientRect().width + 16 : 280), behavior: 'smooth' });
+  }
+  renderVals() {
+    const p = this.props;
+    const w = this.state.width;
+    const wide = w >= 820;
+    const xs = w < 550;
+    const qty = p.qty || 1;
+    const recs = (p.items || this.state.recs || []).map(d => Object.assign({}, d, { params: [], ctaLabel: 'Vybrat variantu', href: 'Produkt Levita.dc.html' }));
+    return {
+      open: p.open ?? true,
+      wide, narrow: !wide,
+      scrimPad: wide ? '40px 32px' : '16px',
+      dialogPad: wide ? '32px 40px 40px' : (xs ? '20px 16px 24px' : '24px'),
+      titleSize: wide ? '28px' : '22px',
+      recSize: wide ? '24px' : '20px',
+      recAlign: wide ? 'center' : 'left',
+      itemCols: wide ? '144px minmax(0,1.6fr) minmax(0,1fr) auto' : '96px minmax(0,1fr)',
+      imgRow: wide ? 'auto' : 'span 3',
+      totalJustify: wide ? 'flex-end' : 'flex-start',
+      actDir: wide ? 'row' : 'column',
+      actAlign: wide ? 'center' : 'stretch',
+      actGap: wide ? '32px' : '16px',
+      ctaWidth: wide ? 'auto' : '100%',
+      ctaFull: !wide,
+      cardW: xs ? '82%' : 'calc((100% - 16px) / 2)',
+      hasImage: true, image: p.image || 'produkt-sante-45.jpg',
+      qtyTitle: (qty > 1 ? qty + '× ' : '') + (p.title || 'Manželská postel SANTE 45 dvoulůžko'),
+      variant: p.variant || '200 × 180 cm · olej Teak · jádrový buk',
+      stockKind: p.stockKind || 'onWay',
+      stockLabel: p.stockLabel || 'Vyrobíme během 2–4 týdnů',
+      total: p.total || '39\u00A0800\u00A0Kč',
+      cartHref: p.cartHref || 'Kosik.dc.html',
+      recs,
+      dialogRef: (el) => { this._dialog = el; },
+      closeRef: (el) => { this._closeBtn = el; },
+      trackRef: (el) => { this._track = el; },
+      close: () => this.requestClose(),
+      onBackdrop: (e) => { if (e.target === e.currentTarget) this.requestClose(); },
+      prev: () => this.scroll(-1),
+      next: () => this.scroll(1)
+    };
+  }
+}
+</script>
+</body>
+</html>

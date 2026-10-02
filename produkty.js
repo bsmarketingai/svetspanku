@@ -1,23 +1,23 @@
 // Ukázková data produktů a kategorií pro prototyp. Fotky dodá klient — zatím placeholdery.
 export const PRODUKTY = [
-  { id: 'p1', title: 'Matrace Spring Variant 22 cm', href: '#produkt', orderNo: '428170',
+  { id: 'p1', image: 'produkt-matrace-spring-variant.png', title: 'Matrace Spring Variant 22 cm', href: '#produkt', orderNo: '428170',
     perex: 'Partnerská matrace s tuhostí volitelnou pro každou polovinu samostatně. Už žádná mezera uprostřed.',
     rating: 4.8, ratingCount: 18, price: '7 590 Kč', priceBefore: '9 590 Kč', badge: 'sale', badgeLabel: 'Akce −25 %',
     secondBadge: 'news', secondBadgeLabel: 'Novinka', stock: 'inStock', moreLabel: 'Více rozměrů / stupňů tvrdosti',
     params: [{ icon: 'percentage-75', label: '4 – tvrdá, 5 – velmi tvrdá' }, { icon: 'weight', label: '200 kg' }, { icon: 'arrow-autofit-height', label: '20 cm' }, { icon: 'color-swatch', label: 'Pěnová' }] },
-  { id: 'p2', title: 'Taštičková matrace Leda Duo', href: '#produkt', orderNo: '428204',
+  { id: 'p2', image: 'produkt-matrace-leda-duo.png', title: 'Taštičková matrace Leda Duo', href: '#produkt', orderNo: '428204',
     perex: 'Sedm zón tuhosti a kokosová deska. Pohyb jednoho spícího druhého neruší.',
     rating: 4.8, ratingCount: 64, price: '9 190 Kč', stock: 'inStock', moreLabel: 'Více rozměrů / stupňů tvrdosti',
     params: [{ icon: 'percentage-50', label: '3 – středně tuhá' }, { icon: 'weight', label: '130 kg' }, { icon: 'arrow-autofit-height', label: '20 cm' }, { icon: 'color-swatch', label: 'Taštičková' }] },
-  { id: 'p3', title: 'Antidekubitní matrace Ultra Fresh', href: '#produkt', orderNo: '428311',
+  { id: 'p3', image: 'produkt-matrace-ultra-fresh.png', title: 'Antidekubitní matrace Ultra Fresh', href: '#produkt', orderNo: '428311',
     perex: 'Líná pěna s prodyšným potahem pro dlouhé ležení. Vhodná i pro polohovací rošty.',
     rating: 4.3, ratingCount: 21, price: '11 290 Kč', stock: 'lowStock', moreLabel: 'Více rozměrů / stupňů tvrdosti',
     params: [{ icon: 'percentage-50', label: '3 – středně tuhá' }, { icon: 'weight', label: '120 kg' }, { icon: 'arrow-autofit-height', label: '18 cm' }] },
-  { id: 'p4', title: 'Postel z masivu LEVITA', href: '#produkt', orderNo: '419820',
+  { id: 'p4', image: 'levita-hlavni.png', title: 'Postel z masivu LEVITA', href: '#produkt', orderNo: '419820',
     perex: 'Smrkový masiv s úložným prostorem po celé ploše lože a plynovými písty.',
     rating: 4.9, ratingCount: 43, price: '21 390 Kč', badge: 'news', stock: 'inStock', moreLabel: 'Více rozměrů / odstínů',
     params: [{ icon: 'dimensions', label: '180 × 200 cm' }, { icon: 'color-swatch', label: 'Smrk, bílá' }, { icon: 'package', label: 'Úložný prostor' }] },
-  { id: 'p5', title: 'Lamelový rošt Flex 28', href: '#produkt', orderNo: '431004',
+  { id: 'p5', image: 'produkt-rost-polohovaci.png', title: 'Lamelový rošt Flex 28', href: '#produkt', orderNo: '431004',
     perex: 'Osmadvacet pružných lamel s pojezdem tuhosti v oblasti beder.',
     rating: 4.4, ratingCount: 37, price: '3 290 Kč', stock: 'inStock', moreLabel: 'Více rozměrů',
     params: [{ icon: 'dimensions', label: '160 × 200 cm' }, { icon: 'package', label: '28 lamel' }] },
@@ -34,7 +34,7 @@ export const PRODUKTY = [
     perex: 'Dubový masiv se zásuvkou na tichém výsuvu. Ladí s postelí Nora.',
     rating: 4.5, ratingCount: 12, price: '4 690 Kč', stock: 'outOfStock', moreLabel: 'Více odstínů',
     params: [{ icon: 'color-swatch', label: 'Dub' }, { icon: 'dimensions', label: '45 × 40 cm' }] },
-  { id: 'p9', title: 'Sendvičová matrace Duo Comfort', href: '#produkt', orderNo: '428590',
+  { id: 'p9', image: 'produkt-matrace-duo-comfort.png', title: 'Sendvičová matrace Duo Comfort', href: '#produkt', orderNo: '428590',
     perex: 'Dvě tuhosti v jedné matraci — stačí ji otočit podle ročního období.',
     rating: 4.1, ratingCount: 54, price: '6 190 Kč', stock: 'inStock', moreLabel: 'Více rozměrů / stupňů tvrdosti',
     params: [{ icon: 'percentage-66', label: '3 / 4 – oboustranná' }, { icon: 'weight', label: '110 kg' }, { icon: 'arrow-autofit-height', label: '18 cm' }] },
@@ -45,12 +45,12 @@ export const PRODUKTY = [
 ];
 
 export const KATEGORIE = [
-  { label: 'Manželské postele z masivu', href: '#manzelske-postele', count: 42, image: 'kategorie-manzelske-postele.jpg', sub: ['180 × 200', 'S úložným prostorem'] },
-  { label: 'Jednolůžka z masivu', href: '#jednoluzka', count: 24, image: 'kategorie-jednoluzka.jpg', sub: ['90 × 200', 'Dětské', 'Buk'] },
-  { label: 'Čalouněné postele', href: '#calounene', count: 31, image: 'kategorie-calounene-postele.jpg', sub: ['S roštem', 'Boxspring'] },
-  { label: 'Matrace', href: '#matrace', count: 112, image: 'kategorie-matrace.jpg', sub: ['Taštičkové', 'Pěnové', 'Latexové'] },
-  { label: 'Rošty', href: '#rosty', count: 54, image: 'kategorie-rosty.jpg', sub: ['Lamelové', 'Polohovací'] },
-  { label: 'Nábytek z masivu', href: '#nabytek', count: 73, image: 'kategorie-nabytek.jpg', sub: ['Noční stolky', 'Komody'] }
+  { label: 'Manželské postele z masivu', href: '#manzelske-postele', count: 42, image: 'kategorie-manzelske-postele.png', sub: ['180 × 200', 'S úložným prostorem'] },
+  { label: 'Jednolůžka z masivu', href: '#jednoluzka', count: 24, image: 'kategorie-jednoluzka.png', sub: ['90 × 200', 'Dětské', 'Buk'] },
+  { label: 'Čalouněné postele', href: '#calounene', count: 31, image: 'kategorie-calounene-postele.png', sub: ['S roštem', 'Boxspring'] },
+  { label: 'Matrace', href: '#matrace', count: 112, image: 'kategorie-matrace.png', sub: ['Taštičkové', 'Pěnové', 'Latexové'] },
+  { label: 'Rošty', href: '#rosty', count: 54, image: 'kategorie-rosty.png', sub: ['Lamelové', 'Polohovací'] },
+  { label: 'Nábytek z masivu', href: '#nabytek', count: 73, image: 'kategorie-nabytek.png', sub: ['Noční stolky', 'Komody'] }
 ];
 
 export const FACETY = [

@@ -8,9 +8,11 @@
 <body>
 <x-dc>
 <helmet>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./tmavy-rezim.css">
+<script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')!=='light')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h',localStorage.getItem('ss-font-h')||'alt');d.setAttribute('data-font-b',localStorage.getItem('ss-font-b')||'alt');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
-h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Archivo,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:800!important;font-stretch:75%;text-transform:uppercase;letter-spacing:-0.005em;}
+h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
 
 .ss-car-wrap{position:relative;width:100%;min-width:0;}
 .ss-car{display:flex;align-items:stretch;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-left:14px;scrollbar-width:none;padding:14px;margin:-14px;}
@@ -22,24 +24,24 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 @media (min-width:820px){.ss-car-nav{padding-top:calc(((100% - 40px) / 3 - 32px) / 2);}}
 @media (min-width:1150px){.ss-car-nav{padding-top:calc(((100% - 60px) / 4 - 32px) / 2);}}
 @media (min-width:1560px){.ss-car-nav{padding-top:calc(((100% - 80px) / 5 - 32px) / 2);}}
-.ss-car-arrow{position:absolute;bottom:0;transform:translateY(50%);pointer-events:auto;z-index:3;display:flex;align-items:center;justify-content:center;width:44px;height:44px;flex:none;border:0;border-radius:999px;background:#FFFFFF;color:#21507B;cursor:pointer;box-shadow:0 4px 12px rgba(19,44,67,.12);transition:background-color .12s cubic-bezier(.22,.61,.36,1);}
+.ss-car-arrow{position:absolute;bottom:0;transform:translateY(50%);pointer-events:auto;z-index:3;display:flex;align-items:center;justify-content:center;width:44px;height:44px;flex:none;border:0;border-radius:999px;background:var(--ss-surface-page,#FFFFFF);color:var(--ss-link-hover,#21507B);cursor:pointer;box-shadow:0 4px 12px rgba(19,44,67,.12);transition:background-color .12s cubic-bezier(.22,.61,.36,1);}
 .ss-car-prev{left:-22px;}
 .ss-car-next{right:-22px;}
 @media (max-width:1149px){.ss-car-prev{left:-16px;}.ss-car-next{right:-16px;}}
-.ss-car-arrow:hover{background:#F0F5FA;}
+.ss-car-arrow:hover{background:var(--ss-hover-bg,#FFF5E6);color:var(--ss-hover-text,#A4600C)}
 .ss-car-arrow > *{display:flex;align-items:center;justify-content:center;line-height:0;}
 .ss-car-arrow svg{display:block;}
 .ss-car-arrow:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
 .ss-car-below{display:flex;justify-content:flex-end;gap:8px;margin-top:16px;}
-.ss-car-flat{position:static;transform:none;pointer-events:auto;display:flex;align-items:center;justify-content:center;width:44px;height:44px;flex:none;border:0;border-radius:999px;background:none;box-shadow:none;color:#1C2229;cursor:pointer;transition:background-color .12s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1);}
-@media (hover:hover) and (pointer:fine){.ss-car-flat:hover{background:#F0F5FA;color:#296093;}}
+.ss-car-flat{position:static;transform:none;pointer-events:auto;display:flex;align-items:center;justify-content:center;width:44px;height:44px;flex:none;border:0;border-radius:999px;background:none;box-shadow:none;color:var(--ss-text-primary,#1C2229);cursor:pointer;transition:background-color .12s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1);}
+@media (hover:hover) and (pointer:fine){.ss-car-flat:hover{background:var(--ss-hover-bg,#FFF5E6);color:var(--ss-hover-text,#A4600C);}}
 </style>
 </helmet>
-<section style="font-family:Archivo,Helvetica,Arial,sans-serif;width:100%;min-width:0;display:flex;flex-direction:column;gap:20px">
+<section style="font-family:Roboto,Helvetica,Arial,sans-serif;width:100%;min-width:0;display:flex;flex-direction:column;gap:20px">
   <div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px">
-    <h2 style="margin:0;font-family:'Archivo Narrow',Archivo,sans-serif;font-weight:700;font-size:{{ headingSize }};line-height:1.15;color:#1C2229">{{ heading }}</h2>
+    <h2 style="margin:0;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:{{ headingSize }};line-height:1.15;color:var(--ss-text-primary,#1C2229)">{{ heading }}</h2>
     <sc-if value="{{ hasLink }}" hint-placeholder-val="{{ false }}">
-      <a href="{{ linkHref }}" style="font-size:14px;font-weight:600;color:#296093">{{ linkLabel }}</a>
+      <a href="{{ linkHref }}" style="font-size:14px;font-weight:600;color:var(--ss-link,#296093)">{{ linkLabel }}</a>
     </sc-if>
   </div>
 
