@@ -9,7 +9,7 @@
 <x-dc>
 <helmet>
 <link rel="stylesheet" href="./tmavy-rezim.css">
-<script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')!=='light')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h',localStorage.getItem('ss-font-h')||'alt');d.setAttribute('data-font-b',localStorage.getItem('ss-font-b')||'alt');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
+<script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
@@ -181,11 +181,13 @@ html[data-mode="dark"] .ss-pd-glass::before,html[data-mode="dark"] .ss-pd-glassw
               </sc-if>
               <p style="margin:0;font-size:16px;line-height:1.6;color:var(--ss-text-secondary,#3D4750)">Postel LEVITA je skvělou volbou pro každého, kdo hledá nábytek, který nejen skvěle vypadá, ale také vám dopřeje kvalitní odpočinek.</p>
               <div>
+                <div id="levita-perex-more" style="display:grid;grid-template-rows:{{ perexRows }};transition:grid-template-rows .4s cubic-bezier(.22,.61,.36,1)" aria-hidden="{{ perexHidden }}">
+                  <div style="overflow:hidden;min-height:0">
+                    <p style="margin:0;padding-bottom:12px;font-size:15px;line-height:1.65;color:var(--ss-text-secondary,#3D4750);opacity:{{ perexOpacity }};transition:opacity .4s cubic-bezier(.22,.61,.36,1)">„Levitující“ rám umožní pohodlný a bezpečný pohyb kolem postele a je praktický i při úklidu. Noha je nastavitelná ve dvou pozicích — základní a pro kombinaci s úložným prostorem. Výškově stavitelné kování roštu umožňuje nastavit výšku ložné plochy.</p>
+                  </div>
+                </div>
                 <dc-import name="Tlacitko" label="{{ perexLabel }}" variant="text" size="standard" iconRight="{{ perexIcon }}" onClick="{{ togglePerex }}" hint-size="150px,24px"></dc-import>
               </div>
-              <sc-if value="{{ perexOpen }}" hint-placeholder-val="{{ false }}">
-                <p style="margin:0;font-size:15px;line-height:1.65;color:var(--ss-text-secondary,#3D4750)">„Levitující“ rám umožní pohodlný a bezpečný pohyb kolem postele a je praktický i při úklidu. Noha je nastavitelná ve dvou pozicích — základní a pro kombinaci s úložným prostorem. Výškově stavitelné kování roštu umožňuje nastavit výšku ložné plochy.</p>
-              </sc-if>
             </div>
 
             <div style="display:grid;grid-template-columns:{{ factsTemplate }};gap:16px 20px;padding:20px 0;border-top:1px solid var(--ss-border-subtle,#E1E6EB);border-bottom:1px solid var(--ss-border-subtle,#E1E6EB)">
@@ -232,9 +234,9 @@ html[data-mode="dark"] .ss-pd-glass::before,html[data-mode="dark"] .ss-pd-glassw
               <sc-if value="{{ sizeChips }}" hint-placeholder-val="{{ true }}">
                 <div style="display:flex;flex-wrap:wrap;gap:8px">
                   <sc-for list="{{ sizes }}" as="s" hint-placeholder-count="4">
-                    <dc-import name="Chip" label="{{ s.label }}" size="standard" variant="{{ s.variant }}" ariaPressed="{{ s.pressed }}" onClick="{{ s.onPick }}" hint-size="120px,36px"></dc-import>
+                    <dc-import name="Chip" label="{{ s.label }}" size="standard" variant="{{ s.variant }}" ariaPressed="{{ s.pressed }}" check="{{ s.pressed }}" onClick="{{ s.onPick }}" hint-size="120px,36px"></dc-import>
                   </sc-for>
-                  <dc-import name="Chip" label="{{ customLinkLabel }}" icon="rozmer-postele" size="standard" variant="{{ customChipVariant }}" ariaPressed="{{ customChipPressed }}" onClick="{{ openCustom }}" hint-size="150px,36px"></dc-import>
+                  <dc-import name="Chip" label="{{ customLinkLabel }}" icon="rozmer-postele" size="standard" variant="{{ customChipVariant }}" ariaPressed="{{ customChipPressed }}" check="{{ customChipPressed }}" onClick="{{ openCustom }}" hint-size="150px,36px"></dc-import>
                 </div>
               </sc-if>
               <sc-if value="{{ sizeSelect }}" hint-placeholder-val="{{ false }}">
@@ -1062,6 +1064,9 @@ class Component extends DCLogic {
       rating: 4.9,
       ratingCount: 104,
       perexOpen: this.state.perex,
+      perexRows: this.state.perex ? '1fr' : '0fr',
+      perexOpacity: this.state.perex ? 1 : 0,
+      perexHidden: this.state.perex ? 'false' : 'true',
       perexLabel: this.state.perex ? 'Skrýt informace' : 'Další informace',
       perexIcon: this.state.perex ? 'chevron-up' : 'chevron-down',
       togglePerex: () => this.setState(s => ({ perex: !s.perex })),
@@ -1215,12 +1220,12 @@ class Component extends DCLogic {
       cmpLabel: this.state.cmp ? 'V porovnání' : 'Porovnat',
       onCompare: () => this.setState(s => ({ cmp: !s.cmp })),
       uspItems: [
-        { icon: 'map-pin', title: 'České matrace', text: 'za ceny přímo do výrobce' },
-        { icon: 'arrow-autofit-height', title: 'Anatomicky správná podpora', text: 'a prodyšnost po celou noc' },
-        { icon: 'refresh', title: '30 dní jistoty', text: 'možnost výměny tuhosti jádra matrace zdarma' },
-        { icon: 'calendar-time', title: '90 dní na vyzkoušení', text: 'pro rozměr 90 × 200 cm' },
-        { icon: 'shield-check', title: 'Zdravotně nezávadné materiály', text: 'certifikované pěny i potahy' },
-        { icon: 'ruler-3', title: 'Úpravy na míru', text: 'vyrobíme na centimetr přesně' }
+        { icon: 'duo-map-pin', title: 'České matrace', text: 'za ceny přímo do výrobce' },
+        { icon: 'duo-arrow-autofit-height', title: 'Anatomicky správná podpora', text: 'a prodyšnost po celou noc' },
+        { icon: 'duo-refresh', title: '30 dní jistoty', text: 'možnost výměny tuhosti jádra matrace zdarma' },
+        { icon: 'duo-calendar-time', title: '90 dní na vyzkoušení', text: 'pro rozměr 90 × 200 cm' },
+        { icon: 'duo-shield-check', title: 'Zdravotně nezávadné materiály', text: 'certifikované pěny i potahy' },
+        { icon: 'duo-ruler-3', title: 'Úpravy na míru', text: 'vyrobíme na centimetr přesně' }
       ],
       anchors: [
         { label: 'Popis a parametry', href: '#popis' },

@@ -9,7 +9,7 @@
 <x-dc>
 <helmet>
 <link rel="stylesheet" href="./tmavy-rezim.css">
-<script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')!=='light')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h',localStorage.getItem('ss-font-h')||'alt');d.setAttribute('data-font-b',localStorage.getItem('ss-font-b')||'alt');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
+<script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
 h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
@@ -26,9 +26,21 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 .ss-hd-action:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
 .ss-hd-tab{text-decoration:none;position:relative;display:inline-flex;align-items:center;height:48px;padding:0 14px;border:0;background:none;font:inherit;font-size:15px;font-weight:600;color:var(--ss-text-primary,#1C2229);cursor:pointer;transition:color .12s cubic-bezier(.22,.61,.36,1);}
 .ss-hd-tab:hover{color:var(--ss-hover-text,#A4600C);}
+.ss-hd-navwrap{position:relative;flex:1 1 auto;min-width:0;}
+.ss-hd-navscroll{display:flex;align-items:center;flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;overscroll-behavior-x:contain;scroll-padding:0 48px;padding:3px;margin:-3px;}
+.ss-hd-navscroll::-webkit-scrollbar{display:none;}
+.ss-hd-navscroll .ss-hd-tab{flex:none;white-space:nowrap;gap:4px;}
+.ss-hd-tabchev{display:inline-flex;transition:transform .15s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1);}
+.ss-hd-tab[data-open="true"] .ss-hd-tabchev{color:#FBB255;transform:translateY(2px);}
+@media (hover:hover) and (pointer:fine){.ss-hd-tab:hover .ss-hd-tabchev{color:#FBB255;transform:translateY(2px);}}
+@media (prefers-reduced-motion:reduce){.ss-hd-tabchev{transition:none;}}
+.ss-hd-navwrap[data-fade-r="true"] .ss-hd-navscroll{-webkit-mask-image:linear-gradient(to right,#000 calc(100% - 48px),transparent calc(100% - 4px));mask-image:linear-gradient(to right,#000 calc(100% - 48px),transparent calc(100% - 4px));}
+.ss-hd-navwrap[data-fade-l="true"] .ss-hd-navscroll{-webkit-mask-image:linear-gradient(to right,transparent 4px,#000 48px);mask-image:linear-gradient(to right,transparent 4px,#000 48px);}
+.ss-hd-navwrap[data-fade-l="true"][data-fade-r="true"] .ss-hd-navscroll{-webkit-mask-image:linear-gradient(to right,transparent 4px,#000 48px,#000 calc(100% - 48px),transparent calc(100% - 4px));mask-image:linear-gradient(to right,transparent 4px,#000 48px,#000 calc(100% - 48px),transparent calc(100% - 4px));}
 .ss-hd-tab:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);border-radius:6px;}
 .ss-hd-tab::after{content:"";position:absolute;left:14px;right:14px;bottom:0;height:3px;border-radius:3px 3px 0 0;background:transparent;transition:background-color .12s cubic-bezier(.22,.61,.36,1);}
 .ss-hd-tab[data-open="true"]::after,.ss-hd-tab[aria-current="page"]::after{background:#FBB255;}
+@media (hover:hover) and (pointer:fine){.ss-hd-tab:hover::after{background:#FBB255;}}
 .ss-hd-sug{display:flex;align-items:center;gap:12px;width:100%;min-height:48px;padding:0 16px;border:0;background:none;font:inherit;font-size:15px;color:var(--ss-text-primary,#1C2229);text-align:left;text-decoration:none;cursor:pointer;}
 .ss-hd-sug:hover{background:var(--ss-hover-bg,#FFF5E6);color:var(--ss-hover-text,#A4600C)}
 .ss-hd-sug:focus-visible{outline:none;box-shadow:inset 0 0 0 3px rgba(41,96,147,.35);}
@@ -60,6 +72,21 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 .ss-hd[data-theme="blue"] .ss-hd-logo-pos{display:none!important;}
 .ss-hd[data-theme="blue"] .ss-hd-logo-neg{display:block!important;}
 .ss-hd[data-theme="blue"] .ss-hd-util:focus-visible,.ss-hd[data-theme="blue"] .ss-hd-action:focus-visible,.ss-hd[data-theme="blue"] .ss-hd-tab:focus-visible{box-shadow:0 0 0 3px rgba(251,178,85,.65);}
+.ss-hd[data-theme="duo"] .ss-hd-topbar{background:#132C43!important;border-bottom-color:rgba(255,255,255,.14)!important;}
+.ss-hd[data-theme="duo"] .ss-hd-main{background:#1A3E5F!important;}
+.ss-hd[data-theme="duo"] :is(.ss-hd-topbar,.ss-hd-main) .ss-hd-util{color:#DCE8F2;}
+.ss-hd[data-theme="duo"] :is(.ss-hd-topbar,.ss-hd-main) .ss-hd-util:hover{color:#FFFFFF;background:rgba(255,255,255,.14);}
+.ss-hd[data-theme="duo"] :is(.ss-hd-topbar,.ss-hd-main) .ss-hd-sep{color:rgba(255,255,255,.45)!important;}
+.ss-hd[data-theme="duo"] :is(.ss-hd-topbar,.ss-hd-main) .ss-hd-action{color:#FFFFFF;}
+.ss-hd[data-theme="duo"] :is(.ss-hd-topbar,.ss-hd-main) .ss-hd-action:hover{background:rgba(255,255,255,.16);}
+.ss-hd[data-theme="duo"] :is(.ss-hd-topbar,.ss-hd-main) .ss-hd-burger{color:#FFFFFF;}
+@media (hover:hover) and (pointer:fine){.ss-hd[data-theme="duo"] :is(.ss-hd-topbar,.ss-hd-main) .ss-hd-burger:hover{background:rgba(251,178,85,.12);color:#FBB255;}}
+.ss-hd[data-theme="duo"] :is(.ss-hd-topbar,.ss-hd-main) .ss-hd-tel{color:#FFFFFF!important;}
+.ss-hd[data-theme="duo"] :is(.ss-hd-topbar,.ss-hd-main) .ss-hd-hours{color:#DCE8F2!important;}
+.ss-hd[data-theme="duo"] :is(.ss-hd-topbar,.ss-hd-main) .ss-hd-telicon{color:#FBB255!important;}
+.ss-hd[data-theme="duo"] :is(.ss-hd-topbar,.ss-hd-main) .ss-hd-logo-pos{display:none!important;}
+.ss-hd[data-theme="duo"] :is(.ss-hd-topbar,.ss-hd-main) .ss-hd-logo-neg{display:block!important;}
+.ss-hd[data-theme="duo"] :is(.ss-hd-topbar,.ss-hd-main) .ss-hd-util:focus-visible,.ss-hd[data-theme="duo"] .ss-hd-main .ss-hd-action:focus-visible{box-shadow:0 0 0 3px rgba(251,178,85,.65);}
 </style>
 </helmet>
 <header class="ss-hd" data-theme="{{ theme }}" ref="{{ headerRef }}" style="{{ headerStyle }}">
@@ -115,7 +142,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
               <sc-if value="{{ isOpenNow }}" hint-placeholder-val="{{ false }}">
                 <span class="ss-hd-led" role="img" aria-label="Právě jsme online"></span>
               </sc-if>
-              <span>Po–Pá 9.00–17.00</span>
+              <span>Po–Pá 9:00–17:00</span>
             </span>
             </div>
           </div>
@@ -166,8 +193,8 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
     </sc-if>
 
     <sc-if value="{{ suggestOpen }}" hint-placeholder-val="{{ false }}">
-      <div style="position:absolute;top:100%;left:0;right:0;z-index:300;padding:{{ suggestPad }}">
-        <div style="max-width:1560px;margin:0 auto">
+      <div style="position:absolute;top:100%;left:0;right:0;z-index:300">
+        <div>
           <dc-import name="Vyhledavani" products="{{ suggestProducts }}" categories="{{ suggestCategories }}" total="{{ suggestTotal }}" onClose="{{ closeSuggest }}" hint-size="100%,520px"></dc-import>
         </div>
       </div>
@@ -177,11 +204,13 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
   <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
     <div class="ss-hd-nav" style="width:100%;background:var(--ss-surface-page,#FFFFFF);border-top:1px solid var(--ss-border-subtle,#E1E6EB);position:relative" onMouseLeave="{{ closeMega }}">
       <div style="max-width:1560px;margin:0 auto;padding:0 32px;display:flex;align-items:center;gap:4px">
-        <nav aria-label="Hlavní navigace" style="display:flex;align-items:center;flex-wrap:wrap;min-width:0">
-          <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="8">
-            <a class="ss-hd-tab" href="{{ t.href }}" style="{{ t.style }}" data-hl="{{ t.highlight }}" data-open="{{ t.open }}" onMouseEnter="{{ t.onEnter }}" onFocus="{{ t.onEnter }}" aria-current="{{ t.current }}">{{ t.label }}</a>
-          </sc-for>
-        </nav>
+        <div class="ss-hd-navwrap" data-fade-l="{{ navFadeL }}" data-fade-r="{{ navFadeR }}">
+          <nav class="ss-hd-navscroll" aria-label="Hlavní navigace" ref="{{ navRef }}" onScroll="{{ navOnScroll }}">
+            <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="8">
+              <a class="ss-hd-tab" href="{{ t.href }}" style="{{ t.style }}" data-hl="{{ t.highlight }}" data-open="{{ t.open }}" onMouseEnter="{{ t.onEnter }}" onFocus="{{ t.onEnter }}" aria-current="{{ t.current }}"><span>{{ t.label }}</span><sc-if value="{{ t.chevron }}" hint-placeholder-val="{{ false }}"><span class="ss-hd-tabchev" aria-hidden="true"><dc-import name="Ikony" iconName="chevron-down" size="16" hint-size="16px,16px"></dc-import></span></sc-if></a>
+            </sc-for>
+          </nav>
+        </div>
         <button type="button" class="ss-hd-util" style="{{ storesBtnStyle }}" onMouseEnter="{{ openStores }}" onFocus="{{ openStores }}" onClick="{{ toggleStores }}" aria-expanded="{{ storesExpanded }}">
           <dc-import name="Ikony" iconName="map-pin" size="18" hint-size="18px,18px"></dc-import>
           <span>Prodejny (5)</span>
@@ -222,7 +251,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
   </sc-if>
 </header>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:320},&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;light&quot;,&quot;options&quot;:[&quot;light&quot;,&quot;blue&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;cartCount&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:2,&quot;min&quot;:0,&quot;max&quot;:99,&quot;tsType&quot;:&quot;number&quot;},&quot;cartTotal&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;2 480 Kč&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;activeCategory&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;onSearch&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(query: string) =&gt; void&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:320},&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;light&quot;,&quot;options&quot;:[&quot;light&quot;,&quot;blue&quot;,&quot;duo&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;cartCount&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:2,&quot;min&quot;:0,&quot;max&quot;:99,&quot;tsType&quot;:&quot;number&quot;},&quot;cartTotal&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;2 480 Kč&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;activeCategory&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;onSearch&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(query: string) =&gt; void&quot;}}">
 class Component extends DCLogic {
   state = { width: typeof window !== 'undefined' ? document.documentElement.clientWidth : 1440, open: -1, mobileOpen: false, query: '', cats: null, util: [], favN: (() => { try { return (JSON.parse(localStorage.getItem('ss-fav') || '[]')).length; } catch (e) { return 0; } })() };
 
@@ -276,7 +305,14 @@ class Component extends DCLogic {
     document.addEventListener('scroll', this._scroll, true);
     window.addEventListener('scroll', this._scroll, { passive: true });
   }
+  navSync() {
+    const el = this._nav; if (!el) return;
+    const l = el.scrollLeft > 4, r = el.scrollLeft + el.clientWidth < el.scrollWidth - 4;
+    if (l !== !!this.state.navL || r !== !!this.state.navR) this.setState({ navL: l, navR: r });
+  }
   componentWillUnmount() {
+    if (this._navRO) this._navRO.disconnect();
+    if (this._nav && this._navWheel) this._nav.removeEventListener('wheel', this._navWheel);
     window.removeEventListener('ss-fav', this._fav); window.removeEventListener('storage', this._fav);
     clearInterval(this._tick);
     window.removeEventListener('resize', this._resize);
@@ -330,12 +366,28 @@ class Component extends DCLogic {
     const open = q.length >= 2 && (suggestCategories.length > 0 || suggestProducts.length > 0);
 
     const blue = p.theme === 'blue';
+    const duo = p.theme === 'duo';
+    const tint = blue || duo;
     return {
-      theme: blue ? 'blue' : 'light',
-      onTint: blue,
-      searchVariant: blue ? 'ontint' : 'primary',
+      theme: blue ? 'blue' : duo ? 'duo' : 'light',
+      onTint: tint,
+      searchVariant: tint ? 'ontint' : 'primary',
+      navRef: el => {
+        if (el === this._nav) return;
+        if (this._navRO) this._navRO.disconnect();
+        if (this._nav && this._navWheel) this._nav.removeEventListener('wheel', this._navWheel);
+        this._nav = el;
+        if (!el) return;
+        this._navWheel = e => { if (el.scrollWidth <= el.clientWidth || Math.abs(e.deltaX) > Math.abs(e.deltaY)) return; e.preventDefault(); el.scrollLeft += e.deltaY; };
+        el.addEventListener('wheel', this._navWheel, { passive: false });
+        if (typeof ResizeObserver !== 'undefined') { this._navRO = new ResizeObserver(() => this.navSync()); this._navRO.observe(el); }
+        requestAnimationFrame(() => this.navSync());
+      },
+      navOnScroll: () => this.navSync(),
+      navFadeL: this.state.navL ? 'true' : 'false',
+      navFadeR: this.state.navR ? 'true' : 'false',
       storesBtnStyle: {
-        marginLeft: 'auto', gap: '8px', fontSize: '14px', fontWeight: 600,
+        marginLeft: 'auto', gap: '4px', fontSize: '14px', fontWeight: 600, flex: 'none', whiteSpace: 'nowrap',
         color: blue ? '#FFFFFF' : 'var(--ss-link-hover,#21507B)', minHeight: '44px', padding: '0 10px',
         border: 0, background: 'none', fontFamily: 'inherit', cursor: 'pointer'
       },
@@ -357,13 +409,13 @@ class Component extends DCLogic {
         opacity: this.state.scrolled ? 0 : 1,
         transition: 'max-height .15s cubic-bezier(.22,.61,.36,1),opacity .12s cubic-bezier(.22,.61,.36,1)'
       },
-      logoSize: w < 420 ? '20px' : narrow ? '28px' : '34px',
-      ...(() => { const h = w < 420 ? 20 : narrow ? 28 : 34, u = h / 64.196, s = (x, y) => ({ display: 'none', width: ((341.374 + 2 * x) * u) + 'px', height: (h + 2 * y * u) + 'px', margin: (-y * u) + 'px ' + (-x * u) + 'px', position: 'relative', zIndex: 0, pointerEvents: 'none' }); return { logoDkA: s(0, 0), logoDkB: s(3, 3), logoDkC: s(8, 3), logoDkD: s(6, 6) }; })(),
+      logoSize: w < 420 ? '24px' : narrow ? '28px' : '34px',
+      ...(() => { const h = w < 420 ? 24 : narrow ? 28 : 34, u = h / 64.196, s = (x, y) => ({ display: 'none', width: ((341.374 + 2 * x) * u) + 'px', height: (h + 2 * y * u) + 'px', margin: (-y * u) + 'px ' + (-x * u) + 'px', position: 'relative', zIndex: 0, pointerEvents: 'none' }); return { logoDkA: s(0, 0), logoDkB: s(3, 3), logoDkC: s(8, 3), logoDkD: s(6, 6) }; })(),
       mainPad: narrow ? '10px 16px' : '14px 32px',
       mainGap: narrow ? '8px' : '20px',
       headerStyle: {
         position: 'sticky', top: 0, zIndex: 200, width: '100%',
-        background: blue ? '#296093' : 'var(--ss-surface-page,#FFFFFF)', boxShadow: '0 2px 8px rgba(19,44,67,.08)'
+        background: tint ? '#296093' : 'var(--ss-surface-page,#FFFFFF)', boxShadow: '0 2px 8px rgba(19,44,67,.08)'
       },
       cartCount,
       cartTotal,
@@ -377,7 +429,7 @@ class Component extends DCLogic {
       }),
       onCartRemove: (idx) => this.setState(s => ({ cart: s.cart.filter((_, i) => i !== idx) })),
       query,
-      onQuery: (v) => this.setState({ query: v }),
+      onQuery: (v) => { if (this.state.mobileOpen && v) { this.unlock(); this.setState({ mobileOpen: false, query: v }); } else this.setState({ query: v }); },
       submitSearch: (e) => { e.preventDefault(); if (p.onSearch) p.onSearch(query); },
       doSearch: () => { if (p.onSearch) p.onSearch(query); },
       suggestOpen: open,
@@ -392,6 +444,7 @@ class Component extends DCLogic {
         expanded: (c.groups && c.groups.length) ? (openIndex === i ? 'true' : 'false') : undefined,
         current: p.activeCategory === c.label ? 'page' : undefined,
         highlight: c.highlight ? 'true' : undefined,
+        chevron: p.navVariant === 'M2' && !!(c.groups && c.groups.length),
         style: c.highlight ? { color: blue ? '#FBB255' : 'var(--ss-text-apricot,#A4600C)' } : undefined,
         onEnter: () => this.setState({ open: (c.groups && c.groups.length) ? i : -1, storesOpen: false }),
         href: c.href || 'Kategorie.dc.html'

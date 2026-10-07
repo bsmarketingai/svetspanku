@@ -9,7 +9,7 @@
 <x-dc>
 <helmet>
 <link rel="stylesheet" href="./tmavy-rezim.css">
-<script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')!=='light')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h',localStorage.getItem('ss-font-h')||'alt');d.setAttribute('data-font-b',localStorage.getItem('ss-font-b')||'alt');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
+<script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&family=Archivo+Narrow:wght@500;600;700&family=Roboto+Flex:opsz,wdth,wght@8..144,25..151,400..700&display=swap" rel="stylesheet">
 <style>
 h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
@@ -35,6 +35,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 </sc-if>
 <sc-if value="{{ isButton }}" hint-placeholder-val="{{ true }}">
   <button type="button" class="ss-chip" style="{{ chipStyle }}" style-hover="{{ hoverStyle }}" onClick="{{ handleClick }}" aria-pressed="{{ ariaPressed }}" aria-disabled="{{ ariaDisabled }}">
+    <sc-if value="{{ showCheck }}" hint-placeholder-val="{{ false }}"><span aria-hidden="true" style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;flex:none;border-radius:999px;background:#FBB255;color:#1C2229"><dc-import name="Ikony" iconName="check" size="14" hint-size="14px,14px"></dc-import></span></sc-if>
     <sc-if value="{{ hasIcon }}" hint-placeholder-val="{{ false }}"><dc-import name="Ikony" iconName="{{ icon }}" size="{{ iconSize }}" hint-size="18px,18px"></dc-import></sc-if>
     <sc-if value="{{ plainLabel }}" hint-placeholder-val="{{ true }}"><span>{{ label }}</span></sc-if>
     <sc-if value="{{ stretch }}" hint-placeholder-val="{{ false }}"><span class="ss-chip-st"><span class="ss-chip-st-size" aria-hidden="true">{{ label }}</span><span class="ss-chip-st-anim">{{ label }}</span></span></sc-if>
@@ -43,7 +44,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
   </button>
 </sc-if>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:320,&quot;height&quot;:100},&quot;label&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Matrace&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;variant&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;filter&quot;,&quot;options&quot;:[&quot;filter&quot;,&quot;primary&quot;,&quot;secondary&quot;,&quot;secondaryOutline&quot;,&quot;outline&quot;,&quot;sale&quot;,&quot;accent&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;size&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;standard&quot;,&quot;options&quot;:[&quot;standard&quot;,&quot;small&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;active&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;count&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string | number&quot;},&quot;icon&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;href&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;disabled&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;stretch&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;onClick&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;() =&gt; void&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:320,&quot;height&quot;:100},&quot;label&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Matrace&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;variant&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;filter&quot;,&quot;options&quot;:[&quot;filter&quot;,&quot;primary&quot;,&quot;secondary&quot;,&quot;secondaryOutline&quot;,&quot;outline&quot;,&quot;sale&quot;,&quot;accent&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;size&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;standard&quot;,&quot;options&quot;:[&quot;standard&quot;,&quot;small&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;active&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;count&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string | number&quot;},&quot;icon&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;href&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;disabled&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;stretch&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;check&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;onClick&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;() =&gt; void&quot;}}">
 class Component extends DCLogic {
   static VARIANTS = {
     filter:          { bg: 'var(--ss-surface-page,#FFFFFF)', fg: 'var(--ss-text-secondary,#3D4750)', border: 'var(--ss-border-strong,#C8D0D8)', hoverBg: 'var(--ss-hover-bg,#FFF5E6)', hoverFg: 'var(--ss-hover-text,#A4600C)', hoverBorder: 'var(--ss-hover-text,#A4600C)' },
@@ -63,8 +64,9 @@ class Component extends DCLogic {
     const v = Component.VARIANTS[key] || Component.VARIANTS.filter;
     const s = Component.SIZES[p.size] || Component.SIZES.standard;
     const disabled = !!p.disabled;
+    const showCheck = p.check === true || p.check === 'true';
     const chipStyle = {
-      height: s.h + 'px', padding: '0 ' + s.pad + 'px', fontSize: s.font + 'px',
+      height: s.h + 'px', padding: '0 ' + s.pad + 'px 0 ' + (showCheck ? 9 : s.pad) + 'px', fontSize: s.font + 'px',
       background: v.bg, color: v.fg,
       boxShadow: v.border ? 'inset 0 0 0 1px ' + v.border : undefined
     };
@@ -81,6 +83,7 @@ class Component extends DCLogic {
       showCount: p.count !== undefined && p.count !== null && p.count !== '',
       count: p.count,
       countStyle: { fontSize: s.font - 1 + 'px', fontWeight: 500, opacity: .75 },
+      showCheck,
       showRemove: p.variant === 'filter' && active && !p.href,
       ariaPressed: p.ariaPressed || (p.variant === 'filter' ? (active ? 'true' : 'false') : undefined),
       ariaDisabled: disabled ? 'true' : undefined,

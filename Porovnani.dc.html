@@ -9,7 +9,7 @@
 <x-dc>
 <helmet>
 <link rel="stylesheet" href="./tmavy-rezim.css">
-<script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')!=='light')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h',localStorage.getItem('ss-font-h')||'alt');d.setAttribute('data-font-b',localStorage.getItem('ss-font-b')||'alt');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
+<script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
@@ -149,7 +149,7 @@ a:hover{color:var(--ss-hover-text,#A4600C);}
                     </span>
                   </div>
                   <div style="width:100%;min-width:0">
-                    <dc-import name="Tlacitko" label="Do košíku" variant="buy" size="medium" iconLeft="shopping-bag" href="#kosik" fullWidth="{{ true }}" hint-size="100%,44px"></dc-import>
+                    <dc-import name="Tlacitko" label="Do košíku" variant="buy" size="medium" iconLeft="shopping-bag" href="KosikKrok1.dc.html" fullWidth="{{ true }}" hint-size="100%,44px"></dc-import>
                   </div>
                   <button type="button" class="ss-cmp-fav" onClick="{{ c.onFav }}" aria-pressed="{{ c.fav }}">
                     <span style="display:inline-flex;color:{{ c.favColor }}"><dc-import name="Ikony" iconName="{{ c.favIcon }}" size="18" hint-size="18px,18px"></dc-import></span>

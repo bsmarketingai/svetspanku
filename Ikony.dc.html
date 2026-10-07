@@ -9,7 +9,7 @@
 <x-dc>
 <helmet>
 <link rel="stylesheet" href="./tmavy-rezim.css">
-<script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')!=='light')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h',localStorage.getItem('ss-font-h')||'alt');d.setAttribute('data-font-b',localStorage.getItem('ss-font-b')||'alt');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
+<script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
 <style>
 h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
 
@@ -24,33 +24,6 @@ a{color:var(--ss-link,#296093);}a:hover{color:var(--ss-hover-text,#A4600C);}
 @keyframes ss-ic-rz-s{0%,12%,100%{transform:scaleX(.625);}45%,72%{transform:scaleX(1);}}
 @keyframes ss-ic-rz-t{0%,12%,100%{transform:translateX(-6px);}45%,72%{transform:none;}}
 @media (prefers-reduced-motion:reduce){.ss-ic-rozmer .s,.ss-ic-rozmer .t{animation:none;}}
-/* USP ilustrace — smyčka 6 s, pauza mezi cykly; reduced-motion = statický koncový stav */
-.ss-usp *{transform-box:fill-box;}
-.ss-usp-spanek .z{animation:ss-usp-z 6s cubic-bezier(.22,.61,.36,1) infinite;}
-.ss-usp-spanek .z2{animation-delay:.3s;}.ss-usp-spanek .z3{animation-delay:.6s;}
-@keyframes ss-usp-z{0%,8%{opacity:0;transform:translateY(4px);}20%,80%{opacity:1;transform:none;}92%,100%{opacity:0;transform:translateY(-3px);}}
-.ss-usp-doprava .s{stroke-dasharray:1;animation:ss-usp-s 1.2s linear infinite;}
-.ss-usp-doprava .s2{animation-delay:.2s;}.ss-usp-doprava .s3{animation-delay:.4s;}
-@keyframes ss-usp-s{0%{stroke-dashoffset:-1;opacity:0;}30%{opacity:1;}100%{stroke-dashoffset:1;opacity:0;}}
-.ss-usp-doprava .t{animation:ss-usp-t .6s ease-in-out infinite alternate;}
-@keyframes ss-usp-t{from{transform:translateY(0);}to{transform:translateY(-1px);}}
-.ss-usp-23-let .t,.ss-usp-23-let .u{transform-box:view-box;}
-.ss-usp-23-let .t{transform:translateY(-56px);animation:ss-usp-t23 6s cubic-bezier(.22,.61,.36,1) infinite;}
-.ss-usp-23-let .u{transform:translateY(-364px);animation:ss-usp-u23 6s cubic-bezier(.22,.61,.36,1) infinite;}
-@keyframes ss-usp-t23{0%{transform:translateY(0);}35%,100%{transform:translateY(-56px);}}
-@keyframes ss-usp-u23{0%{transform:translateY(0);}45%,100%{transform:translateY(-364px);}}
-.ss-usp-vyroba .b{transform-origin:center;animation:ss-usp-rot 4s linear infinite;}
-@keyframes ss-usp-rot{to{transform:rotate(360deg);}}
-.ss-usp-vyroba .d{animation:ss-usp-d 1.2s ease-out infinite;}
-.ss-usp-vyroba .d2{animation-delay:.4s;}.ss-usp-vyroba .d3{animation-delay:.8s;}
-@keyframes ss-usp-d{0%{opacity:0;transform:translate(0,0);}20%{opacity:1;}100%{opacity:0;transform:translate(-10px,-6px);}}
-.ss-usp-prodejny .o{transform-origin:center;}
-.ss-usp-prodejny [class*=" p"]{animation:ss-usp-p 6s cubic-bezier(.22,.61,.36,1) infinite;}
-.ss-usp-prodejny [class*=" r"]{opacity:0;animation:ss-usp-r 6s ease-out infinite;}
-.ss-usp-prodejny .p1,.ss-usp-prodejny .r1{animation-delay:.25s;}.ss-usp-prodejny .p2,.ss-usp-prodejny .r2{animation-delay:.5s;}.ss-usp-prodejny .p3,.ss-usp-prodejny .r3{animation-delay:.75s;}.ss-usp-prodejny .p4,.ss-usp-prodejny .r4{animation-delay:1s;}
-@keyframes ss-usp-p{0%{opacity:0;transform:scale(0);}8%{opacity:1;transform:scale(1.3);}14%,100%{opacity:1;transform:scale(1);}}
-@keyframes ss-usp-r{0%,8%{opacity:0;transform:scale(1);}10%{opacity:.8;}40%,100%{opacity:0;transform:scale(3.5);}}
-@media (prefers-reduced-motion:reduce){.ss-usp *{animation:none!important;}}
 </style>
 </helmet>
 <sc-if value="{{ single }}" hint-placeholder-val="{{ false }}">

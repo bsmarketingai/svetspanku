@@ -9,7 +9,7 @@
 <x-dc>
 <helmet>
 <link rel="stylesheet" href="./tmavy-rezim.css">
-<script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')!=='light')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h',localStorage.getItem('ss-font-h')||'alt');d.setAttribute('data-font-b',localStorage.getItem('ss-font-b')||'alt');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
+<script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
 </helmet>
 <span style="{{ style }}">
@@ -22,7 +22,7 @@
   <span>{{ label }}</span>
 </span>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:320,&quot;height&quot;:64},&quot;kind&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;inStock&quot;,&quot;options&quot;:[&quot;inStock&quot;,&quot;lowStock&quot;,&quot;onWay&quot;,&quot;outOfStock&quot;,&quot;sale&quot;,&quot;news&quot;,&quot;freeShip&quot;,&quot;tip&quot;,&quot;madeToOrder&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;label&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;size&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;standard&quot;,&quot;options&quot;:[&quot;standard&quot;,&quot;small&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;icon&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:320,&quot;height&quot;:64},&quot;kind&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;inStock&quot;,&quot;options&quot;:[&quot;inStock&quot;,&quot;lowStock&quot;,&quot;onWay&quot;,&quot;outOfStock&quot;,&quot;sale&quot;,&quot;news&quot;,&quot;freeShip&quot;,&quot;tip&quot;,&quot;recommended&quot;,&quot;madeToOrder&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;label&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;size&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;standard&quot;,&quot;options&quot;:[&quot;standard&quot;,&quot;small&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;icon&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
 class Component extends DCLogic {
   static KINDS = {
     inStock:    { label: 'Skladem · odesíláme do 24 h', fg: 'var(--ss-status-success,#157A41)', bg: 'transparent', dot: '#157A41', plain: true },
@@ -33,6 +33,7 @@ class Component extends DCLogic {
     news:       { label: 'Novinka', fg: '#1C2229', bg: '#FBB255' },
     freeShip:   { label: 'Doprava zdarma', fg: '#FFFFFF', bg: '#157A41', icon: 'truck' },
     tip:        { label: 'Tip prodejny', fg: '#FFFFFF', bg: '#296093' },
+    recommended:{ label: 'Doporučujeme', fg: '#132C43', bg: '#FDDCAA', icon: 'znak-svetspanku' },
     madeToOrder:{ label: 'Výroba na míru', fg: 'var(--ss-link-hover,#21507B)', bg: 'var(--ss-surface-selected,#DCE8F2)' }
   };
   renderVals() {

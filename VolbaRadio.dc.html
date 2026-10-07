@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="./tmavy-rezim.css">
+<script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
+.ss-vr{position:relative;box-sizing:border-box;display:grid;align-items:start;font-family:Roboto,Helvetica,Arial,sans-serif;color:var(--ss-text-primary,#1C2229);transition:background-color .12s cubic-bezier(.22,.61,.36,1);}
+.ss-vr-in{position:absolute;opacity:0;width:1px;height:1px;margin:0;pointer-events:none;}
+.ss-vr-dot{box-sizing:border-box;display:flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:999px;background:var(--ss-surface-page,#FFFFFF);box-shadow:inset 0 0 0 2px var(--ss-border-strong,#C8D0D8);transition:box-shadow .12s cubic-bezier(.22,.61,.36,1);}
+.ss-vr-dot::after{content:"";width:12px;height:12px;border-radius:999px;background:#FBB255;transform:scale(0);transition:transform .12s cubic-bezier(.22,.61,.36,1);}
+.ss-vr-in:checked ~ .ss-vr-dot{box-shadow:inset 0 0 0 2px #FBB255;}
+.ss-vr-in:checked ~ .ss-vr-dot::after{transform:scale(1);}
+.ss-vr-in:focus-visible ~ .ss-vr-dot{box-shadow:inset 0 0 0 2px var(--ss-border-strong,#C8D0D8),0 0 0 3px rgba(41,96,147,.35);}
+.ss-vr-in:checked:focus-visible ~ .ss-vr-dot{box-shadow:inset 0 0 0 2px #FBB255,0 0 0 3px rgba(41,96,147,.35);}
+.ss-vr-label{cursor:pointer;}
+.ss-vr-label::after{content:"";position:absolute;inset:0;border-radius:6px;}
+@media (hover:hover) and (pointer:fine){.ss-vr:not([data-disabled="true"]):hover .ss-vr-dot{box-shadow:inset 0 0 0 2px var(--ss-hover-text,#21507B);}.ss-vr:not([data-disabled="true"]):hover .ss-vr-label{color:var(--ss-hover-text,#21507B);}}
+.ss-vr[data-disabled="true"] .ss-vr-label{cursor:not-allowed;}
+.ss-vr[data-disabled="true"] .ss-vr-dim{opacity:.45;}
+.ss-vr-media{display:flex;align-items:center;justify-content:center;border-radius:6px;overflow:hidden;color:var(--ss-link,#296093);}
+</style>
+</helmet>
+<div class="ss-vr" data-disabled="{{ disabledStr }}" style="{{ rowStyle }}">
+  <input class="ss-vr-in" type="radio" id="{{ id }}" name="{{ name }}" checked="{{ checked }}" disabled="{{ disabled }}" onChange="{{ select }}" aria-describedby="{{ descId }}" />
+  <span class="ss-vr-dot ss-vr-dim" aria-hidden="true" style="margin-top:{{ dotTop }}"></span>
+  <sc-if value="{{ hasMedia }}" hint-placeholder-val="{{ true }}">
+    <span class="ss-vr-media ss-vr-dim" aria-hidden="true" style="{{ mediaStyle }}">
+      <sc-if value="{{ hasLogo }}" hint-placeholder-val="{{ false }}"><img src="{{ logo }}" alt="" style="display:block;width:100%;height:100%;object-fit:contain" /></sc-if>
+      <sc-if value="{{ hasIcon }}" hint-placeholder-val="{{ false }}"><dc-import name="Ikony" iconName="{{ icon }}" size="20" hint-size="20px,20px"></dc-import></sc-if>
+    </span>
+  </sc-if>
+  <div style="display:flex;flex-direction:column;gap:4px;min-width:0">
+    <div style="display:flex;align-items:{{ titleAlign }};gap:4px;min-height:{{ titleMinH }}">
+      <label class="ss-vr-label ss-vr-dim" for="{{ id }}" style="{{ titleStyle }}">{{ title }}<sc-if value="{{ hasBold }}" hint-placeholder-val="{{ false }}"><strong style="font-weight:700">{{ titleBold }}</strong></sc-if>{{ titleAfter }}</label>
+      <sc-if value="{{ hasInfo }}" hint-placeholder-val="{{ false }}">
+        <span style="margin-top:{{ infoTop }}"><dc-import name="InfoPopover" title="{{ infoTitle }}" items="{{ info }}" hint-size="32px,32px"></dc-import></span>
+      </sc-if>
+    </div>
+    <div id="{{ descId }}" style="display:flex;flex-direction:column;gap:4px">
+      <sc-if value="{{ hasDesc }}" hint-placeholder-val="{{ false }}">
+        <span class="ss-vr-dim" style="font-size:15px;line-height:1.45;color:var(--ss-text-secondary,#3D4750);text-wrap:pretty">{{ description }}</span>
+      </sc-if>
+      <sc-if value="{{ hasDate }}" hint-placeholder-val="{{ false }}">
+        <span class="ss-vr-dim" style="font-size:14px;color:var(--ss-text-secondary,#3D4750)"><strong style="font-weight:700;color:var(--ss-text-primary,#1C2229)">{{ date }}</strong> {{ dateNote }}</span>
+      </sc-if>
+      <sc-if value="{{ hasNote }}" hint-placeholder-val="{{ false }}">
+        <span style="display:flex;align-items:flex-start;gap:8px;font-size:14px;line-height:1.4;color:var(--ss-text-secondary,#3D4750)"><span style="display:flex;flex:none;margin-top:-1px;color:var(--ss-text-muted,#5B6874)"><dc-import name="Ikony" iconName="info-circle" size="18" hint-size="18px,18px"></dc-import></span>{{ disabledNote }}</span>
+      </sc-if>
+    </div>
+  </div>
+  <span class="ss-vr-dim" style="{{ priceStyle }}">{{ price }}</span>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:720,&quot;height&quot;:140},&quot;level&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;main&quot;,&quot;options&quot;:[&quot;main&quot;,&quot;sub&quot;],&quot;tsType&quot;:&quot;'main' | 'sub'&quot;},&quot;title&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Doručení na adresu PPL&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;titleBold&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;titleAfter&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;description&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;date&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;dateNote&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;price&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;1 000 Kč&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;logo&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;icon&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;logoBg&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;noMedia&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;checked&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;disabled&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;disabledNote&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;divider&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;compact&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;group&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;volba&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;info&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;string[]&quot;},&quot;infoTitle&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;onSelect&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;() =&gt; void&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const p = this.props;
+    const sub = p.level === 'sub';
+    const compact = !!p.compact;
+    const uid = this._id || (this._id = 'ss-vr-' + Math.random().toString(36).slice(2, 8));
+    const hasMedia = !sub && !p.noMedia;
+    const mediaW = 52;
+    const free = /zdarma/i.test(p.price || '');
+    const cols = ['24px'];
+    if (hasMedia) cols.push(mediaW + 'px');
+    cols.push('minmax(0,1fr)', 'auto');
+    return {
+      id: uid, descId: uid + '-d',
+      name: p.group || 'volba',
+      checked: !!p.checked,
+      disabled: !!p.disabled,
+      disabledStr: p.disabled ? 'true' : 'false',
+      select: () => { if (!p.disabled && p.onSelect) p.onSelect(); },
+      hasMedia,
+      hasLogo: !!p.logo, logo: p.logo,
+      hasIcon: !p.logo && !!p.icon, icon: p.icon,
+      mediaStyle: { width: '52px', height: '32px', borderRadius: '6px', background: p.logoBg || (p.logo ? 'transparent' : (p.icon ? '#FFFFFF' : 'var(--ss-surface-muted,#EFF2F5)')), boxShadow: (!p.logo && p.icon && !p.logoBg) ? 'inset 0 0 0 1px #D9D9D9' : 'none', color: '#296093' },
+      title: p.title ?? 'Doručení na adresu PPL',
+      hasBold: !!p.titleBold, titleBold: p.titleBold, titleAfter: p.titleAfter || '',
+      titleStyle: sub
+        ? { fontSize: '15px', lineHeight: 1.45, fontWeight: 400, paddingTop: '1px', textWrap: 'pretty' }
+        : { fontSize: compact ? '16px' : '17px', lineHeight: 1.35, fontWeight: 600, paddingTop: hasMedia ? 0 : '1px', textWrap: 'pretty' },
+      hasInfo: !!(p.info && p.info.length), info: p.info, infoTitle: p.infoTitle || p.title || 'Více informací',
+      hasDesc: !!p.description, description: p.description,
+      hasDate: !!p.date, date: p.date, dateNote: p.dateNote || '',
+      hasNote: !!p.disabled && !!p.disabledNote, disabledNote: p.disabledNote,
+      price: p.price || '',
+      priceStyle: { fontFamily: "'Archivo Narrow',Roboto,sans-serif", fontWeight: 700, fontSize: sub ? '16px' : '17px', whiteSpace: 'nowrap', textAlign: 'right', paddingTop: hasMedia ? 0 : '1px', lineHeight: hasMedia ? '32px' : 1.4, color: free ? 'var(--ss-status-success,#157A41)' : 'var(--ss-text-primary,#1C2229)' },
+      dotTop: hasMedia ? '4px' : '0px',
+      titleAlign: hasMedia ? 'center' : 'flex-start',
+      titleMinH: hasMedia ? '32px' : '0',
+      infoTop: hasMedia ? '0' : '-4px',
+      rowStyle: { gridTemplateColumns: cols.join(' '), gap: compact ? '12px' : '16px', padding: sub ? '12px 0' : '20px 0', borderBottom: p.divider ? '1px solid var(--ss-border-subtle,#E1E6EB)' : '0' }
+    };
+  }
+}
+</script>
+</body>
+</html>

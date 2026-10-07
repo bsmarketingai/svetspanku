@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="./tmavy-rezim.css">
+<script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
+</style>
+</helmet>
+<aside aria-labelledby="ss-so-h" style="font-family:Roboto,Helvetica,Arial,sans-serif;color:var(--ss-text-primary,#1C2229);display:flex;flex-direction:column;gap:24px;width:100%">
+  <h2 id="ss-so-h" style="margin:0;padding-bottom:16px;border-bottom:1px solid var(--ss-border-subtle,#E1E6EB);font-size:26px;line-height:1.2">Shrnutí objednávky</h2>
+  <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;border-bottom:1px solid var(--ss-border-subtle,#E1E6EB)">
+    <sc-for list="{{ items }}" as="i" hint-placeholder-count="2">
+      <li style="display:grid;grid-template-columns:80px minmax(0,1fr);gap:16px;align-items:start;padding:{{ i.pad }};border-top:{{ i.sep }}">
+        <span style="display:flex;align-items:center;justify-content:center;width:80px;height:64px;border-radius:6px;overflow:hidden;background:{{ i.mediaBg }};color:var(--ss-text-decor,#C8D0D8)">
+          <sc-if value="{{ i.hasImg }}" hint-placeholder-val="{{ false }}"><img src="{{ i.img }}" alt="" style="display:block;width:100%;height:100%;object-fit:cover" /></sc-if>
+          <sc-if value="{{ i.noImg }}" hint-placeholder-val="{{ true }}"><dc-import name="Ikony" iconName="photo" size="20" hint-size="20px,20px"></dc-import></sc-if>
+        </span>
+        <div style="display:flex;flex-direction:column;gap:4px;min-width:0">
+          <span style="font-size:15px;font-weight:600;line-height:1.35">{{ i.title }}</span>
+          <span style="font-size:13px;color:var(--ss-text-muted,#5B6874)">{{ i.variant }}</span>
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-top:4px">
+            <span style="font-size:14px;color:var(--ss-text-secondary,#3D4750)">{{ i.qtyText }}</span>
+            <span style="font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:16px;white-space:nowrap">{{ i.total }}</span>
+          </div>
+        </div>
+      </li>
+    </sc-for>
+  </ul>
+  <dl style="margin:0;display:flex;flex-direction:column;gap:12px">
+    <sc-for list="{{ lines }}" as="l" hint-placeholder-count="2">
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:16px">
+        <dt style="display:flex;flex-direction:column;gap:2px;min-width:0">
+          <span style="font-size:13px;color:var(--ss-text-muted,#5B6874)">{{ l.label }}</span>
+          <span style="font-size:15px;font-weight:600;line-height:1.35">{{ l.name }}</span>
+        </dt>
+        <dd style="{{ l.valueStyle }}">{{ l.value }}</dd>
+      </div>
+    </sc-for>
+  </dl>
+  <sc-if value="{{ hasChecks }}" hint-placeholder-val="{{ false }}">
+    <div style="display:flex;flex-direction:column;gap:4px;padding-top:20px;border-top:1px solid var(--ss-border-subtle,#E1E6EB)">
+      <sc-for list="{{ checks }}" as="c" hint-placeholder-count="2">
+        <dc-import name="Checkbox" label="{{ c.label }}" checked="{{ c.checked }}" onChange="{{ c.onChange }}" size="compact" hint-size="100%,32px"></dc-import>
+      </sc-for>
+    </div>
+  </sc-if>
+  <dc-import name="SouhrnKosiku" totalLabel="Celková cena" total="{{ total }}" totalNoVat="{{ totalNoVat }}" ctaLabel="{{ ctaLabel }}" ctaSublabel="{{ ctaSublabel }}" termsNote="{{ termsNote }}" termsChecked="{{ termsChecked }}" onTerms="{{ onTerms }}" ctaHref="{{ ctaHref }}" hint-size="100%,220px"></dc-import>
+  <div style="display:flex;justify-content:center">
+    <dc-import name="Tlacitko" label="{{ backLabel }}" variant="secondary" size="large" href="{{ backHref }}" iconLeft="arrow-left" hint-size="220px,52px"></dc-import>
+  </div>
+</aside>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:420,&quot;height&quot;:800},&quot;items&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;{title: string, variant: string, qty: number, total: string, img?: string}[]&quot;},&quot;lines&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;{label: string, name: string, value: string}[]&quot;},&quot;total&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;41 480 Kč&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;totalNoVat&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;34 281 Kč&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;checks&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;{label: string, checked: boolean}[]&quot;},&quot;onCheck&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(index: number, checked: boolean) =&gt; void&quot;},&quot;termsChecked&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;onTerms&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(checked: boolean) =&gt; void&quot;},&quot;termsNote&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;ctaSublabel&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;ctaLabel&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Pokračovat k dodacím údajům&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;ctaHref&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;#dodaci-udaje&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;backLabel&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Zpět do košíku&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;backHref&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;KosikKrok1.dc.html&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const p = this.props;
+    const items = (p.items || [
+      { title: 'Manželská postel SANTE 45 dvoulůžko', variant: '200 × 180 cm · olej Teak · jádrový buk', qty: 2, total: '39 980 Kč', img: 'produkt-sante-45.jpg' }
+    ]).map((i, idx) => ({
+      pad: idx === 0 ? '0 0 20px' : '20px 0',
+      sep: idx === 0 ? '0' : '1px solid var(--ss-border-subtle,#E1E6EB)',
+      title: i.title, variant: i.variant, total: i.total,
+      qtyText: (i.qty ?? 1) + ' ks',
+      img: i.img || '', hasImg: !!i.img, noImg: !i.img,
+      mediaBg: i.img ? 'transparent' : 'var(--ss-surface-muted,#EFF2F5)'
+    }));
+    const lines = (p.lines || [
+      { label: 'Doprava', name: 'Vlastní doprava – vynáška do patra', value: '1 500 Kč' },
+      { label: 'Platba', name: 'Platba kartou online', value: 'Zdarma' }
+    ]).map(l => ({
+      label: l.label, name: l.name, value: l.value,
+      valueStyle: { margin: 0, fontFamily: "'Archivo Narrow',Roboto,sans-serif", fontWeight: 700, fontSize: '16px', whiteSpace: 'nowrap', color: /zdarma/i.test(l.value || '') ? 'var(--ss-status-success,#157A41)' : 'var(--ss-text-primary,#1C2229)' }
+    }));
+    return {
+      items, lines,
+      total: p.total ?? '41 480 Kč',
+      totalNoVat: p.totalNoVat ?? '34 281 Kč',
+      ctaLabel: p.ctaLabel || 'Pokračovat k dodacím údajům',
+      ctaHref: p.ctaHref || '#dodaci-udaje',
+      ctaSublabel: p.ctaSublabel || '', termsNote: !!p.termsNote,
+      termsChecked: !!p.termsChecked, onTerms: (v) => { if (p.onTerms) p.onTerms(v); },
+      hasChecks: !!(p.checks && p.checks.length),
+      checks: (p.checks || []).map((c, idx) => ({ label: c.label, checked: !!c.checked, onChange: (v) => { if (p.onCheck) p.onCheck(idx, v); } })),
+      backLabel: p.backLabel || 'Zpět do košíku',
+      backHref: p.backHref || 'KosikKrok1.dc.html'
+    };
+  }
+}
+</script>
+</body>
+</html>

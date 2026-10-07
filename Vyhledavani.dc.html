@@ -9,7 +9,7 @@
 <x-dc>
 <helmet>
 <link rel="stylesheet" href="./tmavy-rezim.css">
-<script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')!=='light')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h',localStorage.getItem('ss-font-h')||'alt');d.setAttribute('data-font-b',localStorage.getItem('ss-font-b')||'alt');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
+<script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
 h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
@@ -30,8 +30,8 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 .ss-sg-close:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
 </style>
 </helmet>
-<div class="ss-sg" role="region" aria-label="Našeptávač vyhledávání" style="width:100%;background:var(--ss-surface-page,#FFFFFF);border-radius:12px;box-shadow:0 16px 40px rgba(19,44,67,.18);font-family:Roboto,Helvetica,Arial,sans-serif;color:var(--ss-text-primary,#1C2229);overflow:hidden">
-  <div style="display:grid;grid-template-columns:{{ shellTemplate }};gap:0">
+<div class="ss-sg" role="region" aria-label="Našeptávač vyhledávání" style="width:100%;background:var(--ss-surface-page,#FFFFFF);border-radius:0;border-top:1px solid var(--ss-border-subtle,#E1E6EB);box-shadow:0 16px 40px rgba(19,44,67,.18);font-family:Roboto,Helvetica,Arial,sans-serif;color:var(--ss-text-primary,#1C2229);overflow:hidden">
+  <div style="display:grid;grid-template-columns:{{ shellTemplate }};gap:0;max-width:1560px;margin:0 auto">
     <div style="padding:{{ padSide }};display:flex;flex-direction:column;gap:28px;min-width:0">
       <sc-if value="{{ hasFrequent }}" hint-placeholder-val="{{ true }}">
         <div style="display:flex;flex-direction:column;gap:12px">
@@ -46,7 +46,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 
       <sc-if value="{{ hasCategories }}" hint-placeholder-val="{{ true }}">
         <div style="display:flex;flex-direction:column;gap:6px">
-          <h2 style="margin:0 0 6px;font-size:15px;font-weight:700;letter-spacing:.06em;text-decoration:underline;text-underline-offset:4px">Kategorie ({{ categoryCount }})</h2>
+          <h2 style="margin:0 0 6px;font-family:'Archivo Narrow',Roboto,sans-serif;font-size:19px;font-weight:700;line-height:1.2;color:var(--ss-text-primary,#1C2229)">Kategorie ({{ categoryCount }})</h2>
           <sc-for list="{{ categories }}" as="c" hint-placeholder-count="6">
             <a class="ss-sg-cat" href="{{ c.href }}">
               <span>{{ c.label }}</span>
@@ -60,7 +60,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 
       <sc-if value="{{ articlesAside }}" hint-placeholder-val="{{ true }}">
         <div style="display:flex;flex-direction:column;gap:4px">
-          <h2 style="margin:0 0 6px;font-size:15px;font-weight:700;letter-spacing:.06em;text-decoration:underline;text-underline-offset:4px">Články ({{ articleCount }})</h2>
+          <h2 style="margin:0 0 6px;font-family:'Archivo Narrow',Roboto,sans-serif;font-size:19px;font-weight:700;line-height:1.2;color:var(--ss-text-primary,#1C2229)">Články ({{ articleCount }})</h2>
           <sc-for list="{{ articles }}" as="a" hint-placeholder-count="2">
             <a class="ss-sg-art" href="{{ a.href }}">{{ a.title }}</a>
           </sc-for>
@@ -70,13 +70,13 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 
     <div style="{{ mainStyle }}">
       <div style="display:flex;align-items:flex-start;gap:12px">
-        <h2 style="margin:0;font-size:15px;font-weight:700;letter-spacing:.06em;text-decoration:underline;text-underline-offset:4px">Produkty ({{ total }})</h2>
+        <h2 style="margin:0;font-family:'Archivo Narrow',Roboto,sans-serif;font-size:19px;font-weight:700;line-height:1.2;color:var(--ss-text-primary,#1C2229)">Produkty ({{ total }})</h2>
       </div>
 
       <div style="display:grid;grid-template-columns:{{ productTemplate }};gap:12px 24px">
         <sc-for list="{{ products }}" as="p" hint-placeholder-count="6">
           <a class="ss-sg-prod" href="{{ p.href }}">
-            <span style="width:104px;height:104px;flex:none;border-radius:8px;background:var(--ss-surface-muted,#EFF2F5);display:flex;align-items:center;justify-content:center;color:var(--ss-text-decor,#C8D0D8)"><dc-import name="Ikony" iconName="photo" size="24" hint-size="24px,24px"></dc-import></span>
+            <sc-if value="{{ p.hasImage }}" hint-placeholder-val="{{ false }}"><span aria-hidden="true" style="{{ p.imgStyle }}"></span></sc-if><sc-if value="{{ p.noImage }}" hint-placeholder-val="{{ true }}"><span style="width:104px;height:104px;flex:none;border-radius:8px;background:var(--ss-surface-muted,#EFF2F5);display:flex;align-items:center;justify-content:center;color:var(--ss-text-decor,#C8D0D8)"><dc-import name="Ikony" iconName="photo" size="24" hint-size="24px,24px"></dc-import></span></sc-if>
             <span style="display:flex;flex-direction:column;gap:10px;min-width:0;padding-top:6px">
               <span class="ss-sg-prod-t" style="font-size:15px;font-weight:500;line-height:1.35;transition:color .12s cubic-bezier(.22,.61,.36,1)">{{ p.title }}</span>
               <span style="display:flex;flex-wrap:wrap;align-items:center;gap:14px">
@@ -90,7 +90,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 
       <sc-if value="{{ articlesBelow }}" hint-placeholder-val="{{ false }}">
         <div style="display:flex;flex-direction:column;gap:4px;padding-top:12px;border-top:1px solid var(--ss-border-subtle,#E1E6EB)">
-          <h2 style="margin:0 0 6px;font-size:15px;font-weight:700;letter-spacing:.06em;text-decoration:underline;text-underline-offset:4px">Články ({{ articleCount }})</h2>
+          <h2 style="margin:0 0 6px;font-family:'Archivo Narrow',Roboto,sans-serif;font-size:19px;font-weight:700;line-height:1.2;color:var(--ss-text-primary,#1C2229)">Články ({{ articleCount }})</h2>
           <sc-for list="{{ articles }}" as="a" hint-placeholder-count="2">
             <a class="ss-sg-art" href="{{ a.href }}">{{ a.title }}</a>
           </sc-for>
@@ -120,6 +120,9 @@ class Component extends DCLogic {
     const products = (p.products || this.state.demo || []).slice(0, p.maxProducts ?? 6).map(d => ({
       href: d.href || '#produkt',
       title: d.title,
+      hasImage: !!d.image,
+      noImage: !d.image,
+      imgStyle: { display: 'block', width: '104px', height: '104px', flex: 'none', borderRadius: '8px', background: d.image ? 'url(' + d.image + ') center / contain no-repeat' : 'none' },
       price: d.price,
       stock: d.stock || 'inStock',
       stockLabel: d.stock === 'lowStock' ? 'Poslední kusy' : (d.stock === 'outOfStock' ? 'Nedostupné' : 'Skladem')

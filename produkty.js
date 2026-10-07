@@ -1,4 +1,4 @@
-// Ukázková data produktů a kategorií pro prototyp. Fotky dodá klient — zatím placeholdery.
+// Ukázková data produktů a kategorií pro prototyp. Fotky jsou zástupné z dodaných podkladů.
 export const PRODUKTY = [
   { id: 'p1', image: 'produkt-matrace-spring-variant.png', title: 'Matrace Spring Variant 22 cm', href: '#produkt', orderNo: '428170',
     perex: 'Partnerská matrace s tuhostí volitelnou pro každou polovinu samostatně. Už žádná mezera uprostřed.',
@@ -21,16 +21,16 @@ export const PRODUKTY = [
     perex: 'Osmadvacet pružných lamel s pojezdem tuhosti v oblasti beder.',
     rating: 4.4, ratingCount: 37, price: '3 290 Kč', stock: 'inStock', moreLabel: 'Více rozměrů',
     params: [{ icon: 'dimensions', label: '160 × 200 cm' }, { icon: 'package', label: '28 lamel' }] },
-  { id: 'p6', title: 'Komplet postel Nora + rošt + matrace', href: '#produkt', orderNo: '435110',
+  { id: 'p6', image: 'menu-komplety-sestavy.png', title: 'Komplet postel Nora + rošt + matrace', href: '#produkt', orderNo: '435110',
     perex: 'Sestava připravená k okamžitému spaní. Rošt i matrace sedí na rozměr postele.',
     rating: 4.7, ratingCount: 18, price: '28 900 Kč', priceBefore: '34 700 Kč', badge: 'sale', badgeLabel: 'Akce −17 %',
     stock: 'onWay', moreLabel: 'Více rozměrů / variant matrace',
     params: [{ icon: 'dimensions', label: '160 × 200 cm' }, { icon: 'coins', label: 'Ušetříte 5 800 Kč' }] },
-  { id: 'p7', title: 'Anatomický polštář Comfort Memory', href: '#produkt', orderNo: '440021',
+  { id: 'p7', image: 'menu-polstare.png', title: 'Anatomický polštář Comfort Memory', href: '#produkt', orderNo: '440021',
     perex: 'Paměťová pěna, která kopíruje krční páteř a nedeformuje se.',
     rating: 4.2, ratingCount: 96, price: '1 290 Kč', stock: 'inStock',
     params: [{ icon: 'dimensions', label: '70 × 50 cm' }, { icon: 'color-swatch', label: 'Paměťová pěna' }] },
-  { id: 'p8', title: 'Noční stolek z masivu Nora', href: '#produkt', orderNo: '419944',
+  { id: 'p8', image: 'produkt-nocni-stolek-uni-50.png', title: 'Noční stolek z masivu Nora', href: '#produkt', orderNo: '419944',
     perex: 'Dubový masiv se zásuvkou na tichém výsuvu. Ladí s postelí Nora.',
     rating: 4.5, ratingCount: 12, price: '4 690 Kč', stock: 'outOfStock', moreLabel: 'Více odstínů',
     params: [{ icon: 'color-swatch', label: 'Dub' }, { icon: 'dimensions', label: '45 × 40 cm' }] },
@@ -38,7 +38,7 @@ export const PRODUKTY = [
     perex: 'Dvě tuhosti v jedné matraci — stačí ji otočit podle ročního období.',
     rating: 4.1, ratingCount: 54, price: '6 190 Kč', stock: 'inStock', moreLabel: 'Více rozměrů / stupňů tvrdosti',
     params: [{ icon: 'percentage-66', label: '3 / 4 – oboustranná' }, { icon: 'weight', label: '110 kg' }, { icon: 'arrow-autofit-height', label: '18 cm' }] },
-  { id: 'p10', title: 'Postel z masivu Sara s čalouněným čelem', href: '#produkt', orderNo: '419877',
+  { id: 'p10', image: 'kategorie-calounene-postele.png', title: 'Postel z masivu Sara s čalouněným čelem', href: '#produkt', orderNo: '419877',
     perex: 'Masivní rám s čalouněným čelem v pratelném lněném potahu.',
     rating: 4.6, ratingCount: 29, price: '18 490 Kč', stock: 'inStock', moreLabel: 'Více rozměrů / potahů',
     params: [{ icon: 'dimensions', label: '160 × 200 cm' }, { icon: 'palette', label: 'Len šedý' }] }
@@ -48,8 +48,8 @@ export const KATEGORIE = [
   { label: 'Manželské postele z masivu', href: '#manzelske-postele', count: 42, image: 'kategorie-manzelske-postele.png', sub: ['180 × 200', 'S úložným prostorem'] },
   { label: 'Jednolůžka z masivu', href: '#jednoluzka', count: 24, image: 'kategorie-jednoluzka.png', sub: ['90 × 200', 'Dětské', 'Buk'] },
   { label: 'Čalouněné postele', href: '#calounene', count: 31, image: 'kategorie-calounene-postele.png', sub: ['S roštem', 'Boxspring'] },
-  { label: 'Matrace', href: '#matrace', count: 112, image: 'kategorie-matrace.png', sub: ['Taštičkové', 'Pěnové', 'Latexové'] },
-  { label: 'Rošty', href: '#rosty', count: 54, image: 'kategorie-rosty.png', sub: ['Lamelové', 'Polohovací'] },
+  { label: 'Matrace', href: '#matrace', count: 112, image: 'kategorie-matrace.png', zoom: true, sub: ['Taštičkové', 'Pěnové', 'Latexové'] },
+  { label: 'Rošty', href: '#rosty', count: 54, image: 'kategorie-rosty.png', zoom: true, sub: ['Lamelové', 'Polohovací'] },
   { label: 'Nábytek z masivu', href: '#nabytek', count: 73, image: 'kategorie-nabytek.png', sub: ['Noční stolky', 'Komody'] }
 ];
 

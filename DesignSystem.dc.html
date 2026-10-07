@@ -9,7 +9,7 @@
 <x-dc>
 <helmet>
 <link rel="stylesheet" href="./tmavy-rezim.css">
-<script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')!=='light')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h',localStorage.getItem('ss-font-h')||'alt');d.setAttribute('data-font-b',localStorage.getItem('ss-font-b')||'alt');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
+<script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
@@ -374,8 +374,8 @@ class Component extends DCLogic {
       ['link.onLight.hover', '#21507B', 'odkaz hover', 'surface.page', '#FFFFFF'],
       ['action.primary', '#296093', 'primární tlačítko (bílý text)', 'text.onPrimary', '#FFFFFF'],
       ['action.primary.hover', '#21507B', 'primární tlačítko hover', 'text.onPrimary', '#FFFFFF'],
-      ['action.secondary', '#296093', 'sekundární tlačítko: modrý text + obrys 1 px na bílé', 'surface.page', '#FFFFFF'],
-      ['action.secondary.hover', '#21507B', 'sekundární hover: text a obrys, pozadí blue-50', 'blue-50', '#F0F5FA'],
+      ['action.secondary', '#21507B', 'sekundární tlačítko (tonální): text blue-700 na pozadí blue-100, bez obrysu', 'blue-100', '#DCE8F2'],
+      ['action.secondary.hover', '#21507B', 'sekundární hover: pozadí blue-200', 'blue-200', '#B9D0E5'],
       ['action.ghost', '#21507B', 'ghost tlačítko: modrý text bez obrysu, hover pozadí blue-50', 'blue-50', '#F0F5FA'],
       ['action.buy', '#FBB255', 'Koupit, Do košíku (tmavý text)', 'text.onBuy', '#1C2229'],
       ['action.buy.hover', '#F09A2C', 'Koupit hover', 'text.onBuy', '#1C2229'],
@@ -392,7 +392,7 @@ class Component extends DCLogic {
       ['commerce.sale', '#B3261E', 'sleva, akční štítek (bílý text)', 'text.onSale', '#FFFFFF'],
       ['focus.ring', 'rgba(41,96,147,.35)', 'focus ring 3 px', null, null]
     ];
-    const darkRaw = [['surface-page','#FFFFFF','#0E1F2F'],['surface-subtle','#F7F9FB','#13283C'],['surface-muted','#EFF2F5','#183049'],['surface-strong','#E1E6EB','#22405C'],['surface-hover','#F0F5FA','#1A3A58'],['surface-selected','#DCE8F2','#1F4669'],['surface-accent','#FFF8EE','#2B2318'],['surface-accent-strong','#FEEDD4','#3A2C17'],['status-success-surface','#EEF9F1','#12301F'],['status-error-surface','#FDF0EF','#3A1A18'],['text-primary','#1C2229','#EEF3F8',1],['text-secondary','#3D4750','#C5D2DE',1],['text-muted','#5B6874','#9DB0C2',1],['text-disabled','#9AA6B2','#7F94A8'],['text-decor','#C8D0D8','#4A6683'],['link','#296093','#8DB3D3',1],['link-hover','#21507B','#B9D0E5',1],['status-success','#157A41','#71CC92',1],['status-success-strong','#106134','#A8E1BB',1],['status-error','#B3261E','#F4A39C',1],['status-error-strong','#8E1E18','#F4B6B1',1],['status-warning','#A4600C','#FCC77D',1],['border-faint','#EFF2F5','#1E3850'],['border-subtle','#E1E6EB','#24405B'],['border-strong','#C8D0D8','#3A5A7A'],['border-hover','#8DB3D3','#5B8FBC'],['border-action','#296093','#8DB3D3'],['border-action-hover','#21507B','#B9D0E5'],['border-error','#B3261E','#F4A39C'],['border-error-subtle','#E3B9B6','#7A3A35'],['border-success-subtle','#C7E2D2','#2C5A40'],['border-accent-subtle','#F3DDB4','#5A4425']];
+    const darkRaw = [['surface-page','#FFFFFF','#0E1F2F'],['surface-subtle','#F7F9FB','#13283C'],['surface-muted','#EFF2F5','#183049'],['surface-strong','#E1E6EB','#22405C'],['action-tonal-bg','#DCE8F2','rgba(141,179,211,.16)'],['action-tonal-hover-bg','#B9D0E5','rgba(141,179,211,.26)'],['action-tonal-fg','#21507B','#B9D0E5',true],['surface-hover','#F0F5FA','#1A3A58'],['surface-selected','#DCE8F2','#1F4669'],['surface-accent','#FFF8EE','#2B2318'],['surface-accent-strong','#FEEDD4','#3A2C17'],['status-success-surface','#EEF9F1','#12301F'],['status-error-surface','#FDF0EF','#3A1A18'],['text-primary','#1C2229','#EEF3F8',1],['text-secondary','#3D4750','#C5D2DE',1],['text-muted','#5B6874','#9DB0C2',1],['text-disabled','#9AA6B2','#7F94A8'],['text-decor','#C8D0D8','#4A6683'],['link','#296093','#8DB3D3',1],['link-hover','#21507B','#B9D0E5',1],['status-success','#157A41','#71CC92',1],['status-success-strong','#106134','#A8E1BB',1],['status-error','#B3261E','#F4A39C',1],['status-error-strong','#8E1E18','#F4B6B1',1],['status-warning','#A4600C','#FCC77D',1],['border-faint','#EFF2F5','#1E3850'],['border-subtle','#E1E6EB','#24405B'],['border-strong','#C8D0D8','#3A5A7A'],['border-hover','#8DB3D3','#5B8FBC'],['border-action','#296093','#8DB3D3'],['border-action-hover','#21507B','#B9D0E5'],['border-error','#B3261E','#F4A39C'],['border-error-subtle','#E3B9B6','#7A3A35'],['border-success-subtle','#C7E2D2','#2C5A40'],['border-accent-subtle','#F3DDB4','#5A4425']];
     const darkTokens = darkRaw.map(([n, l, d, isText]) => { let verdict = '—'; if (isText) { const r = this.ratio(d, '#0E1F2F'); verdict = r.toFixed(2) + ' : 1 ' + (r >= 4.5 ? 'AA ✓' : 'AA ✗'); } return { name: '--ss-' + n, light: l, dark: d, verdict }; });
     const tokens = raw.map(([name, hex, use, onName, onHex]) => {
       let verdict = '—';
@@ -437,7 +437,7 @@ class Component extends DCLogic {
 
     const states = [
       ['Tlačítko primary / buy / danger (solid)','pozadí *.hover, zdvih −1 px + stín 0 4px 12px, ikona vpravo posun 3 px, 150 ms','scale .98, bez zdvihu, 60 ms','ring 3 px + posun barvy','opacity .45, cursor not-allowed, aria-disabled'],
-      ['Tlačítko secondary (outline)','pozadí blue-50, text a obrys action.secondary.hover','scale .98','ring 3 px','opacity .45'],
+      ['Tlačítko secondary (tonální)','pozadí blue-200, text action.secondary.hover','scale .98','ring 3 px','opacity .45'],
       
       ['Tlačítko ghost / text','pozadí surface.subtle','pozadí surface.muted','ring 3 px','opacity .45'],
       ['Odkaz','link.onLight.hover, podtržení zůstává','bez změny','ring 3 px','—'],

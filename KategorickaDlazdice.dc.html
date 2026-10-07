@@ -9,7 +9,7 @@
 <x-dc>
 <helmet>
 <link rel="stylesheet" href="./tmavy-rezim.css">
-<script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')!=='light')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h',localStorage.getItem('ss-font-h')||'alt');d.setAttribute('data-font-b',localStorage.getItem('ss-font-b')||'alt');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
+<script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
 h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
@@ -28,28 +28,44 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 @media (prefers-reduced-motion:reduce){.ss-ct-bg{transition:none;}.ss-ct:hover .ss-ct-bg{transform:none;}}
 .ss-ct-media{position:relative;overflow:hidden;background:transparent;border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--ss-text-decor,#C8D0D8);}
 .ss-ct-img{width:100%;height:100%;object-fit:contain;display:block;transition:transform .4s cubic-bezier(.22,.61,.36,1);}
-@media (hover:hover) and (pointer:fine){.ss-ct:hover .ss-ct-img{transform:scale(1.06);}}
+@media (hover:hover) and (pointer:fine){.ss-ct:hover .ss-ct-img{transform:scale(1.08);}}
+.ss-ct-std .ss-ct-img{scale:1.45;}
+.ss-ct-img[data-zoom="true"]{scale:1.25;}
+.ss-ct-std .ss-ct-img[data-zoom="true"]{scale:1.6;}
+@media (min-width:820px){.ss-ct-std{gap:4px!important;}.ss-ct-title[data-std="true"]{font-size:20px!important;}}
+@media (max-width:1559px){.ss-ct-std{gap:0!important;}.ss-ct-std>.ss-ct-media{margin-bottom:-12px;}.ss-ct-std>.ss-ct-media+span{position:relative;}}
+.ss-ct-std>.ss-ct-media+span{margin-top:auto;}
+.ss-ct-title[data-sub="true"]{align-items:flex-end!important;}
 @media (prefers-reduced-motion:reduce){.ss-ct-img{transition:none;}.ss-ct:hover .ss-ct-img{transform:none;}}
+.sc-host:has(>.ss-ct[data-pop="true"]){container-type:inline-size;}
+.ss-ct[data-pop="true"]{background:transparent;}
+.ss-ct[data-pop="true"]:hover{box-shadow:none;}
+.ss-ct[data-pop="true"]:focus-visible{box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+.ss-ct[data-pop="true"]::before{content:"";position:absolute;left:0;right:0;bottom:0;top:calc(12px + (100cqw - 32px) * .2222);background:var(--ss-surface-page,#FFFFFF);border-radius:12px;transition:box-shadow .15s cubic-bezier(.22,.61,.36,1);}
+.ss-ct[data-pop="true"]:hover::before{box-shadow:0 4px 12px rgba(19,44,67,.12);}
+.ss-ct[data-pop="true"] .ss-ct-std{position:relative;z-index:1;}
+.ss-ct[data-pop="true"] .ss-ct-media{overflow:visible;flex:none;min-height:0;}
+@media (max-width:819px){.ss-ct-std>.ss-ct-media{aspect-ratio:3/2!important;margin-bottom:0!important;}.ss-ct-title[data-std="true"]{font-size:15px!important;}.ss-ct[data-pop="true"]::before{top:calc(12px + (100cqw - 32px) * .3333);}}
 </style>
 </helmet>
-<a class="ss-ct" href="{{ href }}" data-photo="{{ photoStr }}" style="{{ wrapStyle }}">
+<a class="ss-ct" href="{{ href }}" data-photo="{{ photoStr }}" data-pop="{{ popStr }}" style="{{ wrapStyle }}">
   <sc-if value="{{ isStandard }}" hint-placeholder-val="{{ true }}">
-    <span style="display:flex;flex-direction:column;gap:12px;width:100%;min-width:0">
-      <span class="ss-ct-media" style="width:100%;aspect-ratio:4/3">
+    <span class="ss-ct-std" style="display:flex;flex-direction:column;gap:12px;width:100%;min-width:0;height:100%">
+      <span class="ss-ct-media" style="width:100%;aspect-ratio:9/4">
         <sc-if value="{{ hasImage }}" hint-placeholder-val="{{ false }}">
-          <img class="ss-ct-img" src="{{ image }}" alt="" aria-hidden="true" />
+          <img class="ss-ct-img" src="{{ image }}" data-zoom="{{ zoomStr }}" alt="" aria-hidden="true" />
         </sc-if>
         <sc-if value="{{ noImage }}" hint-placeholder-val="{{ true }}">
           <dc-import name="Ikony" iconName="photo" size="28" hint-size="28px,28px"></dc-import>
         </sc-if>
       </span>
-      <span style="display:flex;flex-direction:column;gap:6px;min-width:0">
-        <span class="ss-ct-title" style="font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:17px;line-height:1.25">{{ label }}</span>
+      <span style="display:flex;flex-direction:column;gap:2px;min-width:0">
+        <span class="ss-ct-title" data-sub="{{ subStr }}" style="font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:17px;line-height:1.25;text-align:center;text-wrap:balance;display:flex;align-items:center;justify-content:center;min-height:2.5em" data-std="true">{{ label }}</span>
         <sc-if value="{{ hasSub }}" hint-placeholder-val="{{ true }}">
-          <span style="font-size:13px;color:var(--ss-text-muted,#5B6874);line-height:1.45">{{ subText }}</span>
+          <span style="font-size:13px;color:var(--ss-text-muted,#5B6874);line-height:1.45;text-align:center;text-wrap:balance;min-height:2.9em">{{ subText }}</span>
         </sc-if>
         <sc-if value="{{ hasCount }}" hint-placeholder-val="{{ true }}">
-          <span style="font-size:13px;font-weight:600;color:var(--ss-link-hover,#21507B)">{{ countText }}</span>
+          <span style="font-size:13px;font-weight:600;color:var(--ss-link-hover,#21507B);text-align:center">{{ countText }}</span>
         </sc-if>
       </span>
     </span>
@@ -68,7 +84,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
     <span style="display:flex;align-items:center;gap:12px;width:100%;min-width:0">
       <span class="ss-ct-media" style="width:48px;height:48px;flex:none">
         <sc-if value="{{ hasImage }}" hint-placeholder-val="{{ false }}">
-          <img class="ss-ct-img" src="{{ image }}" alt="" aria-hidden="true" />
+          <img class="ss-ct-img" src="{{ image }}" data-zoom="{{ zoomStr }}" alt="" aria-hidden="true" />
         </sc-if>
         <sc-if value="{{ noImage }}" hint-placeholder-val="{{ true }}">
           <dc-import name="Ikony" iconName="photo" size="20" hint-size="20px,20px"></dc-import>
@@ -82,7 +98,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
   </sc-if>
 </a>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:300,&quot;height&quot;:300},&quot;label&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Manželské postele z masivu&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;variant&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;standard&quot;,&quot;options&quot;:[&quot;standard&quot;,&quot;kompaktni&quot;,&quot;foto&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;count&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:42,&quot;min&quot;:0,&quot;max&quot;:999,&quot;tsType&quot;:&quot;number&quot;},&quot;href&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;#kategorie&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;image&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;kategorie-manzelske-postele.jpg&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;sub&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;string[]&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:300,&quot;height&quot;:300},&quot;label&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Manželské postele z masivu&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;variant&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;standard&quot;,&quot;options&quot;:[&quot;standard&quot;,&quot;kompaktni&quot;,&quot;foto&quot;,&quot;vystup&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;count&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:42,&quot;min&quot;:0,&quot;max&quot;:999,&quot;tsType&quot;:&quot;number&quot;},&quot;href&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;#kategorie&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;image&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;kategorie-manzelske-postele.jpg&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;sub&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;string[]&quot;}}">
 class Component extends DCLogic {
   renderVals() {
     const p = this.props;
@@ -94,19 +110,22 @@ class Component extends DCLogic {
       href: p.href || '#kategorie',
       image: p.image,
       hasImage: !!p.image,
+      zoomStr: p.zoom ? 'true' : 'false',
       noImage: !p.image,
       label: p.label || 'Manželské postele z masivu',
       isStandard: !compact && !photo,
       isPhoto: photo,
       photoStr: photo ? 'true' : 'false',
+      popStr: p.variant === 'vystup' ? 'true' : 'false',
       bgImage: p.image ? 'url(' + p.image + ')' : 'none',
       isCompact: compact,
       hasSub: !compact && sub.length > 0,
+      subStr: (!compact && sub.length > 0) ? 'true' : 'false',
       subText: sub.join(' · '),
       hasCount: count !== undefined && count !== null && count !== '',
       count,
       countText: count + ' produktů',
-      wrapStyle: { padding: compact ? '12px' : photo ? '20px' : '16px' }
+      wrapStyle: { padding: compact ? '12px' : photo ? '20px' : '12px 16px' }
     };
   }
 }

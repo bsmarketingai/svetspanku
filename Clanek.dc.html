@@ -9,7 +9,7 @@
 <x-dc>
 <helmet>
 <link rel="stylesheet" href="./tmavy-rezim.css">
-<script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')!=='light')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h',localStorage.getItem('ss-font-h')||'alt');d.setAttribute('data-font-b',localStorage.getItem('ss-font-b')||'alt');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
+<script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
 html,body{margin:0!important;padding:0!important;}
@@ -214,9 +214,9 @@ class Component extends DCLogic {
       ledMode: led ? 'on' : 'off',
       presItems: [{ label: 'LED', value: led }],
       onPresToggle: () => this.setState(s => ({ led: s.led === false })),
-      presChoices: [{ label: 'Navigace karuselů', value: this.state.carNav, options: ['V1', 'V2'] }],
+      presChoices: [{ label: 'Navigace karuselů', value: this.state.carNav, options: ['V1', 'V2', 'V3'] }],
       onPresPick: (ci, opt) => this.setState({ carNav: opt }),
-      carNavPosition: this.state.carNav === 'V2' ? 'overlay' : 'below',
+      carNavPosition: this.state.carNav === 'V2' ? 'overlay' : this.state.carNav === 'V3' ? 'peek' : 'below',
       four: 4,
       h1Size: w < 820 ? '30px' : w < 1150 ? '38px' : '46px',
       nextTemplate: w >= 1150 ? 'repeat(4,minmax(0,1fr))' : w >= 820 ? 'repeat(2,minmax(0,1fr))' : 'minmax(0,1fr)',

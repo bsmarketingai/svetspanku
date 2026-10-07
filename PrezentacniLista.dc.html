@@ -9,7 +9,7 @@
 <x-dc>
 <helmet>
 <link rel="stylesheet" href="./tmavy-rezim.css">
-<script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')!=='light')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h',localStorage.getItem('ss-font-h')||'alt');d.setAttribute('data-font-b',localStorage.getItem('ss-font-b')||'alt');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
+<script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
 h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
@@ -38,7 +38,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
       <span style="font-size:18px;line-height:1">×</span>
     </button>
   </span>
-  <sc-if value="{{ open }}" hint-placeholder-val="{{ true }}">
+  <sc-if value="{{ open }}" hint-placeholder-val="{{ false }}">
   <div class="ss-pl" role="group" aria-label="Prezentační lišta">
     <div class="ss-pl-row">
       <sc-for list="{{ items }}" as="i" hint-placeholder-count="1">
@@ -66,10 +66,8 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:520,&quot;height&quot;:260},&quot;items&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;{label: string, value: boolean}[]&quot;},&quot;onToggle&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(index: number) =&gt; void&quot;},&quot;choices&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;{label: string, value: string, options: string[]}[]&quot;},&quot;onPick&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(index: number, option: string) =&gt; void&quot;}}">
 class Component extends DCLogic {
   state = {
-    open: true, hidden: false,
-    mode: (() => { try { return localStorage.getItem('ss-mode') === 'light' ? 'light' : 'dark'; } catch (e) { return 'dark'; } })(),
-    fontH: (() => { try { return localStorage.getItem('ss-font-h') || 'alt'; } catch (e) { return 'alt'; } })(),
-    fontB: (() => { try { return localStorage.getItem('ss-font-b') || 'alt'; } catch (e) { return 'alt'; } })(),
+    open: false, hidden: false,
+    mode: (() => { try { return localStorage.getItem('ss-mode') === 'dark' ? 'dark' : 'light'; } catch (e) { return 'light'; } })(),
     bg: (() => { try { return localStorage.getItem('ss-bg') || 'on'; } catch (e) { return 'on'; } })(),
     logo: (() => { try { return localStorage.getItem('ss-logo') || 'a'; } catch (e) { return 'a'; } })()
   };
@@ -91,9 +89,7 @@ class Component extends DCLogic {
     const base = [
       grp('Režim', [['Světlý', 'light'], ['Tmavý', 'dark']], this.state.mode, v => this.setMode(v))
     ];
-    base.push(grp('Nadpisy', [['Oswald', 'base'], ['Barlow Cond.', 'alt']], this.state.fontH, v => { this.setAttr('ss-font-h', 'data-font-h', v); this.setState({ fontH: v }); }));
-    base.push(grp('Text', [['Roboto', 'base'], ['Plex Cond.', 'alt']], this.state.fontB, v => { this.setAttr('ss-font-b', 'data-font-b', v); this.setState({ fontB: v }); }));
-    base.push(grp('Gradient', [['Zap', 'on'], ['Vyp', 'off']], this.state.bg, v => { this.setAttr('ss-bg', 'data-bg', v); this.setState({ bg: v }); }));
+    base.push(grp('Elevace', [['Zap', 'on'], ['Vyp', 'off']], this.state.bg, v => { this.setAttr('ss-bg', 'data-bg', v); this.setState({ bg: v }); }));
     if (this.state.mode === 'dark') base.push(grp('Logo', [['Statické', 'none'], ['A pulz', 'a'], ['D přejezd', 'd']], this.state.logo, v => this.setLogo(v)));
     return {
       open,

@@ -9,7 +9,7 @@
 <x-dc>
 <helmet>
 <link rel="stylesheet" href="./tmavy-rezim.css">
-<script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')!=='light')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h',localStorage.getItem('ss-font-h')||'alt');d.setAttribute('data-font-b',localStorage.getItem('ss-font-b')||'alt');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
+<script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
@@ -49,6 +49,11 @@ a.ss-promo:hover{color:#FFFFFF;}
 .ss-more{position:relative;display:inline-flex;align-items:center;gap:4px;margin-top:8px;min-height:44px;padding:0;border:0;background:none;font:inherit;font-size:16px;font-weight:600;color:var(--ss-link,#296093);text-decoration:underline;text-underline-offset:3px;cursor:pointer;transition:color .12s cubic-bezier(.22,.61,.36,1);}
 @media (hover:hover) and (pointer:fine){.ss-more:hover{color:var(--ss-hover-text,#A4600C);}}
 .ss-more:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);border-radius:6px;}
+.ss-kg-pvbg{transition:transform .4s cubic-bezier(.22,.61,.36,1);}
+.ss-kg-pvbtn{transition:background-color .12s cubic-bezier(.22,.61,.36,1);}
+.ss-kg-pv:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+@media (hover:hover) and (pointer:fine){.ss-kg-pv:hover .ss-kg-pvbg{transform:scale(1.06);}.ss-kg-pv:hover .ss-kg-pvbtn{background:#21507B;}}
+@media (prefers-reduced-motion:reduce){.ss-kg-pvbg{transition:none;}.ss-kg-pv:hover .ss-kg-pvbg{transform:none;}}
 </style>
 </helmet>
 <div style="width:100%;background:var(--ss-surface-page,#FFFFFF);font-family:Roboto,Helvetica,Arial,sans-serif;color:var(--ss-text-primary,#1C2229)">
@@ -56,32 +61,38 @@ a.ss-promo:hover{color:#FFFFFF;}
   <dc-import name="PrezentacniLista" items="{{ presItems }}" onToggle="{{ onPresToggle }}" hint-size="320px,52px"></dc-import>
 
   <main>
-    <section style="width:100%;background:var(--ss-surface-subtle,#F7F9FB)">
+    <section style="width:100%;background:var(--ss-surface-muted,#EFF2F5);border-bottom:1px solid var(--ss-border-subtle,#E1E6EB)">
       <div style="{{ innerTop }}">
         <div style="display:grid;grid-template-columns:{{ topCols }};grid-template-areas:{{ topAreas }};gap:{{ topGap }};align-items:start">
           <div style="grid-area:a;min-width:0">
             <dc-import name="Drobeckova" items="{{ crumbs }}" hint-size="100%,56px"></dc-import>
             <h1 style="margin:{{ h1Margin }};font-size:{{ h1Size }};line-height:1.1">Kvalitní matrace</h1>
-            <div style="margin-top:20px;max-width:72ch;font-size:{{ bodySize }};line-height:1.6;color:var(--ss-text-secondary,#3D4750);text-wrap:pretty;display:flex;flex-direction:column;gap:16px">
-              <p style="margin:0">Každá matrace je výsledkem pečlivého vývoje, kde se s láskou staráme o výběr materiálů, abychom vám zajišťovali maximální pohodlí při odpočinku.<sc-if value="{{ showMore }}" hint-placeholder-val="{{ true }}"> Výroba našich matrací je mistrovským dílem spojujícím <strong style="color:var(--ss-text-primary,#1C2229)">špičkové materiály</strong> s precizní prací a <strong style="color:var(--ss-text-primary,#1C2229)">nejnovějšími technologiemi</strong>. Tím vznikají matrace, které jsou doslova uměním spánku.</sc-if></p>
-              <sc-if value="{{ showMore }}" hint-placeholder-val="{{ true }}">
-                <p style="margin:0">Vyberte si z naší široké nabídky <a href="#detske-matrace">matrací pro děti</a>, <a href="#zdravotni-matrace">zdravotních matrací</a>, <a href="#tuhost">matrací s různou tuhostí</a> nebo podle <a href="#rozmer">velikosti</a>.</p>
-              </sc-if>
+            <div style="margin-top:20px;max-width:{{ introMax }};font-size:{{ bodySize }};line-height:1.6;color:var(--ss-text-secondary,#3D4750);text-wrap:pretty;display:flex;flex-direction:column;gap:16px">
+              <p style="margin:0">Každá matrace je výsledkem pečlivého vývoje, kde se s láskou staráme o výběr materiálů, abychom vám zajišťovali maximální pohodlí při odpočinku. Výroba našich matrací je mistrovským dílem spojujícím <strong style="color:var(--ss-text-primary,#1C2229)">špičkové materiály</strong> s precizní prací a <strong style="color:var(--ss-text-primary,#1C2229)">nejnovějšími technologiemi</strong>. Tím vznikají matrace, které jsou doslova uměním spánku.</p>
+              <p style="margin:0">Vyberte si z naší široké nabídky <a href="#detske-matrace">matrací pro děti</a>, <a href="#zdravotni-matrace">zdravotních matrací</a>, <a href="#tuhost">matrací s různou tuhostí</a> nebo podle <a href="#rozmer">velikosti</a>.</p>
+              <div id="kat-popis" style="display:grid;grid-template-rows:{{ moreRows }};transition:grid-template-rows .4s cubic-bezier(.22,.61,.36,1);margin-top:-16px">
+                <div style="overflow:hidden;min-height:0">
+                  <div style="display:flex;flex-direction:column;gap:16px;padding-top:16px;opacity:{{ moreOpacity }};transition:opacity .4s cubic-bezier(.22,.61,.36,1)">
+                    <p style="margin:0">Matrace vyrábíme ve vlastní dílně v České republice. Pěnová jádra lepíme <strong style="color:var(--ss-text-primary,#1C2229)">vodou ředitelnými lepidly SIMALFA</strong>, potahy jsou snímatelné a většinu z nich vyperete na 60 °C. Díky tomu matrace zůstává hygienická po celou dobu životnosti.</p>
+                    <p style="margin:0">Nevíte si rady s tuhostí? Obecně platí, že čím vyšší hmotnost a čím víc spíte na zádech nebo na břiše, tím tužší matraci zvolte. Pro páry s rozdílnou hmotností doporučujeme <strong style="color:var(--ss-text-primary,#1C2229)">matrace se dvěma tuhostmi</strong> nebo dvě samostatné matrace pod jedním potahem.</p>
+                    <p style="margin:0">Každou matraci si můžete vyzkoušet v některé z našich prodejen. Na matrace poskytujeme <strong style="color:var(--ss-text-primary,#1C2229)">záruku až 10 let</strong> a při nákupu kompletu s postelí a roštem ušetříte až 30 %.</p>
+                  </div>
+                </div>
+              </div>
             </div>
             <sc-if value="{{ collapsible }}" hint-placeholder-val="{{ false }}">
               <button type="button" class="ss-more" aria-expanded="{{ moreExpanded }}" aria-controls="kat-popis" onClick="{{ toggleMore }}">{{ moreLabel }}<span style="display:flex;transition:transform .15s cubic-bezier(.22,.61,.36,1);transform:{{ moreRotate }}"><dc-import name="Ikony" iconName="chevron-down" size="18" hint-size="18px,18px"></dc-import></span></button>
             </sc-if>
           </div>
 
-          <figure style="grid-area:p;align-self:center;margin:0;display:flex;flex-direction:column;gap:16px;min-width:0">
-            <div class="ss-elev" style="position:relative;width:100%;aspect-ratio:16 / 9;border-radius:12px;overflow:hidden;background:var(--ss-surface-muted,#EFF2F5)">
-              <iframe src="https://www.youtube-nocookie.com/embed/1UPsr_8rpOg?rel=0&amp;modestbranding=1&amp;playsinline=1" title="Video: Pomůžeme vám najít tu správnou matraci" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen="" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe>
-            </div>
-            <figcaption style="display:flex;flex-direction:column;gap:4px">
-              <span style="font-family:Oswald,'Archivo Narrow',Helvetica,Arial,sans-serif;font-weight:600;font-size:{{ promoSize }};line-height:1.15;color:var(--ss-text-primary,#1C2229);text-wrap:balance">Pomůžeme vám najít tu správnou matraci</span>
-              <span style="font-size:15px;line-height:1.4;color:var(--ss-text-secondary,#3D4750)">Průvodce výběrem matrace</span>
-            </figcaption>
-          </figure>
+          <a class="ss-elev ss-kg-pv" href="#pruvodce" style="grid-area:p;align-self:end;position:relative;display:flex;flex-direction:column;justify-content:center;gap:12px;min-width:0;aspect-ratio:{{ promoRatio }};padding:{{ promoPad }};box-sizing:border-box;border-radius:12px;overflow:hidden;background:#F2F2F0;color:#1C2229;text-decoration:none">
+            <span aria-hidden="true" style="position:absolute;inset:0;border-radius:inherit;overflow:hidden;pointer-events:none"><span class="ss-kg-pvbg" style="position:absolute;inset:0;background:url(pruvodce-matrace-povrch.png) right center / cover no-repeat"></span><span style="position:absolute;inset:0;background:{{ promoVeil }}"></span></span>
+            <span style="position:relative;flex:none;display:flex;flex-direction:column;gap:8px;max-width:{{ promoTextMax }}">
+              <span style="font-family:Oswald,'Archivo Narrow',Helvetica,Arial,sans-serif;font-weight:600;font-size:{{ promoSize }};line-height:1.15;color:#1C2229;text-wrap:balance">Pomůžeme vám najít tu správnou matraci</span>
+              <span style="font-size:15px;line-height:1.5;color:#3D4750">Osm otázek a doporučíme model podle vaší váhy a polohy spánku</span>
+            </span>
+            <span class="ss-kg-pvbtn" style="position:relative;flex:none;white-space:nowrap;align-self:flex-start;display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 20px;border-radius:6px;background:#296093;color:#FFFFFF;font-size:15px;font-weight:600">Průvodce výběrem<dc-import name="Ikony" iconName="chevron-right" size="18" hint-size="18px,18px"></dc-import></span>
+          </a>
 
           <div style="grid-area:b;min-width:0">
             <h2 class="ss-plain" style="margin:0 0 16px;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ss-text-primary,#1C2229)">Nevíte si rady? Poradíme!</h2>
@@ -100,7 +111,12 @@ a.ss-promo:hover{color:#FFFFFF;}
           </div>
         </div>
 
-        <nav aria-label="Podkategorie" style="margin-top:{{ subTop }}">
+      </div>
+    </section>
+
+    <section style="width:100%;background:var(--ss-surface-page,#FFFFFF)">
+      <div style="{{ innerSub }}">
+        <nav aria-label="Podkategorie">
           <dc-import name="VypisKategorii" items="{{ subcats }}" variant="{{ subVariant }}" hint-size="100%,380px"></dc-import>
         </nav>
       </div>
@@ -169,7 +185,7 @@ class Component extends DCLogic {
         { h: 'Rošt', t: 'Matrace potřebuje vhodný rošt. Polohovací rošt vyžaduje ohebnou matraci, například pěnovou nebo taštičkovou.' }
       ],
       ctaLabel: 'Spustit průvodce výběrem', ctaHref: '#pruvodce' },
-    { title: 'Jakou zvolit tuhost nové matrace?', image: 'clanek-peny.jpg', imageAlt: 'Vrstvy pěny v matraci',
+    { title: 'Jakou zvolit tuhost nové matrace?', image: 'menu-matrace-tvrdost.png', imageAlt: 'Ruka tlačí do matrace, řez vrstvami',
       intro: 'Tuhost se značí stupni H1 až H5. Správná tuhost drží páteř v rovině – nezáleží jen na váze, ale i na poloze, ve které spíte.',
       items: [
         { h: 'H1 – měkká', t: 'Pro lehčí postavy do 60 kg a spaní na boku. Ramena a boky se hlouběji zaboří.' },
@@ -204,14 +220,15 @@ class Component extends DCLogic {
     const inner = { maxWidth: '1560px', margin: '0 auto', padding: narrow ? '0 16px' : '0 32px' };
     const base = this.state.products || [];
     const mat = base.filter(p => /matrace/i.test(p.title) && !/postel/i.test(p.title));
-    const products = mat.concat(mat, mat).slice(0, 9);
+    const products = mat.concat(mat, mat, mat).slice(0, 12);
     const selected = this.state.selected;
     const total = 112;
     return {
       ledMode: this.state.led ? 'on' : 'off',
       presItems: [{ label: 'LED', value: this.state.led }],
       onPresToggle: () => this.setState(s => ({ led: !s.led })),
-      innerTop: Object.assign({}, inner, { padding: narrow ? '8px 16px 32px' : '48px 32px 64px' }),
+      innerTop: Object.assign({}, inner, { padding: narrow ? '8px 16px 32px' : '16px 32px 64px' }),
+      innerSub: Object.assign({}, inner, { padding: narrow ? '40px 16px 0' : '64px 32px 0' }),
       innerResults: Object.assign({}, inner, { padding: narrow ? '32px 16px 48px' : '48px 32px 80px' }),
       h1Size: narrow ? '28px' : '40px',
       h1Margin: narrow ? '8px 0 0' : '16px 0 0',
@@ -219,28 +236,35 @@ class Component extends DCLogic {
       topCols: sidebar ? 'minmax(0,1fr) minmax(0,560px)' : 'minmax(0,1fr)',
       topAreas: sidebar ? '"a p" "b p"' : '"a" "p" "b"',
       topGap: sidebar ? '40px 64px' : (narrow ? '32px' : '40px'),
-      bodySize: narrow ? '16px' : '18px',
-      promoRatio: narrow ? '4 / 3' : (sidebar ? '16 / 10' : '21 / 9'),
+      bodySize: narrow ? '15px' : '16px',
+      introMax: sidebar ? '72ch' : 'none',
+      promoRatio: w < 420 ? 'auto' : w < 550 ? '16 / 9' : narrow ? '2 / 1' : (sidebar ? '16 / 10' : '32 / 9'),
       promoPad: narrow ? '24px' : '32px',
+      promoVeil: narrow ? 'rgba(255,255,255,.82)' : 'linear-gradient(90deg,rgba(255,255,255,.94) 0%,rgba(255,255,255,.8) 45%,rgba(255,255,255,0) 75%)',
+      promoTextMax: narrow ? 'none' : '60%',
       promoSize: narrow ? '24px' : '28px',
-      subVariant: narrow ? 'kompaktni' : 'standard',
+      subVariant: 'vystup',
       subcats: [
-        { label: 'Dětské matrace', sub: ['Pro speciální potřeby dětského těla'], href: 'Kategorie.dc.html', image: 'podkategorie-detske-matrace.png', variant: narrow ? 'kompaktni' : 'standard' },
-        { label: 'Vrchní matrace – toppery', sub: ['Vyšší komfort a ochrana před nečistotami'], href: 'Kategorie.dc.html', image: 'podkategorie-toppery.png', variant: narrow ? 'kompaktni' : 'standard' },
-        { label: 'Chrániče matrace', sub: ['Vyšší komfort a ochrana před nečistotami'], href: 'Kategorie.dc.html', image: 'podkategorie-chranice-matrace.png', variant: narrow ? 'kompaktni' : 'standard' },
-        { label: 'Průvodce výběrem matrace', sub: ['Typy, materiály, tuhost a péče'], href: '#pruvodce', image: 'pruvodce-matrace-lifestyle.png', variant: 'foto' }
+        { label: 'Dětské matrace', sub: ['Pro speciální potřeby dětského těla'], href: 'Kategorie.dc.html', image: 'podkategorie-detske-matrace.png', variant: 'vystup' },
+        { label: 'Vrchní matrace – toppery', sub: ['Vyšší komfort a ochrana před nečistotami'], href: 'Kategorie.dc.html', image: 'podkategorie-toppery.png', variant: 'vystup' },
+        { label: 'Chrániče matrace', sub: ['Vyšší komfort a ochrana před nečistotami'], href: 'Kategorie.dc.html', image: 'podkategorie-chranice-matrace.png', variant: 'vystup' },
+        { label: 'Matrace pro páry', sub: ['Dvě tuhosti v jedné matraci'], href: 'Kategorie.dc.html', image: 'podkategorie-matrace-pary.png', variant: 'vystup' },
+        { label: 'Matrace pro alergiky', sub: ['Antialergické potahy a materiály'], href: 'Kategorie.dc.html', image: 'podkategorie-matrace-alergiky.png', variant: 'vystup' },
+        { label: 'Potahy na matrace', sub: ['Snímatelné a pratelné'], href: 'Kategorie.dc.html', image: 'podkategorie-potahy.png', variant: 'vystup' }
       ],
      subCols: 'repeat(' + (w >= 1560 ? 8 : w >= 1150 ? 6 : w >= 1000 ? 5 : w >= 820 ? 4 : w >= 420 ? 3 : 2) + ',minmax(0,1fr))',
       subTop: narrow ? '32px' : '48px',
-      tipCols: w >= 820 ? 'repeat(2,minmax(0,1fr))' : 'minmax(0,1fr)',
+      tipCols: (w >= 820 && w < 1000) || w >= 1150 ? 'repeat(2,minmax(0,1fr))' : 'minmax(0,1fr)',
       tips: Component.TIPS.map((t, i) => ({ title: t.title, bg: t.image ? 'url(' + t.image + ')' : 'none', hasImage: !!t.image, noImage: !t.image, onOpen: () => this.setState({ tip: i }) })),
       tipOpen: this.state.tip >= 0,
       tipTopic: Component.TIPS[this.state.tip] || Component.TIPS[0],
       closeTip: () => this.setState({ tip: -1 }),
-      collapsible: narrow,
-      showMore: !narrow || this.state.moreOpen,
+      collapsible: true,
+      showMore: !!this.state.moreOpen,
+      moreRows: this.state.moreOpen ? '1fr' : '0fr',
+      moreOpacity: this.state.moreOpen ? 1 : 0,
       moreExpanded: this.state.moreOpen ? 'true' : 'false',
-      moreLabel: this.state.moreOpen ? 'Méně informací' : 'Další informace',
+      moreLabel: this.state.moreOpen ? 'Skrýt' : 'Zobrazit více',
       moreRotate: this.state.moreOpen ? 'rotate(180deg)' : 'none',
       toggleMore: () => this.setState(s => ({ moreOpen: !s.moreOpen })),
       hasSidebar: sidebar,

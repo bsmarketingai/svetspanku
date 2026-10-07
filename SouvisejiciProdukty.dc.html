@@ -9,7 +9,7 @@
 <x-dc>
 <helmet>
 <link rel="stylesheet" href="./tmavy-rezim.css">
-<script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')!=='light')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h',localStorage.getItem('ss-font-h')||'alt');d.setAttribute('data-font-b',localStorage.getItem('ss-font-b')||'alt');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
+<script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
 h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
@@ -18,6 +18,16 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 .ss-car{display:flex;align-items:stretch;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-left:14px;scrollbar-width:none;padding:14px;margin:-14px;}
 .ss-car::-webkit-scrollbar{display:none;}
 .ss-car > *{scroll-snap-align:start;}
+.ss-car-wrap[data-peek="true"]{--pk:16px;}
+@media (min-width:820px){.ss-car-wrap[data-peek="true"]{--pk:32px;}}
+.ss-car-wrap[data-peek="true"] .ss-car{margin-right:calc(-1 * var(--pk));padding-right:var(--pk);}
+.ss-car-wrap[data-peek="true"] .ss-car::after{content:"";flex:0 0 1px;}
+.ss-car-peek{position:absolute;z-index:3;transform:translateY(-50%);display:flex;align-items:center;justify-content:center;width:44px;height:44px;border:0;box-sizing:border-box;border-radius:6px;background:var(--ss-action-tonal-bg,#DCE8F2);color:var(--ss-action-tonal-fg,#21507B);box-shadow:0 4px 12px rgba(19,44,67,.12);cursor:pointer;transition:background-color .12s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1);}
+.ss-car-peek > *{display:flex;line-height:0;}
+.ss-car-peek-next{right:calc(8px - var(--pk));}
+.ss-car-peek-prev{left:-8px;}
+@media (hover:hover) and (pointer:fine){.ss-car-peek:hover{background:var(--ss-action-tonal-hover-bg,#B9D0E5);color:var(--ss-hover-text,#21507B);}}
+.ss-car-peek:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
 /* výška overlaye = polovina čtvercové fotky karty (procentní padding se počítá ze šířky) */
 .ss-car-nav{position:absolute;top:16px;left:0;right:0;height:0;padding-top:calc((100% - 32px) / 2);pointer-events:none;}
 @media (min-width:550px){.ss-car-nav{padding-top:calc(((100% - 20px) / 2 - 32px) / 2);}}
@@ -32,27 +42,38 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 .ss-car-arrow > *{display:flex;align-items:center;justify-content:center;line-height:0;}
 .ss-car-arrow svg{display:block;}
 .ss-car-arrow:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
-.ss-car-below{display:flex;justify-content:flex-end;gap:8px;margin-top:16px;}
-.ss-car-flat{position:static;transform:none;pointer-events:auto;display:flex;align-items:center;justify-content:center;width:44px;height:44px;flex:none;border:0;border-radius:999px;background:none;box-shadow:none;color:var(--ss-text-primary,#1C2229);cursor:pointer;transition:background-color .12s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1);}
-@media (hover:hover) and (pointer:fine){.ss-car-flat:hover{background:var(--ss-hover-bg,#FFF5E6);color:var(--ss-hover-text,#A4600C);}}
+.ss-car-below{display:flex;justify-content:flex-end;align-items:center;gap:8px;margin-top:-8px;}
+.ss-car-flat{position:static;transform:none;pointer-events:auto;display:flex;align-items:center;justify-content:center;width:44px;height:44px;flex:none;border:0;box-sizing:border-box;border-radius:6px;background:var(--ss-action-tonal-bg,#DCE8F2);box-shadow:none;color:var(--ss-action-tonal-fg,#21507B);cursor:pointer;transition:background-color .12s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1);}
+@media (hover:hover) and (pointer:fine){.ss-car-flat:hover{background:var(--ss-action-tonal-hover-bg,#B9D0E5);color:var(--ss-hover-text,#21507B);}}
+.ss-car-flat:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
 </style>
 </helmet>
 <section style="font-family:Roboto,Helvetica,Arial,sans-serif;width:100%;min-width:0;display:flex;flex-direction:column;gap:20px">
   <div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px">
     <h2 style="margin:0;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:{{ headingSize }};line-height:1.15;color:var(--ss-text-primary,#1C2229)">{{ heading }}</h2>
-    <sc-if value="{{ hasLink }}" hint-placeholder-val="{{ false }}">
-      <a href="{{ linkHref }}" style="font-size:14px;font-weight:600;color:var(--ss-link,#296093)">{{ linkLabel }}</a>
+    <sc-if value="{{ linkTop }}" hint-placeholder-val="{{ false }}">
+      <div style="margin-left:auto"><dc-import name="Tlacitko" label="{{ linkLabel }}" variant="secondary" href="{{ linkHref }}" iconRight="chevron-right" hint-size="160px,44px"></dc-import></div>
     </sc-if>
   </div>
 
-  <div class="ss-car-wrap">
-    <div class="ss-car" ref="{{ trackRef }}">
+  <div class="ss-car-wrap" data-peek="{{ peekStr }}" ref="{{ wrapRef }}">
+    <div class="ss-car" ref="{{ trackRef }}" onScroll="{{ onTrackScroll }}">
       <sc-for list="{{ items }}" as="i" hint-placeholder-count="4">
         <div style="{{ cardWrapStyle }}">
           <dc-import name="ProduktovaKarta" product="{{ i }}" hint-size="100%,480px"></dc-import>
         </div>
       </sc-for>
     </div>
+    <sc-if value="{{ peekPrev }}" hint-placeholder-val="{{ false }}">
+      <button type="button" class="ss-car-peek ss-car-peek-prev" style="top:{{ peekTop }}" onClick="{{ scrollPrev }}" aria-label="Předchozí produkty">
+        <dc-import name="Ikony" iconName="chevron-left" size="22" hint-size="22px,22px"></dc-import>
+      </button>
+    </sc-if>
+    <sc-if value="{{ peekNext }}" hint-placeholder-val="{{ false }}">
+      <button type="button" class="ss-car-peek ss-car-peek-next" style="top:{{ peekTop }}" onClick="{{ scrollNext }}" aria-label="Další produkty">
+        <dc-import name="Ikony" iconName="chevron-right" size="22" hint-size="22px,22px"></dc-import>
+      </button>
+    </sc-if>
     <sc-if value="{{ navOverlay }}" hint-placeholder-val="{{ true }}">
       <div class="ss-car-nav">
         <button type="button" class="ss-car-arrow ss-car-prev" onClick="{{ scrollPrev }}" aria-label="Předchozí produkty">
@@ -64,42 +85,65 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
       </div>
     </sc-if>
   </div>
-  <sc-if value="{{ navBelow }}" hint-placeholder-val="{{ false }}">
+  <sc-if value="{{ belowRow }}" hint-placeholder-val="{{ false }}">
     <div class="ss-car-below">
+      <sc-if value="{{ linkBelow }}" hint-placeholder-val="{{ false }}">
+        <div style="margin-right:auto"><dc-import name="Tlacitko" label="{{ linkLabel }}" variant="secondary" href="{{ linkHref }}" iconRight="chevron-right" hint-size="160px,44px"></dc-import></div>
+      </sc-if>
+      <sc-if value="{{ navBelow }}" hint-placeholder-val="{{ false }}">
       <button type="button" class="ss-car-flat" onClick="{{ scrollPrev }}" aria-label="Předchozí produkty">
         <dc-import name="Ikony" iconName="arrow-left" size="24" hint-size="24px,24px"></dc-import>
       </button>
       <button type="button" class="ss-car-flat" onClick="{{ scrollNext }}" aria-label="Další produkty">
         <dc-import name="Ikony" iconName="arrow-right" size="24" hint-size="24px,24px"></dc-import>
       </button>
+      </sc-if>
     </div>
   </sc-if>
 </section>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1200,&quot;height&quot;:560},&quot;heading&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Související produkty&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;navPosition&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;overlay&quot;,&quot;options&quot;:[&quot;overlay&quot;,&quot;below&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;linkLabel&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;linkHref&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;items&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;Product[]&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1200,&quot;height&quot;:560},&quot;heading&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Související produkty&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;navPosition&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;overlay&quot;,&quot;options&quot;:[&quot;overlay&quot;,&quot;below&quot;,&quot;peek&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;linkLabel&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;linkHref&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;items&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;Product[]&quot;}}">
 class Component extends DCLogic {
-  state = { items: null, width: typeof window !== 'undefined' ? document.documentElement.clientWidth : 1440, arrowTop: null };
+  state = { items: null, width: typeof window !== 'undefined' ? document.documentElement.clientWidth : 1440, arrowTop: null, atStart: true, atEnd: false };
   componentDidMount() {
     if (!this.props.items) import('./produkty.js').then(m => this.setState({ items: m.PRODUKTY.slice(0, this.props.count || 8) }));
     this._resize = () => { this.setState({ width: document.documentElement.clientWidth }); this.measure(); };
     window.addEventListener('resize', this._resize);
     this.measure();
   }
-  componentWillUnmount() { window.removeEventListener('resize', this._resize); }
-  measure() {}
+  componentWillUnmount() { window.removeEventListener('resize', this._resize); clearTimeout(this._mt); }
+  componentDidUpdate() { if (this._lastItems !== this.state.items) { this._lastItems = this.state.items; this.measure(); } }
+  measure() {
+    requestAnimationFrame(() => setTimeout(() => {
+      const wrap = this._wrap, track = this._track;
+      if (!wrap || !track) return;
+      const m = track.querySelector('.ss-pc-media');
+      if (m) { const a = m.getBoundingClientRect(), b = wrap.getBoundingClientRect(); const t = Math.round(a.top - b.top + a.height / 2) + 'px'; if (t !== this.state.arrowTop) this.setState({ arrowTop: t }); }
+      this.onScroll();
+    }, 60));
+    clearTimeout(this._mt); this._mt = setTimeout(() => { if (this._track) { this.onScroll(); const m = this._track.querySelector('.ss-pc-media'); if (m && this._wrap) { const a = m.getBoundingClientRect(), b = this._wrap.getBoundingClientRect(); const t = Math.round(a.top - b.top + a.height / 2) + 'px'; if (t !== this.state.arrowTop) this.setState({ arrowTop: t }); } } }, 900);
+  }
+  onScroll() {
+    const el = this._track; if (!el) return;
+    const atStart = el.scrollLeft < 8, atEnd = el.scrollLeft + el.clientWidth >= el.scrollWidth - 8;
+    if (atStart !== this.state.atStart || atEnd !== this.state.atEnd) this.setState({ atStart, atEnd });
+  }
   scroll(dir) {
     const el = this._track;
     if (!el) return;
     const card = el.firstElementChild;
     const step = card ? card.getBoundingClientRect().width + 20 : 320;
-    el.scrollBy({ left: dir * step * 2, behavior: 'smooth' });
+    const pk = this.props.navPosition === 'peek' && this.state.width < 1000;
+    el.scrollBy({ left: dir * step * (pk ? 1 : 2), behavior: 'smooth' });
   }
   renderVals() {
     const p = this.props;
     const w = this.state.width;
     const list = (p.items || this.state.items || []).map(d => Object.assign({}, d, { href: 'Produkt Levita.dc.html' }));
-    const perViewRaw = w >= 1560 ? 5 : w >= 1150 ? 4 : w >= 820 ? 3 : w >= 550 ? 2 : 1;
+    const peek = p.navPosition === 'peek' && w < 1000;
+    const perViewRaw = peek ? (w >= 550 ? 2.3 : 1.25) : w >= 1560 ? 5 : w >= 1150 ? 4 : w >= 820 ? 3 : w >= 550 ? 2 : 1;
     const perView = list.length ? Math.min(perViewRaw, list.length) : perViewRaw;
+    const gaps = Math.floor(perView) - (peek ? 0 : 1);
     return {
       heading: p.heading || 'Související produkty',
       headingSize: w < 820 ? '26px' : '34px',
@@ -107,9 +151,18 @@ class Component extends DCLogic {
       linkLabel: p.linkLabel,
       linkHref: p.linkHref || '#',
       items: list,
-      navOverlay: (p.navPosition || 'overlay') !== 'below',
-      navBelow: p.navPosition === 'below',
-      cardWrapStyle: { display: 'flex', flex: 'none', width: 'calc((100% - ' + ((perView - 1) * 20) + 'px) / ' + perView + ')', minWidth: 0 },
+      navOverlay: (p.navPosition || 'overlay') === 'overlay',
+      navBelow: p.navPosition === 'below' || (p.navPosition === 'peek' && !peek),
+      peekStr: peek ? 'true' : 'false',
+      peekPrev: peek && !this.state.atStart,
+      peekNext: peek && !this.state.atEnd,
+      peekTop: this.state.arrowTop || '40%',
+      wrapRef: (el) => { this._wrap = el; },
+      onTrackScroll: () => this.onScroll(),
+      linkTop: !!p.linkLabel && w >= 1000,
+      linkBelow: !!p.linkLabel && w < 1000,
+      belowRow: p.navPosition === 'below' || (p.navPosition === 'peek' && !peek) || (!!p.linkLabel && w < 1000),
+      cardWrapStyle: { display: 'flex', flex: 'none', width: 'calc((100% - ' + (gaps * 20) + 'px) / ' + perView + ')', minWidth: 0 },
       trackRef: (el) => { this._track = el; },
       scrollPrev: () => this.scroll(-1),
       scrollNext: () => this.scroll(1)

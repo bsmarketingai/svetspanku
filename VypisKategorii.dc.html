@@ -9,12 +9,12 @@
 <x-dc>
 <helmet>
 <link rel="stylesheet" href="./tmavy-rezim.css">
-<script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')!=='light')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h',localStorage.getItem('ss-font-h')||'alt');d.setAttribute('data-font-b',localStorage.getItem('ss-font-b')||'alt');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
+<script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
 </helmet>
 <section style="width:100%;min-width:0;font-family:Roboto,Helvetica,Arial,sans-serif">
   <sc-if value="{{ hasHeading }}" hint-placeholder-val="{{ true }}">
-    <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 16px;margin-bottom:20px">
+    <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;margin-bottom:24px">
       <h2 style="margin:0;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:{{ headingSize }};line-height:1.15;color:var(--ss-text-primary,#1C2229)">{{ heading }}</h2>
       <sc-if value="{{ hasSubheading }}" hint-placeholder-val="{{ false }}">
         <p style="margin:0;font-size:15px;color:var(--ss-text-muted,#5B6874)">{{ subheading }}</p>
@@ -24,7 +24,7 @@
 
   <div style="display:grid;grid-template-columns:{{ gridTemplate }};gap:{{ gap }}">
     <sc-for list="{{ items }}" as="i" hint-placeholder-count="6">
-      <dc-import name="KategorickaDlazdice" label="{{ i.label }}" href="{{ i.href }}" count="{{ i.count }}" sub="{{ i.sub }}" image="{{ i.image }}" variant="{{ i.variant }}" hint-size="100%,240px"></dc-import>
+      <dc-import name="KategorickaDlazdice" label="{{ i.label }}" href="{{ i.href }}" count="{{ i.count }}" sub="{{ i.sub }}" image="{{ i.image }}" zoom="{{ i.zoom }}" variant="{{ i.variant }}" hint-size="100%,240px"></dc-import>
     </sc-for>
   </div>
 
@@ -44,17 +44,17 @@ class Component extends DCLogic {
   componentDidMount() {
     this._resize = () => this.setState({ width: document.documentElement.clientWidth });
     window.addEventListener('resize', this._resize);
-    if (!this.props.items) import('./produkty.js').then(m => this.setState({ items: m.KATEGORIE }));
+    if (!this.props.items) import('./produkty.js').then(m => this.setState({ items: m.KATEGORIE.map(({ sub, count, ...k }) => k) }));
   }
   componentWillUnmount() { window.removeEventListener('resize', this._resize); }
   renderVals() {
     const p = this.props;
     const w = this.state.width;
     const compact = p.variant === 'kompaktni';
-    const items = (p.items || this.state.items || []).map(i => Object.assign({ variant: compact ? 'kompaktni' : 'standard' }, i));
+    const items = (p.items || this.state.items || []).map(i => Object.assign({ variant: compact ? 'kompaktni' : p.variant === 'vystup' ? 'vystup' : 'standard' }, i));
     const cols = compact
-      ? (w >= 1150 ? 4 : w >= 820 ? 3 : w >= 550 ? 2 : 1)
-      : (w >= 1560 ? 6 : w >= 1150 ? 4 : w >= 820 ? 3 : w >= 550 ? 2 : 1);
+      ? (w >= 1150 ? 4 : w >= 820 ? 3 : 2)
+      : (w >= 1560 ? 6 : w >= 820 ? 3 : 2);
     const popular = (p.popular || []).map(l => (typeof l === 'string' ? { label: l, href: '#' } : l));
     return {
       items,
@@ -64,7 +64,7 @@ class Component extends DCLogic {
       hasSubheading: !!p.subheading,
       subheading: p.subheading,
       gridTemplate: 'repeat(' + cols + ',minmax(0,1fr))',
-      gap: compact ? '12px' : '20px',
+      gap: compact || w < 550 ? '12px' : '20px',
       hasPopular: popular.length > 0,
       popular
     };

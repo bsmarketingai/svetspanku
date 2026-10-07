@@ -9,7 +9,7 @@
 <x-dc>
 <helmet>
 <link rel="stylesheet" href="./tmavy-rezim.css">
-<script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')!=='light')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h',localStorage.getItem('ss-font-h')||'alt');d.setAttribute('data-font-b',localStorage.getItem('ss-font-b')||'alt');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
+<script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
 h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
@@ -18,11 +18,17 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 .ss-mm-link{font-family:Roboto,Helvetica,Arial,sans-serif;display:inline-flex;align-items:center;min-height:32px;font-size:15px;color:var(--ss-text-secondary,#3D4750);border-radius:4px;transition:color .12s cubic-bezier(.22,.61,.36,1);}
 .ss-mm-link:hover{color:var(--ss-hover-text,#A4600C);text-decoration:underline;text-underline-offset:3px;}
 .ss-mm-link:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
-.ss-mm a.ss-mm-all{font-family:Roboto,Helvetica,Arial,sans-serif;display:inline-flex;align-items:center;min-height:32px;font-size:15px;font-weight:600;color:var(--ss-text-primary,#1C2229);text-decoration:underline;text-underline-offset:3px;border-radius:4px;}
-.ss-mm-all:hover{color:var(--ss-hover-text,#A4600C);}
+.ss-mm a.ss-mm-all{font-family:Roboto,Helvetica,Arial,sans-serif;display:inline-flex;align-items:center;gap:4px;min-height:32px;font-size:15px;font-weight:600;color:var(--ss-link,#296093);text-decoration:none;text-underline-offset:3px;border-radius:4px;}
+.ss-mm a.ss-mm-all:hover{color:var(--ss-hover-text,#A4600C);}
+.ss-mm a.ss-mm-all:hover>span{text-decoration:underline;text-underline-offset:3px;}
 .ss-mm-all:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
 .ss-mm-ban{position:relative;display:flex;align-items:flex-end;min-height:220px;padding:16px;border-radius:12px;background:var(--ss-surface-muted,#EFF2F5);color:var(--ss-text-primary,#1C2229);font-size:14px;font-weight:600;transition:box-shadow .15s cubic-bezier(.22,.61,.36,1);}
 .ss-mm-ban:hover{box-shadow:0 4px 12px rgba(19,44,67,.12);}
+.ss-mm-ban{overflow:hidden;isolation:isolate;}
+.ss-mm-banbg{position:absolute;inset:0;z-index:-1;transition:transform .4s cubic-bezier(.22,.61,.36,1);}
+.ss-mm-ban[data-photo="true"]{color:#FFFFFF;}
+@media (hover:hover) and (pointer:fine){.ss-mm-ban[data-photo="true"]:hover .ss-mm-banbg{transform:scale(1.06);}}
+@media (prefers-reduced-motion:reduce){.ss-mm-banbg{transition:none;}.ss-mm-ban:hover .ss-mm-banbg{transform:none;}}
 .ss-mm-ban:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
 .ss-mm-art{display:flex;align-items:center;gap:14px;padding:10px;border-radius:12px;background:var(--ss-surface-subtle,#F7F9FB);color:var(--ss-text-primary,#1C2229);transition:background-color .12s cubic-bezier(.22,.61,.36,1);}
 .ss-mm-art:hover{background:var(--ss-surface-muted,#EFF2F5);}
@@ -35,7 +41,8 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
       <sc-for list="{{ groups }}" as="g" hint-placeholder-count="3">
         <div style="{{ g.colStyle }}">
           <div style="display:flex;align-items:center;gap:16px;margin-bottom:12px">
-            <span style="width:48px;height:48px;flex:none;border-radius:8px;background:var(--ss-surface-muted,#EFF2F5);display:flex;align-items:center;justify-content:center;color:var(--ss-text-decor,#C8D0D8)"><dc-import name="Ikony" iconName="photo" size="20" hint-size="20px,20px"></dc-import></span>
+            <sc-if value="{{ g.hasImage }}" hint-placeholder-val="{{ false }}"><span style="width:48px;height:48px;flex:none;display:flex;align-items:center;justify-content:center"><span aria-hidden="true" style="{{ g.imgStyle }}"></span></span></sc-if>
+            <sc-if value="{{ g.noImage }}" hint-placeholder-val="{{ true }}"><span style="width:48px;height:48px;flex:none;border-radius:8px;background:var(--ss-surface-muted,#EFF2F5);display:flex;align-items:center;justify-content:center;color:var(--ss-text-decor,#C8D0D8)"><dc-import name="Ikony" iconName="photo" size="20" hint-size="20px,20px"></dc-import></span></sc-if>
             <h3 style="margin:0;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:19px;color:var(--ss-text-primary,#1C2229)">{{ g.title }}</h3>
           </div>
           <div style="display:flex;flex-direction:column">
@@ -43,18 +50,19 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
               <a class="ss-mm-link" href="{{ i.href }}">{{ i.label }}</a>
             </sc-for>
             <sc-if value="{{ g.hasMore }}" hint-placeholder-val="{{ true }}">
-              <a class="ss-mm-all" href="{{ g.allHref }}">Další kategorie</a>
+              <a class="ss-mm-all" href="{{ g.allHref }}"><dc-import name="Ikony" iconName="circle-plus" size="18" hint-size="18px,18px"></dc-import><span>Další kategorie</span></a>
             </sc-if>
           </div>
         </div>
       </sc-for>
     </div>
 
+    <sc-if value="{{ hasRail }}" hint-placeholder-val="{{ true }}">
     <div style="display:flex;flex-direction:column;gap:16px;min-width:0;padding:24px 0">
       <sc-if value="{{ hasBanners }}" hint-placeholder-val="{{ true }}">
         <div style="display:grid;grid-template-columns:{{ bannerTemplate }};gap:16px">
           <sc-for list="{{ banners }}" as="b" hint-placeholder-count="2">
-            <a class="ss-mm-ban" href="{{ b.href }}">{{ b.label }}</a>
+            <a class="ss-mm-ban" href="{{ b.href }}" data-photo="{{ b.photoStr }}"><span class="ss-mm-banbg" aria-hidden="true" style="{{ b.bgStyle }}"></span><span style="position:relative;display:flex;flex-direction:column;gap:4px"><span style="font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:21px;line-height:1.2">{{ b.label }}</span><sc-if value="{{ b.hasSub }}" hint-placeholder-val="{{ false }}"><span style="font-size:14px;font-weight:400;line-height:1.4;color:#DCE8F2">{{ b.sub }}</span></sc-if></span></a>
           </sc-for>
         </div>
       </sc-if>
@@ -62,14 +70,16 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
         <div style="display:flex;flex-direction:column;gap:12px">
           <sc-for list="{{ articles }}" as="a" hint-placeholder-count="2">
             <a class="ss-mm-art" href="{{ a.href }}">
-              <span style="width:64px;height:56px;flex:none;border-radius:8px;background:var(--ss-surface-strong,#E1E6EB);display:flex;align-items:center;justify-content:center;color:var(--ss-text-disabled,#9AA6B2)"><dc-import name="Ikony" iconName="photo" size="20" hint-size="20px,20px"></dc-import></span>
+              <sc-if value="{{ a.hasImage }}" hint-placeholder-val="{{ false }}"><span aria-hidden="true" style="{{ a.thumbStyle }}"></span></sc-if>
+              <sc-if value="{{ a.noImage }}" hint-placeholder-val="{{ true }}"><span style="width:64px;height:56px;flex:none;border-radius:8px;background:var(--ss-surface-strong,#E1E6EB);display:flex;align-items:center;justify-content:center;color:var(--ss-text-disabled,#9AA6B2)"><dc-import name="Ikony" iconName="photo" size="20" hint-size="20px,20px"></dc-import></span></sc-if>
               <span style="flex:1;min-width:0;font-size:15px;font-weight:600;line-height:1.35">{{ a.title }}</span>
-              <span style="display:flex;color:var(--ss-link,#296093);flex:none"><dc-import name="Ikony" iconName="player-play" size="20" hint-size="20px,20px"></dc-import></span>
+              <span style="display:flex;color:var(--ss-link,#296093);flex:none"><dc-import name="Ikony" iconName="chevron-right" size="20" hint-size="20px,20px"></dc-import></span>
             </a>
           </sc-for>
         </div>
       </sc-if>
     </div>
+    </sc-if>
   </div>
 </div>
 </x-dc>
@@ -89,6 +99,10 @@ class Component extends DCLogic {
     const rawGroups = cat.groups || [];
     const groups = rawGroups.map((g, i) => ({
       title: g.title,
+      hasImage: !!g.image,
+      noImage: !g.image,
+      image: g.image || '',
+      imgStyle: { display: 'block', width: '100%', height: '100%', background: g.image ? 'url(' + g.image + ') center / contain no-repeat' : 'none', scale: String(g.imageScale ?? 1.35) },
       items: (g.items || []).slice(0, max),
       hasMore: (g.total ?? (g.items || []).length) > (g.items || []).length || (g.items || []).length > max,
       allHref: cat.href || '#',
@@ -98,15 +112,15 @@ class Component extends DCLogic {
         minWidth: 0
       }
     }));
-    const banners = cat.banners || [];
-    const articles = cat.articles || [];
+    const banners = (cat.banners || []).map(b => Object.assign({}, b, { hasSub: !!b.sub, photoStr: b.image ? 'true' : 'false', bgStyle: b.image ? { background: 'linear-gradient(to top,rgba(9,18,27,.88) 0%,rgba(9,18,27,.55) 35%,rgba(9,18,27,0) 70%),url(' + b.image + ') ' + (b.imagePos || 'center') + ' / cover no-repeat' } : {} }));
+    const articles = (cat.articles || []).map(a => Object.assign({}, a, { hasImage: !!a.image, noImage: !a.image, thumbStyle: { display: 'block', width: '64px', height: '56px', flex: 'none', borderRadius: '8px', background: a.image ? 'url(' + a.image + ') center / cover no-repeat' : 'none' } }));
     const hasRail = banners.length > 0 || articles.length > 0;
     return {
       groups,
       colsTemplate: 'repeat(' + Math.max(1, groups.length) + ',minmax(0,1fr))',
       shellTemplate: hasRail && w >= 1150 ? 'minmax(0,1fr) minmax(0,0.85fr)' : 'minmax(0,1fr)',
       bannerTemplate: banners.length > 1 && w >= 820 ? 'repeat(2,minmax(0,1fr))' : 'minmax(0,1fr)',
-      banners, articles,
+      banners, articles, hasRail,
       hasBanners: banners.length > 0,
       hasArticles: articles.length > 0
     };

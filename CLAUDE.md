@@ -22,9 +22,9 @@ Když se změní token, aktualizuje se `CLAUDE.md` **i** `DesignSystem.dc.html`.
 Pět škál po 10 krocích (50–900): `blue` (primární, 600 = #296093 z loga), `apricot` (konverzní, 400 = #FBB255 z loga; samostatná sekundární barva není), `green` (success), `red` (error, 600 = #B3261E), `neutral`.
 V komponentách se používají **jen sémantické tokeny**, nikdy číslo ze škály. Plná tabulka v `DesignSystem.dc.html` § 2, každý textový token ověřený na WCAG AA 4,5 : 1 (ratio se počítá živě na stránce).
 
-Klíčové: `text.primary #1C2229`, `text.secondary #3D4750`, `text.muted #5B6874`, `surface.page #FFFFFF`, `surface.subtle #F7F9FB`, `surface.brand #132C43`, `border.subtle #E1E6EB`, `action.primary #296093` (solid), `action.secondary #296093` (outline: modrý text + obrys, hover pozadí `#F0F5FA`), `action.ghost #21507B` (bez obrysu), `action.buy #FBB255` (text `#1C2229`, hover `#F09A2C`), `action.danger #B3261E`, `status.success #157A41`, `status.error #B3261E`, `status.inStock #157A41`, `status.outOfStock #B3261E`, `commerce.sale #B3261E`, `focus.ring rgba(41,96,147,.35)`, `hover.text #A4600C` (tmavý `#FBB255`), `hover.bg #FFF5E6` (tmavý `rgba(251,178,85,.12)`).
+Klíčové: `text.primary #1C2229`, `text.secondary #3D4750`, `text.muted #5B6874`, `surface.page #FFFFFF`, `surface.subtle #F7F9FB`, `surface.brand #132C43`, `border.subtle #E1E6EB`, `action.primary #296093` (solid), `action.secondary` tonální: pozadí `#DCE8F2` (blue-100), text `#21507B`, bez obrysu, hover pozadí `#B9D0E5` (6. 10. 2026; dříve outline), `action.ghost #21507B` (bez obrysu), `action.buy #FBB255` (text `#1C2229`, hover `#F09A2C`), `action.danger #B3261E`, `status.success #157A41`, `status.error #B3261E`, `status.inStock #157A41`, `status.outOfStock #B3261E`, `commerce.sale #B3261E`, `focus.ring rgba(41,96,147,.35)`, `hover.text #21507B` (tmavý `#FBB255`), `hover.bg #F0F5FA` (tmavý `rgba(251,178,85,.12)`).
 
-**Hover odkazů a ikon je meruňkový** v obou režimech (`--ss-hover-text`, `--ss-hover-bg`), nikdy modrý. Primární/solid tlačítka mají vlastní hover beze změny.
+**Hover odkazů a ikon je ve světlém režimu modrý, v tmavém meruňkový** (`--ss-hover-text`, `--ss-hover-bg`; 6. 10. 2026). Primární/solid tlačítka mají vlastní hover beze změny.
 
 Přemapováno kvůli kontrastu:
 - `neutral-500 #6B7986` (4,46 : 1) nesmí nést text → `text.muted` je `#5B6874`.
@@ -33,7 +33,7 @@ Přemapováno kvůli kontrastu:
 
 ## Typografie
 
-Google Fonts: výchozí **Barlow Condensed** (nadpisy), **IBM Plex Sans Condensed** (běžný text, 400–700), **Archivo Narrow** (ceny a číselné údaje, 600/700). Oswald / Roboto zůstávají jako alternativa v `PrezentacniLista` (`data-font-h|b="base"`). **Minimum 13 px.**
+Google Fonts: výchozí **Oswald** (nadpisy), **Roboto** (běžný text, 400–700), **Archivo Narrow** (ceny a číselné údaje, 600/700). Volba fontů v `PrezentacniLista` odebrána (6. 10. 2026), fonty jsou pevné. **Minimum 13 px.**
 Nadpisy `h1`–`h4`: `font-weight:600`, `text-transform:none`, **vždy větná kapitalizace** — první písmeno velké, zbytek malé (kromě vlastních jmen); píše se tak přímo v textu, ne přes CSS. Pravidlo je v helmetu každého souboru.
 Tokeny: `heading.h1–h4`, `body.large/medium`, `label.small`, `caption`, `overline`, commerce `price.primary`, `price.before`, `product.title`, `stock`, `orderNo`.
 Mobilní sada se přepíná **skokem na 820 px**, nikdy přes `clamp()`. Pole formulářů pod 550 px mají `font-size:16px` (iOS jinak zoomuje).
@@ -101,6 +101,7 @@ Hover se nezjišťuje šířkou okna, ale `(hover:hover) and (pointer:fine)`. Fo
 
 - Žádná výplň, žádná data slop. Prázdně působící sekce je chyba layoutu, ne nedostatek obsahu.
 - Emoji ne. Ikony ano, z jednoho registru.
+- Čas se píše vždy s dvojtečkou: „9:00–17:00“ (pomlčka bez mezer), nikdy „9.00“.
 - Ceny, skladovost a dostupnost se píšou jednotně: cena „7 590 Kč“ (pevná mezera, s DPH), „Skladem · odesíláme do 24 h“, „Poslední kusy“, „Nedostupné“. Formulace se ustálí jednou a drží.
 - Fotky klient dodá — do té doby placeholdery ve `surface.muted`.
 
@@ -111,11 +112,11 @@ První kolo stránek: **Homepage**.
 
 ## Rozhodnuto — nevracet se k tomu
 
-- **Výchozí režim je tmavý** (rozhodnuto 2. 10. 2026). Světlý se zapíná jen v `PrezentacniLista` (uloženo v `localStorage` `ss-mode`), podklad z tmavé modré značky, meruňková beze změny.
+- **Výchozí režim je světlý** (rozhodnuto 6. 10. 2026, dříve tmavý). Tmavý se zapíná jen v `PrezentacniLista` (uloženo v `localStorage` `ss-mode`), podklad z tmavé modré značky, meruňková beze změny.
 - **Jedna vizuální linka**, ne varianty vzhledu k rozhodnutí (klient zvolil „jedna linka, jeď“).
 - **Konverzní barva je meruňková** (`action.buy` apricot-400, vždy tmavý text). Zelená = **success** (skladem, pozitivní oznámení), červená = **error** (nedostupné, negativní oznámení, odebrat). Primární modrá beze změny.
 - **Bez přepínače měny a jazyka** — jen CZK a čeština.
-- **Nimbus Sans L Condensed se na web nenasazuje.** Výchozí nadpisy Barlow Condensed, text IBM Plex Sans Condensed (2. 10. 2026), ceny Archivo Narrow.
+- **Nimbus Sans L Condensed se na web nenasazuje.** Výchozí nadpisy Oswald, text Roboto (6. 10. 2026), ceny Archivo Narrow.
 - **Názvosloví pásem XXS–XXL**, ne mobil/tablet/desktop.
 - **Jen designový Select** (`Select.dc.html`, vlastní listbox). Systémový `<select>` se nepoužívá (2. 10. 2026).
 - **Ceny vždy s DPH**, bez přepínače bez DPH (B2C).

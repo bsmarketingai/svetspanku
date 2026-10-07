@@ -1,8 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans+Condensed:wght@400;500;600;700&display=swap');
 /* Tmavý režim — přepíná html[data-mode="dark"]. Světlý režim = fallback hodnoty v var(). */
+/* Hover ve světlém režimu modrý (6. 10. 2026), v tmavém meruňkový */
+html:not([data-mode="dark"]){--ss-hover-text:#21507B;--ss-hover-bg:#F0F5FA;}
 html[data-mode="dark"]{color-scheme:dark;
   --ss-border-accent-subtle:#5A4425;
   --ss-border-action:#8DB3D3;
+  --ss-action-tonal-bg:rgba(141,179,211,.16);
+  --ss-action-tonal-hover-bg:rgba(141,179,211,.26);
+  --ss-action-tonal-fg:#B9D0E5;
   --ss-border-action-hover:#B9D0E5;
   --ss-border-error:#F4A39C;
   --ss-border-error-subtle:#7A3A35;
@@ -16,6 +21,7 @@ html[data-mode="dark"]{color-scheme:dark;
   --ss-usp-from-c:#8DB3D3;
   --ss-usp-to-c:#FBB255;
   --ss-text-apricot:#FBB255;
+  --ss-usp-title:#FBB255;
   --ss-hover-text:#FBB255;
   --ss-hover-bg:rgba(251,178,85,.12);
   --ss-status-error:#F4A39C;
@@ -62,11 +68,15 @@ html[data-mode="dark"] .ss-pm-row:hover{background:transparent!important;box-sha
 
 /* Ostrůvek světlého režimu (popupy nad fotkami — produktové fotky mají bílé pozadí) */
 html[data-mode="dark"] .ss-light{color-scheme:light;
-  --ss-hover-text:initial;
-  --ss-hover-bg:initial;
+  --ss-hover-text:#21507B;
+  --ss-hover-bg:#F0F5FA;
   --ss-text-apricot:initial;
+  --ss-usp-title:initial;
   --ss-border-accent-subtle:initial;
   --ss-border-action:initial;
+  --ss-action-tonal-bg:initial;
+  --ss-action-tonal-hover-bg:initial;
+  --ss-action-tonal-fg:initial;
   --ss-border-action-hover:initial;
   --ss-border-error:initial;
   --ss-border-error-subtle:initial;
@@ -118,12 +128,15 @@ main,main>section{background-image:radial-gradient(ellipse 70% 60% at 50% 45%,rg
 html[data-mode="dark"] main,html[data-mode="dark"] main>section{background-image:radial-gradient(ellipse 60% 55% at 50% 45%,rgba(141,179,211,.101) 0%,rgba(141,179,211,.038) 45%,rgba(0,0,0,0) 80%)!important;}
 html[data-bg="off"] main,html[data-bg="off"] main>section{background-image:none!important;}
 /* Gradient Zap: elevace všech ploch, které by na gradientu splývaly (karty, filtry, video, boxy). Gradient Vyp = beze změny. */
-html[data-bg="on"] .ss-elev,html[data-bg="on"] .ss-ct,html[data-bg="on"] .ss-cat,html[data-bg="on"] .ss-hp-tile,html[data-bg="on"] .ss-pd-row,html[data-bg="on"] .ss-mm-art{box-shadow:0 2px 8px rgba(19,44,67,.08)!important;}
-html[data-bg="on"][data-mode="dark"] .ss-elev,html[data-bg="on"][data-mode="dark"] .ss-ct,html[data-bg="on"][data-mode="dark"] .ss-cat,html[data-bg="on"][data-mode="dark"] .ss-hp-tile,html[data-bg="on"][data-mode="dark"] .ss-pd-row{box-shadow:inset 0 1px 0 rgba(141,179,211,.14),0 0 0 1px rgba(141,179,211,.10),0 2px 8px rgba(0,0,0,.35)!important;}
+html[data-bg="on"] .ss-elev,html[data-bg="on"] .ss-ct:not([data-pop="true"]),html[data-bg="on"] .ss-cat,html[data-bg="on"] .ss-hp-tile,html[data-bg="on"] .ss-pd-row,html[data-bg="on"] .ss-mm-art{box-shadow:0 2px 8px rgba(19,44,67,.08)!important;}
+html[data-bg="on"][data-mode="dark"] .ss-elev,html[data-bg="on"][data-mode="dark"] .ss-ct:not([data-pop="true"]),html[data-bg="on"][data-mode="dark"] .ss-cat,html[data-bg="on"][data-mode="dark"] .ss-hp-tile,html[data-bg="on"][data-mode="dark"] .ss-pd-row{box-shadow:inset 0 1px 0 rgba(141,179,211,.14),0 0 0 1px rgba(141,179,211,.10),0 2px 8px rgba(0,0,0,.35)!important;}
 @media (hover:hover) and (pointer:fine){
-html[data-bg="on"] a.ss-elev:hover,html[data-bg="on"] button.ss-elev:hover,html[data-bg="on"] .ss-ct:hover,html[data-bg="on"] .ss-cat:hover,html[data-bg="on"] .ss-hp-tile:hover,html[data-bg="on"] .ss-pd-row:hover{box-shadow:0 4px 12px rgba(19,44,67,.12)!important;}
-html[data-bg="on"][data-mode="dark"] a.ss-elev:hover,html[data-bg="on"][data-mode="dark"] button.ss-elev:hover,html[data-bg="on"][data-mode="dark"] .ss-ct:hover,html[data-bg="on"][data-mode="dark"] .ss-cat:hover,html[data-bg="on"][data-mode="dark"] .ss-hp-tile:hover,html[data-bg="on"][data-mode="dark"] .ss-pd-row:hover{box-shadow:inset 0 1px 0 rgba(141,179,211,.18),0 0 0 1px rgba(141,179,211,.14),0 8px 24px rgba(0,0,0,.45)!important;}
+html[data-bg="on"] a.ss-elev:hover,html[data-bg="on"] button.ss-elev:hover,html[data-bg="on"] .ss-ct:not([data-pop="true"]):hover,html[data-bg="on"] .ss-cat:hover,html[data-bg="on"] .ss-hp-tile:hover,html[data-bg="on"] .ss-pd-row:hover{box-shadow:0 4px 12px rgba(19,44,67,.12)!important;}
+html[data-bg="on"][data-mode="dark"] a.ss-elev:hover,html[data-bg="on"][data-mode="dark"] button.ss-elev:hover,html[data-bg="on"][data-mode="dark"] .ss-ct:not([data-pop="true"]):hover,html[data-bg="on"][data-mode="dark"] .ss-cat:hover,html[data-bg="on"][data-mode="dark"] .ss-hp-tile:hover,html[data-bg="on"][data-mode="dark"] .ss-pd-row:hover{box-shadow:inset 0 1px 0 rgba(141,179,211,.18),0 0 0 1px rgba(141,179,211,.14),0 8px 24px rgba(0,0,0,.45)!important;}
 }
+html[data-bg="on"] .ss-ct[data-pop="true"]::before{box-shadow:0 2px 8px rgba(19,44,67,.08);}
+html[data-bg="on"][data-mode="dark"] .ss-ct[data-pop="true"]::before{box-shadow:inset 0 1px 0 rgba(141,179,211,.14),0 0 0 1px rgba(141,179,211,.10),0 2px 8px rgba(0,0,0,.35);}
+@media (hover:hover) and (pointer:fine){html[data-bg="on"] .ss-ct[data-pop="true"]:hover::before{box-shadow:0 4px 12px rgba(19,44,67,.12);}html[data-bg="on"][data-mode="dark"] .ss-ct[data-pop="true"]:hover::before{box-shadow:inset 0 1px 0 rgba(141,179,211,.18),0 0 0 1px rgba(141,179,211,.14),0 8px 24px rgba(0,0,0,.45);}}
 html[data-bg="on"] .ss-elev:focus-visible{box-shadow:0 0 0 3px rgba(41,96,147,.35)!important;}
 
 /* Prezentační přepínač fontů — html[data-font-h|data-font-b]="alt" */

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="./tmavy-rezim.css">
+<script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
+html,body{margin:0!important;padding:0!important;}
+#dc-root{margin:0!important;padding:0!important;width:100%!important;max-width:none!important;border:0!important;}
+#dc-root>.sc-host{margin:0!important;padding:0!important;width:100%!important;}
+a{color:var(--ss-link,#296093);}
+a:hover{color:var(--ss-hover-text,#21507B);}
+</style>
+</helmet>
+<div style="width:100%;background:var(--ss-surface-page,#FFFFFF);font-family:Roboto,Helvetica,Arial,sans-serif;color:var(--ss-text-primary,#1C2229)">
+  <dc-import name="Hlavicka" style="position:sticky;top:0;z-index:200" ledMode="{{ ledMode }}" hint-size="100%,180px"></dc-import>
+  <dc-import name="PrezentacniLista" items="{{ presItems }}" onToggle="{{ onPresToggle }}" hint-size="320px,52px"></dc-import>
+
+  <main>
+    <dc-import name="KrokyObjednavky" active="{{ 2 }}" hint-size="100%,80px"></dc-import>
+    <h1 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0">Doprava, montáž a platba</h1>
+
+    <section style="width:100%">
+      <div style="{{ inner }}">
+        <div style="display:grid;grid-template-columns:{{ cols }};gap:{{ colGap }};align-items:start">
+          <div style="display:flex;flex-direction:column;gap:48px;min-width:0">
+
+            <section aria-labelledby="ss-k2-doprava">
+              <h2 id="ss-k2-doprava" style="margin:0;font-size:{{ h2Size }};line-height:1.2">Způsob dopravy</h2>
+              <dc-import name="SkupinaVoleb" group="doprava" recommended="{{ true }}" title="Naše vlastní doprava Svět spánku" description="Jistota perfektního stavu, doručení na domluvený termín a čas" date="21.–22. 10." dateNote="u vás" price="od 650 Kč" icon="truck" info="{{ ownInfo }}" options="{{ ownOptions }}" selectedIndex="{{ ownSel }}" open="{{ ownOpen }}" onToggle="{{ onOwnToggle }}" onPick="{{ onOwnPick }}" compact="{{ compact }}" hint-size="100%,320px"></dc-import>
+              <dc-import name="VolbaRadio" group="doprava" title="Doručení na adresu PPL" date="21.–22. 10." dateNote="u vás" price="1 000 Kč" logo="logo-ppl.svg" info="{{ pplInfo }}" checked="{{ pplChecked }}" onSelect="{{ onPpl }}" divider="{{ true }}" compact="{{ compact }}" hint-size="100%,96px"></dc-import>
+              <dc-import name="SkupinaVoleb" group="doprava" title="{{ storeTitle }}" date="21.–22. 10." dateNote="na prodejně" price="Zdarma" icon="building-store" options="{{ storeOptions }}" selectedIndex="{{ storeSel }}" open="{{ storeOpen }}" onToggle="{{ onStoreToggle }}" onPick="{{ onStorePick }}" compact="{{ compact }}" hint-size="100%,96px"></dc-import>
+            </section>
+
+            <section aria-labelledby="ss-k2-platba">
+              <h2 id="ss-k2-platba" style="margin:0;padding-bottom:16px;border-bottom:1px solid var(--ss-border-subtle,#E1E6EB);font-size:{{ h2Size }};line-height:1.2">Způsob platby</h2>
+              <div role="radiogroup" aria-labelledby="ss-k2-platba">
+                <sc-for list="{{ payments }}" as="m" hint-placeholder-count="7">
+                  <dc-import name="VolbaRadio" group="platba" title="{{ m.title }}" description="{{ m.description }}" price="{{ m.price }}" logo="{{ m.logo }}" logoBg="{{ m.logoBg }}" icon="{{ m.icon }}" info="{{ m.info }}" checked="{{ m.checked }}" disabled="{{ m.disabled }}" disabledNote="Tato kombinace dopravy a platby není možná." onSelect="{{ m.onSelect }}" divider="{{ true }}" compact="{{ compact }}" hint-size="100%,76px"></dc-import>
+                </sc-for>
+              </div>
+            </section>
+          </div>
+
+          <div style="{{ asideWrap }}">
+            <dc-import name="ShrnutiObjednavky" items="{{ items }}" lines="{{ lines }}" total="{{ total }}" totalNoVat="{{ totalNoVat }}" ctaLabel="Pokračovat k dodacím údajům" ctaHref="KosikKrok3.dc.html" backLabel="Zpět do košíku" backHref="KosikKrok1.dc.html" hint-size="100%,760px"></dc-import>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer style="width:100%;background:var(--ss-surface-subtle,#F7F9FB);border-top:1px solid var(--ss-border-subtle,#E1E6EB)">
+    <div style="{{ innerFoot }}">
+      <span style="font-size:13px;color:var(--ss-text-muted,#5B6874);text-align:center">Copyright © 2026 LUCKÉ CZ GROUP s.r.o. — Všechna práva vyhrazena</span>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:1600}}">
+class Component extends DCLogic {
+  static OWN = [
+    { title: 'Doručení ', titleBold: 'za první uzamykatelné dveře', titleAfter: ' v přízemí', fee: 650, short: 'za první dveře v přízemí' },
+    { title: 'Doručení ', titleBold: 's vynáškou do patra', titleAfter: ' nebo na vámi určené místo v domě či bytě, bez montáže', fee: 1500, short: 's vynáškou do patra' },
+    { title: 'Doručení ', titleBold: 's vynáškou včetně odborné montáže', titleAfter: ' našimi techniky', fee: 2050, short: 's vynáškou a montáží' }
+  ];
+  static PAY = [
+    { id: 'card', title: 'Platba kartou online', logo: 'logo-visa-mastercard.svg', fee: 0, info: ['Visa, Mastercard i Maestro', 'Platbu zpracuje zabezpečená brána Comgate', 'Objednávku začneme vyřizovat hned po zaplacení'] },
+    { id: 'instant', title: 'Okamžitý bankovní převod', icon: 'building-bank', fee: 0, info: ['Zaplatíte přes internetové bankovnictví své banky', 'Peníze dorazí hned, objednávku vyřídíme bez čekání'] },
+    { id: 'qr', title: 'QR platba / běžný bankovní převod', icon: 'qrcode', fee: 0, info: ['Platební údaje a QR kód vám pošleme e-mailem', 'Zboží expedujeme po připsání platby na účet'] },
+    { id: 'gpay', title: 'Google Pay', logo: 'logo-google-pay.svg', fee: 0 },
+    { id: 'klarna', title: 'Klarna', logo: 'logo-klarna.svg', logoBg: '#FFA8CD', description: 'Zaplaťte ve 3 splátkách bez úroku', fee: 0 },
+    { id: 'cash', title: 'Hotově', icon: 'cash', fee: 0, allow: ['own', 'store'] },
+    { id: 'cod', title: 'Dobírkou', icon: 'package', fee: 79, allow: ['ppl'], info: ['Zaplatíte řidiči PPL při převzetí', 'Hotově i platební kartou'] }
+  ];
+  state = {
+    width: typeof window !== 'undefined' ? document.documentElement.clientWidth : 1440,
+    led: true, delivery: 'own-1', payment: 'card', ownOpen: true, storeOpen: false, stores: []
+  };
+  componentDidMount() {
+    this._r = () => this.setState({ width: document.documentElement.clientWidth });
+    window.addEventListener('resize', this._r);
+    import('./prodejny.js').then(m => this.setState({ stores: m.PRODEJNY }));
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this._r); }
+  fmt(n) { return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0') + '\u00A0Kč'; }
+  kind(d) { return d.indexOf('own-') === 0 ? 'own' : d === 'ppl' ? 'ppl' : 'store'; }
+  setDelivery(d) {
+    const k = this.kind(d);
+    this.setState(s => {
+      const pay = Component.PAY.find(x => x.id === s.payment);
+      const ok = !pay.allow || pay.allow.indexOf(k) !== -1;
+      return { delivery: d, payment: ok ? s.payment : 'card' };
+    });
+  }
+  renderVals() {
+    const w = this.state.width;
+    const narrow = w < 820, wide = w >= 1000;
+    const pad = narrow ? '16px' : '32px';
+    const d = this.state.delivery, k = this.kind(d);
+    const stores = this.state.stores;
+    const goods = [
+      { title: 'Manželská postel SANTE 45 dvoulůžko', variant: '200 × 180 cm · olej Teak · jádrový buk', qty: 2, unit: 19990, img: 'produkt-sante-45.jpg' },
+      { title: 'Matrace Spring Variant 22 cm', variant: '180 × 200 cm · tuhost H3', qty: 1, unit: 7590, img: 'produkt-matrace-spring-variant.png' }
+    ];
+    const goodsSum = goods.reduce((s, g) => s + g.unit * g.qty, 0);
+    let delName, delFee;
+    if (k === 'own') { const o = Component.OWN[+d.split('-')[1]]; delName = 'Vlastní doprava ' + o.short; delFee = o.fee; }
+    else if (k === 'ppl') { delName = 'Doručení na adresu PPL'; delFee = 1000; }
+    else { const st = stores.find(x => 'store-' + x.id === d); delName = 'Osobní odběr – ' + (st ? st.city : 'prodejna'); delFee = 0; }
+    const pay = Component.PAY.find(x => x.id === this.state.payment);
+    const total = goodsSum + delFee + pay.fee;
+    return {
+      ledMode: this.state.led ? 'on' : 'off',
+      presItems: [{ label: 'LED', value: this.state.led }],
+      onPresToggle: () => this.setState(s => ({ led: !s.led })),
+      inner: { maxWidth: '1560px', margin: '0 auto', boxSizing: 'border-box', padding: (narrow ? '32px ' : '48px ') + pad + (narrow ? ' 48px' : ' 80px') },
+      innerFoot: { maxWidth: '1560px', margin: '0 auto', boxSizing: 'border-box', padding: '16px ' + pad, display: 'flex', justifyContent: 'center' },
+      cols: wide ? 'minmax(0,1fr) minmax(360px,440px)' : 'minmax(0,1fr)',
+      colGap: wide ? '64px' : '48px',
+      asideWrap: wide ? { minWidth: 0, paddingLeft: '48px', borderLeft: '1px solid var(--ss-border-subtle,#E1E6EB)', alignSelf: 'stretch' } : { minWidth: 0 },
+      h2Size: narrow ? '24px' : '28px',
+      compact: narrow,
+      ownInfo: ['Termín a čas doručení s vámi předem domluvíme po telefonu', 'Zboží přivezou dva naši řidiči', 'Před příjezdem vám zavoláme', 'Obaly na přání odvezeme'],
+      ownOptions: Component.OWN.map(o => ({ title: o.title, titleBold: o.titleBold, titleAfter: o.titleAfter, price: this.fmt(o.fee) })),
+      ownSel: k === 'own' ? +d.split('-')[1] : -1,
+      ownOpen: this.state.ownOpen,
+      onOwnToggle: (v) => this.setState({ ownOpen: v }),
+      onOwnPick: (i) => this.setDelivery('own-' + i),
+      pplInfo: ['Doručení v pracovní dny 8:00–18:00', 'Dobírku lze uhradit i platební kartou', 'Doručení můžete změnit na výdejní místo PPL', 'Odkaz na sledování zásilky dostanete e-mailem', 'V den doručení přijde SMS a e-mail s dvouhodinovým oknem'],
+      pplChecked: d === 'ppl',
+      onPpl: () => this.setDelivery('ppl'),
+      storeTitle: 'Osobní odběr na prodejně (' + (stores.length || 5) + ')',
+      storeOptions: stores.map(s => ({ title: 'Prodejna ' + s.city, description: s.address + ' · ' + s.hours, price: 'Zdarma', info: [s.address, s.hours, 'Telefon ' + s.phone] })),
+      storeSel: k === 'store' ? stores.findIndex(x => 'store-' + x.id === d) : -1,
+      storeOpen: this.state.storeOpen,
+      onStoreToggle: (v) => this.setState({ storeOpen: v }),
+      onStorePick: (i) => { const s = stores[i]; if (s) this.setDelivery('store-' + s.id); },
+      payments: Component.PAY.map(m => {
+        const disabled = !!m.allow && m.allow.indexOf(k) === -1;
+        return {
+          title: m.title, description: m.description || '', logo: m.logo || '', logoBg: m.logoBg || '', icon: m.icon || '', info: m.info,
+          price: m.fee ? this.fmt(m.fee) : 'Zdarma',
+          checked: this.state.payment === m.id, disabled,
+          onSelect: () => this.setState({ payment: m.id })
+        };
+      }),
+      items: goods.map(g => ({ title: g.title, variant: g.variant, qty: g.qty, img: g.img, total: this.fmt(g.unit * g.qty) })),
+      lines: [
+        { label: 'Doprava', name: delName, value: delFee ? this.fmt(delFee) : 'Zdarma' },
+        { label: 'Platba', name: pay.title, value: pay.fee ? this.fmt(pay.fee) : 'Zdarma' }
+      ],
+      total: this.fmt(total),
+      totalNoVat: this.fmt(total / 1.21)
+    };
+  }
+}
+</script>
+</body>
+</html>

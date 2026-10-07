@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="./tmavy-rezim.css">
+<script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
+</style>
+</helmet>
+<div style="font-family:Roboto,Helvetica,Arial,sans-serif;color:var(--ss-text-primary,#1C2229);display:flex;flex-direction:column;gap:12px;width:100%;max-width:440px">
+  <sc-if value="{{ notApplied }}" hint-placeholder-val="{{ true }}">
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <dc-import name="Checkbox" label="Mám slevový nebo dárkový kupón" checked="{{ open }}" onChange="{{ onToggle }}" hint-size="100%,44px"></dc-import>
+      <sc-if value="{{ open }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;align-items:flex-start;gap:8px">
+          <div style="flex:1;min-width:0">
+            <dc-import name="Input" label="" ariaLabel="Kód kupónu" placeholder="Kód kupónu" value="{{ code }}" onChange="{{ onCode }}" onEnter="{{ onEnter }}" invalid="{{ invalid }}" hint="{{ error }}" bordered="{{ true }}" hint-size="100%,44px"></dc-import>
+          </div>
+          <dc-import name="Tlacitko" label="Uplatnit" variant="secondary" onClick="{{ apply }}" hint-size="104px,44px"></dc-import>
+        </div>
+      </sc-if>
+    </div>
+  </sc-if>
+  <sc-if value="{{ isApplied }}" hint-placeholder-val="{{ false }}">
+    <div role="status" style="display:flex;align-items:center;gap:12px;min-height:44px;padding:8px 8px 8px 12px;border-radius:6px;background:var(--ss-status-success-surface,#EEF9F1)">
+      <span style="display:flex;flex:none;color:var(--ss-status-success,#157A41)"><dc-import name="Ikony" iconName="discount" size="22" hint-size="22px,22px"></dc-import></span>
+      <span style="flex:1;min-width:0;font-size:15px;line-height:1.35">Kupón <strong style="font-weight:700">{{ applied }}</strong> uplatněn</span>
+      <dc-import name="Tlacitko" label="Odebrat" variant="text" size="standard" onClick="{{ remove }}" ariaLabel="{{ removeLabel }}" hint-size="64px,24px"></dc-import>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:440,&quot;height&quot;:160},&quot;applied&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;onApply&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(code: string) =&gt; boolean&quot;},&quot;onRemove&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;() =&gt; void&quot;}}">
+class Component extends DCLogic {
+  state = { open: false, code: '', error: '' };
+  renderVals() {
+    const p = this.props;
+    const applied = p.applied || '';
+    const apply = () => {
+      const c = (this.state.code || '').trim().toUpperCase();
+      if (!c) { this.setState({ error: 'Vyplňte kód kupónu.' }); return; }
+      const ok = p.onApply ? p.onApply(c) : true;
+      if (ok === false) this.setState({ error: 'Tento kód neznáme nebo už neplatí. Zkontrolujte, jak je zapsaný.' });
+      else this.setState({ error: '', code: '' });
+    };
+    return {
+      isApplied: !!applied, notApplied: !applied, applied,
+      open: this.state.open,
+      code: this.state.code,
+      error: this.state.error,
+      invalid: !!this.state.error,
+      onToggle: (v) => this.setState({ open: v, error: '' }),
+      onCode: (v) => this.setState({ code: v, error: '' }),
+      onEnter: apply, apply,
+      removeLabel: 'Odebrat kupón ' + applied,
+      remove: () => { this.setState({ open: true }); if (p.onRemove) p.onRemove(); }
+    };
+  }
+}
+</script>
+</body>
+</html>

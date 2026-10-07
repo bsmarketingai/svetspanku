@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="./tmavy-rezim.css">
+<script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
+.ss-sv-head{position:relative;display:grid;align-items:start;font-family:Roboto,Helvetica,Arial,sans-serif;color:var(--ss-text-primary,#1C2229);}
+.ss-sv-btn{all:unset;box-sizing:border-box;cursor:pointer;font-size:inherit;font-weight:inherit;line-height:inherit;text-wrap:pretty;transition:color .12s cubic-bezier(.22,.61,.36,1);}
+.ss-sv-btn::after{content:"";position:absolute;inset:0;border-radius:6px;}
+.ss-sv-btn:focus-visible::after{box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+.ss-sv-chev{display:flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:999px;box-shadow:inset 0 0 0 2px var(--ss-border-strong,#C8D0D8);color:var(--ss-text-primary,#1C2229);transition:transform .15s cubic-bezier(.22,.61,.36,1),box-shadow .12s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1);}
+.ss-sv-head[data-open="true"] .ss-sv-chev{transform:rotate(180deg);}
+@media (hover:hover) and (pointer:fine){.ss-sv-head:hover .ss-sv-btn{color:var(--ss-hover-text,#21507B);}.ss-sv-head:hover .ss-sv-chev{box-shadow:inset 0 0 0 2px #296093;color:var(--ss-hover-text,#21507B);}}
+</style>
+</helmet>
+<div style="{{ groupStyle }}">
+  <div class="ss-sv-head" data-open="{{ openStr }}" data-active="{{ activeStr }}" style="{{ headStyle }}">
+    <span class="ss-sv-chev" aria-hidden="true" style="margin-top:4px"><dc-import name="Ikony" iconName="chevron-down" size="16" strokeWidth="2.5" hint-size="16px,16px"></dc-import></span>
+    <span aria-hidden="true" style="{{ mediaStyle }}">
+      <sc-if value="{{ hasLogo }}" hint-placeholder-val="{{ false }}"><img src="{{ logo }}" alt="" style="display:block;width:100%;height:100%;object-fit:contain" /></sc-if>
+      <sc-if value="{{ hasIcon }}" hint-placeholder-val="{{ false }}"><dc-import name="Ikony" iconName="{{ icon }}" size="20" hint-size="20px,20px"></dc-import></sc-if>
+    </span>
+    <div style="display:flex;flex-direction:column;gap:4px;min-width:0">
+      <sc-if value="{{ recommended }}" hint-placeholder-val="{{ false }}">
+        <span style="display:flex;margin-bottom:4px"><dc-import name="Stitek" kind="recommended" size="small" hint-size="120px,22px"></dc-import></span>
+      </sc-if>
+      <div style="display:flex;align-items:center;gap:4px;min-height:32px">
+        <button type="button" class="ss-sv-btn" id="{{ headId }}" aria-expanded="{{ openStr }}" aria-controls="{{ listId }}" onClick="{{ toggle }}" style="{{ titleStyle }}">{{ title }}</button>
+        <sc-if value="{{ hasInfo }}" hint-placeholder-val="{{ false }}">
+          <span><dc-import name="InfoPopover" title="{{ title }}" items="{{ info }}" hint-size="32px,32px"></dc-import></span>
+        </sc-if>
+      </div>
+      <sc-if value="{{ hasDesc }}" hint-placeholder-val="{{ false }}">
+        <span style="font-size:15px;line-height:1.45;color:var(--ss-text-secondary,#3D4750);text-wrap:pretty">{{ description }}</span>
+      </sc-if>
+      <sc-if value="{{ hasDate }}" hint-placeholder-val="{{ false }}">
+        <span style="font-size:14px;color:var(--ss-text-secondary,#3D4750)"><strong style="font-weight:700;color:var(--ss-text-primary,#1C2229)">{{ date }}</strong> {{ dateNote }}</span>
+      </sc-if>
+    </div>
+    <span style="{{ priceStyle }}">{{ price }}</span>
+  </div>
+  <sc-if value="{{ open }}" hint-placeholder-val="{{ true }}">
+    <div id="{{ listId }}" role="radiogroup" aria-labelledby="{{ headId }}" style="{{ listStyle }}">
+      <sc-for list="{{ options }}" as="o" hint-placeholder-count="3">
+        <dc-import name="VolbaRadio" level="{{ o.level }}" group="{{ group }}" title="{{ o.title }}" titleBold="{{ o.titleBold }}" titleAfter="{{ o.titleAfter }}" description="{{ o.description }}" price="{{ o.price }}" info="{{ o.info }}" checked="{{ o.checked }}" compact="{{ compact }}" onSelect="{{ o.onSelect }}" hint-size="100%,48px"></dc-import>
+      </sc-for>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:720,&quot;height&quot;:360},&quot;title&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Naše vlastní doprava&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;description&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;date&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;dateNote&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;price&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;logo&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;icon&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;truck&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;recommended&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;open&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;compact&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;group&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;doprava&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;selectedIndex&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:-1,&quot;tsType&quot;:&quot;number&quot;},&quot;options&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;{title: string, titleBold?: string, titleAfter?: string, description?: string, price: string, info?: string[], level?: string}[]&quot;},&quot;info&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;string[]&quot;},&quot;onToggle&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(open: boolean) =&gt; void&quot;},&quot;onPick&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(index: number) =&gt; void&quot;}}">
+class Component extends DCLogic {
+  state = { openInternal: null };
+  renderVals() {
+    const p = this.props;
+    const compact = !!p.compact;
+    const uid = this._id || (this._id = 'ss-sv-' + Math.random().toString(36).slice(2, 8));
+    const open = p.open !== undefined ? !!p.open : (this.state.openInternal ?? true);
+    const sel = p.selectedIndex ?? -1;
+    const mediaW = 52;
+    const free = /zdarma/i.test(p.price || '');
+    const opts = (p.options || []).map((o, i) => ({
+      level: o.level || 'sub',
+      title: o.title, titleBold: o.titleBold, titleAfter: o.titleAfter, description: o.description,
+      price: o.price, info: o.info, checked: i === sel,
+      onSelect: () => { if (p.onPick) p.onPick(i); }
+    }));
+    return {
+      headId: uid + '-h', listId: uid + '-l',
+      group: p.group || 'doprava',
+      compact,
+      open, openStr: open ? 'true' : 'false',
+      activeStr: sel >= 0 ? 'true' : 'false',
+      toggle: () => { if (p.onToggle) p.onToggle(!open); else this.setState({ openInternal: !open }); },
+      title: p.title ?? 'Naše vlastní doprava',
+      hasLogo: !!p.logo, logo: p.logo, hasIcon: !p.logo && !!p.icon, icon: p.icon,
+      mediaStyle: { display: 'flex', alignItems: 'center', justifyContent: 'center', width: '52px', height: '32px', borderRadius: '6px', overflow: 'hidden', color: '#296093', background: p.logo ? 'transparent' : (p.icon ? '#FFFFFF' : 'var(--ss-surface-muted,#EFF2F5)'), boxShadow: (!p.logo && p.icon) ? 'inset 0 0 0 1px #D9D9D9' : 'none' },
+      titleStyle: { fontSize: compact ? '16px' : '17px', lineHeight: 1.35, fontWeight: 600 },
+      hasInfo: !!(p.info && p.info.length), info: p.info,
+      hasDesc: !!p.description, description: p.description,
+      hasDate: !!p.date, date: p.date, dateNote: p.dateNote || '',
+      price: p.price || '',
+      priceStyle: { fontFamily: "'Archivo Narrow',Roboto,sans-serif", fontWeight: 700, fontSize: '17px', whiteSpace: 'nowrap', textAlign: 'right', lineHeight: '32px', color: free ? 'var(--ss-status-success,#157A41)' : 'var(--ss-text-primary,#1C2229)' },
+      headStyle: { gridTemplateColumns: '24px ' + mediaW + 'px minmax(0,1fr) auto', gap: compact ? '12px' : '16px', padding: '20px 0' },
+      options: opts,
+      listStyle: { paddingLeft: (compact ? 36 : 40) + 'px', marginTop: '-8px' },
+      recommended: !!p.recommended,
+      groupStyle: p.recommended
+        ? { fontFamily: 'Roboto,Helvetica,Arial,sans-serif', margin: '16px 0', padding: (compact ? '0 16px' : '0 20px') + ' ' + (open ? '12px' : '0'), borderRadius: '12px', background: 'var(--ss-surface-accent,#FDF3E2)', boxShadow: 'inset 0 0 0 1px var(--ss-border-accent-subtle,#F3DDB4)' }
+        : { fontFamily: 'Roboto,Helvetica,Arial,sans-serif', borderBottom: '1px solid var(--ss-border-subtle,#E1E6EB)', paddingBottom: open ? '12px' : '0' }
+    };
+  }
+}
+</script>
+</body>
+</html>
