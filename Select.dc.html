@@ -20,7 +20,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 .ss-select:disabled{opacity:.45;cursor:not-allowed;}
 .ss-select-arrow{position:absolute;right:12px;top:0;bottom:0;display:flex;align-items:center;pointer-events:none;color:var(--ss-text-muted,#5B6874);transition:transform .15s cubic-bezier(.22,.61,.36,1),color .12s;}
 .ss-select[aria-expanded="true"]+.ss-select-arrow{transform:rotate(180deg);color:var(--ss-hover-text,#A4600C);}
-.ss-select-list{position:absolute;left:0;right:0;top:calc(100% + 4px);z-index:300;margin:0;padding:4px;list-style:none;background:var(--ss-surface-page,#FFFFFF);border-radius:12px;box-shadow:0 16px 40px rgba(19,44,67,.18),inset 0 0 0 1px var(--ss-border-subtle,#E1E6EB);outline:none;animation:ssSelIn .15s cubic-bezier(.22,.61,.36,1);}
+.ss-select-list{position:absolute;left:0;right:0;top:calc(100% + 4px);z-index:300;margin:0;padding:4px;list-style:none;background:var(--ss-surface-card,#FFFFFF);border-radius:12px;box-shadow:0 16px 40px rgba(19,44,67,.18),inset 0 0 0 1px var(--ss-border-subtle,#E1E6EB);outline:none;animation:ssSelIn .15s cubic-bezier(.22,.61,.36,1);}
 @keyframes ssSelIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
 .ss-select-opt{display:flex;align-items:center;gap:8px;min-height:40px;padding:0 12px;border-radius:6px;font-size:15px;color:var(--ss-text-primary,#1C2229);cursor:pointer;transition:background-color .12s,color .12s;}
 .ss-select-opt[data-active="true"]{background:var(--ss-hover-bg,#FFF5E6);color:var(--ss-hover-text,#A4600C);}
@@ -89,10 +89,10 @@ class Component extends DCLogic {
       selectStyle: {
         height: (compact ? 36 : 44) + 'px', fontSize: (compact ? 14 : 15) + 'px',
         padding: '0 40px 0 ' + (compact ? 12 : 16) + 'px',
-        background: outline ? 'var(--ss-surface-page,#FFFFFF)' : 'var(--ss-surface-subtle,#F7F9FB)',
+        background: outline ? 'var(--ss-surface-page,#FEFAF7)' : 'var(--ss-surface-subtle,#FAF5EF)',
         boxShadow: 'inset 0 0 0 1px ' + (s.open ? 'var(--ss-border-action,#296093)' : outline ? 'var(--ss-border-strong,#C8D0D8)' : 'transparent')
       },
-      hoverStyle: p.disabled ? {} : { background: outline ? 'var(--ss-surface-subtle,#F7F9FB)' : 'var(--ss-surface-muted,#EFF2F5)', boxShadow: 'inset 0 0 0 1px ' + (s.open ? 'var(--ss-border-action,#296093)' : outline ? 'var(--ss-border-hover,#8DB3D3)' : 'transparent') },
+      hoverStyle: p.disabled ? {} : { background: outline ? 'var(--ss-surface-subtle,#FAF5EF)' : 'var(--ss-surface-muted,#F3EDE4)', boxShadow: 'inset 0 0 0 1px ' + (s.open ? 'var(--ss-border-action,#296093)' : outline ? 'var(--ss-border-hover,#8DB3D3)' : 'transparent') },
       toggle: () => (s.open ? this.close() : this.openList()),
       onBtnKey: (e) => { if (['ArrowDown', 'ArrowUp', 'Enter', ' '].includes(e.key)) { e.preventDefault(); this.openList(); } },
       onListKey: (e) => {

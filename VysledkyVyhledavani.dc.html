@@ -21,17 +21,17 @@ html,body{margin:0!important;padding:0!important;}
 #dc-root>.sc-host{margin:0!important;padding:0!important;width:100%!important;}
 a{color:var(--ss-link,#296093);}
 a:hover{color:var(--ss-hover-text,#A4600C);}
-.ss-seg{display:inline-flex;align-items:center;justify-content:center;height:52px;padding:0 24px;border:1px solid var(--ss-border-subtle,#E1E6EB);border-radius:6px;background:var(--ss-surface-page,#FFFFFF);font:inherit;font-size:15px;font-weight:600;color:var(--ss-text-secondary,#3D4750);cursor:pointer;white-space:nowrap;transition:background-color .12s cubic-bezier(.22,.61,.36,1),border-color .12s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1);}
+.ss-seg{display:inline-flex;align-items:center;justify-content:center;height:52px;padding:0 24px;border:1px solid var(--ss-border-subtle,#E1E6EB);border-radius:6px;background:var(--ss-surface-page,#FEFAF7);font:inherit;font-size:15px;font-weight:600;color:var(--ss-text-secondary,#3D4750);cursor:pointer;white-space:nowrap;transition:background-color .12s cubic-bezier(.22,.61,.36,1),border-color .12s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1);}
 @media (hover:hover) and (pointer:fine){.ss-seg:hover{border-color:var(--ss-border-action,#296093);color:var(--ss-hover-text,#A4600C);}}
 .ss-seg:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
 .ss-seg[aria-pressed="true"]{background:var(--ss-surface-hover,#F0F5FA);border-color:var(--ss-border-action,#296093);color:var(--ss-link-hover,#21507B);}
-.ss-cat{position:relative;display:flex;align-items:center;gap:12px;padding:16px;border:1px solid var(--ss-border-subtle,#E1E6EB);border-radius:12px;background:var(--ss-surface-page,#FFFFFF);text-decoration:none;color:var(--ss-text-primary,#1C2229);min-width:0;transition:box-shadow .15s cubic-bezier(.22,.61,.36,1),border-color .12s cubic-bezier(.22,.61,.36,1);}
+.ss-cat{position:relative;display:flex;align-items:center;gap:12px;padding:16px;border:1px solid var(--ss-border-subtle,#E1E6EB);border-radius:12px;background:var(--ss-surface-card,#FFFFFF);text-decoration:none;color:var(--ss-text-primary,#1C2229);min-width:0;transition:box-shadow .15s cubic-bezier(.22,.61,.36,1),border-color .12s cubic-bezier(.22,.61,.36,1);}
 @media (hover:hover) and (pointer:fine){.ss-cat:hover{border-color:var(--ss-border-action,#296093);box-shadow:0 4px 12px rgba(19,44,67,.12);}}
 .ss-cat:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
 .ss-art{position:relative;display:flex;flex-direction:column;gap:12px;padding:12px;margin:-12px;text-decoration:none;color:var(--ss-text-primary,#1C2229);border-radius:12px;transition:box-shadow .15s cubic-bezier(.22,.61,.36,1);}
 @media (hover:hover) and (pointer:fine){.ss-art:hover{box-shadow:0 4px 12px rgba(19,44,67,.12);}.ss-art:hover .ss-art-t{color:var(--ss-hover-text,#A4600C);}}
 .ss-art:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
-.ss-ph{display:flex;align-items:center;justify-content:center;background:var(--ss-surface-muted,#EFF2F5);color:var(--ss-text-decor,#C8D0D8);border-radius:12px;}
+.ss-ph{display:flex;align-items:center;justify-content:center;background:var(--ss-surface-muted,#F3EDE4);color:var(--ss-text-decor,#C8D0D8);border-radius:12px;}
 .ss-sort{position:relative;display:inline-flex;align-items:center;height:44px;border:0;padding:0 2px;background:none;font:inherit;font-size:15px;font-weight:600;color:var(--ss-text-muted,#55616C);cursor:pointer;white-space:nowrap;transition:color .12s cubic-bezier(.22,.61,.36,1);}
 @media (hover:hover) and (pointer:fine){.ss-sort:hover{color:var(--ss-hover-text,#A4600C);}}
 .ss-sort:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);border-radius:6px;}
@@ -40,12 +40,12 @@ a:hover{color:var(--ss-hover-text,#A4600C);}
 .ss-sort[aria-pressed="true"]::after{background:#FBB255;}
 </style>
 </helmet>
-<div style="width:100%;background:var(--ss-surface-page,#FFFFFF);font-family:Roboto,Helvetica,Arial,sans-serif;color:var(--ss-text-primary,#1C2229)">
+<div style="width:100%;background:var(--ss-surface-page,#FEFAF7);font-family:Roboto,Helvetica,Arial,sans-serif;color:var(--ss-text-primary,#1C2229)">
   <dc-import name="Hlavicka" style="position:sticky;top:0;z-index:200" ledMode="{{ ledMode }}" hint-size="100%,180px"></dc-import>
   <dc-import name="PrezentacniLista" items="{{ presItems }}" onToggle="{{ onPresToggle }}" hint-size="320px,52px"></dc-import>
 
   <main>
-    <section style="width:100%;background:var(--ss-surface-page,#FFFFFF)">
+    <section class="ss-grad-top" style="width:100%;background-color:var(--ss-surface-page,#FEFAF7)">
       <div style="{{ innerTop }}">
         <h1 style="margin:0 0 8px;font-size:{{ h1Size }};line-height:1.1">Výsledky pro „postele“ (126)</h1>
         <p style="margin:0;font-size:15px;color:var(--ss-text-secondary,#3D4750)">Pro upřesnění výsledků použijte filtr.</p>
@@ -54,6 +54,11 @@ a:hover{color:var(--ss-hover-text,#A4600C);}
           <button type="button" class="ss-seg" aria-pressed="{{ tabCatPressed }}" onClick="{{ pickCat }}">Kategorie (8)</button>
           <button type="button" class="ss-seg" aria-pressed="{{ tabArtPressed }}" onClick="{{ pickArt }}">Články (10)</button>
         </div>
+      </div>
+    </section>
+
+    <section style="width:100%;background:var(--ss-surface-page,#FEFAF7)">
+      <div style="{{ innerTabBody }}">
 
         <sc-if value="{{ isCat }}" hint-placeholder-val="{{ true }}">
           <div style="margin-top:20px">
@@ -89,7 +94,7 @@ a:hover{color:var(--ss-hover-text,#A4600C);}
       </div>
     </section>
 
-    <section style="width:100%;background:var(--ss-surface-page,#FFFFFF)">
+    <section style="width:100%;background:var(--ss-surface-page,#FEFAF7)">
       <div style="{{ innerResults }}">
         <div style="display:grid;grid-template-columns:{{ resultsTemplate }};gap:{{ resultsGap }};align-items:start">
 
@@ -160,7 +165,8 @@ class Component extends DCLogic {
       ledMode: this.state.led ? 'on' : 'off',
       presItems: [{ label: 'LED', value: this.state.led }],
       onPresToggle: () => this.setState(s => ({ led: !s.led })),
-      innerTop: Object.assign({}, inner, { padding: narrow ? '32px 16px 0' : '48px 32px 0' }),
+      innerTop: Object.assign({}, inner, { padding: narrow ? '32px 16px 32px' : '48px 32px 48px' }),
+      innerTabBody: Object.assign({}, inner, { paddingTop: '4px' }),
       innerResults: Object.assign({}, inner, { padding: narrow ? '32px 16px 48px' : '48px 32px 80px' }),
       h1Size: narrow ? '28px' : '40px',
       isCat: this.state.tab === 'kategorie',

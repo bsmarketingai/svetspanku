@@ -23,7 +23,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 </helmet>
 <nav aria-label="Stránkování" style="font-family:Roboto,Helvetica,Arial,sans-serif;display:flex;flex-direction:column;align-items:center;gap:16px;width:100%;min-width:0">
   <sc-if value="{{ showLoadMore }}" hint-placeholder-val="{{ true }}">
-    <dc-import name="Tlacitko" label="Načíst další produkty" variant="secondary" size="large" onClick="{{ onLoadMore }}" hint-size="240px,52px"></dc-import>
+    <dc-import name="Tlacitko" label="Načíst další produkty" variant="secondary" size="large" iconRight="chevron-down" onClick="{{ onLoadMore }}" hint-size="240px,52px"></dc-import>
   </sc-if>
 
   <span style="font-size:14px;color:var(--ss-text-muted,#5B6874)">{{ summary }}</span>

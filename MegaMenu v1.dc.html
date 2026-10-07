@@ -23,7 +23,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 .ss-mm-all:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
 </style>
 </helmet>
-<div class="ss-mm" style="width:100%;background:var(--ss-surface-page,#FFFFFF);box-shadow:0 16px 40px rgba(19,44,67,.18);border-radius:0 0 12px 12px;font-family:Roboto,Helvetica,Arial,sans-serif">
+<div class="ss-mm" style="width:100%;background:var(--ss-surface-page,#FEFAF7);box-shadow:0 16px 40px rgba(19,44,67,.18);border-radius:0 0 12px 12px;font-family:Roboto,Helvetica,Arial,sans-serif">
   <div style="max-width:1560px;margin:0 auto;padding:32px;display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:40px;align-items:start">
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:32px">
       <sc-for list="{{ groups }}" as="g" hint-placeholder-count="3">
@@ -32,7 +32,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
           <div style="display:flex;flex-direction:column;gap:2px">
             <sc-for list="{{ g.items }}" as="i" hint-placeholder-count="4">
               <a class="ss-mm-link" href="{{ i.href }}">
-                <span style="width:40px;height:40px;border-radius:6px;background:var(--ss-surface-muted,#EFF2F5);flex:none;display:flex;align-items:center;justify-content:center;color:var(--ss-text-disabled,#9AA6B2)"><dc-import name="Ikony" iconName="photo" size="18" hint-size="18px,18px"></dc-import></span>
+                <span style="width:40px;height:40px;border-radius:6px;background:var(--ss-surface-muted,#F3EDE4);flex:none;display:flex;align-items:center;justify-content:center;color:var(--ss-text-disabled,#9AA6B2)"><dc-import name="Ikony" iconName="photo" size="18" hint-size="18px,18px"></dc-import></span>
                 <span style="min-width:0">{{ i.label }}</span>
                 <span style="margin-left:auto;font-size:13px;color:var(--ss-text-muted,#5B6874)">{{ i.count }}</span>
               </a>
@@ -56,7 +56,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
       <sc-if value="{{ hasPromo }}" hint-placeholder-val="{{ true }}">
         <div style="background:var(--ss-surface-hover,#F0F5FA);border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:12px">
           <div style="height:120px;border-radius:8px;background:var(--ss-surface-selected,#DCE8F2);display:flex;align-items:center;justify-content:center;color:#5B8FBC"><dc-import name="Ikony" iconName="photo" size="28" hint-size="28px,28px"></dc-import></div>
-          <h4 style="margin:0;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:19px;color:var(--ss-text-primary,#1C2229)">{{ promoTitle }}</h4>
+          <h4 style="margin:0;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:19px;color:var(--ss-text-heading,#0B1F33)">{{ promoTitle }}</h4>
           <p style="margin:0;font-size:14px;color:var(--ss-text-secondary,#3D4750);line-height:1.5">{{ promoText }}</p>
           <div><dc-import name="Tlacitko" label="{{ promoCta }}" href="{{ promoHref }}" variant="primary" size="standard" iconRight="chevron-right" hint-size="180px,36px"></dc-import></div>
         </div>

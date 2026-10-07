@@ -17,8 +17,8 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 .ss-range{position:relative;height:24px;display:flex;align-items:center;}
 .ss-range input[type=range]{position:absolute;left:0;right:0;width:100%;margin:0;height:24px;background:none;pointer-events:none;-webkit-appearance:none;appearance:none;}
 .ss-range input[type=range]:focus-visible{outline:none;}
-.ss-range input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;pointer-events:auto;width:20px;height:20px;border-radius:999px;background:var(--ss-surface-page,#FFFFFF);box-shadow:0 0 0 2px var(--ss-border-action,#296093),0 2px 6px rgba(19,44,67,.2);cursor:pointer;}
-.ss-range input[type=range]::-moz-range-thumb{pointer-events:auto;width:20px;height:20px;border:0;border-radius:999px;background:var(--ss-surface-page,#FFFFFF);box-shadow:0 0 0 2px var(--ss-border-action,#296093),0 2px 6px rgba(19,44,67,.2);cursor:pointer;}
+.ss-range input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;pointer-events:auto;width:20px;height:20px;border-radius:999px;background:var(--ss-surface-page,#FEFAF7);box-shadow:0 0 0 2px var(--ss-border-action,#296093),0 2px 6px rgba(19,44,67,.2);cursor:pointer;}
+.ss-range input[type=range]::-moz-range-thumb{pointer-events:auto;width:20px;height:20px;border:0;border-radius:999px;background:var(--ss-surface-page,#FEFAF7);box-shadow:0 0 0 2px var(--ss-border-action,#296093),0 2px 6px rgba(19,44,67,.2);cursor:pointer;}
 .ss-range input[type=range]:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 2px var(--ss-border-action,#296093),0 0 0 6px rgba(41,96,147,.35);}
 .ss-range input[type=range]:focus-visible::-moz-range-thumb{box-shadow:0 0 0 2px var(--ss-border-action,#296093),0 0 0 6px rgba(41,96,147,.35);}
 </style>
@@ -36,7 +36,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
   </div>
 
   <div class="ss-range">
-    <span style="position:absolute;left:0;right:0;height:4px;border-radius:999px;background:var(--ss-surface-strong,#E1E6EB)"></span>
+    <span style="position:absolute;left:0;right:0;height:4px;border-radius:999px;background:var(--ss-surface-strong,#E9E1D5)"></span>
     <span style="position:absolute;height:4px;border-radius:999px;background:#296093;left:{{ trackLeft }};right:{{ trackRight }}"></span>
     <input type="range" min="{{ min }}" max="{{ max }}" step="{{ step }}" value="{{ from }}" onChange="{{ onFromRange }}" aria-label="Cena od" />
     <input type="range" min="{{ min }}" max="{{ max }}" step="{{ step }}" value="{{ to }}" onChange="{{ onToRange }}" aria-label="Cena do" />

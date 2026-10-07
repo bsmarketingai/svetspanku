@@ -27,16 +27,16 @@ a{color:var(--ss-link,#296093);}a:hover{color:var(--ss-hover-text,#A4600C);}
 .ss-cl-media{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px;align-items:center;}
 .ss-cl-block{margin-top:48px;}
 .ss-cl-cap{display:block;margin-top:8px;font-size:13px;color:var(--ss-text-muted,#5B6874);}
-.ss-cl-toc{background:var(--ss-surface-subtle,#F7F9FB);border-left:3px solid #FBB255;border-radius:0 12px 12px 0;padding:20px 24px;}
+.ss-cl-toc{background:var(--ss-surface-subtle,#FAF5EF);border-left:3px solid #FBB255;border-radius:0 12px 12px 0;padding:20px 24px;}
 .ss-cl-toc a{display:inline-flex;align-items:center;min-height:30px;font-size:15px;font-weight:600;text-decoration:underline;text-underline-offset:3px;}
-.ss-cl-also{display:flex;gap:20px;align-items:center;background:var(--ss-surface-subtle,#F7F9FB);border-radius:12px;padding:16px;text-decoration:none;color:var(--ss-text-primary,#1C2229);}
+.ss-cl-also{display:flex;gap:20px;align-items:center;background:var(--ss-surface-box,#FFFFFF);border-radius:12px;padding:16px;text-decoration:none;color:var(--ss-text-primary,#1C2229);}
 .ss-cl-also:hover .ss-cl-also-t{color:var(--ss-hover-text,#A4600C);}
 .ss-cl-also:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
 .ss-cl-ph{display:flex;align-items:center;justify-content:center;background:var(--ss-surface-muted,#F0F3F6);border-radius:12px;color:#9FB0BF;overflow:hidden;}
 .ss-cl-next{position:relative;display:flex;flex-direction:column;gap:12px;padding:8px;margin:-8px;text-decoration:none;color:var(--ss-text-primary,#1C2229);border-radius:12px;}
 .ss-cl-next .ss-cl-ph{position:relative;height:200px;}
 .ss-cl-zoom{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;transition:transform .4s cubic-bezier(.22,.61,.36,1);}
-.ss-cl-cta{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) scale(.96);z-index:2;display:inline-flex;align-items:center;min-height:44px;padding:0 22px;border-radius:999px;background:var(--ss-surface-page,#FFFFFF);color:var(--ss-text-primary,#1C2229);font-size:15px;font-weight:600;box-shadow:0 4px 12px rgba(19,44,67,.12);opacity:0;pointer-events:none;transition:opacity .15s cubic-bezier(.22,.61,.36,1),transform .15s cubic-bezier(.22,.61,.36,1);}
+.ss-cl-cta{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) scale(.96);z-index:2;display:inline-flex;align-items:center;min-height:44px;padding:0 22px;border-radius:999px;background:var(--ss-surface-page,#FEFAF7);color:var(--ss-text-primary,#1C2229);font-size:15px;font-weight:600;box-shadow:0 4px 12px rgba(19,44,67,.12);opacity:0;pointer-events:none;transition:opacity .15s cubic-bezier(.22,.61,.36,1),transform .15s cubic-bezier(.22,.61,.36,1);}
 @media (hover:hover) and (pointer:fine){
 .ss-cl-next:hover .ss-cl-zoom{transform:scale(1.06);}
 .ss-cl-next:hover .ss-cl-cta{opacity:1;transform:translate(-50%,-50%) scale(1);}
@@ -57,7 +57,7 @@ a{color:var(--ss-link,#296093);}a:hover{color:var(--ss-hover-text,#A4600C);}
 }
 </style>
 </helmet>
-<div style="width:100%;background:var(--ss-surface-page,#FFFFFF);font-family:Roboto,Helvetica,Arial,sans-serif;color:var(--ss-text-primary,#1C2229)">
+<div style="width:100%;background:var(--ss-surface-page,#FEFAF7);font-family:Roboto,Helvetica,Arial,sans-serif;color:var(--ss-text-primary,#1C2229)">
   <dc-import name="Hlavicka" style="position:sticky;top:0;z-index:200" ledMode="{{ ledMode }}" hint-size="100%,180px"></dc-import>
   <dc-import name="PrezentacniLista" items="{{ presItems }}" onToggle="{{ onPresToggle }}" choices="{{ presChoices }}" onPick="{{ onPresPick }}" hint-size="460px,52px"></dc-import>
 

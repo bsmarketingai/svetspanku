@@ -15,7 +15,7 @@
 <section style="width:100%;min-width:0;font-family:Roboto,Helvetica,Arial,sans-serif">
   <sc-if value="{{ hasHeading }}" hint-placeholder-val="{{ true }}">
     <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;margin-bottom:24px">
-      <h2 style="margin:0;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:{{ headingSize }};line-height:1.15;color:var(--ss-text-primary,#1C2229)">{{ heading }}</h2>
+      <h2 style="margin:0;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:{{ headingSize }};line-height:1.15;color:var(--ss-text-heading,#0B1F33)">{{ heading }}</h2>
       <sc-if value="{{ hasSubheading }}" hint-placeholder-val="{{ false }}">
         <p style="margin:0;font-size:15px;color:var(--ss-text-muted,#5B6874)">{{ subheading }}</p>
       </sc-if>
@@ -38,7 +38,7 @@
   </sc-if>
 </section>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1200,&quot;height&quot;:420},&quot;heading&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Nejoblíbenější kategorie&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;subheading&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Vše pro zdravý spánek&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;variant&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;standard&quot;,&quot;options&quot;:[&quot;standard&quot;,&quot;kompaktni&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;items&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;Category[]&quot;},&quot;popular&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;string[]&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1200,&quot;height&quot;:420},&quot;heading&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Nejoblíbenější kategorie&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;subheading&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Vše pro zdravý spánek&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;variant&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;standard&quot;,&quot;options&quot;:[&quot;standard&quot;,&quot;kompaktni&quot;,&quot;vystup&quot;,&quot;horizontalni&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;items&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;Category[]&quot;},&quot;popular&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;string[]&quot;}}">
 class Component extends DCLogic {
   state = { width: typeof window !== 'undefined' ? document.documentElement.clientWidth : 1440, items: null };
   componentDidMount() {
@@ -51,8 +51,9 @@ class Component extends DCLogic {
     const p = this.props;
     const w = this.state.width;
     const compact = p.variant === 'kompaktni';
-    const items = (p.items || this.state.items || []).map(i => Object.assign({ variant: compact ? 'kompaktni' : p.variant === 'vystup' ? 'vystup' : 'standard' }, i));
-    const cols = compact
+    const horiz = p.variant === 'horizontalni';
+    const items = (p.items || this.state.items || []).map(i => horiz ? Object.assign({}, i, { variant: 'horizontalni' }) : Object.assign({ variant: compact ? 'kompaktni' : p.variant === 'vystup' ? 'vystup' : 'standard' }, i));
+    const cols = horiz ? (w >= 1000 ? 3 : w >= 550 ? 2 : 1) : compact
       ? (w >= 1150 ? 4 : w >= 820 ? 3 : 2)
       : (w >= 1560 ? 6 : w >= 820 ? 3 : 2);
     const popular = (p.popular || []).map(l => (typeof l === 'string' ? { label: l, href: '#' } : l));

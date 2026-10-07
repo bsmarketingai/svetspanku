@@ -14,7 +14,7 @@
 <style>
 h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
 
-.ss-pc{position:relative;font-family:Roboto,Helvetica,Arial,sans-serif;display:flex;flex-direction:column;width:100%;min-width:0;background:var(--ss-surface-page,#FFFFFF);border-radius:12px;padding:16px;transition:box-shadow .15s cubic-bezier(.22,.61,.36,1);}
+.ss-pc{position:relative;font-family:Roboto,Helvetica,Arial,sans-serif;display:flex;flex-direction:column;width:100%;min-width:0;background:var(--ss-surface-card,#FFFFFF);border-radius:12px;padding:16px;transition:box-shadow .15s cubic-bezier(.22,.61,.36,1);}
 .ss-pc:hover{box-shadow:0 4px 12px rgba(19,44,67,.12);}
 .ss-pc:focus-within{box-shadow:0 0 0 3px rgba(41,96,147,.35);}
 .ss-pc-cover{position:absolute;inset:0;z-index:1;border-radius:12px;}
@@ -23,14 +23,14 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 .ss-pc:hover .ss-pc-title{color:var(--ss-hover-text,#A4600C);}
 .ss-pc-actions{position:relative;z-index:2;}
 .ss-pc-fav{position:absolute;top:0;right:0;z-index:2;display:flex;align-items:center;justify-content:center;width:40px;height:40px;border:0;border-radius:999px;background:rgba(255,255,255,.9);color:var(--ss-text-muted,#55616C);cursor:pointer;transition:color .12s cubic-bezier(.22,.61,.36,1),background-color .12s cubic-bezier(.22,.61,.36,1);}
-.ss-pc-fav:hover{background:var(--ss-surface-page,#FFFFFF);color:var(--ss-status-error,#B3261E);}
+.ss-pc-fav:hover{background:var(--ss-surface-page,#FEFAF7);color:var(--ss-status-error,#B3261E);}
 .ss-pc-fav:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
 </style>
 </helmet>
 <article class="ss-pc">
   <a class="ss-pc-cover" href="{{ href }}" aria-label="{{ title }}"></a>
 
-  <div style="position:relative;width:100%;aspect-ratio:4/3;background:var(--ss-surface-subtle,#F7F9FB);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--ss-text-decor,#C8D0D8);margin-bottom:12px">
+  <div style="position:relative;width:100%;aspect-ratio:4/3;background:var(--ss-surface-subtle,#FAF5EF);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--ss-text-decor,#C8D0D8);margin-bottom:12px">
     <dc-import name="Ikony" iconName="photo" size="32" hint-size="32px,32px"></dc-import>
     <sc-if value="{{ hasBadge }}" hint-placeholder-val="{{ false }}">
       <span style="position:absolute;top:8px;left:8px;z-index:2"><dc-import name="Stitek" kind="{{ badgeKind }}" label="{{ badgeLabel }}" size="small" hint-size="80px,24px"></dc-import></span>

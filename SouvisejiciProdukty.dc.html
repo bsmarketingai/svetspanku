@@ -22,11 +22,11 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 @media (min-width:820px){.ss-car-wrap[data-peek="true"]{--pk:32px;}}
 .ss-car-wrap[data-peek="true"] .ss-car{margin-right:calc(-1 * var(--pk));padding-right:var(--pk);}
 .ss-car-wrap[data-peek="true"] .ss-car::after{content:"";flex:0 0 1px;}
-.ss-car-peek{position:absolute;z-index:3;transform:translateY(-50%);display:flex;align-items:center;justify-content:center;width:44px;height:44px;border:0;box-sizing:border-box;border-radius:6px;background:var(--ss-action-tonal-bg,#DCE8F2);color:var(--ss-action-tonal-fg,#21507B);box-shadow:0 4px 12px rgba(19,44,67,.12);cursor:pointer;transition:background-color .12s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1);}
+.ss-car-peek{position:absolute;z-index:3;transform:translateY(-50%);display:flex;align-items:center;justify-content:center;width:44px;height:44px;border:0;box-sizing:border-box;border-radius:6px;background:var(--ss-action-tonal-bg,#FEEDD4);color:var(--ss-action-tonal-fg,#7A4708);box-shadow:0 4px 12px rgba(19,44,67,.12);cursor:pointer;transition:background-color .12s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1);}
 .ss-car-peek > *{display:flex;line-height:0;}
 .ss-car-peek-next{right:calc(8px - var(--pk));}
 .ss-car-peek-prev{left:-8px;}
-@media (hover:hover) and (pointer:fine){.ss-car-peek:hover{background:var(--ss-action-tonal-hover-bg,#B9D0E5);color:var(--ss-hover-text,#21507B);}}
+@media (hover:hover) and (pointer:fine){.ss-car-peek:hover{background:var(--ss-action-tonal-hover-bg,#FDDCAA);color:var(--ss-action-tonal-hover-fg,#7A4708);}}
 .ss-car-peek:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
 /* výška overlaye = polovina čtvercové fotky karty (procentní padding se počítá ze šířky) */
 .ss-car-nav{position:absolute;top:16px;left:0;right:0;height:0;padding-top:calc((100% - 32px) / 2);pointer-events:none;}
@@ -34,7 +34,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 @media (min-width:820px){.ss-car-nav{padding-top:calc(((100% - 40px) / 3 - 32px) / 2);}}
 @media (min-width:1150px){.ss-car-nav{padding-top:calc(((100% - 60px) / 4 - 32px) / 2);}}
 @media (min-width:1560px){.ss-car-nav{padding-top:calc(((100% - 80px) / 5 - 32px) / 2);}}
-.ss-car-arrow{position:absolute;bottom:0;transform:translateY(50%);pointer-events:auto;z-index:3;display:flex;align-items:center;justify-content:center;width:44px;height:44px;flex:none;border:0;border-radius:999px;background:var(--ss-surface-page,#FFFFFF);color:var(--ss-link-hover,#21507B);cursor:pointer;box-shadow:0 4px 12px rgba(19,44,67,.12);transition:background-color .12s cubic-bezier(.22,.61,.36,1);}
+.ss-car-arrow{position:absolute;bottom:0;transform:translateY(50%);pointer-events:auto;z-index:3;display:flex;align-items:center;justify-content:center;width:44px;height:44px;flex:none;border:0;border-radius:999px;background:var(--ss-surface-page,#FEFAF7);color:var(--ss-link-hover,#21507B);cursor:pointer;box-shadow:0 4px 12px rgba(19,44,67,.12);transition:background-color .12s cubic-bezier(.22,.61,.36,1);}
 .ss-car-prev{left:-22px;}
 .ss-car-next{right:-22px;}
 @media (max-width:1149px){.ss-car-prev{left:-16px;}.ss-car-next{right:-16px;}}
@@ -43,14 +43,14 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 .ss-car-arrow svg{display:block;}
 .ss-car-arrow:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
 .ss-car-below{display:flex;justify-content:flex-end;align-items:center;gap:8px;margin-top:-8px;}
-.ss-car-flat{position:static;transform:none;pointer-events:auto;display:flex;align-items:center;justify-content:center;width:44px;height:44px;flex:none;border:0;box-sizing:border-box;border-radius:6px;background:var(--ss-action-tonal-bg,#DCE8F2);box-shadow:none;color:var(--ss-action-tonal-fg,#21507B);cursor:pointer;transition:background-color .12s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1);}
-@media (hover:hover) and (pointer:fine){.ss-car-flat:hover{background:var(--ss-action-tonal-hover-bg,#B9D0E5);color:var(--ss-hover-text,#21507B);}}
+.ss-car-flat{position:static;transform:none;pointer-events:auto;display:flex;align-items:center;justify-content:center;width:44px;height:44px;flex:none;border:0;box-sizing:border-box;border-radius:6px;background:var(--ss-action-tonal-bg,#FEEDD4);box-shadow:none;color:var(--ss-action-tonal-fg,#7A4708);cursor:pointer;transition:background-color .12s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1);}
+@media (hover:hover) and (pointer:fine){.ss-car-flat:hover{background:var(--ss-action-tonal-hover-bg,#FDDCAA);color:var(--ss-action-tonal-hover-fg,#7A4708);}}
 .ss-car-flat:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
 </style>
 </helmet>
 <section style="font-family:Roboto,Helvetica,Arial,sans-serif;width:100%;min-width:0;display:flex;flex-direction:column;gap:20px">
   <div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px">
-    <h2 style="margin:0;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:{{ headingSize }};line-height:1.15;color:var(--ss-text-primary,#1C2229)">{{ heading }}</h2>
+    <h2 style="margin:0;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:{{ headingSize }};line-height:1.15;color:var(--ss-text-heading,#0B1F33)">{{ heading }}</h2>
     <sc-if value="{{ linkTop }}" hint-placeholder-val="{{ false }}">
       <div style="margin-left:auto"><dc-import name="Tlacitko" label="{{ linkLabel }}" variant="secondary" href="{{ linkHref }}" iconRight="chevron-right" hint-size="160px,44px"></dc-import></div>
     </sc-if>
@@ -139,7 +139,7 @@ class Component extends DCLogic {
   renderVals() {
     const p = this.props;
     const w = this.state.width;
-    const list = (p.items || this.state.items || []).map(d => Object.assign({}, d, { href: 'Produkt Levita.dc.html' }));
+    const list = (p.items || this.state.items || []).map(d => Object.assign({}, d, { href: 'Postel 3.0.dc.html' }));
     const peek = p.navPosition === 'peek' && w < 1000;
     const perViewRaw = peek ? (w >= 550 ? 2.3 : 1.25) : w >= 1560 ? 5 : w >= 1150 ? 4 : w >= 820 ? 3 : w >= 550 ? 2 : 1;
     const perView = list.length ? Math.min(perViewRaw, list.length) : perViewRaw;

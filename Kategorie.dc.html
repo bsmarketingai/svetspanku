@@ -21,17 +21,17 @@ html,body{margin:0!important;padding:0!important;}
 #dc-root>.sc-host{margin:0!important;padding:0!important;width:100%!important;}
 a{color:var(--ss-link,#296093);}
 a:hover{color:var(--ss-hover-text,#A4600C);}
-.ss-seg{display:inline-flex;align-items:center;justify-content:center;height:52px;padding:0 24px;border:1px solid var(--ss-border-subtle,#E1E6EB);border-radius:6px;background:var(--ss-surface-page,#FFFFFF);font:inherit;font-size:15px;font-weight:600;color:var(--ss-text-secondary,#3D4750);cursor:pointer;white-space:nowrap;transition:background-color .12s cubic-bezier(.22,.61,.36,1),border-color .12s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1);}
+.ss-seg{display:inline-flex;align-items:center;justify-content:center;height:52px;padding:0 24px;border:1px solid var(--ss-border-subtle,#E1E6EB);border-radius:6px;background:var(--ss-surface-page,#FEFAF7);font:inherit;font-size:15px;font-weight:600;color:var(--ss-text-secondary,#3D4750);cursor:pointer;white-space:nowrap;transition:background-color .12s cubic-bezier(.22,.61,.36,1),border-color .12s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1);}
 @media (hover:hover) and (pointer:fine){.ss-seg:hover{border-color:var(--ss-border-action,#296093);color:var(--ss-hover-text,#A4600C);}}
 .ss-seg:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
 .ss-seg[aria-pressed="true"]{background:var(--ss-surface-hover,#F0F5FA);border-color:var(--ss-border-action,#296093);color:var(--ss-link-hover,#21507B);}
-.ss-cat{position:relative;display:flex;align-items:center;gap:12px;padding:16px;border:1px solid var(--ss-border-subtle,#E1E6EB);border-radius:12px;background:var(--ss-surface-page,#FFFFFF);text-decoration:none;color:var(--ss-text-primary,#1C2229);min-width:0;transition:box-shadow .15s cubic-bezier(.22,.61,.36,1),border-color .12s cubic-bezier(.22,.61,.36,1);}
+.ss-cat{position:relative;display:flex;align-items:center;gap:12px;padding:16px;border:1px solid var(--ss-border-subtle,#E1E6EB);border-radius:12px;background:var(--ss-surface-card,#FFFFFF);text-decoration:none;color:var(--ss-text-primary,#1C2229);min-width:0;transition:box-shadow .15s cubic-bezier(.22,.61,.36,1),border-color .12s cubic-bezier(.22,.61,.36,1);}
 @media (hover:hover) and (pointer:fine){.ss-cat:hover{border-color:var(--ss-border-action,#296093);box-shadow:0 4px 12px rgba(19,44,67,.12);}}
 .ss-cat:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
 .ss-art{position:relative;display:flex;flex-direction:column;gap:12px;padding:12px;margin:-12px;text-decoration:none;color:var(--ss-text-primary,#1C2229);border-radius:12px;transition:box-shadow .15s cubic-bezier(.22,.61,.36,1);}
 @media (hover:hover) and (pointer:fine){.ss-art:hover{box-shadow:0 4px 12px rgba(19,44,67,.12);}.ss-art:hover .ss-art-t{color:var(--ss-hover-text,#A4600C);}}
 .ss-art:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
-.ss-ph{display:flex;align-items:center;justify-content:center;background:var(--ss-surface-muted,#EFF2F5);color:var(--ss-text-decor,#C8D0D8);border-radius:12px;}
+.ss-ph{display:flex;align-items:center;justify-content:center;background:var(--ss-surface-muted,#F3EDE4);color:var(--ss-text-decor,#C8D0D8);border-radius:12px;}
 .ss-sort{position:relative;display:inline-flex;align-items:center;height:44px;border:0;padding:0 2px;background:none;font:inherit;font-size:15px;font-weight:600;color:var(--ss-text-muted,#55616C);cursor:pointer;white-space:nowrap;transition:color .12s cubic-bezier(.22,.61,.36,1);}
 @media (hover:hover) and (pointer:fine){.ss-sort:hover{color:var(--ss-hover-text,#A4600C);}}
 .ss-sort:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);border-radius:6px;}
@@ -43,7 +43,7 @@ a.ss-promo:hover{color:#FFFFFF;}
 .ss-promo-btn{display:flex;align-items:center;justify-content:center;flex:none;width:52px;height:52px;border-radius:999px;background:#296093;color:#FFFFFF;transition:background-color .12s cubic-bezier(.22,.61,.36,1);}
 @media (hover:hover) and (pointer:fine){.ss-promo:hover{box-shadow:0 4px 12px rgba(19,44,67,.12);}.ss-promo:hover .ss-promo-btn{background:#21507B;}}
 .ss-promo:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
-.ss-tip{width:100%;border:0;font:inherit;text-align:left;cursor:pointer;display:flex;align-items:center;gap:16px;padding:16px;border-radius:12px;background:var(--ss-surface-page,#FFFFFF);text-decoration:none;color:var(--ss-text-primary,#1C2229);height:100%;box-sizing:border-box;transition:box-shadow .15s cubic-bezier(.22,.61,.36,1);}
+.ss-tip{width:100%;border:0;font:inherit;text-align:left;cursor:pointer;display:flex;align-items:center;gap:16px;padding:16px;border-radius:12px;background:var(--ss-surface-card,#FFFFFF);text-decoration:none;color:var(--ss-text-primary,#1C2229);height:100%;box-sizing:border-box;transition:box-shadow .15s cubic-bezier(.22,.61,.36,1);}
 @media (hover:hover) and (pointer:fine){.ss-tip:hover{box-shadow:0 4px 12px rgba(19,44,67,.12);color:var(--ss-text-primary,#1C2229);}.ss-tip:hover .ss-tip-t{color:var(--ss-hover-text,#A4600C);}}
 .ss-tip:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
 .ss-more{position:relative;display:inline-flex;align-items:center;gap:4px;margin-top:8px;min-height:44px;padding:0;border:0;background:none;font:inherit;font-size:16px;font-weight:600;color:var(--ss-link,#296093);text-decoration:underline;text-underline-offset:3px;cursor:pointer;transition:color .12s cubic-bezier(.22,.61,.36,1);}
@@ -56,12 +56,12 @@ a.ss-promo:hover{color:#FFFFFF;}
 @media (prefers-reduced-motion:reduce){.ss-kg-pvbg{transition:none;}.ss-kg-pv:hover .ss-kg-pvbg{transform:none;}}
 </style>
 </helmet>
-<div style="width:100%;background:var(--ss-surface-page,#FFFFFF);font-family:Roboto,Helvetica,Arial,sans-serif;color:var(--ss-text-primary,#1C2229)">
-  <dc-import name="Hlavicka" style="position:sticky;top:0;z-index:200" ledMode="{{ ledMode }}" hint-size="100%,180px"></dc-import>
-  <dc-import name="PrezentacniLista" items="{{ presItems }}" onToggle="{{ onPresToggle }}" hint-size="320px,52px"></dc-import>
+<div style="width:100%;background:var(--ss-surface-page,#FEFAF7);font-family:Roboto,Helvetica,Arial,sans-serif;color:var(--ss-text-primary,#1C2229)">
+  <dc-import name="Hlavicka" style="position:sticky;top:0;z-index:200" ledMode="{{ ledMode }}" activeCategory="Matrace" hint-size="100%,180px"></dc-import>
+  <dc-import name="PrezentacniLista" items="{{ presItems }}" onToggle="{{ onPresToggle }}" choices="{{ presChoices }}" onPick="{{ onPresPick }}" hint-size="400px,52px"></dc-import>
 
   <main>
-    <section style="width:100%;background:var(--ss-surface-muted,#EFF2F5);border-bottom:1px solid var(--ss-border-subtle,#E1E6EB)">
+    <section class="ss-grad-top" style="width:100%;background-color:var(--ss-surface-page,#FEFAF7)">
       <div style="{{ innerTop }}">
         <div style="display:grid;grid-template-columns:{{ topCols }};grid-template-areas:{{ topAreas }};gap:{{ topGap }};align-items:start">
           <div style="grid-area:a;min-width:0">
@@ -95,12 +95,12 @@ a.ss-promo:hover{color:#FFFFFF;}
           </a>
 
           <div style="grid-area:b;min-width:0">
-            <h2 class="ss-plain" style="margin:0 0 16px;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ss-text-primary,#1C2229)">Nevíte si rady? Poradíme!</h2>
+            <h2 class="ss-plain" style="margin:0 0 16px;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ss-text-heading,#0B1F33)">Nevíte si rady? Poradíme!</h2>
             <ul style="list-style:none;margin:0;padding:0;display:grid;grid-template-columns:{{ tipCols }};gap:16px">
               <sc-for list="{{ tips }}" as="t" hint-placeholder-count="2">
                 <li style="min-width:0">
                   <button type="button" class="ss-tip ss-elev" aria-haspopup="dialog" onClick="{{ t.onOpen }}">
-                    <sc-if value="{{ t.hasImage }}" hint-placeholder-val="{{ false }}"><span aria-hidden="true" style="display:block;flex:none;width:64px;height:64px;border-radius:6px;background:var(--ss-surface-muted,#EFF2F5) center / cover no-repeat;background-image:{{ t.bg }}"></span></sc-if>
+                    <sc-if value="{{ t.hasImage }}" hint-placeholder-val="{{ false }}"><span aria-hidden="true" style="display:block;flex:none;width:64px;height:64px;border-radius:6px;background:var(--ss-surface-muted,#F3EDE4) center / cover no-repeat;background-image:{{ t.bg }}"></span></sc-if>
                     <sc-if value="{{ t.noImage }}" hint-placeholder-val="{{ true }}"><span style="display:flex;align-items:center;justify-content:center;flex:none;width:64px;height:64px;border-radius:6px;background:var(--ss-surface-hover,#F0F5FA);color:var(--ss-link,#296093)" aria-hidden="true"><dc-import name="Ikony" iconName="help-circle" size="32" hint-size="32px,32px"></dc-import></span></sc-if>
                     <span class="ss-tip-t" style="flex:1;min-width:0;font-size:16px;font-weight:600;line-height:1.4;text-wrap:pretty">{{ t.title }}</span>
                     <span style="display:flex;flex:none;color:var(--ss-link,#296093)" aria-hidden="true"><dc-import name="Ikony" iconName="chevron-right" size="20" hint-size="20px,20px"></dc-import></span>
@@ -114,7 +114,7 @@ a.ss-promo:hover{color:#FFFFFF;}
       </div>
     </section>
 
-    <section style="width:100%;background:var(--ss-surface-page,#FFFFFF)">
+    <section style="width:100%;background:var(--ss-surface-page,#FEFAF7)">
       <div style="{{ innerSub }}">
         <nav aria-label="Podkategorie">
           <dc-import name="VypisKategorii" items="{{ subcats }}" variant="{{ subVariant }}" hint-size="100%,380px"></dc-import>
@@ -122,7 +122,7 @@ a.ss-promo:hover{color:#FFFFFF;}
       </div>
     </section>
 
-    <section style="width:100%;background:var(--ss-surface-page,#FFFFFF)">
+    <section style="width:100%;background:var(--ss-surface-page,#FEFAF7)">
       <div style="{{ innerResults }}">
         <div style="display:grid;grid-template-columns:{{ resultsTemplate }};gap:{{ resultsGap }};align-items:start">
 
@@ -227,6 +227,8 @@ class Component extends DCLogic {
       ledMode: this.state.led ? 'on' : 'off',
       presItems: [{ label: 'LED', value: this.state.led }],
       onPresToggle: () => this.setState(s => ({ led: !s.led })),
+      presChoices: [{ label: 'Kategorie', value: this.state.subV || 'K1', options: ['K1', 'K2'] }],
+      onPresPick: (ci, opt) => this.setState({ subV: opt }),
       innerTop: Object.assign({}, inner, { padding: narrow ? '8px 16px 32px' : '16px 32px 64px' }),
       innerSub: Object.assign({}, inner, { padding: narrow ? '40px 16px 0' : '64px 32px 0' }),
       innerResults: Object.assign({}, inner, { padding: narrow ? '32px 16px 48px' : '48px 32px 80px' }),
@@ -243,7 +245,7 @@ class Component extends DCLogic {
       promoVeil: narrow ? 'rgba(255,255,255,.82)' : 'linear-gradient(90deg,rgba(255,255,255,.94) 0%,rgba(255,255,255,.8) 45%,rgba(255,255,255,0) 75%)',
       promoTextMax: narrow ? 'none' : '60%',
       promoSize: narrow ? '24px' : '28px',
-      subVariant: 'vystup',
+      subVariant: this.state.subV === 'K2' ? 'horizontalni' : 'vystup',
       subcats: [
         { label: 'Dětské matrace', sub: ['Pro speciální potřeby dětského těla'], href: 'Kategorie.dc.html', image: 'podkategorie-detske-matrace.png', variant: 'vystup' },
         { label: 'Vrchní matrace – toppery', sub: ['Vyšší komfort a ochrana před nečistotami'], href: 'Kategorie.dc.html', image: 'podkategorie-toppery.png', variant: 'vystup' },

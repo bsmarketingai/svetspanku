@@ -71,7 +71,7 @@ class Component extends DCLogic {
       title: i.title, variant: i.variant, total: i.total,
       qtyText: (i.qty ?? 1) + ' ks',
       img: i.img || '', hasImg: !!i.img, noImg: !i.img,
-      mediaBg: i.img ? 'transparent' : 'var(--ss-surface-muted,#EFF2F5)'
+      mediaBg: i.img ? 'transparent' : 'var(--ss-surface-muted,#F3EDE4)'
     }));
     const lines = (p.lines || [
       { label: 'Doprava', name: 'Vlastní doprava – vynáška do patra', value: '1 500 Kč' },

@@ -15,7 +15,7 @@
 h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
 
 .ss-kd,.ss-kd *{box-sizing:border-box;}
-.ss-kd{font-family:Roboto,Helvetica,Arial,sans-serif;display:flex;flex-direction:column;height:100%;width:100%;background:var(--ss-surface-page,#FFFFFF);color:var(--ss-text-primary,#1C2229);overflow-x:hidden;}
+.ss-kd{font-family:Roboto,Helvetica,Arial,sans-serif;display:flex;flex-direction:column;height:100%;width:100%;background:var(--ss-surface-page,#FEFAF7);color:var(--ss-text-primary,#1C2229);overflow-x:hidden;}
 .ss-kd .ss-qty{background:transparent;}
 .ss-kd-icon{display:flex;align-items:center;justify-content:center;width:44px;height:44px;border:0;border-radius:6px;background:none;color:var(--ss-text-muted,#55616C);cursor:pointer;transition:background-color .12s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1);}
 .ss-kd-icon:hover{background:var(--ss-hover-bg,#FFF5E6);color:var(--ss-hover-text,#A4600C);}
@@ -43,7 +43,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
       <div>
         <sc-for list="{{ items }}" as="i" hint-placeholder-count="3">
           <div class="ss-kd-row">
-            <span style="width:88px;height:88px;border-radius:8px;background:var(--ss-surface-muted,#EFF2F5);display:flex;align-items:center;justify-content:center;color:var(--ss-text-decor,#C8D0D8);overflow:hidden"><sc-if value="{{ i.hasImg }}" hint-placeholder-val="{{ false }}"><img src="{{ i.img }}" alt="" style="display:block;width:100%;height:100%;object-fit:{{ i.fit }}" /></sc-if><sc-if value="{{ i.noImg }}" hint-placeholder-val="{{ true }}"><dc-import name="Ikony" iconName="photo" size="22" hint-size="22px,22px"></dc-import></sc-if></span>
+            <span style="width:88px;height:88px;border-radius:8px;background:var(--ss-surface-muted,#F3EDE4);display:flex;align-items:center;justify-content:center;color:var(--ss-text-decor,#C8D0D8);overflow:hidden"><sc-if value="{{ i.hasImg }}" hint-placeholder-val="{{ false }}"><img src="{{ i.img }}" alt="" style="display:block;width:100%;height:100%;object-fit:{{ i.fit }}" /></sc-if><sc-if value="{{ i.noImg }}" hint-placeholder-val="{{ true }}"><dc-import name="Ikony" iconName="photo" size="22" hint-size="22px,22px"></dc-import></sc-if></span>
             <div style="display:flex;flex-direction:column;gap:10px;min-width:0">
               <div style="display:flex;align-items:flex-start;gap:12px">
                 <a href="{{ i.href }}" style="font-size:15px;font-weight:600;line-height:1.35;color:var(--ss-text-primary,#1C2229);text-decoration:none;min-width:0">{{ i.title }}</a>
@@ -110,7 +110,7 @@ class Component extends DCLogic {
       variant: it.variant,
       qty: it.qty ?? 1,
       price: it.price,
-      href: it.href || '#produkt',
+      href: it.href || 'Postel 3.0.dc.html',
       img: it.img || '', fit: it.fit || 'contain', hasImg: !!it.img, noImg: !it.img,
       removeLabel: 'Odebrat ' + it.title,
       onRemove: () => { if (p.onRemove) p.onRemove(idx); },

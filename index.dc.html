@@ -21,8 +21,11 @@ html,body{margin:0!important;padding:0!important;}
 #dc-root>.sc-host{margin:0!important;padding:0!important;width:100%!important;}
 a{color:var(--ss-link,#296093);}
 a:hover{color:var(--ss-hover-text,#A4600C);}
-.ss-hp-tile{position:relative;display:flex;flex-direction:column;justify-content:flex-end;gap:8px;min-height:200px;padding:24px;border-radius:12px;text-decoration:none;color:var(--ss-text-primary,#1C2229);background:var(--ss-surface-muted,#EFF2F5);transition:box-shadow .15s cubic-bezier(.22,.61,.36,1);}
+.ss-hp-tile{position:relative;display:flex;flex-direction:column;justify-content:flex-end;gap:8px;min-height:230px;padding:24px;border-radius:12px;text-decoration:none;color:var(--ss-text-primary,#1C2229);background:var(--ss-surface-muted,#F3EDE4);transition:box-shadow .15s cubic-bezier(.22,.61,.36,1);}
 .ss-hp-tile:hover{box-shadow:0 4px 12px rgba(19,44,67,.12);}
+.ss-hp-tile-bg{transition:transform .4s cubic-bezier(.22,.61,.36,1);}
+@media (hover:hover) and (pointer:fine){.ss-hp-tile:hover .ss-hp-tile-bg{transform:scale(1.04);}}
+@media (prefers-reduced-motion:reduce){.ss-hp-tile-bg{transition:none;}.ss-hp-tile:hover .ss-hp-tile-bg{transform:none;}}
 .ss-hp-tile:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
 .ss-hp-art{position:relative;display:flex;flex-direction:column;gap:12px;padding:8px;margin:-8px;text-decoration:none;color:var(--ss-text-primary,#1C2229);border-radius:12px;}
 .ss-hp-art:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
@@ -34,7 +37,7 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
 @media (prefers-reduced-motion:reduce){.ss-rev-badge::after{animation:none;opacity:0;}}
 .ss-mag-ph{height:200px;position:relative;overflow:hidden;}
 .ss-mag-zoom{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;transition:transform .4s cubic-bezier(.22,.61,.36,1);}
-.ss-mag-cta{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) scale(.96);z-index:2;display:inline-flex;align-items:center;min-height:44px;padding:0 22px;border-radius:999px;background:var(--ss-surface-page,#FFFFFF);color:var(--ss-text-primary,#1C2229);font-size:15px;font-weight:600;box-shadow:0 4px 12px rgba(19,44,67,.12);opacity:0;pointer-events:none;transition:opacity .15s cubic-bezier(.22,.61,.36,1),transform .15s cubic-bezier(.22,.61,.36,1);}
+.ss-mag-cta{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) scale(.96);z-index:2;display:inline-flex;align-items:center;min-height:44px;padding:0 22px;border-radius:999px;background:var(--ss-surface-page,#FEFAF7);color:var(--ss-text-primary,#1C2229);font-size:15px;font-weight:600;box-shadow:0 4px 12px rgba(19,44,67,.12);opacity:0;pointer-events:none;transition:opacity .15s cubic-bezier(.22,.61,.36,1),transform .15s cubic-bezier(.22,.61,.36,1);}
 @media (hover:hover) and (pointer:fine){
 .ss-hp-art:hover .ss-mag-zoom,.ss-mag-lead:hover .ss-mag-zoom{transform:scale(1.06);}
 .ss-hp-art:hover .ss-mag-cta,.ss-mag-lead:hover .ss-mag-cta{opacity:1;transform:translate(-50%,-50%) scale(1);}
@@ -48,8 +51,8 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
 @media (min-width:820px) and (max-width:1149px){.ss-mag-lead{grid-column:span 2;}.ss-mag-lead .ss-mag-ph{height:360px;}}
 @media (min-width:1150px){.ss-mag-lead{grid-row:span 2;}.ss-mag-lead .ss-mag-ph{flex:1;height:auto;min-height:440px;}}
 .ss-mag-nav{display:flex;justify-content:flex-end;align-items:center;gap:8px;margin-top:12px;}
-.ss-mag-nav .ss-mag-arrow{border:0;box-sizing:border-box;border-radius:6px;background:var(--ss-action-tonal-bg,#DCE8F2);color:var(--ss-action-tonal-fg,#21507B);}
-@media (hover:hover) and (pointer:fine){.ss-mag-nav .ss-mag-arrow:hover{background:var(--ss-action-tonal-hover-bg,#B9D0E5);color:var(--ss-hover-text,#21507B);}}
+.ss-mag-nav .ss-mag-arrow{border:0;box-sizing:border-box;border-radius:6px;background:var(--ss-action-tonal-bg,#FEEDD4);color:var(--ss-action-tonal-fg,#7A4708);}
+@media (hover:hover) and (pointer:fine){.ss-mag-nav .ss-mag-arrow:hover{background:var(--ss-action-tonal-hover-bg,#FDDCAA);color:var(--ss-action-tonal-hover-fg,#7A4708);}}
 .ss-m2-track{--m2-pad:max(32px,calc((100% - 1560px) / 2));--m2-c:min(calc(100% - 64px),1560px);display:flex;align-items:flex-start;gap:32px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:8px var(--m2-pad);scroll-padding-left:var(--m2-pad);box-sizing:border-box;width:100%;}
 .ss-m2-track::-webkit-scrollbar{display:none;}
 .ss-rev-track{display:flex;align-items:stretch;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-left:8px;scrollbar-width:none;padding:8px;margin:-8px;flex:1;}
@@ -59,7 +62,7 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
 @media (max-width:549px){.ss-rev-card{flex-basis:280px;}}
 .ss-m2-wrap{position:relative;}
 .ss-p2-track{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:20px;}
-.ss-p2-card{position:relative;display:flex;flex-direction:column;justify-content:flex-end;aspect-ratio:1/1;border-radius:12px;overflow:hidden;text-decoration:none;background:var(--ss-surface-muted,#EFF2F5);transition:box-shadow .15s cubic-bezier(.22,.61,.36,1);}
+.ss-p2-card{position:relative;display:flex;flex-direction:column;justify-content:flex-end;aspect-ratio:1/1;border-radius:12px;overflow:hidden;text-decoration:none;background:var(--ss-surface-muted,#F3EDE4);transition:box-shadow .15s cubic-bezier(.22,.61,.36,1);}
 .ss-p2-card:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
 .ss-p2-bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .4s cubic-bezier(.22,.61,.36,1);}
 @media (hover:hover) and (pointer:fine){.ss-p2-card:hover{box-shadow:0 4px 12px rgba(19,44,67,.12);}.ss-p2-card:hover .ss-p2-bg{transform:scale(1.06);}.ss-p2-card:hover .ss-p2-city{color:#FBB255!important;}}
@@ -72,7 +75,7 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
 .ss-pv-bg{transition:transform .4s cubic-bezier(.22,.61,.36,1);}
 @media (hover:hover) and (pointer:fine){.ss-pv:hover .ss-pv-bg{transform:scale(1.06);}}
 @media (prefers-reduced-motion:reduce){.ss-p2-track{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:20px;}
-.ss-p2-card{position:relative;display:flex;flex-direction:column;justify-content:flex-end;aspect-ratio:1/1;border-radius:12px;overflow:hidden;text-decoration:none;background:var(--ss-surface-muted,#EFF2F5);transition:box-shadow .15s cubic-bezier(.22,.61,.36,1);}
+.ss-p2-card{position:relative;display:flex;flex-direction:column;justify-content:flex-end;aspect-ratio:1/1;border-radius:12px;overflow:hidden;text-decoration:none;background:var(--ss-surface-muted,#F3EDE4);transition:box-shadow .15s cubic-bezier(.22,.61,.36,1);}
 .ss-p2-card:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
 .ss-p2-bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .4s cubic-bezier(.22,.61,.36,1);}
 @media (hover:hover) and (pointer:fine){.ss-p2-card:hover{box-shadow:0 4px 12px rgba(19,44,67,.12);}.ss-p2-card:hover .ss-p2-bg{transform:scale(1.06);}.ss-p2-card:hover .ss-p2-city{color:#FBB255!important;}}
@@ -83,11 +86,11 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
 .ss-p2-nav{display:none!important;}
 @media (max-width:1149px){.ss-p2-nav{display:flex!important;margin-top:16px;}}
 .ss-pv-bg{transition:none;}.ss-pv:hover .ss-pv-bg{transform:none;}}
-.ss-m2-peek{position:absolute;z-index:3;top:128px;transform:translateY(-50%);display:flex;align-items:center;justify-content:center;width:44px;height:44px;border:0;box-sizing:border-box;border-radius:6px;background:var(--ss-action-tonal-bg,#DCE8F2);color:var(--ss-action-tonal-fg,#21507B);box-shadow:0 4px 12px rgba(19,44,67,.12);cursor:pointer;transition:background-color .12s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1);}
+.ss-m2-peek{position:absolute;z-index:3;top:128px;transform:translateY(-50%);display:flex;align-items:center;justify-content:center;width:44px;height:44px;border:0;box-sizing:border-box;border-radius:6px;background:var(--ss-action-tonal-bg,#FEEDD4);color:var(--ss-action-tonal-fg,#7A4708);box-shadow:0 4px 12px rgba(19,44,67,.12);cursor:pointer;transition:background-color .12s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1);}
 .ss-m2-peek > *{display:flex;line-height:0;}
 .ss-m2-peek-next{right:8px;}.ss-m2-peek-prev{left:8px;}
 @media (max-width:819px){.ss-m2-peek{top:120px;}}
-@media (hover:hover) and (pointer:fine){.ss-m2-peek:hover{background:var(--ss-action-tonal-hover-bg,#B9D0E5);color:var(--ss-hover-text,#21507B);}}
+@media (hover:hover) and (pointer:fine){.ss-m2-peek:hover{background:var(--ss-action-tonal-hover-bg,#FDDCAA);color:var(--ss-action-tonal-hover-fg,#7A4708);}}
 .ss-m2-peek:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
 .ss-m2-track::after{content:"";flex:0 0 1px;}
 .ss-m2-track>.ss-hp-art{flex:0 0 320px;margin:0;padding:0;scroll-snap-align:start;min-width:0;}
@@ -101,7 +104,7 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
 @media (hover:hover) and (pointer:fine){.ss-mag-arrow:hover{background:var(--ss-hover-bg,#FFF5E6);color:var(--ss-hover-text,#A4600C);}}
 .ss-mag-arrow:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
 .ss-mag-wrap{position:relative;}
-.ss-mag-over-prev,.ss-mag-over-next{position:absolute;top:50%;transform:translateY(-50%);z-index:3;background:var(--ss-surface-page,#FFFFFF);color:var(--ss-link-hover,#21507B);box-shadow:0 4px 12px rgba(19,44,67,.12);}
+.ss-mag-over-prev,.ss-mag-over-next{position:absolute;top:50%;transform:translateY(-50%);z-index:3;background:var(--ss-surface-page,#FEFAF7);color:var(--ss-link-hover,#21507B);box-shadow:0 4px 12px rgba(19,44,67,.12);}
 .ss-mag-over-prev{left:-22px;}
 .ss-mag-over-next{right:-22px;}
 @media (max-width:1149px){.ss-mag-over-prev{left:-16px;}.ss-mag-over-next{right:-16px;}}
@@ -112,34 +115,42 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
 @media (min-width:820px) and (max-width:1149px){.ss-hp-map{grid-column:1 / -1;}}
 @media (min-width:550px) and (max-width:819px){.ss-hp-store>:first-child{grid-column:1 / -1;}}
 @media (max-width:549px){.ss-hp-pop{left:12px!important;right:12px!important;width:auto!important;max-width:none!important;max-height:none!important;}.ss-hp-pop-b{display:grid!important;grid-template-columns:72px minmax(0,1fr);column-gap:12px!important;row-gap:4px!important;padding:12px 40px 12px 12px!important;align-items:center;}.ss-hp-pop-img{grid-row:1 / span 3;width:72px!important;height:72px!important;object-position:center!important;}.ss-hp-pop-b>span[style*="28px"],.ss-hp-pop-b>span[style*="24px"],.ss-hp-pop-b>span[style*="22px"]{font-size:20px!important;}.ss-hp-pop-b>*{min-width:0;}}
-.ss-hp-ph{display:flex;align-items:center;justify-content:center;background:var(--ss-surface-muted,#EFF2F5);color:var(--ss-text-decor,#C8D0D8);border-radius:12px;}
+.ss-hp-ph{display:flex;align-items:center;justify-content:center;background:var(--ss-surface-muted,#F3EDE4);color:var(--ss-text-decor,#C8D0D8);border-radius:12px;}
 </style>
 </helmet>
-<div style="width:100%;background:var(--ss-surface-page,#FFFFFF);font-family:Roboto,Helvetica,Arial,sans-serif;color:var(--ss-text-primary,#1C2229)">
+<div style="width:100%;background:var(--ss-surface-page,#FEFAF7);font-family:Roboto,Helvetica,Arial,sans-serif;color:var(--ss-text-primary,#1C2229)">
   <dc-import name="Hlavicka" style="position:sticky;top:0;z-index:200" ledMode="{{ ledMode }}" theme="{{ chromeTheme }}" navVariant="{{ navVariant }}" hint-size="100%,180px"></dc-import>
   <dc-import name="PrezentacniLista" items="{{ presItems }}" onToggle="{{ onPresToggle }}" choices="{{ presChoices }}" onPick="{{ onPresPick }}" hint-size="460px,52px"></dc-import>
 
   <main>
     <h1 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0">Světspánku.cz — postele, matrace a rošty z masivu</h1>
 
-    <section style="width:100%;background:var(--ss-surface-page,#FFFFFF)">
+    <section class="ss-grad-top" style="width:100%;background-color:var(--ss-surface-page,#FEFAF7)">
       <div style="{{ inner }}">
         <div style="display:grid;grid-template-columns:{{ heroTemplate }};gap:20px;padding:24px 0 0">
-          <a class="ss-hp-tile" href="#akce" style="background:linear-gradient(to top,rgba(9,18,27,.92) 0%,rgba(9,18,27,.72) 35%,rgba(9,18,27,.2) 70%,rgba(9,18,27,0) 90%),url(hero-akce.png) 30% 30% / cover no-repeat,#132C43;color:#FFFFFF">
+          <a class="ss-hp-tile" href="#akce" style="background:#132C43;color:#FFFFFF;overflow:hidden;isolation:isolate">
+            <span aria-hidden="true" class="ss-hp-tile-bg" style="position:absolute;inset:0;z-index:-2;background:url(hero-akce.png) 30% 30% / cover no-repeat"></span>
+            <span aria-hidden="true" style="position:absolute;inset:0;z-index:-1;background:linear-gradient(to top,rgba(9,18,27,.92) 0%,rgba(9,18,27,.72) 35%,rgba(9,18,27,.2) 70%,rgba(9,18,27,0) 90%)"></span>
             <span style="font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:21px;line-height:1.2">Black Friday — nakupte se slevami až 60 %</span>
             <span style="font-size:14px;color:#DCE8F2">Jen do 30. listopadu, na vybrané matrace a komplety</span>
           </a>
-          <a class="ss-hp-tile" href="#komplety" style="background:linear-gradient(to top,rgba(9,18,27,.92) 0%,rgba(9,18,27,.72) 35%,rgba(9,18,27,.2) 70%,rgba(9,18,27,0) 90%),url(hero-komplet.png) center 40% / cover no-repeat,#132C43;color:#FFFFFF">
+          <a class="ss-hp-tile" href="#komplety" style="background:#132C43;color:#FFFFFF;overflow:hidden;isolation:isolate">
+            <span aria-hidden="true" class="ss-hp-tile-bg" style="position:absolute;inset:0;z-index:-2;background:url(hero-komplet.png) center 40% / cover no-repeat"></span>
+            <span aria-hidden="true" style="position:absolute;inset:0;z-index:-1;background:linear-gradient(to top,rgba(9,18,27,.92) 0%,rgba(9,18,27,.72) 35%,rgba(9,18,27,.2) 70%,rgba(9,18,27,0) 90%)"></span>
             <span style="font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:21px;line-height:1.2">Cenově zvýhodněné komplety se slevou až 30 %</span>
             <span style="font-size:14px;color:#DCE8F2">Postel, rošt a matrace v jedné objednávce</span>
           </a>
-          <div class="ss-hp-tile" style="background:linear-gradient(to top,rgba(9,18,27,.92) 0%,rgba(9,18,27,.72) 35%,rgba(9,18,27,.2) 70%,rgba(9,18,27,0) 90%),url(pruvodce-matrace-lifestyle.png) center 30% / cover no-repeat,#132C43;color:#FFFFFF">
+          <div class="ss-hp-tile" style="background:#132C43;color:#FFFFFF;overflow:hidden;isolation:isolate">
+            <span aria-hidden="true" class="ss-hp-tile-bg" style="position:absolute;inset:0;z-index:-2;background:url(pruvodce-matrace-lifestyle.png) center 30% / cover no-repeat"></span>
+            <span aria-hidden="true" style="position:absolute;inset:0;z-index:-1;background:linear-gradient(to top,rgba(9,18,27,.92) 0%,rgba(9,18,27,.72) 35%,rgba(9,18,27,.2) 70%,rgba(9,18,27,0) 90%)"></span>
             <span style="font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:21px;line-height:1.2">Najít moji matraci</span>
             <span style="font-size:14px;color:#DCE8F2">Osm otázek a doporučíme model podle vaší váhy a polohy spánku</span>
             <div style="margin-top:4px"><dc-import name="Tlacitko" label="Průvodce výběrem" variant="primary" href="#pruvodce" iconRight="arrow-right" hint-size="200px,44px"></dc-import></div>
           </div>
           <sc-if value="{{ bannerInGrid }}" hint-placeholder-val="{{ false }}">
-            <div class="ss-hp-tile" style="background:linear-gradient(to top,rgba(9,18,27,.92) 0%,rgba(9,18,27,.72) 35%,rgba(9,18,27,.2) 70%,rgba(9,18,27,0) 90%),url(hero-banner.webp) center / cover no-repeat,#132C43;color:#FFFFFF">
+            <div class="ss-hp-tile" style="background:#132C43;color:#FFFFFF;overflow:hidden;isolation:isolate">
+            <span aria-hidden="true" class="ss-hp-tile-bg" style="position:absolute;inset:0;z-index:-2;background:url(hero-banner.webp) center / cover no-repeat"></span>
+            <span aria-hidden="true" style="position:absolute;inset:0;z-index:-1;background:linear-gradient(to top,rgba(9,18,27,.92) 0%,rgba(9,18,27,.72) 35%,rgba(9,18,27,.2) 70%,rgba(9,18,27,0) 90%)"></span>
               <h2 style="margin:0;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:21px;line-height:1.2;color:#FFFFFF">Stylové povlečení</h2>
               <span style="font-size:14px;color:#DCE8F2">Proměníme vaši ložnici v oázu klidu. Prémiové materiály, moderní design a maximální pohodlí pro váš spánek.</span>
               <div style="margin-top:4px"><dc-import name="Tlacitko" label="Zobrazit povlečení" variant="primary" href="#luzkoviny" iconRight="arrow-right" hint-size="200px,44px"></dc-import></div>
@@ -157,26 +168,27 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
           </div>
         </div>
         </sc-if>
+        <div aria-hidden="true" style="height:{{ sectionGap }}"></div>
       </div>
     </section>
 
-    <section style="width:100%;background:var(--ss-surface-subtle,#F7F9FB);margin-top:{{ sectionGap }}">
+    <section class="ss-grad-top ss-grad-glow" style="width:100%;background-color:var(--ss-surface-page,#FEFAF7)">
       <div style="{{ innerPadded }}">
         <dc-import name="VypisKategorii" variant="{{ catVariant }}" heading="Nejoblíbenější kategorie" subheading="Vše pro zdravý spánek" hint-size="100%,380px"></dc-import>
       </div>
     </section>
 
-    <section style="width:100%;background:var(--ss-surface-page,#FFFFFF)">
+    <section style="width:100%;background:var(--ss-surface-page,#FEFAF7)">
       <div style="{{ innerPadded }}">
         <dc-import name="Usp" heading="Česká značka postelí a matrací pro váš zdravý spánek" hint-size="100%,260px"></dc-import>
       </div>
     </section>
 
-    <section style="width:100%;background:var(--ss-surface-page,#FFFFFF)">
+    <section style="width:100%;background:var(--ss-surface-page,#FEFAF7)">
       <div style="{{ inner }}">
-        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px;margin-bottom:20px">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:16px;margin-bottom:20px;text-align:center">
           <h2 style="margin:0;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:{{ h2Size }};line-height:1.15">Inspirujte se</h2>
-          <div style="display:flex;flex-wrap:wrap;gap:8px">
+          <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:8px">
             <sc-for list="{{ inspTabs }}" as="t" hint-placeholder-count="3">
               <dc-import name="Chip" label="{{ t.label }}" size="small" variant="{{ t.variant }}" ariaPressed="{{ t.pressed }}" onClick="{{ t.onPick }}" hint-size="110px,32px"></dc-import>
             </sc-for>
@@ -190,9 +202,9 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
                 <dc-import name="Ikony" iconName="plus" size="18" hint-size="18px,18px"></dc-import>
               </button>
               <sc-if value="{{ hotOpen }}" hint-placeholder-val="{{ true }}">
-                <div class="ss-light ss-hp-pop" style="position:absolute;bottom:calc(44% + 12px);left:44%;max-width:56%;width:min(280px,70%);background:var(--ss-surface-page,#FFFFFF);border-radius:12px;box-shadow:0 16px 40px rgba(19,44,67,.18);display:flex;align-items:stretch;overflow:hidden;z-index:300">
+                <div class="ss-light ss-hp-pop" style="position:absolute;bottom:calc(44% + 12px);left:44%;max-width:56%;width:min(280px,70%);background:var(--ss-surface-card,#FFFFFF);border-radius:12px;box-shadow:0 16px 40px rgba(19,44,67,.18);display:flex;align-items:stretch;overflow:hidden;z-index:300">
                   <div class="ss-hp-pop-b" style="flex:1;min-width:0;padding:16px;display:flex;flex-direction:column;gap:8px;text-align:left">
-                    <img class="ss-hp-pop-img" src="produkt-castello-led.png" alt="Postel z masivu CASTELLO LED" style="display:block;width:100%;height:88px;object-fit:contain;object-position:left center;border-radius:12px;background:var(--ss-surface-page,#FFFFFF)" />
+                    <img class="ss-hp-pop-img" src="produkt-castello-led.png" alt="Postel z masivu CASTELLO LED" style="display:block;width:100%;height:88px;object-fit:contain;object-position:left center;border-radius:12px;background:var(--ss-surface-page,#FEFAF7)" />
                     <span style="font-size:14px;font-weight:600;line-height:1.35;color:var(--ss-text-primary,#1C2229)">Postel z masivu CASTELLO LED</span>
                     <span style="font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:28px;color:var(--ss-text-primary,#1C2229);letter-spacing:-0.01em">od 22 990 Kč</span>
                     <dc-import name="Stitek" kind="inStock" size="small" hint-size="200px,18px"></dc-import>
@@ -207,9 +219,9 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
               <dc-import name="Ikony" iconName="plus" size="18" hint-size="18px,18px"></dc-import>
             </button>
             <sc-if value="{{ hot2Open }}" hint-placeholder-val="{{ false }}">
-              <div class="ss-light ss-hp-pop" style="position:absolute;bottom:calc(37% + 12px);left:12%;max-width:88%;width:min(280px,70%);background:var(--ss-surface-page,#FFFFFF);border-radius:12px;box-shadow:0 16px 40px rgba(19,44,67,.18);display:flex;align-items:stretch;overflow:hidden;z-index:300">
+              <div class="ss-light ss-hp-pop" style="position:absolute;bottom:calc(37% + 12px);left:12%;max-width:88%;width:min(280px,70%);background:var(--ss-surface-card,#FFFFFF);border-radius:12px;box-shadow:0 16px 40px rgba(19,44,67,.18);display:flex;align-items:stretch;overflow:hidden;z-index:300">
                 <div class="ss-hp-pop-b" style="flex:1;min-width:0;padding:16px;display:flex;flex-direction:column;gap:8px;text-align:left">
-                  <img class="ss-hp-pop-img" src="produkt-nocni-stolek-uni-50.png" alt="Noční stolek UNI 50 z masivu" style="display:block;width:100%;height:88px;object-fit:contain;object-position:left center;border-radius:12px;background:var(--ss-surface-page,#FFFFFF)" />
+                  <img class="ss-hp-pop-img" src="produkt-nocni-stolek-uni-50.png" alt="Noční stolek UNI 50 z masivu" style="display:block;width:100%;height:88px;object-fit:contain;object-position:left center;border-radius:12px;background:var(--ss-surface-page,#FEFAF7)" />
                   <span style="font-size:14px;font-weight:600;line-height:1.35;color:var(--ss-text-primary,#1C2229)">Noční stolek UNI 50</span>
                   <span style="font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:28px;color:var(--ss-text-primary,#1C2229);letter-spacing:-0.01em">od 6 089 Kč</span>
                   <dc-import name="Stitek" kind="inStock" size="small" hint-size="200px,18px"></dc-import>
@@ -228,9 +240,9 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
                   <dc-import name="Ikony" iconName="plus" size="18" hint-size="18px,18px"></dc-import>
                 </button>
                 <sc-if value="{{ hot3Open }}" hint-placeholder-val="{{ false }}">
-                  <div class="ss-light ss-hp-pop" style="position:absolute;top:191px;max-height:240px;left:32%;max-width:68%;width:min(260px,70%);background:var(--ss-surface-page,#FFFFFF);border-radius:12px;box-shadow:0 16px 40px rgba(19,44,67,.18);display:flex;align-items:stretch;overflow:hidden;z-index:300">
+                  <div class="ss-light ss-hp-pop" style="position:absolute;top:191px;max-height:240px;left:32%;max-width:68%;width:min(260px,70%);background:var(--ss-surface-card,#FFFFFF);border-radius:12px;box-shadow:0 16px 40px rgba(19,44,67,.18);display:flex;align-items:stretch;overflow:hidden;z-index:300">
                     <div class="ss-hp-pop-b" style="flex:1;min-width:0;padding:12px;display:flex;flex-direction:column;gap:6px;text-align:left;overflow:hidden">
-                      <img class="ss-hp-pop-img" src="produkt-patrik-patrova-postel.png" alt="Patrová rozkládací postel Patrik z bukového masivu" style="display:block;width:100%;height:52px;min-height:0;flex:none;object-fit:contain;object-position:left center;border-radius:12px;background:var(--ss-surface-page,#FFFFFF)" />
+                      <img class="ss-hp-pop-img" src="produkt-patrik-patrova-postel.png" alt="Patrová rozkládací postel Patrik z bukového masivu" style="display:block;width:100%;height:52px;min-height:0;flex:none;object-fit:contain;object-position:left center;border-radius:12px;background:var(--ss-surface-page,#FEFAF7)" />
                       <span style="font-size:13px;font-weight:600;line-height:1.3;color:var(--ss-text-primary,#1C2229);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">Komplet Patrik – patrová postel s rošty a matracemi</span>
                       <span style="display:flex;align-items:baseline;gap:8px"><span style="font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:24px;color:var(--ss-text-primary,#1C2229);letter-spacing:-0.01em">28 995 Kč</span><span style="font-family:'Archivo Narrow',Roboto,sans-serif;font-size:15px;color:var(--ss-text-muted,#5B6874);text-decoration:line-through">37 870 Kč</span></span>
                       <dc-import name="Stitek" kind="inStock" size="small" hint-size="200px,18px"></dc-import>
@@ -245,9 +257,9 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
                   <dc-import name="Ikony" iconName="plus" size="18" hint-size="18px,18px"></dc-import>
                 </button>
                 <sc-if value="{{ hot5Open }}" hint-placeholder-val="{{ false }}">
-                  <div class="ss-light ss-hp-pop" style="position:absolute;bottom:calc(30% + 12px);max-height:240px;left:22%;max-width:78%;width:min(260px,70%);background:var(--ss-surface-page,#FFFFFF);border-radius:12px;box-shadow:0 16px 40px rgba(19,44,67,.18);display:flex;align-items:stretch;overflow:hidden;z-index:300">
+                  <div class="ss-light ss-hp-pop" style="position:absolute;bottom:calc(30% + 12px);max-height:240px;left:22%;max-width:78%;width:min(260px,70%);background:var(--ss-surface-card,#FFFFFF);border-radius:12px;box-shadow:0 16px 40px rgba(19,44,67,.18);display:flex;align-items:stretch;overflow:hidden;z-index:300">
                     <div class="ss-hp-pop-b" style="flex:1;min-width:0;padding:12px;display:flex;flex-direction:column;gap:6px;text-align:left;overflow:hidden">
-                      <img class="ss-hp-pop-img" src="produkt-valentina-ultrafresh.png" alt="Matrace Valentina Ultrafresh" style="display:block;width:100%;height:52px;min-height:0;flex:none;object-fit:contain;object-position:left center;border-radius:12px;background:var(--ss-surface-page,#FFFFFF)" />
+                      <img class="ss-hp-pop-img" src="produkt-valentina-ultrafresh.png" alt="Matrace Valentina Ultrafresh" style="display:block;width:100%;height:52px;min-height:0;flex:none;object-fit:contain;object-position:left center;border-radius:12px;background:var(--ss-surface-page,#FEFAF7)" />
                       <span style="font-size:13px;font-weight:600;line-height:1.3;color:var(--ss-text-primary,#1C2229);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">Matrace Valentina Ultrafresh</span>
                       <span style="font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:24px;color:var(--ss-text-primary,#1C2229);letter-spacing:-0.01em">od 7 949 Kč</span>
                       <dc-import name="Stitek" kind="inStock" size="small" hint-size="200px,18px"></dc-import>
@@ -262,9 +274,9 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
                   <dc-import name="Ikony" iconName="plus" size="18" hint-size="18px,18px"></dc-import>
                 </button>
                 <sc-if value="{{ hot4Open }}" hint-placeholder-val="{{ false }}">
-                  <div class="ss-light ss-hp-pop" style="position:absolute;bottom:calc(36% + 12px);max-height:240px;right:calc(20% - 36px);max-width:80%;width:min(260px,70%);background:var(--ss-surface-page,#FFFFFF);border-radius:12px;box-shadow:0 16px 40px rgba(19,44,67,.18);display:flex;align-items:stretch;overflow:hidden;z-index:300">
+                  <div class="ss-light ss-hp-pop" style="position:absolute;bottom:calc(36% + 12px);max-height:240px;right:calc(20% - 36px);max-width:80%;width:min(260px,70%);background:var(--ss-surface-card,#FFFFFF);border-radius:12px;box-shadow:0 16px 40px rgba(19,44,67,.18);display:flex;align-items:stretch;overflow:hidden;z-index:300">
                     <div class="ss-hp-pop-b" style="flex:1;min-width:0;padding:12px;display:flex;flex-direction:column;gap:6px;text-align:left;overflow:hidden">
-                      <img class="ss-hp-pop-img" src="produkt-komoda-uni-kombi.png" alt="Komoda UNI kombi z masivu" style="display:block;width:100%;height:52px;min-height:0;flex:none;object-fit:contain;object-position:left center;border-radius:12px;background:var(--ss-surface-page,#FFFFFF)" />
+                      <img class="ss-hp-pop-img" src="produkt-komoda-uni-kombi.png" alt="Komoda UNI kombi z masivu" style="display:block;width:100%;height:52px;min-height:0;flex:none;object-fit:contain;object-position:left center;border-radius:12px;background:var(--ss-surface-page,#FEFAF7)" />
                       <span style="font-size:13px;font-weight:600;line-height:1.3;color:var(--ss-text-primary,#1C2229);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">Komoda UNI kombi z masivu</span>
                       <span style="font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:24px;color:var(--ss-text-primary,#1C2229);letter-spacing:-0.01em">od 19 989 Kč</span>
                       <dc-import name="Stitek" kind="inStock" size="small" hint-size="200px,18px"></dc-import>
@@ -282,9 +294,9 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
                   <dc-import name="Ikony" iconName="plus" size="18" hint-size="18px,18px"></dc-import>
                 </button>
                 <sc-if value="{{ hot6Open }}" hint-placeholder-val="{{ false }}">
-                  <div class="ss-light ss-hp-pop" style="position:absolute;bottom:calc(54% + 12px);right:calc(48% - 36px);max-width:52%;max-height:240px;width:min(260px,70%);background:var(--ss-surface-page,#FFFFFF);border-radius:12px;box-shadow:0 16px 40px rgba(19,44,67,.18);display:flex;align-items:stretch;overflow:hidden;z-index:300">
+                  <div class="ss-light ss-hp-pop" style="position:absolute;bottom:calc(54% + 12px);right:calc(48% - 36px);max-width:52%;max-height:240px;width:min(260px,70%);background:var(--ss-surface-card,#FFFFFF);border-radius:12px;box-shadow:0 16px 40px rgba(19,44,67,.18);display:flex;align-items:stretch;overflow:hidden;z-index:300">
                     <div class="ss-hp-pop-b" style="flex:1;min-width:0;padding:12px;display:flex;flex-direction:column;gap:6px;text-align:left;overflow:hidden">
-                      <img class="ss-hp-pop-img" src="produkt-skrin-azzo.png" alt="Skříň Azzo 3D z masivu" style="display:block;width:100%;height:52px;min-height:0;flex:none;object-fit:contain;object-position:left center;border-radius:12px;background:var(--ss-surface-page,#FFFFFF)" />
+                      <img class="ss-hp-pop-img" src="produkt-skrin-azzo.png" alt="Skříň Azzo 3D z masivu" style="display:block;width:100%;height:52px;min-height:0;flex:none;object-fit:contain;object-position:left center;border-radius:12px;background:var(--ss-surface-page,#FEFAF7)" />
                       <span style="font-size:13px;font-weight:600;line-height:1.3;color:var(--ss-text-primary,#1C2229);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">Skříň Azzo 3D z masivu</span>
                       <span style="font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:24px;color:var(--ss-text-primary,#1C2229);letter-spacing:-0.01em">od 34 990 Kč</span>
                       <dc-import name="Stitek" kind="madeToOrder" size="small" hint-size="200px,18px"></dc-import>
@@ -299,9 +311,9 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
                   <dc-import name="Ikony" iconName="plus" size="18" hint-size="18px,18px"></dc-import>
                 </button>
                 <sc-if value="{{ hot7Open }}" hint-placeholder-val="{{ false }}">
-                  <div class="ss-light ss-hp-pop" style="position:absolute;top:calc(33% + 48px);left:20%;max-width:80%;max-height:240px;width:min(260px,70%);background:var(--ss-surface-page,#FFFFFF);border-radius:12px;box-shadow:0 16px 40px rgba(19,44,67,.18);display:flex;align-items:stretch;overflow:hidden;z-index:300">
+                  <div class="ss-light ss-hp-pop" style="position:absolute;top:calc(33% + 48px);left:20%;max-width:80%;max-height:240px;width:min(260px,70%);background:var(--ss-surface-card,#FFFFFF);border-radius:12px;box-shadow:0 16px 40px rgba(19,44,67,.18);display:flex;align-items:stretch;overflow:hidden;z-index:300">
                     <div class="ss-hp-pop-b" style="flex:1;min-width:0;padding:12px;display:flex;flex-direction:column;gap:6px;text-align:left;overflow:hidden">
-                      <img class="ss-hp-pop-img" src="produkt-zrcadlo-kulate.png" alt="Kulaté zrcadlo v černém rámu" style="display:block;width:100%;height:52px;min-height:0;flex:none;object-fit:contain;object-position:left center;border-radius:12px;background:var(--ss-surface-page,#FFFFFF)" />
+                      <img class="ss-hp-pop-img" src="produkt-zrcadlo-kulate.png" alt="Kulaté zrcadlo v černém rámu" style="display:block;width:100%;height:52px;min-height:0;flex:none;object-fit:contain;object-position:left center;border-radius:12px;background:var(--ss-surface-page,#FEFAF7)" />
                       <span style="font-size:13px;font-weight:600;line-height:1.3;color:var(--ss-text-primary,#1C2229);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">Kulaté zrcadlo v černém rámu ⌀ 70 cm</span>
                       <span style="font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:24px;color:var(--ss-text-primary,#1C2229);letter-spacing:-0.01em">2 490 Kč</span>
                       <dc-import name="Stitek" kind="inStock" size="small" hint-size="200px,18px"></dc-import>
@@ -353,7 +365,7 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
       </div>
     </section>
 
-    <section style="width:100%;background:var(--ss-surface-subtle,#F7F9FB);margin-top:{{ sectionGap }}">
+    <section style="width:100%;background:var(--ss-surface-subtle,#FAF5EF);margin-top:{{ sectionGap }}">
       <sc-if value="{{ storeP1 }}" hint-placeholder-val="{{ false }}">
       <div style="{{ innerPadded }}">
         <div style="text-align:center;margin-bottom:24px">
@@ -366,11 +378,11 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
           </sc-for>
         </div>
         <div class="ss-hp-store" style="display:grid;grid-template-columns:{{ storeTemplate }};gap:20px;align-items:stretch">
-          <div class="ss-elev" style="background:var(--ss-surface-page,#FFFFFF);border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:16px;min-width:0">
+          <div class="ss-elev" style="background:var(--ss-surface-card,#FFFFFF);border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:16px;min-width:0">
             <h3 style="margin:0;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:21px">{{ storeTitle }}</h3>
             <div style="display:flex;flex-wrap:wrap;gap:8px">
               <sc-for list="{{ storeFacts }}" as="f" hint-placeholder-count="3">
-                <span style="display:inline-flex;align-items:center;gap:8px;background:var(--ss-surface-subtle,#F7F9FB);border-radius:999px;padding:6px 14px;font-size:13px;font-weight:500;color:var(--ss-text-secondary,#3D4750)"><span style="display:flex;color:var(--ss-text-muted,#55616C)"><dc-import name="Ikony" iconName="{{ f.icon }}" size="16" hint-size="16px,16px"></dc-import></span>{{ f.label }}</span>
+                <span style="display:inline-flex;align-items:center;gap:8px;background:var(--ss-surface-subtle,#FAF5EF);border-radius:999px;padding:6px 14px;font-size:13px;font-weight:500;color:var(--ss-text-secondary,#3D4750)"><span style="display:flex;color:var(--ss-text-muted,#55616C)"><dc-import name="Ikony" iconName="{{ f.icon }}" size="16" hint-size="16px,16px"></dc-import></span>{{ f.label }}</span>
               </sc-for>
             </div>
             <div style="display:flex;flex-direction:column;gap:12px">
@@ -424,7 +436,7 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
       </sc-if>
     </section>
 
-    <section style="width:100%;background:var(--ss-surface-subtle,#F7F9FB)">
+    <section style="width:100%;background:var(--ss-surface-subtle,#FAF5EF)">
       <div style="{{ innerTight }}">
         <div class="ss-elev ss-pv" style="background:#F2F2F0;border-radius:12px;padding:{{ ctaPad }};display:grid;grid-template-columns:{{ ctaTemplate }};gap:24px;align-items:center;min-height:320px;box-sizing:border-box;position:relative">
           <span aria-hidden="true" style="position:absolute;inset:0;border-radius:inherit;overflow:hidden;pointer-events:none"><span class="ss-pv-bg" style="position:absolute;inset:0;background:url(pruvodce-matrace-povrch.png) {{ ctaPhotoPos }} / cover no-repeat"></span><span style="position:absolute;inset:0;background:{{ ctaVeil }}"></span></span>
@@ -438,7 +450,7 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
       </div>
     </section>
 
-    <section style="width:100%;background:var(--ss-surface-page,#FFFFFF);margin-top:{{ sectionGap }}">
+    <section style="width:100%;background:var(--ss-surface-page,#FEFAF7);margin-top:{{ sectionGap }}">
       <div style="{{ inner }}">
         <div style="display:grid;grid-template-columns:{{ storyTemplate }};gap:32px;align-items:center">
           <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px">
@@ -458,9 +470,17 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
       </div>
     </section>
 
-    <section style="width:100%;background:var(--ss-surface-page,#FFFFFF);margin-top:{{ sectionGap }}">
-      <div style="{{ inner }}">
-        <h2 style="margin:0 0 24px;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:{{ h2Size }};line-height:1.15">Ověřené recenze</h2>
+    <section class="ss-grad-top ss-grad-glow" style="width:100%;background-color:var(--ss-surface-page,#FEFAF7);margin-top:{{ sectionGap }}">
+      <div style="{{ innerPadded }}">
+        <h2 style="margin:0 0 16px;text-align:center;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:{{ h2Size }};line-height:1.15">Ověřené recenze</h2>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px;margin:0 0 24px">
+          <span style="font-family:Roboto,Helvetica,Arial,sans-serif;font-size:15px;font-weight:400;color:var(--ss-text-muted,#5B6874)">Za co nás chválíte</span>
+          <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:10px">
+          <sc-for list="{{ praise }}" as="p" hint-placeholder-count="4">
+            <span style="display:inline-flex;align-items:center;gap:8px;background:var(--ss-status-success-chip,#D3F0DC);border-radius:999px;padding:6px 14px;font-size:13px;font-weight:600;color:var(--ss-status-success-chip-fg,#0C4A28)"><span style="display:flex"><dc-import name="Ikony" iconName="circle-check" size="16" hint-size="16px,16px"></dc-import></span>{{ p }}</span>
+          </sc-for>
+          </div>
+        </div>
         <div style="display:grid;grid-template-columns:{{ reviewTemplate }};gap:20px;align-items:stretch">
           <div class="ss-rev-badge" style="border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:10px;align-items:center;text-align:center;min-width:0">
             <img src="logo-heureka-overeno.png" alt="Ověřeno zákazníky — Heureka" style="display:block;width:84px;height:auto;margin-bottom:4px" />
@@ -471,7 +491,7 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
           <div style="min-width:0;display:flex;flex-direction:column">
           <div class="ss-rev-track" ref="{{ revRef }}">
           <sc-for list="{{ reviews }}" as="r" hint-placeholder-count="3">
-            <div class="ss-elev ss-rev-card" style="background:var(--ss-surface-subtle,#F7F9FB);border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:12px;min-width:0;box-sizing:border-box">
+            <div class="ss-elev ss-rev-card" style="background:var(--ss-surface-box,#FFFFFF);border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:12px;min-width:0;box-sizing:border-box">
               <dc-import name="Hodnoceni" value="{{ r.value }}" size="small" hint-size="140px,20px"></dc-import>
               <p style="margin:0;font-size:15px;line-height:1.6;color:var(--ss-text-secondary,#3D4750)">{{ r.text }}</p>
               <span style="margin-top:auto;font-size:13px;color:var(--ss-text-muted,#5B6874)">{{ r.author }} · {{ r.date }}</span>
@@ -486,22 +506,16 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
           </sc-if>
           </div>
         </div>
-        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:24px">
-          <span style="font-family:Oswald,'Archivo Narrow',Helvetica,Arial,sans-serif;font-size:13px;font-weight:600;letter-spacing:.02em;color:var(--ss-text-muted,#55616C)">Za co nás chválíte</span>
-          <sc-for list="{{ praise }}" as="p" hint-placeholder-count="4">
-            <span style="display:inline-flex;align-items:center;gap:8px;background:var(--ss-status-success-surface,#EEF9F1);border-radius:999px;padding:6px 14px;font-size:13px;font-weight:600;color:var(--ss-status-success-strong,#106134)"><span style="display:flex"><dc-import name="Ikony" iconName="circle-check" size="16" hint-size="16px,16px"></dc-import></span>{{ p }}</span>
-          </sc-for>
-        </div>
       </div>
     </section>
 
-    <section style="width:100%;background:var(--ss-surface-page,#FFFFFF);margin-top:{{ sectionGap }}">
+    <section style="width:100%;background:var(--ss-surface-page,#FEFAF7);padding:{{ sectionGap }} 0">
       <div style="{{ inner }}">
         <dc-import name="SouvisejiciProdukty" heading="Objevte nejprodávanější produkty" linkLabel="Zobrazit vše" linkHref="#bestsellery" navPosition="{{ carNavPosition }}" hint-size="100%,560px"></dc-import>
       </div>
     </section>
 
-    <section style="width:100%;background:var(--ss-surface-page,#FFFFFF);margin-top:{{ sectionGap }}">
+    <section style="width:100%;background:var(--ss-surface-card,#FFFFFF);padding:{{ sectionGap }} 0">
       <div style="{{ inner }}">
         <div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-bottom:20px">
           <h2 style="margin:0;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:{{ h2Size }};line-height:1.15">Magazín zdravého spánku</h2>
@@ -607,24 +621,24 @@ html[data-mode="dark"] .ss-rev-badge{--ss-shine:rgba(251,178,85,.14);}
       </sc-if>
     </section>
 
-    <section style="width:100%;background:var(--ss-surface-hover,#F0F5FA);margin-top:{{ sectionGap }}">
+    <section class="ss-grad-top ss-grad-glow" style="width:100%;background-color:var(--ss-surface-page,#FEFAF7)">
       <div style="{{ innerPadded }}">
-        <div style="display:grid;grid-template-columns:{{ newsTemplate }};gap:24px;align-items:center">
-          <div style="display:flex;flex-direction:column;gap:8px;min-width:0">
-            <h2 style="margin:0;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:{{ h3Size }};line-height:1.2">Dostávejte novinky ze Světa spánku</h2>
-            <p style="margin:0;font-size:14px;color:var(--ss-text-secondary,#3D4750)">Slevy, akce, výprodeje a novinky o spánkové vědě. Jednou za týden, bez balastu.</p>
+        <div style="max-width:560px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center">
+          <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
+            <h2 style="margin:0;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:{{ h3Size }};line-height:1.2;text-wrap:balance">Dostávejte novinky ze Světa spánku</h2>
+            <p style="margin:0;font-size:14px;color:var(--ss-text-secondary,#3D4750);text-wrap:pretty">Slevy, akce, výprodeje a novinky o spánkové vědě. Jednou za týden, bez balastu.</p>
           </div>
-          <form style="display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end;min-width:0" onSubmit="{{ submitNews }}">
-            <div style="flex:1;min-width:220px">
-              <dc-import name="Input" label="" type="email" placeholder="Váš e-mail" ariaLabel="Váš e-mail" value="{{ email }}" onChange="{{ onEmail }}" hint-size="100%,44px"></dc-import>
+          <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:8px">
+            <sc-for list="{{ newsPerks }}" as="n" hint-placeholder-count="3">
+              <span style="display:inline-flex;align-items:center;gap:8px;background:var(--ss-surface-card,#FFFFFF);border-radius:999px;padding:6px 14px;font-size:13px;font-weight:600;color:var(--ss-status-success,#157A41)"><span style="display:flex"><dc-import name="Ikony" iconName="circle-check" size="16" hint-size="16px,16px"></dc-import></span>{{ n }}</span>
+            </sc-for>
+          </div>
+          <form style="width:100%;display:flex;flex-direction:column;align-items:center;gap:12px;min-width:0;margin-top:8px" onSubmit="{{ submitNews }}">
+            <div style="width:min(100%,336px);min-width:0;text-align:left">
+              <dc-import name="Input" label="" type="email" icon="mail" white="{{ true }}" placeholder="Váš e-mail" ariaLabel="Váš e-mail" value="{{ email }}" onChange="{{ onEmail }}" hint-size="100%,44px"></dc-import>
             </div>
             <dc-import name="Tlacitko" label="Chci newsletter" variant="primary" onClick="{{ doNews }}" hint-size="170px,44px"></dc-import>
           </form>
-        </div>
-        <div style="display:flex;flex-wrap:wrap;gap:16px;margin-top:16px">
-          <sc-for list="{{ newsPerks }}" as="n" hint-placeholder-count="3">
-            <span style="display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--ss-text-secondary,#3D4750)"><span style="display:flex;color:var(--ss-status-success,#157A41)"><dc-import name="Ikony" iconName="circle-check" size="16" hint-size="16px,16px"></dc-import></span>{{ n }}</span>
-          </sc-for>
         </div>
       </div>
     </section>
@@ -644,7 +658,7 @@ class Component extends DCLogic {
   ];
   state = {
     width: typeof window !== 'undefined' ? document.documentElement.clientWidth : 1440,
-    insp: 0, city: 0, hot: true, hot2: false, hot3: false, hot4: false, hot5: false, hot6: false, hot7: false, inspMore: false, email: '', mag: 0, carNav: 'V3', storeV: 'P2', magV: 'M1', m2AtStart: true, m2AtEnd: false
+    insp: 0, city: 0, hot: true, hot2: false, hot3: false, hot4: false, hot5: false, hot6: false, hot7: false, inspMore: false, email: '', mag: 0, carNav: 'V3', storeV: 'P1', magV: 'M1', m2AtStart: true, m2AtEnd: false
   };
   p2Scroll(dir) {
     const el = this._p2; if (!el) return;
@@ -731,8 +745,8 @@ class Component extends DCLogic {
       onPresToggle: () => this.setState(s => ({ led: s.led === false })),
       presChoices: [
         { label: 'Karusel', value: this.state.carNav, options: ['V1', 'V2', 'V3'] },
-        { label: 'Header', value: this.state.chrome || 'Světlá', options: ['Světlá', 'Modrá', 'Duo'] },
-        { label: 'Footer', value: this.state.footer || 'Světlá', options: ['Světlá', 'Modrá'] },
+        { label: 'Header', value: this.state.chrome || 'Modrá', options: ['Světlá', 'Modrá', 'Duo'] },
+        { label: 'Footer', value: this.state.footer || 'Modrá', options: ['Světlá', 'Modrá'] },
         { label: 'Magazín', value: this.state.magV, options: ['M1', 'M2'] },
         { label: 'Kategorie', value: this.state.catV || 'K2', options: ['K1', 'K2'] },
         { label: 'Prodejny', value: this.state.storeV, options: ['P1', 'P2'] },
@@ -748,8 +762,8 @@ class Component extends DCLogic {
         else this.setState({ navV: opt });
       },
       navVariant: this.state.navV || 'M2',
-      chromeTheme: this.state.chrome === 'Modrá' ? 'blue' : this.state.chrome === 'Duo' ? 'duo' : 'light',
-      footerTheme: this.state.footer === 'Modrá' ? 'blue' : 'light',
+      chromeTheme: this.state.chrome === 'Světlá' ? 'light' : this.state.chrome === 'Duo' ? 'duo' : 'blue',
+      footerTheme: this.state.footer === 'Světlá' ? 'light' : 'blue',
       carNavPosition: this.state.carNav === 'V2' ? 'overlay' : this.state.carNav === 'V3' ? 'peek' : 'below',
       navBelow: this.state.carNav !== 'V2',
       navOverlay: this.state.carNav === 'V2',

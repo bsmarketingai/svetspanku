@@ -25,7 +25,7 @@ a:hover{color:var(--ss-hover-text,#A4600C);}
 .ss-reg-soc:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
 .ss-reg-fb{background:#3B5998;color:#FFFFFF;}
 .ss-reg-fb:hover{background:#31497D;color:#FFFFFF;}
-.ss-reg-gg{background:var(--ss-surface-page,#FFFFFF);color:var(--ss-text-primary,#1C2229);box-shadow:inset 0 0 0 1px var(--ss-border-subtle,#E1E6EB);}
+.ss-reg-gg{background:var(--ss-surface-page,#FEFAF7);color:var(--ss-text-primary,#1C2229);box-shadow:inset 0 0 0 1px var(--ss-border-subtle,#E1E6EB);}
 .ss-reg-gg:hover{background:var(--ss-hover-bg,#FFF5E6);color:var(--ss-hover-text,#A4600C);}
 .ss-reg-sz{background:#CC0000;color:#FFFFFF;}
 .ss-reg-sz:hover{background:#A80000;color:#FFFFFF;}
@@ -33,11 +33,11 @@ a:hover{color:var(--ss-hover-text,#A4600C);}
 .ss-reg-ap:hover{background:#2A323A;color:#FFFFFF;}
 </style>
 </helmet>
-<div style="width:100%;background:var(--ss-surface-page,#FFFFFF);font-family:Roboto,Helvetica,Arial,sans-serif;color:var(--ss-text-primary,#1C2229)">
+<div style="width:100%;background:var(--ss-surface-page,#FEFAF7);font-family:Roboto,Helvetica,Arial,sans-serif;color:var(--ss-text-primary,#1C2229)">
   <dc-import name="Hlavicka" style="position:sticky;top:0;z-index:200" hint-size="100%,180px"></dc-import>
 
   <main>
-    <section style="position:relative;overflow:hidden;width:100%;background:var(--ss-surface-muted,#EFF2F5);border-bottom:1px solid var(--ss-border-subtle,#E1E6EB)">
+    <section style="position:relative;overflow:hidden;width:100%;background:var(--ss-surface-muted,#F3EDE4);border-bottom:1px solid var(--ss-border-subtle,#E1E6EB)">
       <img src="registrace-hero.png" alt="" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:70% 45%;pointer-events:none" />
       <span aria-hidden="true" style="{{ veilStyle }}"></span>
       <div style="{{ innerHead }}">
@@ -47,7 +47,7 @@ a:hover{color:var(--ss-hover-text,#A4600C);}
         </div>
       </div>
     </section>
-    <section style="width:100%;background:var(--ss-surface-page,#FFFFFF)">
+    <section style="width:100%;background:var(--ss-surface-page,#FEFAF7)">
       <div style="{{ innerBody }}">
 
         <div style="display:grid;grid-template-columns:{{ splitTemplate }};gap:{{ splitGap }};padding-bottom:{{ bottomPad }};align-items:start">
@@ -73,9 +73,9 @@ a:hover{color:var(--ss-hover-text,#A4600C);}
                 </a>
               </div>
               <div style="display:flex;align-items:center;gap:16px">
-                <span style="flex:1;height:1px;background:var(--ss-surface-strong,#E1E6EB)"></span>
+                <span style="flex:1;height:1px;background:var(--ss-surface-strong,#E9E1D5)"></span>
                 <span style="font-size:14px;color:var(--ss-text-muted,#5B6874)">nebo</span>
-                <span style="flex:1;height:1px;background:var(--ss-surface-strong,#E1E6EB)"></span>
+                <span style="flex:1;height:1px;background:var(--ss-surface-strong,#E9E1D5)"></span>
               </div>
             </div>
 
@@ -137,7 +137,7 @@ class Component extends DCLogic {
       inner: { maxWidth: '1560px', margin: '0 auto', padding: narrow ? '0 16px' : '0 32px' },
       headPad: narrow ? '32px 0' : '56px 0 64px',
       innerHead: { position: 'relative', zIndex: 1, maxWidth: '1560px', margin: '0 auto', padding: narrow ? '0 16px' : '0 32px' },
-      veilStyle: { position: 'absolute', inset: 0, pointerEvents: 'none', background: narrow ? 'color-mix(in srgb, var(--ss-surface-muted,#EFF2F5) 86%, transparent)' : 'linear-gradient(90deg, var(--ss-surface-muted,#EFF2F5) 0%, color-mix(in srgb, var(--ss-surface-muted,#EFF2F5) 94%, transparent) 50%, color-mix(in srgb, var(--ss-surface-muted,#EFF2F5) 45%, transparent) 75%, transparent 95%)' },
+      veilStyle: { position: 'absolute', inset: 0, pointerEvents: 'none', background: narrow ? 'color-mix(in srgb, var(--ss-surface-muted,#F3EDE4) 86%, transparent)' : 'linear-gradient(90deg, var(--ss-surface-muted,#F3EDE4) 0%, color-mix(in srgb, var(--ss-surface-muted,#F3EDE4) 94%, transparent) 50%, color-mix(in srgb, var(--ss-surface-muted,#F3EDE4) 45%, transparent) 75%, transparent 95%)' },
       innerBody: { maxWidth: '1560px', margin: '0 auto', padding: narrow ? '32px 16px 0' : '56px 32px 0' },
       bottomPad: narrow ? '48px' : '80px',
       h1Size: narrow ? '32px' : '44px',

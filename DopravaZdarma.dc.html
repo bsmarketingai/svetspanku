@@ -21,7 +21,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
     <p style="margin:0;font-size:15px;line-height:1.5;color:var(--ss-text-secondary,#3D4750);text-wrap:pretty">Vybrané zboží vám dovezeme a&nbsp;rádi i&nbsp;smontujeme. Druh dopravy a&nbsp;montáž si vyberete v&nbsp;dalším kroku.</p>
     <sc-if value="{{ showBar }}" hint-placeholder-val="{{ true }}">
       <div style="display:flex;flex-direction:column;gap:8px">
-        <div role="progressbar" aria-label="Doprava zdarma" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ pct }}" style="height:8px;border-radius:999px;background:var(--ss-surface-muted,#EFF2F5);overflow:hidden">
+        <div role="progressbar" aria-label="Doprava zdarma" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ pct }}" style="height:8px;border-radius:999px;background:var(--ss-surface-muted,#F3EDE4);overflow:hidden">
           <div style="height:100%;width:{{ pctCss }};border-radius:999px;background:{{ barColor }};transition:width .4s cubic-bezier(.22,.61,.36,1),background-color .12s cubic-bezier(.22,.61,.36,1)"></div>
         </div>
         <sc-if value="{{ reached }}" hint-placeholder-val="{{ false }}">

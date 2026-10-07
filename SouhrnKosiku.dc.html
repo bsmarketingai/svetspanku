@@ -51,7 +51,7 @@ class Component extends DCLogic {
       termsChecked: !!p.termsChecked,
       onTerms: (v) => { if (p.onTerms) p.onTerms(v); },
       termsParts: [{ text: 'Souhlasím s ' }, { text: 'obchodními podmínkami', href: '#obchodni-podminky' }, { text: ' a beru na vědomí ' }, { text: 'zásady ochrany osobních údajů', href: '#ochrana-osobnich-udaju' }, { text: '.' }], ctaSublabel: p.ctaSublabel || '',
-      boxStyle: { fontFamily: 'Roboto,Helvetica,Arial,sans-serif', color: 'var(--ss-text-primary,#1C2229)', boxSizing: 'border-box', width: '100%', display: 'flex', flexDirection: 'column', gap: '24px', padding: flush ? '24px 16px' : '32px', borderRadius: flush ? 0 : '12px', background: flush ? 'var(--ss-surface-hover,#F0F5FA)' : 'var(--ss-surface-page,#FFFFFF)', boxShadow: flush ? 'none' : '0 4px 12px rgba(19,44,67,.12)' }
+      boxStyle: { fontFamily: 'Roboto,Helvetica,Arial,sans-serif', color: 'var(--ss-text-primary,#1C2229)', boxSizing: 'border-box', width: '100%', display: 'flex', flexDirection: 'column', gap: '24px', padding: flush ? '24px 16px' : '32px', borderRadius: flush ? 0 : '12px', background: flush ? 'var(--ss-surface-hover,#F0F5FA)' : 'var(--ss-surface-page,#FEFAF7)', boxShadow: flush ? 'none' : '0 4px 12px rgba(19,44,67,.12)' }
     };
   }
 }

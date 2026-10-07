@@ -15,9 +15,9 @@
 h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
 
 .ss-mob,.ss-mob *{box-sizing:border-box;}
-.ss-mob{font-family:Roboto,Helvetica,Arial,sans-serif;display:flex;flex-direction:column;height:100%;width:100%;background:var(--ss-surface-page,#FFFFFF);min-width:0;overflow-x:hidden;}
+.ss-mob{font-family:Roboto,Helvetica,Arial,sans-serif;display:flex;flex-direction:column;height:100%;width:100%;background:var(--ss-surface-page,#FEFAF7);min-width:0;overflow-x:hidden;}
 .ss-mob-row{display:flex;align-items:center;gap:12px;width:100%;min-height:48px;padding:0 16px;margin:0;border:0;background:none;font:inherit;font-size:15px;color:var(--ss-text-primary,#1C2229);text-align:left;text-decoration:none;cursor:pointer;transition:background-color .12s cubic-bezier(.22,.61,.36,1);}
-.ss-mob-row:active{background:var(--ss-surface-muted,#EFF2F5);}
+.ss-mob-row:active{background:var(--ss-surface-muted,#F3EDE4);}
 .ss-mob-row:focus-visible{outline:none;box-shadow:inset 0 0 0 3px rgba(41,96,147,.35);}
 .ss-mob-icon{display:flex;color:var(--ss-text-muted,#55616C);flex:none;}
 </style>
@@ -43,7 +43,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
                 </button>
               </div>
               <sc-if value="{{ c.isOpen }}" hint-placeholder-val="{{ false }}">
-                <div id="{{ c.panelId }}" style="display:flex;flex-direction:column;padding:4px 0 12px;background:var(--ss-surface-subtle,#F7F9FB)">
+                <div id="{{ c.panelId }}" style="display:flex;flex-direction:column;padding:4px 0 12px;background:var(--ss-surface-subtle,#FAF5EF)">
                   <sc-for list="{{ c.groups }}" as="g" hint-placeholder-count="2">
                     <div style="{{ g.style }}">
                       <h3 style="margin:0;padding:12px 0 4px;font-size:15px;line-height:1.3;color:var(--ss-text-secondary,#3D4750)">{{ g.title }}</h3>

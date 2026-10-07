@@ -69,7 +69,8 @@ class Component extends DCLogic {
     open: false, hidden: false,
     mode: (() => { try { return localStorage.getItem('ss-mode') === 'dark' ? 'dark' : 'light'; } catch (e) { return 'light'; } })(),
     bg: (() => { try { return localStorage.getItem('ss-bg') || 'on'; } catch (e) { return 'on'; } })(),
-    logo: (() => { try { return localStorage.getItem('ss-logo') || 'a'; } catch (e) { return 'a'; } })()
+    logo: (() => { try { return localStorage.getItem('ss-logo') || 'a'; } catch (e) { return 'a'; } })(),
+    hd: (() => { try { return localStorage.getItem('ss-hdmode') === 'H2' ? 'H2' : 'H1'; } catch (e) { return 'H1'; } })()
   };
   setAttr(key, attr, v) {
     try { localStorage.setItem(key, v); } catch (e) {}
@@ -90,6 +91,7 @@ class Component extends DCLogic {
       grp('Režim', [['Světlý', 'light'], ['Tmavý', 'dark']], this.state.mode, v => this.setMode(v))
     ];
     base.push(grp('Elevace', [['Zap', 'on'], ['Vyp', 'off']], this.state.bg, v => { this.setAttr('ss-bg', 'data-bg', v); this.setState({ bg: v }); }));
+    base.push(grp('Sticky hlavička', [['H1', 'H1'], ['H2', 'H2']], this.state.hd, v => { try { localStorage.setItem('ss-hdmode', v); } catch (e) {} window.dispatchEvent(new Event('ss-hdmode')); this.setState({ hd: v }); }));
     if (this.state.mode === 'dark') base.push(grp('Logo', [['Statické', 'none'], ['A pulz', 'a'], ['D přejezd', 'd']], this.state.logo, v => this.setLogo(v)));
     return {
       open,

@@ -1013,11 +1013,12 @@ class Component extends DCLogic {
       presItems: [{ label: 'LED', value: this.state.led }],
       onPresToggle: () => this.setState(s => ({ led: !s.led })),
       presChoices: [
+        { label: 'Detail', value: 'Komplet 3.0', options: ['Postel 3.0', 'Komplet 3.0'] },
         { label: 'Fixní sloupec', value: this.state.stickPick || (stick === 'zadny' ? 'Žádný' : 'Galerie'), options: ['Galerie', 'Žádný'] },
         { label: 'Rozměr', value: this.state.sizeUi || 'V1', options: ['V1', 'V2'] },
         { label: 'Set', value: this.state.setUi || 'S1', options: ['S1', 'S2', 'S3', 'S4'] }
       ],
-      onPresPick: (ci, opt) => this.setState(ci === 0 ? { stickPick: opt } : ci === 1 ? { sizeUi: opt } : { setUi: opt }),
+      onPresPick: (ci, opt) => { if (ci === 0) { if (opt !== 'Komplet 3.0') window.location.href = opt + '.dc.html'; return; } ci -= 1; this.setState(ci === 0 ? { stickPick: opt } : ci === 1 ? { sizeUi: opt } : { setUi: opt }); },
       stickyChips: [
         { label: this.state.customSize || this.state.size },
         { label: this.state.up === 'yes' ? 'S úložným prostorem' : 'Bez úložného prostoru' },

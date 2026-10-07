@@ -27,7 +27,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 </helmet>
 <sc-if value="{{ open }}" hint-placeholder-val="{{ false }}">
   <div class="ss-scrim ss-kpm" style="position:fixed;inset:0;z-index:500;display:flex;align-items:safe center;justify-content:center;overflow-y:auto;padding:{{ scrimPad }};font-family:Roboto,Helvetica,Arial,sans-serif" onClick="{{ onBackdrop }}">
-    <div role="dialog" aria-modal="true" aria-labelledby="ss-kpm-title" ref="{{ dialogRef }}" style="position:relative;width:100%;max-width:1040px;background:var(--ss-surface-page,#FFFFFF);color:var(--ss-text-primary,#1C2229);border-radius:12px;box-shadow:0 16px 40px rgba(19,44,67,.18);padding:{{ dialogPad }};display:flex;flex-direction:column;gap:24px">
+    <div role="dialog" aria-modal="true" aria-labelledby="ss-kpm-title" ref="{{ dialogRef }}" style="position:relative;width:100%;max-width:1040px;background:var(--ss-surface-page,#FEFAF7);color:var(--ss-text-primary,#1C2229);border-radius:12px;box-shadow:0 16px 40px rgba(19,44,67,.18);padding:{{ dialogPad }};display:flex;flex-direction:column;gap:24px">
 
       <div style="display:flex;align-items:flex-start;gap:12px">
         <span style="display:flex;flex:none;color:var(--ss-status-success,#157A41);padding-top:4px"><dc-import name="Ikony" iconName="circle-check" size="32" hint-size="32px,32px"></dc-import></span>
@@ -167,7 +167,7 @@ class Component extends DCLogic {
     const wide = w >= 820;
     const xs = w < 550;
     const qty = p.qty || 1;
-    const recs = (p.items || this.state.recs || []).map(d => Object.assign({}, d, { params: [], ctaLabel: 'Vybrat variantu', href: 'Produkt Levita.dc.html' }));
+    const recs = (p.items || this.state.recs || []).map(d => Object.assign({}, d, { params: [], ctaLabel: 'Vybrat variantu', href: 'Postel 3.0.dc.html' }));
     return {
       open: p.open ?? true,
       wide, narrow: !wide,

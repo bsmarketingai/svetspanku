@@ -23,7 +23,7 @@ a{color:var(--ss-link,#296093);text-decoration:underline;text-underline-offset:2
 a:hover{color:var(--ss-link-hover,#21507B);}
 </style>
 </helmet>
-<div style="width:100%;background:var(--ss-surface-page,#FFFFFF);color:var(--ss-text-primary,#1C2229);font-family:Roboto,'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:15px;line-height:1.55;padding-bottom:96px">
+<div style="width:100%;background:var(--ss-surface-page,#FEFAF7);color:var(--ss-text-primary,#1C2229);font-family:Roboto,'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:15px;line-height:1.55;padding-bottom:96px">
 
   <header style="width:100%;background:#132C43;color:#FFFFFF">
     <div style="max-width:1560px;margin:0 auto;padding:48px 32px 40px;display:flex;flex-direction:column;gap:16px">
@@ -50,7 +50,7 @@ a:hover{color:var(--ss-link-hover,#21507B);}
           </div>
           <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(94px,1fr));gap:4px">
             <sc-for list="{{ s.steps }}" as="c" hint-placeholder-count="10">
-              <div style="border-radius:6px;overflow:hidden;background:var(--ss-surface-subtle,#F7F9FB)">
+              <div style="border-radius:6px;overflow:hidden;background:var(--ss-surface-subtle,#FAF5EF)">
                 <div style="height:72px;background:{{ c.hex }}"></div>
                 <div style="padding:8px 10px 10px;display:flex;flex-direction:column;gap:2px">
                   <span style="font-size:13px;font-weight:600">{{ c.step }}</span>
@@ -64,11 +64,11 @@ a:hover{color:var(--ss-link-hover,#21507B);}
     </div>
   </section>
 
-  <section style="width:100%;background:var(--ss-surface-subtle,#F7F9FB);margin-top:32px">
+  <section style="width:100%;background:var(--ss-surface-subtle,#FAF5EF);margin-top:32px">
     <div style="max-width:1560px;margin:0 auto;padding:64px 32px">
       <h2 style="margin:0 0 8px;font-family:Oswald,sans-serif;font-weight:600;font-size:34px;line-height:1.15">2 · Sémantické tokeny</h2>
       <p style="margin:0 0 28px;max-width:76ch;color:var(--ss-text-muted,#55616C)">V komponentách se používají jen tato jména, nikdy číslo ze škály. Kontrast každého textového tokenu je spočítaný proti jeho pozadí — pod 4,5 : 1 se token přemapoval.</p>
-      <div style="overflow-x:auto;background:var(--ss-surface-page,#FFFFFF);border-radius:12px;padding:8px">
+      <div style="overflow-x:auto;background:var(--ss-surface-page,#FEFAF7);border-radius:12px;padding:8px">
         <table style="width:100%;border-collapse:collapse;font-size:14px;min-width:820px">
           <thead>
             <tr style="text-align:left">
@@ -97,7 +97,7 @@ a:hover{color:var(--ss-link-hover,#21507B);}
       <p style="margin:20px 0 0;max-width:76ch;font-size:13px;color:var(--ss-text-muted,#55616C)">Přemapováno: <code style="font-family:ui-monospace,Menlo,monospace">neutral-500 var(--ss-text-muted,#6B7986)</code> mělo být <code style="font-family:ui-monospace,Menlo,monospace">text.muted</code>, ale na bílé dává 4,46 : 1 — text.muted je proto <code style="font-family:ui-monospace,Menlo,monospace">#5B6874</code>. <code style="font-family:ui-monospace,Menlo,monospace">green-500 #1E914F</code> (4,02 : 1) a <code style="font-family:ui-monospace,Menlo,monospace">apricot-500 #F09A2C</code> nesmí nést text — success text používá green-600, textová meruňková apricot-700. Konverzní tlačítko je apricot-400 s tmavým textem <code style="font-family:ui-monospace,Menlo,monospace">#1C2229</code>; meruňková nikdy nenese bílý text ani není text na bílé.</p>
       <h3 style="margin:40px 0 8px;font-size:24px;line-height:1.25">Tmavý režim</h3>
       <p style="margin:0 0 20px;max-width:76ch;color:var(--ss-text-muted,#55616C)">Přepíná se atributem <code style="font-family:ui-monospace,Menlo,monospace">html[data-mode="dark"]</code> (v prototypu jen z PrezentacniLista, výchozí je vždy světlý). Barvy v komponentách jsou zapsané jako <code style="font-family:ui-monospace,Menlo,monospace">var(--ss-token, #světlá)</code>; tmavé hodnoty jsou jediný soubor <code style="font-family:ui-monospace,Menlo,monospace">tmavy-rezim.css</code>. Podklad z modré značky, konverzní meruňková, primární tlačítko a tmavé pásy hlavičky a patičky se nemění. Kontrast se počítá proti surface-page #0E1F2F.</p>
-      <div style="overflow-x:auto;background:var(--ss-surface-page,#FFFFFF);border-radius:12px;padding:8px">
+      <div style="overflow-x:auto;background:var(--ss-surface-page,#FEFAF7);border-radius:12px;padding:8px">
         <table style="width:100%;border-collapse:collapse;font-size:14px">
           <thead>
             <tr style="text-align:left">
@@ -127,7 +127,7 @@ a:hover{color:var(--ss-link-hover,#21507B);}
       <h2 style="margin:0 0 8px;font-family:Oswald,sans-serif;font-weight:600;font-size:34px;line-height:1.15">3 · Typografie</h2>
       <p style="margin:0 0 32px;max-width:76ch;color:var(--ss-text-muted,#55616C)">Nimbus Sans L Condensed z logomanuálu není na webu dostupný. Nadpisy nesou <strong style="font-weight:600">Oswald 600</strong>, vždy jen první písmeno velké (větná kapitalizace, bez verzálek). Běžný text <strong style="font-weight:600">Roboto</strong>, ceny a číselné údaje <strong style="font-weight:600">Archivo Narrow</strong>. Minimum 13 px. Mobilní sada se přepíná skokem na 820 px, ne přes clamp().</p>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:24px">
-        <div style="background:var(--ss-surface-subtle,#F7F9FB);border-radius:12px;padding:28px">
+        <div style="background:var(--ss-surface-subtle,#FAF5EF);border-radius:12px;padding:28px">
           <span style="display:block;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ss-text-muted,#55616C);font-weight:600;margin-bottom:20px">Desktop · ≥ 820 px</span>
           <p style="margin:0 0 18px;font-family:Oswald,sans-serif;font-weight:600;font-size:48px;line-height:1.08;letter-spacing:-0.01em">heading.h1 · 48/52</p>
           <p style="margin:0 0 18px;font-family:Oswald,sans-serif;font-weight:600;font-size:34px;line-height:1.15">heading.h2 · 34/39</p>
@@ -139,7 +139,7 @@ a:hover{color:var(--ss-link-hover,#21507B);}
           <p style="margin:0 0 14px;font-size:13px;color:var(--ss-text-muted,#5B6874)">caption · 13/18 — doplňkový údaj, poznámka.</p>
           <p style="margin:0;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ss-link-hover,#21507B)">overline · 13 uppercase</p>
         </div>
-        <div style="background:var(--ss-surface-subtle,#F7F9FB);border-radius:12px;padding:28px">
+        <div style="background:var(--ss-surface-subtle,#FAF5EF);border-radius:12px;padding:28px">
           <span style="display:block;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ss-text-muted,#55616C);font-weight:600;margin-bottom:20px">Mobil · &lt; 820 px (skok)</span>
           <p style="margin:0 0 18px;font-family:Oswald,sans-serif;font-weight:600;font-size:32px;line-height:1.1">heading.h1 · 32/35</p>
           <p style="margin:0 0 18px;font-family:Oswald,sans-serif;font-weight:600;font-size:26px;line-height:1.15">heading.h2 · 26/30</p>
@@ -154,26 +154,26 @@ a:hover{color:var(--ss-link-hover,#21507B);}
       </div>
       <h3 style="margin:36px 0 16px;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:600;font-size:20px">Commerce tokeny</h3>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px">
-        <div style="background:var(--ss-surface-page,#FFFFFF);border-radius:12px;padding:20px;box-shadow:0 0 0 1px var(--ss-border-subtle,#E1E6EB)">
+        <div style="background:var(--ss-surface-page,#FEFAF7);border-radius:12px;padding:20px;box-shadow:0 0 0 1px var(--ss-border-subtle,#E1E6EB)">
           <span style="display:block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ss-text-muted,#55616C);font-weight:600;margin-bottom:10px">price.primary · 26 Narrow 700</span>
           <span style="font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:26px;color:var(--ss-text-primary,#1C2229)">7 590 Kč</span>
           <p style="margin:8px 0 0;font-size:13px;color:var(--ss-text-muted,#5B6874)">Vždy s DPH, formát „7 590 Kč“ s pevnou mezerou.</p>
         </div>
-        <div style="background:var(--ss-surface-page,#FFFFFF);border-radius:12px;padding:20px;box-shadow:0 0 0 1px var(--ss-border-subtle,#E1E6EB)">
+        <div style="background:var(--ss-surface-page,#FEFAF7);border-radius:12px;padding:20px;box-shadow:0 0 0 1px var(--ss-border-subtle,#E1E6EB)">
           <span style="display:block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ss-text-muted,#55616C);font-weight:600;margin-bottom:10px">price.before · 15 line-through</span>
           <span style="font-size:15px;color:var(--ss-text-muted,#5B6874);text-decoration:line-through">9 490 Kč</span>
           <p style="margin:8px 0 0;font-size:13px;color:var(--ss-text-muted,#5B6874)">Původní cena vedle slevové ceny, nikdy sama.</p>
         </div>
-        <div style="background:var(--ss-surface-page,#FFFFFF);border-radius:12px;padding:20px;box-shadow:0 0 0 1px var(--ss-border-subtle,#E1E6EB)">
+        <div style="background:var(--ss-surface-page,#FEFAF7);border-radius:12px;padding:20px;box-shadow:0 0 0 1px var(--ss-border-subtle,#E1E6EB)">
           <span style="display:block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ss-text-muted,#55616C);font-weight:600;margin-bottom:10px">product.title · 15/21 600</span>
           <span style="font-size:15px;font-weight:600;line-height:1.4">Partnerská matrace Spring Variant 22 cm</span>
         </div>
-        <div style="background:var(--ss-surface-page,#FFFFFF);border-radius:12px;padding:20px;box-shadow:0 0 0 1px var(--ss-border-subtle,#E1E6EB)">
+        <div style="background:var(--ss-surface-page,#FEFAF7);border-radius:12px;padding:20px;box-shadow:0 0 0 1px var(--ss-border-subtle,#E1E6EB)">
           <span style="display:block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ss-text-muted,#55616C);font-weight:600;margin-bottom:10px">stock · 13/18 600</span>
           <span style="display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--ss-status-success,#157A41)"><span style="width:8px;height:8px;border-radius:999px;background:#157A41"></span>Skladem · odesíláme do 24 h</span>
           <p style="margin:8px 0 0;font-size:13px;color:var(--ss-text-muted,#5B6874)">Význam nese text i tvar, nikdy jen barva.</p>
         </div>
-        <div style="background:var(--ss-surface-page,#FFFFFF);border-radius:12px;padding:20px;box-shadow:0 0 0 1px var(--ss-border-subtle,#E1E6EB)">
+        <div style="background:var(--ss-surface-page,#FEFAF7);border-radius:12px;padding:20px;box-shadow:0 0 0 1px var(--ss-border-subtle,#E1E6EB)">
           <span style="display:block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ss-text-muted,#55616C);font-weight:600;margin-bottom:10px">orderNo · 13 mono</span>
           <code style="font-family:ui-monospace,Menlo,monospace;font-size:13px;color:var(--ss-text-muted,#5B6874)">Obj. číslo 428170</code>
         </div>
@@ -181,11 +181,11 @@ a:hover{color:var(--ss-link-hover,#21507B);}
     </div>
   </section>
 
-  <section style="width:100%;background:var(--ss-surface-subtle,#F7F9FB)">
+  <section style="width:100%;background:var(--ss-surface-subtle,#FAF5EF)">
     <div style="max-width:1560px;margin:0 auto;padding:64px 32px">
       <h2 style="margin:0 0 8px;font-family:Oswald,sans-serif;font-weight:600;font-size:34px;line-height:1.15">4 · Spacing</h2>
       <p style="margin:0 0 28px;max-width:76ch;color:var(--ss-text-muted,#55616C)">4px grid, space-1 až space-13. Mezihodnoty jsou zakázané — když hodnota nesedí, mění se layout, ne token.</p>
-      <div style="display:flex;flex-direction:column;gap:6px;background:var(--ss-surface-page,#FFFFFF);border-radius:12px;padding:20px">
+      <div style="display:flex;flex-direction:column;gap:6px;background:var(--ss-surface-page,#FEFAF7);border-radius:12px;padding:20px">
         <sc-for list="{{ spacing }}" as="s" hint-placeholder-count="13">
           <div style="display:flex;align-items:center;gap:16px">
             <code style="font-family:ui-monospace,Menlo,monospace;font-size:13px;width:92px;flex:none;color:var(--ss-text-primary,#1C2229)">{{ s.name }}</code>
@@ -203,7 +203,7 @@ a:hover{color:var(--ss-link-hover,#21507B);}
       <h2 style="margin:0 0 8px;font-family:Oswald,sans-serif;font-weight:600;font-size:34px;line-height:1.15">5 · Rádiusy, elevace, motion, rozměry</h2>
       <p style="margin:0 0 32px;max-width:76ch;color:var(--ss-text-muted,#55616C)">Karty v klidu nemají border ani stín — drží je jen pozadí a mezera. Stín vzniká až interakcí nebo vrstvením.</p>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:20px">
-        <div style="background:var(--ss-surface-subtle,#F7F9FB);border-radius:12px;padding:24px">
+        <div style="background:var(--ss-surface-subtle,#FAF5EF);border-radius:12px;padding:24px">
           <h3 style="margin:0 0 16px;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:600;font-size:20px">Rádiusy</h3>
           <div style="display:flex;gap:12px;align-items:flex-end;margin-bottom:12px">
             <div style="width:64px;height:64px;background:var(--ss-surface-selected,#DCE8F2);border-radius:6px"></div>
@@ -212,18 +212,18 @@ a:hover{color:var(--ss-link-hover,#21507B);}
           </div>
           <p style="margin:0;font-size:13px;color:var(--ss-text-muted,#5B6874)">sm 6 px pole a tlačítka · md 12 px karty a panely · pill 999 px chipsy, avatar, počítadlo</p>
         </div>
-        <div style="background:var(--ss-surface-subtle,#F7F9FB);border-radius:12px;padding:24px">
+        <div style="background:var(--ss-surface-subtle,#FAF5EF);border-radius:12px;padding:24px">
           <h3 style="margin:0 0 16px;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:600;font-size:20px">Elevace</h3>
           <div style="display:flex;flex-wrap:wrap;gap:16px;margin-bottom:14px">
-            <div style="width:84px;height:56px;background:var(--ss-surface-page,#FFFFFF);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--ss-text-muted,#55616C)">rest</div>
-            <div style="width:84px;height:56px;background:var(--ss-surface-page,#FFFFFF);border-radius:8px;box-shadow:0 4px 12px rgba(19,44,67,.12);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--ss-text-muted,#55616C)">hover</div>
-            <div style="width:84px;height:56px;background:var(--ss-surface-page,#FFFFFF);border-radius:8px;box-shadow:0 2px 8px rgba(19,44,67,.08);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--ss-text-muted,#55616C)">sticky</div>
-            <div style="width:84px;height:56px;background:var(--ss-surface-page,#FFFFFF);border-radius:8px;box-shadow:0 16px 40px rgba(19,44,67,.18);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--ss-text-muted,#55616C)">overlay</div>
-            <div style="width:84px;height:56px;background:var(--ss-surface-page,#FFFFFF);border-radius:8px;box-shadow:0 0 0 3px rgba(41,96,147,.35);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--ss-text-muted,#55616C)">focus</div>
+            <div style="width:84px;height:56px;background:var(--ss-surface-page,#FEFAF7);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--ss-text-muted,#55616C)">rest</div>
+            <div style="width:84px;height:56px;background:var(--ss-surface-page,#FEFAF7);border-radius:8px;box-shadow:0 4px 12px rgba(19,44,67,.12);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--ss-text-muted,#55616C)">hover</div>
+            <div style="width:84px;height:56px;background:var(--ss-surface-page,#FEFAF7);border-radius:8px;box-shadow:0 2px 8px rgba(19,44,67,.08);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--ss-text-muted,#55616C)">sticky</div>
+            <div style="width:84px;height:56px;background:var(--ss-surface-page,#FEFAF7);border-radius:8px;box-shadow:0 16px 40px rgba(19,44,67,.18);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--ss-text-muted,#55616C)">overlay</div>
+            <div style="width:84px;height:56px;background:var(--ss-surface-page,#FEFAF7);border-radius:8px;box-shadow:0 0 0 3px rgba(41,96,147,.35);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--ss-text-muted,#55616C)">focus</div>
           </div>
           <p style="margin:0;font-size:13px;color:var(--ss-text-muted,#5B6874)">focus ring 0 0 0 3px rgba(41,96,147,.35) + outline:none až po nastavení ringu.</p>
         </div>
-        <div style="background:var(--ss-surface-subtle,#F7F9FB);border-radius:12px;padding:24px">
+        <div style="background:var(--ss-surface-subtle,#FAF5EF);border-radius:12px;padding:24px">
           <h3 style="margin:0 0 16px;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:600;font-size:20px">Motion</h3>
           <ul style="margin:0;padding-left:18px;font-size:14px;color:var(--ss-text-secondary,#3D4750);display:flex;flex-direction:column;gap:6px">
             <li>60 ms — stisk (transform, scale .98)</li>
@@ -233,7 +233,7 @@ a:hover{color:var(--ss-link-hover,#21507B);}
           </ul>
           <p style="margin:12px 0 0;font-size:13px;color:var(--ss-text-muted,#5B6874)">Křivka cubic-bezier(.22,.61,.36,1). prefers-reduced-motion vypíná posuny, ne barvy.</p>
         </div>
-        <div style="background:var(--ss-surface-subtle,#F7F9FB);border-radius:12px;padding:24px">
+        <div style="background:var(--ss-surface-subtle,#FAF5EF);border-radius:12px;padding:24px">
           <h3 style="margin:0 0 16px;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:600;font-size:20px">Rozměry</h3>
           <ul style="margin:0;padding-left:18px;font-size:14px;color:var(--ss-text-secondary,#3D4750);display:flex;flex-direction:column;gap:6px">
             <li>size.control 44 px — výchozí výška ovládacího prvku</li>
@@ -253,11 +253,11 @@ a:hover{color:var(--ss-link-hover,#21507B);}
     </div>
   </section>
 
-  <section style="width:100%;background:var(--ss-surface-subtle,#F7F9FB)">
+  <section style="width:100%;background:var(--ss-surface-subtle,#FAF5EF)">
     <div style="max-width:1560px;margin:0 auto;padding:64px 32px">
       <h2 style="margin:0 0 8px;font-family:Oswald,sans-serif;font-weight:600;font-size:34px;line-height:1.15">6 · Breakpointy</h2>
       <p style="margin:0 0 28px;max-width:76ch;color:var(--ss-text-muted,#55616C)">Sedm pásem na hranicích 1560 · 1150 · 1000 · 820 · 550 · 420. Toto je jediné platné názvosloví — „mobil / tablet / desktop“ se v projektu nepoužívá.</p>
-      <div style="overflow-x:auto;background:var(--ss-surface-page,#FFFFFF);border-radius:12px;padding:8px">
+      <div style="overflow-x:auto;background:var(--ss-surface-page,#FEFAF7);border-radius:12px;padding:8px">
         <table style="width:100%;border-collapse:collapse;font-size:14px;min-width:760px">
           <thead>
             <tr style="text-align:left">
@@ -287,7 +287,7 @@ a:hover{color:var(--ss-link-hover,#21507B);}
     <div style="max-width:1560px;margin:0 auto;padding:64px 32px">
       <h2 style="margin:0 0 8px;font-family:Oswald,sans-serif;font-weight:600;font-size:34px;line-height:1.15">7 · Interaktivní stavy</h2>
       <p style="margin:0 0 28px;max-width:76ch;color:var(--ss-text-muted,#55616C)">Hover se nezjišťuje šířkou okna, ale dotazem (hover:hover) and (pointer:fine). Focus ring je vidět vždy, i na myši.</p>
-      <div style="overflow-x:auto;background:var(--ss-surface-subtle,#F7F9FB);border-radius:12px;padding:8px">
+      <div style="overflow-x:auto;background:var(--ss-surface-subtle,#FAF5EF);border-radius:12px;padding:8px">
         <table style="width:100%;border-collapse:collapse;font-size:14px;min-width:900px">
           <thead>
             <tr style="text-align:left">
@@ -358,20 +358,23 @@ class Component extends DCLogic {
     }));
 
     const raw = [
-      ['surface.page', '#FFFFFF', 'pozadí stránky', null, null],
-      ['surface.subtle', '#F7F9FB', 'sekce, pole, karta v klidu', null, null],
-      ['surface.muted', '#EFF2F5', 'oddělení bloku, placeholder fotky', null, null],
+      ['surface.page', '#FEFAF7', 'pozadí stránky (teplá meruňková bílá)', null, null],
+      ['surface.card', '#FFFFFF', 'karta produktu a kategorie, dialog, popover (bílá na teplém podkladu)', null, null],
+      ['surface.box', '#FFFFFF', 'obsahový box (prodejna, recenze, nákupní box), tmavý = surface.subtle', null, null],
+      ['surface.subtle', '#FAF5EF', 'sekce, pole, karta v klidu', null, null],
+      ['surface.muted', '#F3EDE4', 'oddělení bloku, placeholder fotky', null, null],
       ['surface.brand', '#132C43', 'tmavé pásy, patička', null, null],
       ['surface.accent', '#FFF8EE', 'zvýrazněný blok konverzní cesty', null, null],
       ['border.subtle', '#E1E6EB', 'linka v tabulce, oddělovač', null, null],
       ['border.strong', '#C8D0D8', 'obrys pole', null, null],
-      ['text.primary', '#1C2229', 'nadpisy, cena, název produktu', 'surface.page', '#FFFFFF'],
-      ['text.secondary', '#3D4750', 'běžný text odstavce', 'surface.page', '#FFFFFF'],
-      ['text.muted', '#5B6874', 'caption, obj. číslo, poznámka', 'surface.page', '#FFFFFF'],
+      ['text.heading', '#0B1F33', 'nadpisy h1–h4 (tmavá modrá z hlavičky)', 'surface.page', '#FEFAF7'],
+      ['text.primary', '#1C2229', 'cena, název produktu, silný text', 'surface.page', '#FEFAF7'],
+      ['text.secondary', '#3D4750', 'běžný text odstavce', 'surface.page', '#FEFAF7'],
+      ['text.muted', '#5B6874', 'caption, obj. číslo, poznámka', 'surface.page', '#FEFAF7'],
       ['text.onBrand', '#FFFFFF', 'text na tmavém pásu', 'surface.brand', '#132C43'],
       ['text.onAccent', '#1C2229', 'text na meruňkové ploše', 'apricot-400', '#FBB255'],
-      ['link.onLight', '#296093', 'odkaz v textu', 'surface.page', '#FFFFFF'],
-      ['link.onLight.hover', '#21507B', 'odkaz hover', 'surface.page', '#FFFFFF'],
+      ['link.onLight', '#296093', 'odkaz v textu', 'surface.page', '#FEFAF7'],
+      ['link.onLight.hover', '#21507B', 'odkaz hover', 'surface.page', '#FEFAF7'],
       ['action.primary', '#296093', 'primární tlačítko (bílý text)', 'text.onPrimary', '#FFFFFF'],
       ['action.primary.hover', '#21507B', 'primární tlačítko hover', 'text.onPrimary', '#FFFFFF'],
       ['action.secondary', '#21507B', 'sekundární tlačítko (tonální): text blue-700 na pozadí blue-100, bez obrysu', 'blue-100', '#DCE8F2'],
@@ -380,15 +383,15 @@ class Component extends DCLogic {
       ['action.buy', '#FBB255', 'Koupit, Do košíku (tmavý text)', 'text.onBuy', '#1C2229'],
       ['action.buy.hover', '#F09A2C', 'Koupit hover', 'text.onBuy', '#1C2229'],
       ['action.danger', '#B3261E', 'odebrat, zrušit (bílý text, = status.error)', 'text.onDanger', '#FFFFFF'],
-      ['status.success', '#157A41', 'pozitivní oznámení, potvrzení', 'surface.page', '#FFFFFF'],
+      ['status.success', '#157A41', 'pozitivní oznámení, potvrzení', 'surface.page', '#FEFAF7'],
       ['status.success.surface', '#EEF9F1', 'podklad pozitivního oznámení', null, null],
-      ['status.error', '#B3261E', 'chyba, negativní oznámení', 'surface.page', '#FFFFFF'],
+      ['status.error', '#B3261E', 'chyba, negativní oznámení', 'surface.page', '#FEFAF7'],
       ['status.error.surface', '#FDF0EF', 'podklad negativního oznámení', null, null],
-      ['status.inStock', '#157A41', 'Skladem (= status.success)', 'surface.page', '#FFFFFF'],
-      ['status.lowStock', '#A4600C', 'Poslední kusy', 'surface.page', '#FFFFFF'],
-      ['status.outOfStock', '#B3261E', 'Nedostupné (= status.error)', 'surface.page', '#FFFFFF'],
-      ['commerce.priceNow', '#1C2229', 'aktuální cena s DPH', 'surface.page', '#FFFFFF'],
-      ['commerce.priceBefore', '#5B6874', 'původní cena, přeškrtnutá', 'surface.page', '#FFFFFF'],
+      ['status.inStock', '#157A41', 'Skladem (= status.success)', 'surface.page', '#FEFAF7'],
+      ['status.lowStock', '#A4600C', 'Poslední kusy', 'surface.page', '#FEFAF7'],
+      ['status.outOfStock', '#B3261E', 'Nedostupné (= status.error)', 'surface.page', '#FEFAF7'],
+      ['commerce.priceNow', '#1C2229', 'aktuální cena s DPH', 'surface.page', '#FEFAF7'],
+      ['commerce.priceBefore', '#5B6874', 'původní cena, přeškrtnutá', 'surface.page', '#FEFAF7'],
       ['commerce.sale', '#B3261E', 'sleva, akční štítek (bílý text)', 'text.onSale', '#FFFFFF'],
       ['focus.ring', 'rgba(41,96,147,.35)', 'focus ring 3 px', null, null]
     ];

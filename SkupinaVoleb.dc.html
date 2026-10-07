@@ -83,7 +83,7 @@ class Component extends DCLogic {
       toggle: () => { if (p.onToggle) p.onToggle(!open); else this.setState({ openInternal: !open }); },
       title: p.title ?? 'Naše vlastní doprava',
       hasLogo: !!p.logo, logo: p.logo, hasIcon: !p.logo && !!p.icon, icon: p.icon,
-      mediaStyle: { display: 'flex', alignItems: 'center', justifyContent: 'center', width: '52px', height: '32px', borderRadius: '6px', overflow: 'hidden', color: '#296093', background: p.logo ? 'transparent' : (p.icon ? '#FFFFFF' : 'var(--ss-surface-muted,#EFF2F5)'), boxShadow: (!p.logo && p.icon) ? 'inset 0 0 0 1px #D9D9D9' : 'none' },
+      mediaStyle: { display: 'flex', alignItems: 'center', justifyContent: 'center', width: '52px', height: '32px', borderRadius: '6px', overflow: 'hidden', color: '#296093', background: p.logo ? 'transparent' : (p.icon ? '#FFFFFF' : 'var(--ss-surface-muted,#F3EDE4)'), boxShadow: (!p.logo && p.icon) ? 'inset 0 0 0 1px #D9D9D9' : 'none' },
       titleStyle: { fontSize: compact ? '16px' : '17px', lineHeight: 1.35, fontWeight: 600 },
       hasInfo: !!(p.info && p.info.length), info: p.info,
       hasDesc: !!p.description, description: p.description,

@@ -18,7 +18,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 .ss-vd-close:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
 .ss-vd-tile{display:flex;flex-direction:column;gap:6px;padding:0;border:0;background:none;cursor:pointer;font-family:inherit;text-align:left;border-radius:12px;}
 .ss-vd-tile:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
-.ss-vd-ph{position:relative;width:100%;aspect-ratio:1/1;border-radius:12px;overflow:hidden;background:var(--ss-surface-subtle,#F7F9FB);transition:box-shadow .15s cubic-bezier(.22,.61,.36,1);}
+.ss-vd-ph{position:relative;width:100%;aspect-ratio:1/1;border-radius:12px;overflow:hidden;background:var(--ss-surface-subtle,#FAF5EF);transition:box-shadow .15s cubic-bezier(.22,.61,.36,1);}
 @media (hover:hover) and (pointer:fine){.ss-vd-tile:hover .ss-vd-ph{box-shadow:inset 0 0 0 2px var(--ss-border-hover,#8DB3D3);}}
 .ss-vd-check{position:absolute;top:8px;right:8px;display:flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:999px;background:#FBB255;color:#1C2229;box-shadow:0 2px 8px rgba(19,44,67,.08);}
 .ss-vd-row{display:flex;align-items:flex-start;gap:14px;width:100%;padding:16px 0;border:0;border-bottom:1px dashed var(--ss-border-strong,#C8D0D8);background:none;cursor:pointer;font-family:inherit;text-align:left;}
@@ -30,7 +30,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
   <div class="ss-scrim" style="{{ overlayStyle }}" onClick="{{ close }}" aria-hidden="true"></div>
   <div ref="{{ panelRef }}" role="dialog" aria-modal="true" aria-label="{{ title }}" style="{{ panelStyle }}">
     <div style="display:flex;align-items:center;gap:8px;padding:12px 12px 12px 20px;border-bottom:1px solid var(--ss-border-subtle,#E1E6EB);flex:none">
-      <h2 style="margin:0;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:21px;color:var(--ss-text-primary,#1C2229)">{{ title }}</h2>
+      <h2 style="margin:0;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:21px;color:var(--ss-text-heading,#0B1F33)">{{ title }}</h2>
       <button type="button" class="ss-vd-close" style="margin-left:auto" onClick="{{ close }}" aria-label="Zavřít výběr">
         <dc-import name="Ikony" iconName="x" size="22" hint-size="22px,22px"></dc-import>
       </button>
@@ -78,7 +78,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
                   <dc-import name="Ikony" iconName="check" size="16" hint-size="16px,16px"></dc-import>
                 </sc-if>
               </span>
-              <span style="width:64px;height:48px;flex:none;border-radius:8px;overflow:hidden;background:var(--ss-surface-subtle,#F7F9FB);display:flex;align-items:center;justify-content:center;color:var(--ss-text-decor,#C8D0D8)">
+              <span style="width:64px;height:48px;flex:none;border-radius:8px;overflow:hidden;background:var(--ss-surface-subtle,#FAF5EF);display:flex;align-items:center;justify-content:center;color:var(--ss-text-decor,#C8D0D8)">
                 <sc-if value="{{ r.hasImage }}" hint-placeholder-val="{{ false }}">
                   <img src="{{ r.image }}" alt="" style="display:block;width:100%;height:100%;object-fit:cover" />
                 </sc-if>
@@ -103,7 +103,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
       </sc-if>
     </div>
 
-    <div style="flex:none;display:flex;gap:12px;padding:16px 20px;border-top:1px solid var(--ss-border-subtle,#E1E6EB);background:var(--ss-surface-page,#FFFFFF)">
+    <div style="flex:none;display:flex;gap:12px;padding:16px 20px;border-top:1px solid var(--ss-border-subtle,#E1E6EB);background:var(--ss-surface-page,#FEFAF7)">
       <div style="flex:1;min-width:0"><dc-import name="Tlacitko" label="Hotovo" variant="primary" size="large" fullWidth="{{ true }}" onClick="{{ close }}" hint-size="100%,52px"></dc-import></div>
     </div>
   </div>
@@ -207,7 +207,7 @@ class Component extends DCLogic {
       },
       panelStyle: {
         position: 'fixed', top: 0, right: 0, bottom: 0, zIndex: 410,
-        width: (typeof document !== 'undefined' && document.documentElement.clientWidth < 420) ? '100%' : 'min(92vw,480px)', background: 'var(--ss-surface-page,#FFFFFF)', display: 'flex', flexDirection: 'column',
+        width: (typeof document !== 'undefined' && document.documentElement.clientWidth < 420) ? '100%' : 'min(92vw,480px)', background: 'var(--ss-surface-page,#FEFAF7)', display: 'flex', flexDirection: 'column',
         boxShadow: '0 16px 40px rgba(19,44,67,.18)',
         transform: visible ? 'translateX(0)' : 'translateX(100%)',
         transition: 'transform .4s cubic-bezier(.22,.61,.36,1)'

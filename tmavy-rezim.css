@@ -1,13 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans+Condensed:wght@400;500;600;700&display=swap');
 /* Tmavý režim — přepíná html[data-mode="dark"]. Světlý režim = fallback hodnoty v var(). */
 /* Hover ve světlém režimu modrý (6. 10. 2026), v tmavém meruňkový */
-html:not([data-mode="dark"]){--ss-hover-text:#21507B;--ss-hover-bg:#F0F5FA;}
+html:not([data-mode="dark"]){--ss-hover-text:#21507B;--ss-hover-bg:#F0F5FA;
+  /* Teplé meruňkové podklady (7. 10. 2026) */
+  --ss-surface-page:#FEFAF7;--ss-surface-subtle:#FAF5EF;--ss-surface-muted:#F3EDE4;--ss-surface-strong:#E9E1D5;--ss-surface-card:#FFFFFF;--ss-surface-box:#FFFFFF;--ss-text-heading:#0B1F33;
+  /* Sekundární tlačítko tonální meruňkové (7. 10. 2026) */
+  --ss-action-tonal-bg:#FEEDD4;--ss-action-tonal-hover-bg:#FDDCAA;--ss-action-tonal-fg:#7A4708;--ss-action-tonal-hover-fg:#7A4708;}
+html:not([data-mode="dark"]),html:not([data-mode="dark"]) body{background:#FEFAF7;}
 html[data-mode="dark"]{color-scheme:dark;
   --ss-border-accent-subtle:#5A4425;
   --ss-border-action:#8DB3D3;
   --ss-action-tonal-bg:rgba(141,179,211,.16);
   --ss-action-tonal-hover-bg:rgba(141,179,211,.26);
   --ss-action-tonal-fg:#B9D0E5;
+  --ss-action-tonal-hover-fg:#FBB255;
   --ss-border-action-hover:#B9D0E5;
   --ss-border-error:#F4A39C;
   --ss-border-error-subtle:#7A3A35;
@@ -30,12 +36,16 @@ html[data-mode="dark"]{color-scheme:dark;
   --ss-status-success:#71CC92;
   --ss-status-success-strong:#A8E1BB;
   --ss-status-success-surface:#12301F;
+  --ss-status-success-chip:#12301F;
+  --ss-status-success-chip-fg:#A8E1BB;
   --ss-status-warning:#FCC77D;
   --ss-surface-accent:#2B2318;
   --ss-surface-accent-strong:#3A2C17;
   --ss-surface-hover:#1A3A58;
   --ss-surface-muted:#183049;
   --ss-surface-page:#0E1F2F;
+  --ss-surface-card:#0E1F2F;
+  --ss-surface-box:#13283C;
   --ss-surface-selected:#1F4669;
   --ss-surface-strong:#22405C;
   --ss-surface-subtle:#13283C;
@@ -43,6 +53,7 @@ html[data-mode="dark"]{color-scheme:dark;
   --ss-text-disabled:#7F94A8;
   --ss-text-muted:#9DB0C2;
   --ss-text-primary:#EEF3F8;
+  --ss-text-heading:#EEF3F8;
   --ss-text-secondary:#C5D2DE;
 }
 html[data-mode="dark"],html[data-mode="dark"] body{background:#0E1F2F;}
@@ -149,3 +160,21 @@ html[data-mode="dark"] .ss-ct:hover .ss-ct-title,html[data-mode="dark"] .ss-hp-a
 /* Vyhledávání v hlavičce: teplé bodové světlo na podkladu pole (tmavý režim) */
 html[data-mode="dark"] .ss-hd .ss-input{background-image:radial-gradient(ellipse 45% 140% at 0% 0%,rgba(251,178,85,.20) 0%,rgba(251,178,85,.07) 45%,rgba(251,178,85,0) 75%)!important;}
 html[data-mode="dark"] .ss-hd .ss-input:focus{background-image:radial-gradient(ellipse 55% 160% at 0% 0%,rgba(251,178,85,.28) 0%,rgba(251,178,85,.10) 45%,rgba(251,178,85,0) 80%)!important;}
+
+html[data-mode="dark"] .ss-hd-tab[aria-current="page"]{color:#FBB255;}
+
+/* Filtrační panel: světlý bílý (surface.card), tmavý zůstává surface.subtle */
+html[data-mode="dark"] .ss-filtr{background:var(--ss-surface-subtle,#13283C)!important;}
+
+/* Úvodní sekce s gradientem (Kategorie): surface.page nahoře → surface.muted dole; vrství se pod vinětaci */
+main>section.ss-grad-top{background-image:radial-gradient(ellipse 70% 60% at 50% 45%,rgba(255,255,255,0) 0%,rgba(19,44,67,.044) 100%),linear-gradient(180deg,var(--ss-surface-page,#FEFAF7) 0%,var(--ss-surface-muted,#F3EDE4) 100%)!important;background-attachment:fixed,scroll!important;}
+html[data-mode="dark"] main>section.ss-grad-top{background-image:radial-gradient(ellipse 60% 55% at 50% 45%,rgba(141,179,211,.101) 0%,rgba(141,179,211,.038) 45%,rgba(0,0,0,0) 80%),linear-gradient(180deg,var(--ss-surface-page,#0E1F2F) 0%,var(--ss-surface-muted,#183049) 100%)!important;}
+html[data-bg="off"] main>section.ss-grad-top{background-image:linear-gradient(180deg,var(--ss-surface-page,#FEFAF7) 0%,var(--ss-surface-muted,#F3EDE4) 100%)!important;background-attachment:scroll!important;}
+
+/* Nadpisy: světlý režim tmavá modrá z hlavičky #0B1F33 (inline barva vyhrává — bílé nadpisy na tmavých pásech zůstávají) */
+h1,h2,h3,h4{color:var(--ss-text-heading,#0B1F33);}
+
+/* Sekce s meruňkovým podsvícením zespoda — poloviční radiál od spodní hrany, vrstvený nad .ss-grad-top */
+main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 55% 100% at 50% 100%,rgba(251,178,85,.22) 0%,rgba(251,178,85,.09) 45%,rgba(251,178,85,0) 75%),radial-gradient(ellipse 70% 60% at 50% 45%,rgba(255,255,255,0) 0%,rgba(19,44,67,.044) 100%),linear-gradient(180deg,var(--ss-surface-page,#FEFAF7) 0%,var(--ss-surface-muted,#F3EDE4) 100%)!important;background-size:100% 520px,auto,auto!important;background-position:center bottom,center,center!important;background-repeat:no-repeat!important;background-attachment:scroll,fixed,scroll!important;}
+html[data-mode="dark"] main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 55% 100% at 50% 100%,rgba(251,178,85,.14) 0%,rgba(251,178,85,.05) 45%,rgba(251,178,85,0) 75%),radial-gradient(ellipse 60% 55% at 50% 45%,rgba(141,179,211,.101) 0%,rgba(141,179,211,.038) 45%,rgba(0,0,0,0) 80%),linear-gradient(180deg,var(--ss-surface-page,#0E1F2F) 0%,var(--ss-surface-muted,#183049) 100%)!important;}
+html[data-bg="off"] main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 55% 100% at 50% 100%,rgba(251,178,85,.22) 0%,rgba(251,178,85,.09) 45%,rgba(251,178,85,0) 75%),linear-gradient(180deg,var(--ss-surface-page,#FEFAF7) 0%,var(--ss-surface-muted,#F3EDE4) 100%)!important;background-size:100% 520px,auto!important;background-position:center bottom,center!important;background-repeat:no-repeat!important;background-attachment:scroll!important;}

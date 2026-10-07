@@ -17,7 +17,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 .ss-check{font-family:Roboto,Helvetica,Arial,sans-serif;display:flex;align-items:center;gap:12px;cursor:pointer;border-radius:6px;transition:background-color .12s cubic-bezier(.22,.61,.36,1);}
 .ss-check:has(input:disabled){opacity:.45;cursor:not-allowed;}
 .ss-check input{position:absolute;opacity:0;width:0;height:0;}
-.ss-check-box{display:flex;align-items:center;justify-content:center;flex:none;width:20px;height:20px;border-radius:4px;background:var(--ss-surface-page,#FFFFFF);box-shadow:inset 0 0 0 1px var(--ss-border-strong,#C8D0D8);color:#FFFFFF;transition:background-color .12s cubic-bezier(.22,.61,.36,1),box-shadow .15s cubic-bezier(.22,.61,.36,1);}
+.ss-check-box{display:flex;align-items:center;justify-content:center;flex:none;width:20px;height:20px;border-radius:4px;background:var(--ss-surface-page,#FEFAF7);box-shadow:inset 0 0 0 1px var(--ss-border-strong,#C8D0D8);color:#FFFFFF;transition:background-color .12s cubic-bezier(.22,.61,.36,1),box-shadow .15s cubic-bezier(.22,.61,.36,1);}
 .ss-check input:checked + .ss-check-box{background:#296093;box-shadow:inset 0 0 0 1px var(--ss-border-action,#296093);}
 .ss-check input:focus-visible + .ss-check-box{box-shadow:0 0 0 3px rgba(41,96,147,.35),inset 0 0 0 1px var(--ss-border-action,#296093);}
 .ss-check-mark{opacity:0;transition:opacity .12s cubic-bezier(.22,.61,.36,1);}
@@ -46,7 +46,7 @@ class Component extends DCLogic {
       checked: !!p.checked,
       disabled: !!p.disabled,
       markStroke: 3,
-      hoverBg: p.hoverBg ?? 'var(--ss-surface-subtle,#F7F9FB)',
+      hoverBg: p.hoverBg ?? 'var(--ss-surface-subtle,#FAF5EF)',
       showCount: p.count !== undefined && p.count !== null && p.count !== '',
       count: p.count,
       rowStyle: p.size === 'compact'
