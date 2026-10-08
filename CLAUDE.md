@@ -131,3 +131,37 @@ První kolo stránek: **Homepage**.
 - Malá změna = malá změna. Neopravovat, na co se nikdo neptal — navrhnout zvlášť.
 - Nekonzistence proti design systému se nahlásí a navrhne oprava, ale neopravuje se uvnitř jiného úkolu.
 - Odpovídat stručně a česky.
+
+---
+
+## Přenos projektu do nového účtu (8. 10. 2026)
+
+**Pokyn pro Claude v novém účtu:** projekt byl přenesen přes Git repozitář. Uložit **1:1**, nic nepřepisovat, nevylepšovat, nepřejmenovávat, neformátovat, neslučovat ani nemazat (ani staré verze `v1`, ani `uploads/`, ani `screenshots/`). `support.js` je runtime prostředí — neupravovat. Pak pokračovat v práci podle tohoto souboru.
+
+- Projekt se jmenuje **svetspanku.cz**. Uživatel (agentura, doména jxk.cz) píše česky, chce stručné odpovědi.
+- Projekt dříve navazoval na design systém v jiném projektu účtu (id 437bfa2d…). **Vše potřebné je už zkopírované sem** — tokeny v `DesignSystem.dc.html` + `tmavy-rezim.css`, fonty z Google Fonts. Na externí design systém se neodkazovat; zdrojem pravdy je tento projekt.
+- Všechny soubory jsou Design Components (`*.dc.html`), otevírají se přímo v prohlížeči, závisí na `support.js` v kořeni.
+
+### Mapa souborů
+
+Stránky:
+- `index.dc.html` — Homepage (hero, karty pod hero, Nejoblíbenější kategorie, Nejprodávanější, Recenze, Magazín, Newsletter).
+- `Kategorie.dc.html` — výpis kategorie s filtry.
+- `Postel 3.0.dc.html` — **aktuální detail produktu** (všechny odkazy na detail vedou sem, 7. 10. 2026). `Komplet 3.0.dc.html` — kopie k ladění detailu kompletu, přepínač v PrezentacniLista. `Produkt Levita.dc.html` — původní detail (zdroj kopií, nemazat).
+- `Kosik.dc.html`, `KosikKrok1–3.dc.html` — košík a kroky objednávky.
+- `Porovnani.dc.html`, `VysledkyVyhledavani.dc.html`, `Registrace.dc.html`, `Clanek.dc.html` (blog).
+- `DesignSystem.dc.html`, `Komponenty.dc.html`, `Ikony.dc.html`, `changelog.dc.html` — dokumentace.
+
+Komponenty (importované přes `dc-import`): Hlavicka, Paticka, MegaMenu, MobilniMenu, ProdejnyMenu, Vyhledavani, PrezentacniLista, Tlacitko, Chip, Stitek, Input, Select, Checkbox, VolbaRadio, SkupinaVoleb, Kvantifikator, Zalozky, Paginace, Drobeckova, Hodnoceni, InfoPopover, ProduktovaKarta, KategorickaDlazdice, VypisKategorii, SouvisejiciProdukty, Galerie, NakupniBox, VyberVariant, VariantaDrawer, MnozstevniSlevy, DopravaZdarma, Usp, CenovyFiltr, FiltrPanel, FiltrDrawer, FiltracniLista, KosikDrawer, KosikPridanoModal, PolozkaKosiku, SouhrnKosiku, ShrnutiObjednavky, SlevovyKupon, KrokyObjednavky, PrihlaseniModal, SocialniPrihlaseni, PoradnaModal, PrazdnyStav, LogoA–D (animace loga).
+Staré verze (nemazat): `MegaMenu v1`, `Paticka v1`, `ProduktovaKarta v1`.
+
+Data (plain JS): `menu.js` (struktura menu), `produkty.js`, `prodejny.js`, `kosik.js`, `icons.js`. Styl: `tmavy-rezim.css` (proměnné `--ss-*`, tmavý režim, `.ss-scrim`, `.ss-grad-top`, `.ss-grad-glow`). Obrázky v kořeni = použité assety; `uploads/` = podklady od klienta (wireframy, screeny, logomanuál, `lucatec-struktura-menu.md`).
+
+### Stav v prototypu (localStorage, ovládá PrezentacniLista)
+
+`ss-mode` (light/dark), `ss-logo` (varianta loga a–d), `ss-hdmode` (sticky hlavička H1/H2), `ss-cmp` (produkty v porovnání, událost `ss-cmp`). Hlavička vysílá `ss-hdhidden` při schování (H2). LED stav `state.led` → prop `ledMode`.
+
+### Rozpracováno — otevřené body
+
+- **Struktura menu (MegaMenu + MobilniMenu)**: návrh podle `uploads/lucatec-struktura-menu.md` klient odmítl jako špatný směr → **vše vráceno do původního stavu** (`menu.js`, `MegaMenu.dc.html`, `MobilniMenu.dc.html`). Původní struktura je v Muralu, ke kterému Claude nemá přístup. **Čeká se na upřesnění od klienta**: co bylo špatně, které části struktury mají být v mega menu, a export z Muralu (PDF/PNG/screenshot/text). Dokud nepřijde, menu neměnit.
+- Poslední dny práce (7. 10. 2026): přesměrování detailu na Postel 3.0, teplé meruňkové podklady sekcí homepage (`.ss-grad-top` + `.ss-grad-glow`), bílé boxy konfigurace na detailu, sticky hlavička H1/H2, počty v porovnání/oblíbených v hlavičce. Podrobnosti v `changelog.dc.html`.
