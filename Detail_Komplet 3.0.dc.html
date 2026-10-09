@@ -761,7 +761,7 @@ class Component extends DCLogic {
     const nav = document.querySelector('nav[aria-label="Obsah produktu"]');
     const hd = document.querySelector('header.ss-hd');
     let hdVis = hd ? Math.max(0, hd.getBoundingClientRect().bottom) : 0;
-    let mode = ''; try { mode = localStorage.getItem('ss-hdmode') || ''; } catch (e) {}
+    let mode = ''; try { mode = localStorage.getItem('ss-hdmode') || 'H2'; } catch (e) {}
     const down = el.getBoundingClientRect().top > 0;
     if (/h2/i.test(mode) && down) hdVis = 0;
     const off = hdVis + (nav ? nav.offsetHeight : 0) + 8;

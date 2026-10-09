@@ -166,7 +166,7 @@ Data (plain JS): `menu.js` (struktura menu), `produkty.js`, `prodejny.js`, `kosi
 
 ### Stav v prototypu (localStorage, ovládá PrezentacniLista)
 
-`ss-mode` (light/dark), `ss-logo` (varianta loga a–d), `ss-hdmode` (sticky hlavička H1/H2), `ss-cmp` (produkty v porovnání, událost `ss-cmp`). Hlavička vysílá `ss-hdhidden` při schování (H2). LED stav `state.led` → prop `ledMode`.
+`ss-mode` (light/dark), `ss-logo` (varianta loga a–d), `ss-hdmode` (sticky hlavička H1/H2, **výchozí H2** od 9. 10. 2026), `ss-cmp` (produkty v porovnání, událost `ss-cmp`). Hlavička vysílá `ss-hdhidden` při schování (H2). LED stav `state.led` → prop `ledMode`.
 
 ### Rozpracováno — otevřené body
 

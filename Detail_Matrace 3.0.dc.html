@@ -239,6 +239,7 @@ html[data-mode="dark"] .ss-pd-glass::before,html[data-mode="dark"] .ss-pd-glassw
             <sc-if value="{{ showVariants }}" hint-placeholder-val="{{ true }}">
             <div style="display:flex;flex-direction:column;gap:12px;padding-bottom:20px;border-bottom:1px solid var(--ss-border-subtle,#E1E6EB)">
               <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:17px">Další varianty</span>
+              <sc-if value="{{ varCards }}" hint-placeholder-val="{{ true }}">
               <div style="display:grid;grid-template-columns:{{ varTemplate }};gap:12px">
                 <sc-for list="{{ variants }}" as="v" hint-placeholder-count="4">
                   <button type="button" class="ss-pd-var" onClick="{{ v.onPick }}" aria-pressed="{{ v.pressed }}" style="padding:8px;box-sizing:border-box;box-shadow:{{ v.ring }};background:{{ v.bg }}">
@@ -255,6 +256,14 @@ html[data-mode="dark"] .ss-pd-glass::before,html[data-mode="dark"] .ss-pd-glassw
                   </button>
                 </sc-for>
               </div>
+              </sc-if>
+              <sc-if value="{{ varChips }}" hint-placeholder-val="{{ false }}">
+                <div style="display:flex;flex-wrap:wrap;gap:8px">
+                  <sc-for list="{{ variants }}" as="v" hint-placeholder-count="4">
+                    <dc-import name="Chip" label="{{ v.short }}" size="standard" variant="{{ v.chipVariant }}" ariaPressed="{{ v.pressed }}" check="{{ v.pressed }}" onClick="{{ v.onPick }}" hint-size="64px,36px"></dc-import>
+                  </sc-for>
+                </div>
+              </sc-if>
             </div>
             </sc-if>
 
@@ -859,7 +868,7 @@ class Component extends DCLogic {
     const nav = document.querySelector('nav[aria-label="Obsah produktu"]');
     const hd = document.querySelector('header.ss-hd');
     let hdVis = hd ? Math.max(0, hd.getBoundingClientRect().bottom) : 0;
-    let mode = ''; try { mode = localStorage.getItem('ss-hdmode') || ''; } catch (e) {}
+    let mode = ''; try { mode = localStorage.getItem('ss-hdmode') || 'H2'; } catch (e) {}
     const down = el.getBoundingClientRect().top > 0;
     if (/h2/i.test(mode) && down) hdVis = 0;
     const off = hdVis + (nav ? nav.offsetHeight : 0) + 8;
@@ -1075,9 +1084,10 @@ class Component extends DCLogic {
         { label: 'Detail', value: 'Matrace 3.0', options: ['Postel 3.0', 'Komplet 3.0', 'Multi 3.0', 'Matrace 3.0'] },
         { label: 'Fixní sloupec', value: this.state.stickPick || (stick === 'zadny' ? 'Žádný' : 'Galerie'), options: ['Galerie', 'Žádný'] },
         { label: 'Rozměr', value: this.state.sizeUi === 'V2' ? 'Dropdown' : 'Chipy', options: ['Chipy', 'Dropdown'] },
-        { label: 'Výška', value: this.state.heightUi === 'V2' ? 'Dropdown' : 'Chipy', options: ['Chipy', 'Dropdown'] }
+        { label: 'Výška', value: this.state.heightUi === 'V2' ? 'Dropdown' : 'Chipy', options: ['Chipy', 'Dropdown'] },
+        { label: 'Varianty', value: this.state.varUi || 'Karty', options: ['Karty', 'Chipy'] }
       ],
-      onPresPick: (ci, opt) => { if (ci === 0) { if (opt !== 'Matrace 3.0') window.location.href = 'Detail_' + opt + '.dc.html'; return; } this.setState(ci === 1 ? { stickPick: opt } : ci === 2 ? { sizeUi: opt === 'Dropdown' ? 'V2' : 'V1' } : ci === 3 ? { heightUi: opt === 'Dropdown' ? 'V2' : 'V1' } :  { setUi: opt }); },
+      onPresPick: (ci, opt) => { if (ci === 0) { if (opt !== 'Matrace 3.0') window.location.href = 'Detail_' + opt + '.dc.html'; return; } this.setState(ci === 1 ? { stickPick: opt } : ci === 2 ? { sizeUi: opt === 'Dropdown' ? 'V2' : 'V1' } : ci === 3 ? { heightUi: opt === 'Dropdown' ? 'V2' : 'V1' } : ci === 4 ? { varUi: opt } :  { setUi: opt }); },
       stickyChips: [
         { label: this.state.customSize || this.state.size },
         { label: 'Výška ' + vys.label },
@@ -1141,11 +1151,12 @@ class Component extends DCLogic {
         { icon: 'arrows-vertical', label: 'Výška jádra 20 cm' },
         { icon: 'stack-2', label: 'Pěnová matrace' }
       ].map(f => ({ label: f.label, icon: f.icon, isFlag: !!f.flag, isIcon: !f.flag })),
+      varCards: this.state.varUi !== 'Chipy', varChips: this.state.varUi === 'Chipy',
       varTemplate: w >= 550 ? 'repeat(4,minmax(0,1fr))' : 'repeat(2,minmax(0,1fr))',
       variants: variants.map(v => {
         const sel = (this.state.variantLabel || 'ELARA greengel S') === v.label;
         return {
-          label: v.label, src: 'produkt-matrace-ultra-fresh.png', selected: sel, firmLabel: v.firm, tuhost: v.tuhost,
+          label: v.label, short: v.label.split(' ').pop(), chipVariant: sel ? 'primary' : 'outlineBox', src: 'produkt-matrace-ultra-fresh.png', selected: sel, firmLabel: v.firm, tuhost: v.tuhost,
           scale: [0, 1, 2, 3, 4].map(k => ({ bg: k === v.pos ? '#132C43' : 'var(--ss-surface-selected,#DCE8F2)' })),
           ring: sel ? 'inset 0 0 0 2px #296093' : 'none',
           bg: sel ? 'var(--ss-surface-box,#FFFFFF)' : 'transparent',

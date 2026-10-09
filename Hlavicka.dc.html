@@ -278,7 +278,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:320},&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;blue&quot;,&quot;options&quot;:[&quot;light&quot;,&quot;blue&quot;,&quot;duo&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;cartCount&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:2,&quot;min&quot;:0,&quot;max&quot;:99,&quot;tsType&quot;:&quot;number&quot;},&quot;cartTotal&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;2 480 Kč&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;activeCategory&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;onSearch&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(query: string) =&gt; void&quot;}}">
 class Component extends DCLogic {
-  state = { width: typeof window !== 'undefined' ? document.documentElement.clientWidth : 1440, open: -1, mobileOpen: false, query: '', cats: null, util: [], cmpN: (() => { try { return (JSON.parse(localStorage.getItem('ss-cmp') || '[]')).length; } catch (e) { return 0; } })(), hdMode: (() => { try { return localStorage.getItem('ss-hdmode') === 'H2' ? 'H2' : 'H1'; } catch (e) { return 'H1'; } })(), hdHidden: false, favN: (() => { try { return (JSON.parse(localStorage.getItem('ss-fav') || '[]')).length; } catch (e) { return 0; } })() };
+  state = { width: typeof window !== 'undefined' ? document.documentElement.clientWidth : 1440, open: -1, mobileOpen: false, query: '', cats: null, util: [], cmpN: (() => { try { return (JSON.parse(localStorage.getItem('ss-cmp') || '[]')).length; } catch (e) { return 0; } })(), hdMode: (() => { try { return localStorage.getItem('ss-hdmode') === 'H1' ? 'H1' : 'H2'; } catch (e) { return 'H1'; } })(), hdHidden: false, favN: (() => { try { return (JSON.parse(localStorage.getItem('ss-fav') || '[]')).length; } catch (e) { return 0; } })() };
 
   componentDidMount() {
     this._fav = () => { try { this.setState({ favN: (JSON.parse(localStorage.getItem('ss-fav') || '[]')).length }); } catch (e) {} };
@@ -340,7 +340,7 @@ class Component extends DCLogic {
       else if (dy < -4) hide = false;
       if (hide !== this.state.hdHidden) { this.setState({ hdHidden: hide, open: hide ? -1 : this.state.open }); try { window.__ssHdHidden = hide; window.dispatchEvent(new CustomEvent('ss-hdhidden', { detail: hide })); } catch (e) {} }
     };
-    this._hdMode = () => { let m = 'H1'; try { m = localStorage.getItem('ss-hdmode') === 'H2' ? 'H2' : 'H1'; } catch (e) {} this.setState({ hdMode: m, hdHidden: false }); try { window.__ssHdHidden = false; window.dispatchEvent(new CustomEvent('ss-hdhidden', { detail: false })); } catch (e) {} };
+    this._hdMode = () => { let m = 'H2'; try { m = localStorage.getItem('ss-hdmode') === 'H1' ? 'H1' : 'H2'; } catch (e) {} this.setState({ hdMode: m, hdHidden: false }); try { window.__ssHdHidden = false; window.dispatchEvent(new CustomEvent('ss-hdhidden', { detail: false })); } catch (e) {} };
     window.addEventListener('ss-hdmode', this._hdMode); window.addEventListener('storage', this._hdMode);
     document.addEventListener('scroll', this._scroll, true);
     window.addEventListener('scroll', this._scroll, { passive: true });

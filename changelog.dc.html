@@ -68,6 +68,14 @@ a:hover{color:var(--ss-link-hover,#21507B);}
 class Component extends DCLogic {
   static DAYS = [
     { date: '9. 10. 2026', entries: [
+      { title: 'Hlavička: výchozí režim H2 na celém webu',
+        before: 'Bez uložené volby ss-hdmode platil H1 (hlavička stále viditelná).',
+        after: 'Výchozí H2 (hlavička se při scrollu dolů schová). H1 jen při ručním přepnutí v PrezentacniLista.',
+        why: 'Rozhodnutí klienta.', files: 'Hlavicka.dc.html, PrezentacniLista.dc.html, Detail_Komplet/Multi/Matrace 3.0.dc.html, CLAUDE.md' },
+      { title: 'Matrace 3.0: Další varianty — přepínač Karty / Chipy',
+        before: 'Další varianty jen jako karty s fotkou.',
+        after: 'V PrezentacniLista „Varianty: Karty / Chipy“. Karty beze změny; Chipy = S, M, L, XL (Chip primary / outlineBox, jako rozměr) — varianty se liší jen velikostí.',
+        why: 'Požadavek klienta.', files: 'Detail_Matrace 3.0.dc.html' },
       { title: 'Karty matrací odkazují na Detail Matrace 3.0',
         before: 'Všechny produkty v produkty.js → Detail_Postel 3.0.',
         after: 'Matrace (Spring Variant 22, Leda Duo, Ultra Fresh, Duo Comfort) → Detail_Matrace 3.0.dc.html; ostatní beze změny.',

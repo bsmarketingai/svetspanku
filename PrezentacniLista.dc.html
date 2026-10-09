@@ -70,7 +70,7 @@ class Component extends DCLogic {
     mode: (() => { try { return localStorage.getItem('ss-mode') === 'dark' ? 'dark' : 'light'; } catch (e) { return 'light'; } })(),
     bg: (() => { try { return localStorage.getItem('ss-bg') || 'on'; } catch (e) { return 'on'; } })(),
     logo: (() => { try { return localStorage.getItem('ss-logo') || 'a'; } catch (e) { return 'a'; } })(),
-    hd: (() => { try { return localStorage.getItem('ss-hdmode') === 'H2' ? 'H2' : 'H1'; } catch (e) { return 'H1'; } })()
+    hd: (() => { try { return localStorage.getItem('ss-hdmode') === 'H1' ? 'H1' : 'H2'; } catch (e) { return 'H2'; } })()
   };
   setAttr(key, attr, v) {
     try { localStorage.setItem(key, v); } catch (e) {}
