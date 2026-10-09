@@ -68,6 +68,14 @@ a:hover{color:var(--ss-link-hover,#21507B);}
 class Component extends DCLogic {
   static DAYS = [
     { date: '9. 10. 2026', entries: [
+      { title: 'Postel 3.0: Materiál a Odstín (olej) jako dvě volby',
+        before: 'Jeden řádek „Materiál a odstín (olej)“ — drawer se skupinami dřevina × odstín.',
+        after: 'Dva řádky: Materiál (drawer s řádky Buk / Dub / Jasan + příplatek) a Odstín (olej) (drawer se vzorky odstínů, bez příplatku). Stav mat zůstává „dřevo-odstín“ — chipy ve sticky liště i modal beze změny.',
+        why: 'Požadavek klienta.', files: 'Detail_Postel 3.0.dc.html' },
+      { title: 'Komplet 3.0: chipy variant ve spodní liště místo navigace',
+        before: 'Pod názvem ve spodní sticky liště záložky obsahu.',
+        after: 'Chipy vybrané konfigurace jako v Postel 3.0: 180 × 200 cm, materiál se vzorkem, tuhost matrace, 2 × rošt Villach S. Navigace obsahu zůstává jen nahoře.',
+        why: 'Požadavek klienta — sjednocení s Postel 3.0.', files: 'Detail_Komplet 3.0.dc.html' },
       { title: 'Hlavička: výchozí režim H2 na celém webu',
         before: 'Bez uložené volby ss-hdmode platil H1 (hlavička stále viditelná).',
         after: 'Výchozí H2 (hlavička se při scrollu dolů schová). H1 jen při ručním přepnutí v PrezentacniLista.',

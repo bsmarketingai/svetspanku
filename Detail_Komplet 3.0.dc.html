@@ -592,11 +592,16 @@ html[data-mode="dark"] .ss-pd-glass::before,html[data-mode="dark"] .ss-pd-glassw
                 <img src="menu-nocni-stolky.png" alt="" style="width:64px;height:48px;object-fit:contain;border-radius:6px;flex:none;background:#FFFFFF" />
                 <span style="font-size:15px;font-weight:600;line-height:1.3;color:var(--ss-text-primary,#1C2229);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Postel LEVITA 180 × 200 + matrace Viscoair a 2 rošty Villach S</span>
               </div>
-              <nav class="ss-pd-qnav" aria-label="Obsah produktu – rychlá navigace" style="display:flex;flex-wrap:nowrap;gap:0 28px;overflow-x:auto;min-width:0">
-                <sc-for list="{{ anchors }}" as="a" hint-placeholder-count="6">
-                  <a class="ss-pd-tab" href="{{ a.href }}" data-on="{{ a.on }}" aria-current="{{ a.current }}" onClick="{{ a.go }}">{{ a.label }}</a>
+              <span style="display:flex;flex-wrap:wrap;gap:6px;margin-top:4px">
+                <sc-for list="{{ stickyChips }}" as="ch" hint-placeholder-count="4">
+                  <span style="display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;border-radius:999px;background:var(--ss-surface-subtle,#FAF5EF);box-shadow:inset 0 0 0 1px var(--ss-border-subtle,#E1E6EB);font-size:13px;color:var(--ss-text-secondary,#3D4750);white-space:nowrap">
+                    <sc-if value="{{ ch.hasSwatch }}" hint-placeholder-val="{{ false }}">
+                      <span style="width:10px;height:10px;border-radius:999px;flex:none;box-shadow:inset 0 0 0 1px rgba(19,44,67,.18);background:{{ ch.color }}"></span>
+                    </sc-if>
+                    <span>{{ ch.label }}</span>
+                  </span>
                 </sc-for>
-              </nav>
+              </span>
             </div>
             <div style="display:flex;flex-direction:column;gap:2px;text-align:right">
               <span style="font-size:13px;color:var(--ss-text-muted,#5B6874);text-decoration:line-through">{{ kitBefore }}</span>
@@ -981,11 +986,10 @@ class Component extends DCLogic {
       ],
       onPresPick: (ci, opt) => { if (ci === 0) { if (opt !== 'Komplet 3.0') window.location.href = 'Detail_' + opt + '.dc.html'; return; } ci -= 1; this.setState(ci === 0 ? { stickPick: opt } : ci === 1 ? { sizeUi: opt } : { setUi: opt }); },
       stickyChips: [
-        { label: this.state.customSize || this.state.size },
-        { label: this.state.up === 'yes' ? 'S úložným prostorem' : 'Bez úložného prostoru' },
-        { label: 'Rošt: ' + rost.label },
+        { label: '180 × 200 cm' },
         { label: mat.label, color: mat.color, hasSwatch: true },
-        { label: 'Čalounění: ' + cal.label, color: cal.color, hasSwatch: true }
+        { label: 'Matrace ' + tuh.label },
+        { label: '2 × rošt Villach S' }
       ].filter(c => !!c.label),
       crumbs: [
         { label: 'Domů', href: 'index.dc.html' },

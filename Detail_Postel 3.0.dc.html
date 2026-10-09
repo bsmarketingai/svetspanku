@@ -1010,6 +1010,11 @@ class Component extends DCLogic {
     const matGroup = MATERIALY.find(g => g.items.some(i => i.id === matId)) || MATERIALY[0];
     const matItem = matGroup.items.find(i => i.id === matId) || matGroup.items[0];
     const mat = { label: matGroup.title + ' · ' + matItem.label, note: matItem.note === 'bez příplatku' ? 'Bez příplatku' : matItem.note, color: matItem.color };
+    const [woodKey, toneKey] = matId.split('-');
+    const wood = drevo.find(x => x.key === woodKey) || drevo[0];
+    const tone = ODSTINY.find(x => x.id === toneKey) || ODSTINY[0];
+    const DREVO_ROWS = drevo.map(x => ({ id: x.key, label: x.title, price: x.note === 'bez příplatku' ? 'bez příplatku' : x.note, stock: 'Skladem' }));
+    const TONE_GROUP = [{ items: ODSTINY.map(o => ({ id: o.id, label: o.label, note: 'bez příplatku', color: o.color })) }];
     const calItem = LATKY.find(l => l.id === (this.state.cal || 'k26')) || LATKY[0];
     const cal = { label: calItem.label, note: calItem.note === 'bez příplatku' ? 'Bez příplatku' : calItem.note, color: calItem.color };
     const fmt = (v) => String(v).replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0') + '\u00A0Kč';
@@ -1152,17 +1157,20 @@ class Component extends DCLogic {
       toggleUp: () => this.setState(s => ({ up: s.up === 'yes' ? 'no' : 'yes' })),
       pickers: [
         { title: 'Rošty', value: rost.label, note: rost.note, on: rost.note === 'Bez příplatku' ? 'false' : 'true', noteColor: rost.note === 'Bez příplatku' ? 'var(--ss-status-success,#157A41)' : 'var(--ss-text-primary,#1C2229)', hasSwatch: false, swatch: '', onOpen: () => this.setState({ drawer: 'rosty' }) },
-        { title: 'Materiál a odstín (olej)', value: mat.label, note: mat.note, on: 'true', noteColor: mat.note === 'Bez příplatku' ? 'var(--ss-status-success,#157A41)' : 'var(--ss-text-primary,#1C2229)', hasSwatch: true, swatch: mat.color, onOpen: () => this.setState({ drawer: 'material' }) },
+        { title: 'Materiál', value: wood.title, note: wood.note === 'bez příplatku' ? 'Bez příplatku' : wood.note, on: 'true', noteColor: wood.note === 'bez příplatku' ? 'var(--ss-status-success,#157A41)' : 'var(--ss-text-primary,#1C2229)', hasSwatch: false, swatch: '', onOpen: () => this.setState({ drawer: 'drevo' }) },
+        { title: 'Odstín (olej)', value: tone.label, note: 'Bez příplatku', on: 'true', noteColor: 'var(--ss-status-success,#157A41)', hasSwatch: true, swatch: tone.color, onOpen: () => this.setState({ drawer: 'odstin' }) },
         { title: 'Čalounění', value: cal.label, note: cal.note, on: 'true', noteColor: cal.note === 'Bez příplatku' ? 'var(--ss-status-success,#157A41)' : 'var(--ss-text-primary,#1C2229)', hasSwatch: true, swatch: cal.color, onOpen: () => this.setState({ drawer: 'calouneni' }) }
       ],
       drawerOpen: !!this.state.drawer,
-      drawerTitle: this.state.drawer === 'rosty' ? 'Rošt(y)' : this.state.drawer === 'material' ? 'Materiál a odstín dřeva' : 'Čalounění',
+      drawerTitle: this.state.drawer === 'rosty' ? 'Rošt(y)' : this.state.drawer === 'drevo' ? 'Materiál' : this.state.drawer === 'odstin' ? 'Odstín (olej)' : this.state.drawer === 'material' ? 'Materiál a odstín dřeva' : 'Čalounění',
       drawerNote: this.state.drawer === 'calouneni' ? 'Nevybrali jste si? Celou škálu látek Kronos a Paros najdete ve vzorníku níže na stránce nebo na našich prodejnách.' : '',
-      drawerValue: this.state.drawer === 'rosty' ? this.state.rost : this.state.drawer === 'material' ? this.state.mat : this.state.cal,
-      drawerGroups: this.state.drawer === 'material' ? MATERIALY : this.state.drawer === 'calouneni' ? [{ items: LATKY }] : [],
-      drawerRows: this.state.drawer === 'rosty' ? ROSTY : [],
+      drawerValue: this.state.drawer === 'rosty' ? this.state.rost : this.state.drawer === 'drevo' ? wood.key : this.state.drawer === 'odstin' ? tone.id : this.state.drawer === 'material' ? this.state.mat : this.state.cal,
+      drawerGroups: this.state.drawer === 'odstin' ? TONE_GROUP : this.state.drawer === 'material' ? MATERIALY : this.state.drawer === 'calouneni' ? [{ items: LATKY }] : [],
+      drawerRows: this.state.drawer === 'rosty' ? ROSTY : this.state.drawer === 'drevo' ? DREVO_ROWS : [],
       onDrawerPick: (id) => {
         const k = this.state.drawer;
+        if (k === 'drevo') { this.setState({ mat: id + '-' + tone.id }); return; }
+        if (k === 'odstin') { this.setState({ mat: wood.key + '-' + id }); return; }
         this.setState(k === 'rosty' ? { rost: id } : k === 'material' ? { mat: id } : { cal: id });
       },
       closeDrawer: () => this.setState({ drawer: null }),
