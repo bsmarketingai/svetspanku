@@ -33,7 +33,7 @@ Přemapováno kvůli kontrastu:
 
 ## Typografie
 
-Google Fonts: výchozí **Oswald** (nadpisy), **Roboto** (běžný text, 400–700), **Archivo Narrow** (ceny a číselné údaje, 600/700). Volba fontů v `PrezentacniLista` odebrána (6. 10. 2026), fonty jsou pevné. **Minimum 13 px.**
+Google Fonts: výchozí **Oswald** (nadpisy), **Roboto** (běžný text, 400–700), ceny a číselné údaje také **Oswald** (Archivo Narrow odstraněno 8. 10. 2026 — používá se jen Oswald a Roboto). Volba fontů v `PrezentacniLista` odebrána (6. 10. 2026), fonty jsou pevné. **Minimum 13 px.**
 Nadpisy `h1`–`h4`: `font-weight:600`, `text-transform:none`, **vždy větná kapitalizace** — první písmeno velké, zbytek malé (kromě vlastních jmen); píše se tak přímo v textu, ne přes CSS. Pravidlo je v helmetu každého souboru.
 Tokeny: `heading.h1–h4`, `body.large/medium`, `label.small`, `caption`, `overline`, commerce `price.primary`, `price.before`, `product.title`, `stock`, `orderNo`.
 Mobilní sada se přepíná **skokem na 820 px**, nikdy přes `clamp()`. Pole formulářů pod 550 px mají `font-size:16px` (iOS jinak zoomuje).
@@ -49,6 +49,7 @@ Elevace: karta **v klidu bez borderu a bez stínu**; hover `0 4px 12px rgba(19,4
 Motion: 60 ms stisk · 120 ms barvy · 150 ms stíny · 400 ms panely; `cubic-bezier(.22,.61,.36,1)`.
 Rozměry: `size.control` 44, compact 36, large 52, `size.row` 48. Minimální klikací plocha 24 × 24, zvětšuje se `::after`, ne paddingem.
 Scrim modálů a drawerů: **vždy třída `.ss-scrim`** z `tmavy-rezim.css` (blur 16 px, diagonální závoj, teplé bodové světlo z levého horního rohu), nikdy vlastní pozadí overlaye. Výjimka: lightbox galerie (plné tmavé pozadí pro fotky).
+Scrollbar: globálně z `tmavy-rezim.css` — systémová šířka (15 px), průhledný podklad, jen táhlo meruňkové `action.buy` (hover apricot-500), pill, stejné v obou režimech; neřeší se per komponenta.
 Z-index registr: 0 base · 100 sticky lišta · 200 hlavička · 300 našeptávač a mega menu · 400 overlay · 410 drawer · 500 modál · 600 toast · 900 DebugBar · 950 PrezentacniLista.
 
 ## Layout a breakpointy
@@ -68,6 +69,12 @@ html,body{margin:0!important;padding:0!important;}
 ## Tmavý režim
 
 Barvy v komponentách se píšou `var(--ss-token, #světláHodnota)` — světlý režim je fallback, tmavé hodnoty jsou jen v `tmavy-rezim.css` pod `html[data-mode="dark"]`. Každý soubor má v helmetu `<link href="./tmavy-rezim.css">` a skript, který obnoví uložený režim. Barvy, které se v tmavém nemění (primární tlačítko, meruňková, tmavé pásy hlavičky a patičky, bílý text na brandu), zůstávají literály. Tabulka světlý → tmavý v `DesignSystem.dc.html` § 2. Nová barva = doplnit proměnnou do CSS i tabulky.
+
+## Štítky (příznaky)
+
+Komponenta `Stitek.dc.html`, rádius 6, Roboto 13/600 (small 12). Dvě skupiny (8. 10. 2026):
+- **Obchodní** (plná barva, na fotce): `news` Novinka apricot-400 + star · `sale` −18 % red-600 · `freeShip` green-600 + truck · `tip` Náš tip blue-600 + thumb-up · `bestseller` Nejprodávanější brand #132C43 + flame · `clearance` Výprodej apricot-800 + tag · `top` TOP apricot-100/800 + award.
+- **Vlastnosti** (tonální modrá surface.selected / link-hover): `warranty` 5 let záruka + shield-check · `orthopedic` Ortopedická · `antiallergic` Antialergenní + leaf · `firmness` Změna tuhosti + arrows-exchange · `bogo` 1+1 zdarma + gift.
 
 ## Ikony
 
@@ -117,7 +124,7 @@ První kolo stránek: **Homepage**.
 - **Jedna vizuální linka**, ne varianty vzhledu k rozhodnutí (klient zvolil „jedna linka, jeď“).
 - **Konverzní barva je meruňková** (`action.buy` apricot-400, vždy tmavý text). Zelená = **success** (skladem, pozitivní oznámení), červená = **error** (nedostupné, negativní oznámení, odebrat). Primární modrá beze změny.
 - **Bez přepínače měny a jazyka** — jen CZK a čeština.
-- **Nimbus Sans L Condensed se na web nenasazuje.** Výchozí nadpisy Oswald, text Roboto (6. 10. 2026), ceny Archivo Narrow.
+- **Nimbus Sans L Condensed se na web nenasazuje.** Výchozí nadpisy Oswald, text Roboto (6. 10. 2026), ceny Oswald (8. 10. 2026). Jiné písmo se nepoužívá.
 - **Názvosloví pásem XXS–XXL**, ne mobil/tablet/desktop.
 - **Jen designový Select** (`Select.dc.html`, vlastní listbox). Systémový `<select>` se nepoužívá (2. 10. 2026).
 - **Ceny vždy s DPH**, bez přepínače bez DPH (B2C).
@@ -146,8 +153,8 @@ První kolo stránek: **Homepage**.
 
 Stránky:
 - `index.dc.html` — Homepage (hero, karty pod hero, Nejoblíbenější kategorie, Nejprodávanější, Recenze, Magazín, Newsletter).
-- `Kategorie.dc.html` — výpis kategorie s filtry.
-- `Postel 3.0.dc.html` — **aktuální detail produktu** (všechny odkazy na detail vedou sem, 7. 10. 2026). `Komplet 3.0.dc.html` — kopie k ladění detailu kompletu, přepínač v PrezentacniLista. `Produkt Levita.dc.html` — původní detail (zdroj kopií, nemazat).
+- `Kategorie.dc.html` — šablona výpisu kategorie s filtry (prop `k` = slug L1, L2/L3 přes hash `#s=&p=`). Stránky L1: `Kategorie Postele / Matrace / Rosty / Komplety / Nabytek / Polstare / Luzkoviny.dc.html` (jen import šablony). Odkazy nikdy přes query parametry (`?…`) — rozbíjí náhled. `Kategorie v1.dc.html` = původní verze pro Matrace.
+- `Detail_Postel 3.0.dc.html` — **aktuální detail produktu** (všechny odkazy na detail vedou sem, 7. 10. 2026). `Detail_Komplet 3.0.dc.html` — kopie k ladění detailu kompletu, přepínač v PrezentacniLista. `Detail_Produkt Levita.dc.html` — původní detail (zdroj kopií, nemazat).
 - `Kosik.dc.html`, `KosikKrok1–3.dc.html` — košík a kroky objednávky.
 - `Porovnani.dc.html`, `VysledkyVyhledavani.dc.html`, `Registrace.dc.html`, `Clanek.dc.html` (blog).
 - `DesignSystem.dc.html`, `Komponenty.dc.html`, `Ikony.dc.html`, `changelog.dc.html` — dokumentace.
@@ -163,5 +170,5 @@ Data (plain JS): `menu.js` (struktura menu), `produkty.js`, `prodejny.js`, `kosi
 
 ### Rozpracováno — otevřené body
 
-- **Struktura menu (MegaMenu + MobilniMenu)**: návrh podle `uploads/lucatec-struktura-menu.md` klient odmítl jako špatný směr → **vše vráceno do původního stavu** (`menu.js`, `MegaMenu.dc.html`, `MobilniMenu.dc.html`). Původní struktura je v Muralu, ke kterému Claude nemá přístup. **Čeká se na upřesnění od klienta**: co bylo špatně, které části struktury mají být v mega menu, a export z Muralu (PDF/PNG/screenshot/text). Dokud nepřijde, menu neměnit.
+- **Struktura menu**: naplněna podle screenshotů z Muralu (8. 10. 2026) v `menu.js`. Otevřené: skupina „Podle materiálu“ u polštářů (v Muralu otazníky), zda ponechat „Akce a výprodej“, zvýraznění „Průvodce výběrem matrace“.
 - Poslední dny práce (7. 10. 2026): přesměrování detailu na Postel 3.0, teplé meruňkové podklady sekcí homepage (`.ss-grad-top` + `.ss-grad-glow`), bílé boxy konfigurace na detailu, sticky hlavička H1/H2, počty v porovnání/oblíbených v hlavičce. Podrobnosti v `changelog.dc.html`.

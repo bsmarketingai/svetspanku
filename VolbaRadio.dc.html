@@ -10,9 +10,9 @@
 <helmet>
 <link rel="stylesheet" href="./tmavy-rezim.css">
 <script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&display=swap" rel="stylesheet">
 <style>
-h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
+h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
 .ss-vr{position:relative;box-sizing:border-box;display:grid;align-items:start;font-family:Roboto,Helvetica,Arial,sans-serif;color:var(--ss-text-primary,#1C2229);transition:background-color .12s cubic-bezier(.22,.61,.36,1);}
 .ss-vr-in{position:absolute;opacity:0;width:1px;height:1px;margin:0;pointer-events:none;}
 .ss-vr-dot{box-sizing:border-box;display:flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:999px;background:var(--ss-surface-page,#FEFAF7);box-shadow:inset 0 0 0 2px var(--ss-border-strong,#C8D0D8);transition:box-shadow .12s cubic-bezier(.22,.61,.36,1);}
@@ -94,7 +94,7 @@ class Component extends DCLogic {
       hasDate: !!p.date, date: p.date, dateNote: p.dateNote || '',
       hasNote: !!p.disabled && !!p.disabledNote, disabledNote: p.disabledNote,
       price: p.price || '',
-      priceStyle: { fontFamily: "'Archivo Narrow',Roboto,sans-serif", fontWeight: 700, fontSize: sub ? '16px' : '17px', whiteSpace: 'nowrap', textAlign: 'right', paddingTop: hasMedia ? 0 : '1px', lineHeight: hasMedia ? '32px' : 1.4, color: free ? 'var(--ss-status-success,#157A41)' : 'var(--ss-text-primary,#1C2229)' },
+      priceStyle: { fontFamily: "Oswald,Roboto,sans-serif", fontWeight: 700, fontSize: sub ? '16px' : '17px', whiteSpace: 'nowrap', textAlign: 'right', paddingTop: hasMedia ? 0 : '1px', lineHeight: hasMedia ? '32px' : 1.4, color: free ? 'var(--ss-status-success,#157A41)' : 'var(--ss-text-primary,#1C2229)' },
       dotTop: hasMedia ? '4px' : '0px',
       titleAlign: hasMedia ? 'center' : 'flex-start',
       titleMinH: hasMedia ? '32px' : '0',

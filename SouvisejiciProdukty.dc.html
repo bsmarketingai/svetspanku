@@ -10,9 +10,9 @@
 <helmet>
 <link rel="stylesheet" href="./tmavy-rezim.css">
 <script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&display=swap" rel="stylesheet">
 <style>
-h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
+h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
 
 .ss-car-wrap{position:relative;width:100%;min-width:0;}
 .ss-car{display:flex;align-items:stretch;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-left:14px;scrollbar-width:none;padding:14px;margin:-14px;}
@@ -50,7 +50,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 </helmet>
 <section style="font-family:Roboto,Helvetica,Arial,sans-serif;width:100%;min-width:0;display:flex;flex-direction:column;gap:20px">
   <div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px">
-    <h2 style="margin:0;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:{{ headingSize }};line-height:1.15;color:var(--ss-text-heading,#0B1F33)">{{ heading }}</h2>
+    <h2 style="margin:0;font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:{{ headingSize }};line-height:1.15;color:var(--ss-text-heading,#0B1F33)">{{ heading }}</h2>
     <sc-if value="{{ linkTop }}" hint-placeholder-val="{{ false }}">
       <div style="margin-left:auto"><dc-import name="Tlacitko" label="{{ linkLabel }}" variant="secondary" href="{{ linkHref }}" iconRight="chevron-right" hint-size="160px,44px"></dc-import></div>
     </sc-if>
@@ -139,7 +139,7 @@ class Component extends DCLogic {
   renderVals() {
     const p = this.props;
     const w = this.state.width;
-    const list = (p.items || this.state.items || []).map(d => Object.assign({}, d, { href: 'Postel 3.0.dc.html' }));
+    const list = (p.items || this.state.items || []).map(d => Object.assign({}, d, { href: 'Detail_Postel 3.0.dc.html' }));
     const peek = p.navPosition === 'peek' && w < 1000;
     const perViewRaw = peek ? (w >= 550 ? 2.3 : 1.25) : w >= 1560 ? 5 : w >= 1150 ? 4 : w >= 820 ? 3 : w >= 550 ? 2 : 1;
     const perView = list.length ? Math.min(perViewRaw, list.length) : perViewRaw;

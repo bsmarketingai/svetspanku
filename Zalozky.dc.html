@@ -10,9 +10,9 @@
 <helmet>
 <link rel="stylesheet" href="./tmavy-rezim.css">
 <script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&display=swap" rel="stylesheet">
 <style>
-h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
+h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
 
 .ss-tab{position:relative;display:inline-flex;align-items:center;height:48px;padding:0 4px;margin-right:24px;border:0;background:none;font:inherit;font-family:Roboto,Helvetica,Arial,sans-serif;font-size:15px;font-weight:600;color:var(--ss-text-muted,#55616C);cursor:pointer;white-space:nowrap;transition:color .12s cubic-bezier(.22,.61,.36,1);}
 .ss-tab:hover{color:var(--ss-hover-text,#A4600C);}
@@ -63,7 +63,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
     <sc-if value="{{ isHodnoceni }}" hint-placeholder-val="{{ false }}">
       <div style="display:flex;flex-direction:column;gap:20px;max-width:840px">
         <div style="display:flex;flex-wrap:wrap;align-items:center;gap:16px">
-          <span style="font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:44px;line-height:1;color:var(--ss-text-primary,#1C2229)">{{ ratingValue }}</span>
+          <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:44px;line-height:1;color:var(--ss-text-primary,#1C2229)">{{ ratingValue }}</span>
           <div style="display:flex;flex-direction:column;gap:4px">
             <dc-import name="Hodnoceni" value="{{ rating }}" hint-size="140px,22px"></dc-import>
             <span style="font-size:14px;color:var(--ss-text-muted,#5B6874)">{{ ratingCountText }}</span>

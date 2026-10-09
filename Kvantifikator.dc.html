@@ -10,16 +10,16 @@
 <helmet>
 <link rel="stylesheet" href="./tmavy-rezim.css">
 <script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&display=swap" rel="stylesheet">
 <style>
-h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
+h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
 
 .ss-qty{font-family:Roboto,Helvetica,Arial,sans-serif;display:inline-flex;align-items:center;background:var(--ss-surface-subtle,#FAF5EF);border-radius:6px;overflow:hidden;}
 .ss-qty button{font-family:inherit;border:0;background:none;margin:0;padding:0;border-radius:6px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--ss-link-hover,#21507B);transition:background-color .12s cubic-bezier(.22,.61,.36,1),box-shadow .15s cubic-bezier(.22,.61,.36,1);}
 .ss-qty button:hover{background:var(--ss-surface-muted,#F3EDE4);}
 .ss-qty button:focus-visible{outline:none;box-shadow:inset 0 0 0 3px rgba(41,96,147,.35);}
 .ss-qty button[aria-disabled="true"]{opacity:.4;cursor:not-allowed;}
-.ss-qty input{font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:600;text-align:center;border:0;background:transparent;color:var(--ss-text-primary,#1C2229);-moz-appearance:textfield;min-width:0;}
+.ss-qty input{font-family:Oswald,Roboto,sans-serif;font-weight:600;text-align:center;border:0;background:transparent;color:var(--ss-text-primary,#1C2229);-moz-appearance:textfield;min-width:0;}
 .ss-qty input::-webkit-outer-spin-button,.ss-qty input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0;}
 .ss-qty input:focus-visible{outline:none;box-shadow:inset 0 0 0 3px rgba(41,96,147,.35);border-radius:4px;}
 @media (max-width:549px){.ss-qty input{font-size:16px!important;}}
@@ -53,7 +53,8 @@ class Component extends DCLogic {
   renderVals() {
     const p = this.props;
     const compact = p.size === 'compact';
-    const h = compact ? 36 : 44;
+    const large = p.size === 'large';
+    const h = compact ? 36 : large ? 52 : 44;
     const min = p.min ?? 1, max = p.max ?? 99;
     const v = this.value;
     return {
@@ -61,7 +62,7 @@ class Component extends DCLogic {
       ariaLabel: p.ariaLabel || 'Množství',
       wrapStyle: { height: h + 'px' },
       btnStyle: { width: h + 'px', height: h + 'px' },
-      inputStyle: { width: (compact ? 36 : 44) + 'px', height: h + 'px', fontSize: (compact ? 15 : 16) + 'px' },
+      inputStyle: { width: (compact ? 36 : large ? 48 : 44) + 'px', height: h + 'px', fontSize: (compact ? 15 : large ? 17 : 16) + 'px' },
       decDisabled: v <= min ? 'true' : undefined,
       incDisabled: v >= max ? 'true' : undefined,
       dec: () => this.set(v - 1),

@@ -10,13 +10,13 @@
 <helmet>
 <link rel="stylesheet" href="./tmavy-rezim.css">
 <script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&display=swap" rel="stylesheet">
 </helmet>
 <div class="ss-elev" style="font-family:Roboto,Helvetica,Arial,sans-serif;width:100%;min-width:0;background:var(--ss-surface-box,#FFFFFF);border-radius:12px;padding:48px 24px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px">
   <span style="display:flex;align-items:center;justify-content:center;width:64px;height:64px;border-radius:999px;background:var(--ss-surface-page,#FEFAF7);color:#5B8FBC">
     <dc-import name="Ikony" iconName="{{ icon }}" size="28" hint-size="28px,28px"></dc-import>
   </span>
-  <h2 style="margin:0;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:24px;color:var(--ss-text-heading,#0B1F33)">{{ title }}</h2>
+  <h2 style="margin:0;font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:24px;color:var(--ss-text-heading,#0B1F33)">{{ title }}</h2>
   <p style="margin:0;max-width:56ch;font-size:15px;color:var(--ss-text-secondary,#3D4750);line-height:1.55">{{ text }}</p>
   <sc-if value="{{ hasSuggestions }}" hint-placeholder-val="{{ true }}">
     <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:8px">

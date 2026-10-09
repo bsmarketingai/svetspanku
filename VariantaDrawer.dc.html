@@ -10,9 +10,9 @@
 <helmet>
 <link rel="stylesheet" href="./tmavy-rezim.css">
 <script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&display=swap" rel="stylesheet">
 <style>
-h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
+h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
 .ss-vd-close{display:flex;align-items:center;justify-content:center;width:44px;height:44px;border:0;border-radius:6px;background:none;color:var(--ss-text-secondary,#3D4750);cursor:pointer;transition:background-color .12s cubic-bezier(.22,.61,.36,1);}
 .ss-vd-close:hover{background:var(--ss-hover-bg,#FFF5E6);color:var(--ss-hover-text,#A4600C)}
 .ss-vd-close:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
@@ -30,7 +30,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
   <div class="ss-scrim" style="{{ overlayStyle }}" onClick="{{ close }}" aria-hidden="true"></div>
   <div ref="{{ panelRef }}" role="dialog" aria-modal="true" aria-label="{{ title }}" style="{{ panelStyle }}">
     <div style="display:flex;align-items:center;gap:8px;padding:12px 12px 12px 20px;border-bottom:1px solid var(--ss-border-subtle,#E1E6EB);flex:none">
-      <h2 style="margin:0;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:21px;color:var(--ss-text-heading,#0B1F33)">{{ title }}</h2>
+      <h2 style="margin:0;font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:21px;color:var(--ss-text-heading,#0B1F33)">{{ title }}</h2>
       <button type="button" class="ss-vd-close" style="margin-left:auto" onClick="{{ close }}" aria-label="Zavřít výběr">
         <dc-import name="Ikony" iconName="x" size="22" hint-size="22px,22px"></dc-import>
       </button>
@@ -45,7 +45,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
         <sc-for list="{{ groups }}" as="g" hint-placeholder-count="2">
           <div style="display:flex;flex-direction:column;gap:14px;padding-bottom:4px;border-bottom:1px solid var(--ss-border-subtle,#E1E6EB)">
             <sc-if value="{{ g.hasTitle }}" hint-placeholder-val="{{ false }}">
-              <h3 style="margin:0;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:13px;letter-spacing:.1em;color:var(--ss-text-muted,#55616C)">{{ g.title }}</h3>
+              <h3 style="margin:0;font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:17px;letter-spacing:0;color:var(--ss-text-heading,#0B1F33)">{{ g.title }}</h3>
             </sc-if>
             <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;padding-bottom:20px">
               <sc-for list="{{ g.items }}" as="it" hint-placeholder-count="6">
@@ -89,14 +89,14 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
               <span style="flex:1;min-width:0;display:flex;flex-direction:column;gap:6px">
                 <span class="ss-vd-name" style="font-size:15px;font-weight:600;color:var(--ss-text-primary,#1C2229);line-height:1.35">{{ r.label }}</span>
                 <sc-if value="{{ r.hasMeta }}" hint-placeholder-val="{{ false }}">
-                  <span style="font-size:13px;color:var(--ss-text-muted,#5B6874)">{{ r.meta }}</span>
+                  <span style="font-size:13px;color:var(--ss-text-muted,#5B6874)"><sc-if value="{{ r.hasMetaStrong }}" hint-placeholder-val="{{ false }}"><strong style="font-weight:700;color:var(--ss-text-primary,#1C2229)">{{ r.metaStrong }}</strong></sc-if>{{ r.meta }}</span>
                 </sc-if>
                 <span style="display:flex;align-items:center;gap:6px;font-size:13px;color:{{ r.stockColor }}">
                   <span style="display:flex;color:{{ r.stockColor }}"><dc-import name="Ikony" iconName="{{ r.stockIcon }}" size="16" hint-size="16px,16px"></dc-import></span>
                   <span>{{ r.stock }}</span>
                 </span>
               </span>
-              <span style="font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:17px;color:var(--ss-text-primary,#1C2229);white-space:nowrap">{{ r.price }}</span>
+              <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:17px;color:var(--ss-text-primary,#1C2229);white-space:nowrap">{{ r.price }}</span>
             </button>
           </sc-for>
         </div>
@@ -182,7 +182,7 @@ class Component extends DCLogic {
     const rows = (p.rows || []).map(r => {
       const sel = r.id === value;
       return {
-        label: r.label, meta: r.meta, hasMeta: !!r.meta, price: r.price,
+        label: r.label, meta: r.meta, hasMeta: !!(r.meta || r.metaStrong), metaStrong: r.metaStrong, hasMetaStrong: !!r.metaStrong, price: r.price,
         image: r.image, hasImage: !!r.image, noImage: !r.image,
         stock: r.stock || 'Skladem',
         stockIcon: r.outOfStock ? 'clock' : 'circle-check',

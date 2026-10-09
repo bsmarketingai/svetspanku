@@ -1,0 +1,184 @@
+# LUCATEC GROUP – struktura menu a kategorií
+
+Zdroj: https://1374.sites.bsshop.cz/ (hlavní menu `#MenuCategories`, stav k 7. 10. 2026)
+Úrovně: L1 = hlavní menu, L2 = sloupec v mega menu, L3 = podkategorie.
+
+## Hlavní kategoriální menu (mega menu)
+
+- Postele z masivu
+  - Postele podle rozměrů
+    - 80x200
+    - 90x200
+    - 100x200
+    - 120x200
+    - 140x200
+    - 160x200
+    - 180x200
+    - 200x200
+    - Prodloužené postele
+    - Rozšířené postele pro 3
+  - Manželské postele z masivu
+    - Čalouněné postele
+    - Kombinované postele dřevo a látka
+    - Kontinentální a boxspring postele
+    - Masivní postele
+    - MULTI modulární postele
+    - Postele s integrovaným LED osvětlením
+    - Postele s nočními stolky
+    - Postele s úložným prostorem
+  - Čalouněné postele
+    - Boční panely s LED a USB
+    - Boxspring postele
+    - Čalouněné postele s úložným prostorem
+    - Kombinované postele dřevo a látka
+  - Kombinované postele dřevo a čalounění
+    - Postele s čalouněným čelem
+    - Postele s dřevěným čelem
+  - Postele s úložným prostorem
+    - Čalouněné postele
+    - Kombinované postele dřevo a látka
+    - Masivní postele
+  - Postele s nočními stolky
+    - Postele s úložným prostorem
+  - MULTI – modulární postele
+  - Kontinentální a boxspring postele
+    - Boxspring postele
+    - Postele s úložným prostorem
+  - Vysoké postele
+    - Čalouněné postele
+    - Kombinované postele dřevo a látka
+    - Masivní postele
+  - Patrové postele
+  - Jednolůžkové postele
+    - Čalouněné postele
+    - Kombinované postele dřevo a látka
+    - Masivní postele
+    - Masivní postele s úložným prostorem
+  - Dětské postele
+    - Nízké postele
+    - Patrové postele
+  - Rozkládací postele / pohovky
+  - LED osvětlení k posteli
+  - Noční stolky a police
+  - Úložné prostory
+  - KOMPLETY / Sety
+- Matrace
+  - Podle rozměrů
+    - 80x200
+    - 90x200
+    - 100x200
+    - 120x200
+    - 140x200
+    - 160x200
+    - 180x200
+    - 200x200
+    - Prodloužené rozměry
+    - Atypické rozměry
+  - Podle tvrdosti
+    - Velmi tvrdé matrace
+    - Tvrdé matrace
+    - Středně tvrdé matrace
+    - Mírně tvrdé matrace
+    - Měkké přizpůsobivé matrace
+    - Velmi měkké matrace
+  - Podle materiálů / typu
+    - Pěnové matrace
+    - Matrace s paměťovou pěnou
+    - Matrace s latexem
+    - Taštičkové pružinové matrace
+    - Hybridní matrace
+    - Zdravotní matrace
+    - Antimikrobiální matrace
+    - Matrace bez zón – pro děti
+    - Zónové ortopedické matrace
+    - Vrchní matrace – toppery
+    - Matrace pro 2
+    - Matrace 90 nocí na zkoušku
+  - Podle spáče
+    - Matrace pro děti
+    - Matrace pro dospělé
+    - Matrace pro seniory
+    - Matrace pro alergiky
+    - Matrace pro páry
+    - Zdravotní matrace
+    - Antimikrobiální matrace
+    - Matrace bez zón – pro děti
+    - Zónové ortopedické matrace
+    - Matrace pro 2
+  - Matrace pro páry
+  - Prémiové matrace
+  - Ortopedické matrace
+    - Pěnové matrace
+    - Matrace s paměťovou pěnou
+    - Matrace s latexem
+    - Taštičkové pružinové matrace
+  - Matrace pro alergiky
+  - Dětské matrace
+    - Matrace do postýlky
+  - Vrchní matrace – Toppery
+  - Chrániče matrací
+  - Potahy na matrace
+  - Levné matrace
+  - Průvodce výběrem matrace
+- Rošty
+  - Lamelové rošty pevné (nepolohovací)
+  - Lamelové rošty polohovací (manuálně)
+  - Lamelové rošty polohovací (elektricky)
+  - Lamelové rošty výklopné (pro úložný prostor)
+  - Laťkové rošty
+- Výhodné komplety / sety
+  - Postel + rošt + matrace
+  - Postel s úložným prostorem + rošt + matrace
+  - Set ložnice
+- Nábytek
+  - Komody
+    - Komody s dveřmi
+    - Komody se zásuvkami
+    - Závěsné komody a skříňky
+    - LED osvětlení komod
+  - Skříně
+    - Skříně s posuvnými dveřmi
+    - Samostatné skříně
+    - LED osvětlení skříní
+  - Dětský nábytek
+    - Dětské postele
+    - Dětské komody a skříně
+    - Truhly a boxy
+    - Úložné prostory
+    - Závěsné police a skříňky
+  - Noční stolky
+    - Noční stolky bez zásuvek
+    - Noční stolky se zásuvkami
+  - Zrcadla
+  - Hodiny
+  - Police
+  - Lavice
+- Polštáře / přikrývky
+- Lůžkoviny / povlečení
+- Prodejny (5)
+
+## Horní lišta (header)
+
+- Úvod
+- Kontakt
+- Informace
+- Reklamační podmínky
+- Obchodní podmínky
+- Telefon: +420 543 212 855
+- Registrujte se / Přihlášení
+- Porovnání produktů
+
+## Kategorie na homepage (dlaždice)
+
+- Manželské postele z masivu
+- Čalouněné postele
+- Jednolůžkové postele
+- Matrace
+- Rošty
+- Nábytek
+
+## Poznámky pro návrh
+
+- Odkazy „Zobrazit více“ jsou vynechané (vedou na nadřazenou kategorii).
+- Hodně podkategorií se opakuje napříč větvemi (např. „Čalouněné postele“ je L2 i L3 v několika větvích; filtry matrací se duplikují mezi „Podle materiálů“, „Podle spáče“ a „Ortopedické“). Jde spíš o filtrační pohledy než samostatné kategorie.
+- L1 „Postele z masivu“ obsahuje i čalouněné postele – název neodpovídá obsahu.

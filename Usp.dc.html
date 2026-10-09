@@ -10,7 +10,7 @@
 <helmet>
 <link rel="stylesheet" href="./tmavy-rezim.css">
 <script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&display=swap" rel="stylesheet">
 </helmet>
 <div style="{{ wrapStyle }}">
   <sc-if value="{{ hasHeading }}" hint-placeholder-val="{{ true }}">
@@ -48,7 +48,7 @@ class Component extends DCLogic {
       { icon: 'usp-prodejny', title: '5 prodejen po celé ČR', text: 'Přijďte si matraci osobně vyzkoušet' }
     ];
     const iconWrap = {
-      display: 'flex', alignItems: 'center', justifyContent: 'center', width: '64px', height: '64px', '--ss-icon-knock': tiles ? (dark ? '#24394D' : 'var(--ss-surface-subtle,#FAF5EF)') : (dark ? '#132C43' : 'var(--ss-surface-page,#FEFAF7)'),
+      display: 'flex', alignItems: 'center', justifyContent: 'center', width: '64px', height: '64px', '--ss-icon-knock': tiles ? (dark ? '#24394D' : 'var(--ss-surface-muted,#F3EDE4)') : (dark ? '#132C43' : 'var(--ss-surface-page,#FEFAF7)'),
       marginBottom: '4px',
       color: dark ? '#8DB3D3' : 'var(--ss-usp-from-c,#1F5C99)',
       '--ss-usp-accent': dark ? '#FBB255' : 'var(--ss-usp-to-c,#EE8A0E)'
@@ -60,7 +60,7 @@ class Component extends DCLogic {
       hasHeading: !!p.heading,
       heading: p.heading,
       headingStyle: {
-        margin: '0 0 24px', fontFamily: "'Archivo Narrow', Roboto, sans-serif", fontWeight: 700,
+        margin: '0 0 24px', fontFamily: "Oswald, Roboto, sans-serif", fontWeight: 700,
         fontSize: w < 820 ? '26px' : '34px', lineHeight: 1.15, textAlign: 'center',
         color: dark ? '#FFFFFF' : 'var(--ss-text-primary,#1C2229)'
       },
@@ -75,12 +75,12 @@ class Component extends DCLogic {
       itemStyle: {
         display: 'flex', flexDirection: 'column', alignItems: tiles ? 'flex-start' : 'center',
         textAlign: tiles ? 'left' : 'center', gap: '8px', minWidth: 0,
-        background: tiles ? (dark ? 'rgba(255,255,255,.08)' : 'var(--ss-surface-subtle,#FAF5EF)') : 'transparent',
+        background: tiles ? (dark ? 'rgba(255,255,255,.08)' : 'var(--ss-surface-muted,#F3EDE4)') : 'transparent',
         borderRadius: tiles ? '12px' : 0,
         padding: tiles ? '20px' : 0
       },
-      hlStyle: { color: dark ? '#FBB255' : 'var(--ss-text-apricot,#A4600C)' },
-      titleStyle: { fontFamily: "'Archivo Narrow', Roboto, sans-serif", fontWeight: 700, fontSize: '17px', lineHeight: 1.25, color: dark ? '#FBB255' : 'var(--ss-usp-title,#296093)' },
+      hlStyle: { color: dark ? '#FBB255' : 'var(--ss-text-heading,#0B1F33)' },
+      titleStyle: { fontFamily: "Oswald, Roboto, sans-serif", fontWeight: 700, fontSize: '17px', lineHeight: 1.25, color: dark ? '#FBB255' : 'var(--ss-text-heading,#0B1F33)' },
       textStyle: { fontSize: '14px', lineHeight: 1.5, color: dark ? '#DCE8F2' : 'var(--ss-text-secondary,#3D4750)' }
     };
   }

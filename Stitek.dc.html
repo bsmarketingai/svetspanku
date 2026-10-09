@@ -10,7 +10,7 @@
 <helmet>
 <link rel="stylesheet" href="./tmavy-rezim.css">
 <script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&display=swap" rel="stylesheet">
 </helmet>
 <span style="{{ style }}">
   <sc-if value="{{ hasDot }}" hint-placeholder-val="{{ false }}">
@@ -22,17 +22,25 @@
   <span>{{ label }}</span>
 </span>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:320,&quot;height&quot;:64},&quot;kind&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;inStock&quot;,&quot;options&quot;:[&quot;inStock&quot;,&quot;lowStock&quot;,&quot;onWay&quot;,&quot;outOfStock&quot;,&quot;sale&quot;,&quot;news&quot;,&quot;freeShip&quot;,&quot;tip&quot;,&quot;recommended&quot;,&quot;madeToOrder&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;label&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;size&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;standard&quot;,&quot;options&quot;:[&quot;standard&quot;,&quot;small&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;icon&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:320,&quot;height&quot;:64},&quot;kind&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;inStock&quot;,&quot;options&quot;:[&quot;inStock&quot;,&quot;lowStock&quot;,&quot;onWay&quot;,&quot;outOfStock&quot;,&quot;sale&quot;,&quot;news&quot;,&quot;freeShip&quot;,&quot;tip&quot;,&quot;recommended&quot;,&quot;madeToOrder&quot;,&quot;bestseller&quot;,&quot;clearance&quot;,&quot;top&quot;,&quot;warranty&quot;,&quot;orthopedic&quot;,&quot;antiallergic&quot;,&quot;firmness&quot;,&quot;bogo&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;label&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;size&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;standard&quot;,&quot;options&quot;:[&quot;standard&quot;,&quot;small&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;icon&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
 class Component extends DCLogic {
   static KINDS = {
     inStock:    { label: 'Skladem · odesíláme do 24 h', fg: 'var(--ss-status-success,#157A41)', bg: 'transparent', dot: '#157A41', plain: true },
     lowStock:   { label: 'Poslední kusy', fg: 'var(--ss-status-warning,#A4600C)', bg: 'transparent', dot: '#D07C13', plain: true },
     onWay:      { label: 'Na cestě k nám', fg: 'var(--ss-link-hover,#21507B)', bg: 'transparent', dot: '#5B8FBC', plain: true },
     outOfStock: { label: 'Nedostupné', fg: 'var(--ss-text-muted,#55616C)', bg: 'transparent', dot: '#9AA6B2', plain: true },
-    sale:       { label: 'Sleva 20 %', fg: '#FFFFFF', bg: '#B3261E' },
-    news:       { label: 'Novinka', fg: '#1C2229', bg: '#FBB255' },
+    sale:       { label: '−18 %', fg: '#FFFFFF', bg: '#B3261E' },
+    news:       { label: 'Novinka', fg: '#1C2229', bg: '#FBB255', icon: 'star' },
     freeShip:   { label: 'Doprava zdarma', fg: '#FFFFFF', bg: '#157A41', icon: 'truck' },
-    tip:        { label: 'Tip prodejny', fg: '#FFFFFF', bg: '#296093' },
+    tip:        { label: 'Náš tip', fg: '#FFFFFF', bg: '#296093', icon: 'thumb-up' },
+    bestseller: { label: 'Nejprodávanější', fg: '#FFFFFF', bg: '#132C43', icon: 'flame' },
+    clearance:  { label: 'Výprodej', fg: '#FFFFFF', bg: '#7A4708', icon: 'tag' },
+    top:        { label: 'TOP', fg: '#7A4708', bg: '#FEEDD4', icon: 'award' },
+    warranty:   { label: '5 let záruka', fg: 'var(--ss-link-hover,#21507B)', bg: 'var(--ss-surface-selected,#DCE8F2)', icon: 'shield-check' },
+    orthopedic: { label: 'Ortopedická', fg: 'var(--ss-link-hover,#21507B)', bg: 'var(--ss-surface-selected,#DCE8F2)' },
+    antiallergic:{ label: 'Antialergenní', fg: 'var(--ss-link-hover,#21507B)', bg: 'var(--ss-surface-selected,#DCE8F2)', icon: 'leaf' },
+    firmness:   { label: 'Změna tuhosti', fg: 'var(--ss-link-hover,#21507B)', bg: 'var(--ss-surface-selected,#DCE8F2)', icon: 'arrows-exchange' },
+    bogo:       { label: '1+1 zdarma', fg: 'var(--ss-link-hover,#21507B)', bg: 'var(--ss-surface-selected,#DCE8F2)', icon: 'gift' },
     recommended:{ label: 'Doporučujeme', fg: '#132C43', bg: '#FDDCAA', icon: 'znak-svetspanku' },
     madeToOrder:{ label: 'Výroba na míru', fg: 'var(--ss-link-hover,#21507B)', bg: 'var(--ss-surface-selected,#DCE8F2)' }
   };
@@ -52,7 +60,7 @@ class Component extends DCLogic {
         fontSize: (small ? 12 : 13) + 'px', fontWeight: 600, lineHeight: 1.2,
         color: k.fg, background: k.bg,
         padding: k.plain ? 0 : (small ? '4px 8px' : '5px 10px'),
-        borderRadius: k.plain ? 0 : '4px',
+        borderRadius: k.plain ? 0 : '6px',
         whiteSpace: 'nowrap'
       }
     };

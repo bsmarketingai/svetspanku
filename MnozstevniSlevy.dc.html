@@ -10,11 +10,11 @@
 <helmet>
 <link rel="stylesheet" href="./tmavy-rezim.css">
 <script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&display=swap" rel="stylesheet">
 </helmet>
 <div style="font-family:Roboto,Helvetica,Arial,sans-serif;width:100%;min-width:0;display:flex;flex-direction:column;gap:12px">
   <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:8px">
-    <h3 style="margin:0;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:19px;color:var(--ss-text-heading,#0B1F33)">Množstevní slevy</h3>
+    <h3 style="margin:0;font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:19px;color:var(--ss-text-heading,#0B1F33)">Množstevní slevy</h3>
     <p style="margin:0;font-size:13px;color:var(--ss-text-muted,#5B6874)">Sleva se v košíku načte automaticky.</p>
   </div>
   <div style="overflow-x:auto;background:var(--ss-surface-card,#FFFFFF);border-radius:12px;box-shadow:inset 0 0 0 1px var(--ss-border-subtle,#E1E6EB)">
@@ -31,7 +31,7 @@
         <sc-for list="{{ tiers }}" as="t" hint-placeholder-count="3">
           <tr style="{{ t.rowStyle }}">
             <td style="padding:12px 16px;border-bottom:1px solid var(--ss-border-faint,#EFF2F5);font-weight:600">{{ t.range }}</td>
-            <td style="padding:12px 16px;border-bottom:1px solid var(--ss-border-faint,#EFF2F5);font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:16px">{{ t.price }}</td>
+            <td style="padding:12px 16px;border-bottom:1px solid var(--ss-border-faint,#EFF2F5);font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:16px">{{ t.price }}</td>
             <td style="padding:12px 16px;border-bottom:1px solid var(--ss-border-faint,#EFF2F5);color:{{ t.discountColor }};font-weight:600">{{ t.discount }}</td>
           </tr>
         </sc-for>

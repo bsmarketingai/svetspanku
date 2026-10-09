@@ -10,16 +10,16 @@
 <helmet>
 <link rel="stylesheet" href="./tmavy-rezim.css">
 <script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&display=swap" rel="stylesheet">
 <style>
-h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
+h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
 
 .ss-ft{font-family:Roboto,Helvetica,Arial,sans-serif;width:100%;background:var(--ss-surface-subtle,#FAF5EF);color:var(--ss-text-secondary,#3D4750);}
 .ss-ft a{text-decoration:none;color:var(--ss-text-secondary,#3D4750);}
 .ss-ft-link{display:inline-flex;align-items:center;min-height:32px;font-size:14px;border-radius:4px;transition:color .12s cubic-bezier(.22,.61,.36,1);}
 .ss-ft-link:hover{color:var(--ss-hover-text,#A4600C);text-decoration:underline;text-underline-offset:3px;}
 .ss-ft-link:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
-.ss-ft-acc{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;min-height:48px;padding:0;border:0;background:none;font:inherit;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:16px;color:var(--ss-text-primary,#1C2229);cursor:pointer;text-align:left;}
+.ss-ft-acc{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;min-height:48px;padding:0;border:0;background:none;font:inherit;font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:16px;color:var(--ss-text-primary,#1C2229);cursor:pointer;text-align:left;}
 .ss-ft-acc:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);border-radius:6px;}
 .ss-ft-soc{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:999px;background:var(--ss-surface-page,#FEFAF7);color:var(--ss-link-hover,#21507B);transition:background-color .12s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1);}
 .ss-ft-soc:hover{background:#296093;color:#FFFFFF;}
@@ -53,8 +53,8 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
       <div style="display:flex;align-items:center;gap:16px;min-width:0">
         <span class="ss-ft-avatar" style="width:56px;height:56px;border-radius:999px;background:var(--ss-surface-muted,#F3EDE4);flex:none;display:flex;align-items:center;justify-content:center;color:var(--ss-text-disabled,#9AA6B2)"><dc-import name="Ikony" iconName="user" size="24" hint-size="24px,24px"></dc-import></span>
         <div style="display:flex;flex-direction:column;gap:2px;min-width:0">
-          <span class="ss-ft-heading" style="font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:19px;color:var(--ss-text-primary,#1C2229)">Jsme tu pro vás</span>
-          <a class="ss-ft-tel" href="tel:+420543212855" style="font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:21px;color:var(--ss-link,#296093)">+420 543 212 855</a>
+          <span class="ss-ft-heading" style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:19px;color:var(--ss-text-primary,#1C2229)">Jsme tu pro vás</span>
+          <a class="ss-ft-tel" href="tel:+420543212855" style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:21px;color:var(--ss-link,#296093)">+420 543 212 855</a>
           <span class="ss-ft-hours" style="font-size:13px;color:var(--ss-text-muted,#5B6874)">Po–Pá 9:00–17:00</span>
         </div>
       </div>
@@ -75,7 +75,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
       <div style="display:grid;grid-template-columns:{{ colTemplate }};gap:32px 40px">
         <sc-for list="{{ columns }}" as="c" hint-placeholder-count="4">
           <nav aria-label="{{ c.title }}" style="display:flex;flex-direction:column;gap:6px;min-width:0">
-            <h3 style="margin:0 0 6px;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:16px;color:var(--ss-text-heading,#0B1F33)">{{ c.title }}</h3>
+            <h3 style="margin:0 0 6px;font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:16px;color:var(--ss-text-heading,#0B1F33)">{{ c.title }}</h3>
             <sc-for list="{{ c.items }}" as="i" hint-placeholder-count="5">
               <a class="ss-ft-link" href="{{ i.href }}">{{ i.label }}</a>
             </sc-for>

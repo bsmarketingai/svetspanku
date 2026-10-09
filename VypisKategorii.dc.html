@@ -10,12 +10,12 @@
 <helmet>
 <link rel="stylesheet" href="./tmavy-rezim.css">
 <script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&display=swap" rel="stylesheet">
 </helmet>
 <section style="width:100%;min-width:0;font-family:Roboto,Helvetica,Arial,sans-serif">
   <sc-if value="{{ hasHeading }}" hint-placeholder-val="{{ true }}">
     <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;margin-bottom:24px">
-      <h2 style="margin:0;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:{{ headingSize }};line-height:1.15;color:var(--ss-text-heading,#0B1F33)">{{ heading }}</h2>
+      <h2 style="margin:0;font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:{{ headingSize }};line-height:1.15;color:var(--ss-text-heading,#0B1F33)">{{ heading }}</h2>
       <sc-if value="{{ hasSubheading }}" hint-placeholder-val="{{ false }}">
         <p style="margin:0;font-size:15px;color:var(--ss-text-muted,#5B6874)">{{ subheading }}</p>
       </sc-if>

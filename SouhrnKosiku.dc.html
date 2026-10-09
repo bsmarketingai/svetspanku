@@ -10,16 +10,16 @@
 <helmet>
 <link rel="stylesheet" href="./tmavy-rezim.css">
 <script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&display=swap" rel="stylesheet">
 <style>
-h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
+h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
 </style>
 </helmet>
 <section aria-label="Souhrn košíku" style="{{ boxStyle }}">
   <sc-if value="{{ hasDiscount }}" hint-placeholder-val="{{ false }}">
     <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding-bottom:16px;border-bottom:1px solid var(--ss-border-subtle,#E1E6EB)">
       <span style="font-size:15px;color:var(--ss-text-secondary,#3D4750)">Sleva z kupónu</span>
-      <span style="font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:18px;white-space:nowrap;color:var(--ss-status-success,#157A41)">{{ discount }}</span>
+      <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:18px;white-space:nowrap;color:var(--ss-status-success,#157A41)">{{ discount }}</span>
     </div>
   </sc-if>
   <sc-if value="{{ termsNote }}" hint-placeholder-val="{{ false }}">
@@ -28,7 +28,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
   <div style="display:flex;flex-direction:column;gap:4px">
     <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px">
       <span style="font-size:16px;font-weight:600">{{ totalLabel }}</span>
-      <span style="font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:32px;line-height:1.1;white-space:nowrap">{{ total }}</span>
+      <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:32px;line-height:1.1;white-space:nowrap">{{ total }}</span>
     </div>
     <span style="align-self:flex-end;font-size:14px;color:var(--ss-text-muted,#5B6874);white-space:nowrap">{{ totalNoVat }} bez DPH</span>
   </div>

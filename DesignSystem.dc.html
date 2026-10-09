@@ -12,9 +12,9 @@
 <script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&display=swap" rel="stylesheet">
 <style>
-h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
+h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
 
 html,body{margin:0!important;padding:0!important;}
 #dc-root{margin:0!important;padding:0!important;width:100%!important;max-width:none!important;border:0!important;}
@@ -27,13 +27,13 @@ a:hover{color:var(--ss-link-hover,#21507B);}
 
   <header style="width:100%;background:#132C43;color:#FFFFFF">
     <div style="max-width:1560px;margin:0 auto;padding:48px 32px 40px;display:flex;flex-direction:column;gap:16px">
-      <span style="font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:600;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#FBB255">Světspánku.cz · zdroj pravdy</span>
-      <h1 style="margin:0;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:56px;line-height:1.05;letter-spacing:-0.01em">Design systém</h1>
+      <span style="font-family:Oswald,Roboto,sans-serif;font-weight:600;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#FBB255">Světspánku.cz · zdroj pravdy</span>
+      <h1 style="margin:0;font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:56px;line-height:1.05;letter-spacing:-0.01em">Design systém</h1>
       <p style="margin:0;max-width:72ch;font-size:17px;color:#DCE8F2">Barvy, typografie, spacing, rádiusy, elevace, motion, rozměry, breakpointy a interaktivní stavy. Jediné platné hodnoty pro celý prototyp. Jen světlý režim.</p>
       <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:8px">
         <span style="display:inline-flex;align-items:center;gap:8px;background:#21507B;border-radius:999px;padding:8px 16px;font-size:13px;font-weight:500">Značka #296093</span>
                 <span style="display:inline-flex;align-items:center;gap:8px;background:#21507B;border-radius:999px;padding:8px 16px;font-size:13px;font-weight:500">Konverze #FBB255</span>
-        <span style="display:inline-flex;align-items:center;gap:8px;background:#21507B;border-radius:999px;padding:8px 16px;font-size:13px;font-weight:500">Oswald / Roboto / Archivo Narrow</span>
+        <span style="display:inline-flex;align-items:center;gap:8px;background:#21507B;border-radius:999px;padding:8px 16px;font-size:13px;font-weight:500">Oswald / Roboto</span>
       </div>
     </div>
   </header>
@@ -45,7 +45,7 @@ a:hover{color:var(--ss-link-hover,#21507B);}
       <sc-for list="{{ scales }}" as="s" hint-placeholder-count="4">
         <div style="margin-bottom:36px">
           <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:12px;margin-bottom:12px">
-            <h3 style="margin:0;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:600;font-size:20px">{{ s.title }}</h3>
+            <h3 style="margin:0;font-family:Oswald,Roboto,sans-serif;font-weight:600;font-size:20px">{{ s.title }}</h3>
             <p style="margin:0;font-size:13px;color:var(--ss-text-muted,#55616C)">{{ s.note }}</p>
           </div>
           <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(94px,1fr));gap:4px">
@@ -125,7 +125,7 @@ a:hover{color:var(--ss-link-hover,#21507B);}
   <section style="width:100%">
     <div style="max-width:1560px;margin:0 auto;padding:64px 32px">
       <h2 style="margin:0 0 8px;font-family:Oswald,sans-serif;font-weight:600;font-size:34px;line-height:1.15">3 · Typografie</h2>
-      <p style="margin:0 0 32px;max-width:76ch;color:var(--ss-text-muted,#55616C)">Nimbus Sans L Condensed z logomanuálu není na webu dostupný. Nadpisy nesou <strong style="font-weight:600">Oswald 600</strong>, vždy jen první písmeno velké (větná kapitalizace, bez verzálek). Běžný text <strong style="font-weight:600">Roboto</strong>, ceny a číselné údaje <strong style="font-weight:600">Archivo Narrow</strong>. Minimum 13 px. Mobilní sada se přepíná skokem na 820 px, ne přes clamp().</p>
+      <p style="margin:0 0 32px;max-width:76ch;color:var(--ss-text-muted,#55616C)">Nimbus Sans L Condensed z logomanuálu není na webu dostupný. Nadpisy nesou <strong style="font-weight:600">Oswald 600</strong>, vždy jen první písmeno velké (větná kapitalizace, bez verzálek). Běžný text <strong style="font-weight:600">Roboto</strong>, ceny a číselné údaje <strong style="font-weight:600">Oswald</strong>. Minimum 13 px. Mobilní sada se přepíná skokem na 820 px, ne přes clamp().</p>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:24px">
         <div style="background:var(--ss-surface-subtle,#FAF5EF);border-radius:12px;padding:28px">
           <span style="display:block;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ss-text-muted,#55616C);font-weight:600;margin-bottom:20px">Desktop · ≥ 820 px</span>
@@ -152,11 +152,11 @@ a:hover{color:var(--ss-link-hover,#21507B);}
           <p style="margin:0;font-size:16px;color:var(--ss-text-muted,#5B6874)">Pole formulářů pod 550 px: <code style="font-family:ui-monospace,Menlo,monospace;font-size:14px">font-size:16px</code> — iOS jinak zoomuje.</p>
         </div>
       </div>
-      <h3 style="margin:36px 0 16px;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:600;font-size:20px">Commerce tokeny</h3>
+      <h3 style="margin:36px 0 16px;font-family:Oswald,Roboto,sans-serif;font-weight:600;font-size:20px">Commerce tokeny</h3>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px">
         <div style="background:var(--ss-surface-page,#FEFAF7);border-radius:12px;padding:20px;box-shadow:0 0 0 1px var(--ss-border-subtle,#E1E6EB)">
           <span style="display:block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ss-text-muted,#55616C);font-weight:600;margin-bottom:10px">price.primary · 26 Narrow 700</span>
-          <span style="font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:26px;color:var(--ss-text-primary,#1C2229)">7 590 Kč</span>
+          <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:26px;color:var(--ss-text-primary,#1C2229)">7 590 Kč</span>
           <p style="margin:8px 0 0;font-size:13px;color:var(--ss-text-muted,#5B6874)">Vždy s DPH, formát „7 590 Kč“ s pevnou mezerou.</p>
         </div>
         <div style="background:var(--ss-surface-page,#FEFAF7);border-radius:12px;padding:20px;box-shadow:0 0 0 1px var(--ss-border-subtle,#E1E6EB)">
@@ -204,7 +204,7 @@ a:hover{color:var(--ss-link-hover,#21507B);}
       <p style="margin:0 0 32px;max-width:76ch;color:var(--ss-text-muted,#55616C)">Karty v klidu nemají border ani stín — drží je jen pozadí a mezera. Stín vzniká až interakcí nebo vrstvením.</p>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:20px">
         <div style="background:var(--ss-surface-subtle,#FAF5EF);border-radius:12px;padding:24px">
-          <h3 style="margin:0 0 16px;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:600;font-size:20px">Rádiusy</h3>
+          <h3 style="margin:0 0 16px;font-family:Oswald,Roboto,sans-serif;font-weight:600;font-size:20px">Rádiusy</h3>
           <div style="display:flex;gap:12px;align-items:flex-end;margin-bottom:12px">
             <div style="width:64px;height:64px;background:var(--ss-surface-selected,#DCE8F2);border-radius:6px"></div>
             <div style="width:64px;height:64px;background:var(--ss-surface-selected,#DCE8F2);border-radius:12px"></div>
@@ -213,7 +213,7 @@ a:hover{color:var(--ss-link-hover,#21507B);}
           <p style="margin:0;font-size:13px;color:var(--ss-text-muted,#5B6874)">sm 6 px pole a tlačítka · md 12 px karty a panely · pill 999 px chipsy, avatar, počítadlo</p>
         </div>
         <div style="background:var(--ss-surface-subtle,#FAF5EF);border-radius:12px;padding:24px">
-          <h3 style="margin:0 0 16px;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:600;font-size:20px">Elevace</h3>
+          <h3 style="margin:0 0 16px;font-family:Oswald,Roboto,sans-serif;font-weight:600;font-size:20px">Elevace</h3>
           <div style="display:flex;flex-wrap:wrap;gap:16px;margin-bottom:14px">
             <div style="width:84px;height:56px;background:var(--ss-surface-page,#FEFAF7);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--ss-text-muted,#55616C)">rest</div>
             <div style="width:84px;height:56px;background:var(--ss-surface-page,#FEFAF7);border-radius:8px;box-shadow:0 4px 12px rgba(19,44,67,.12);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--ss-text-muted,#55616C)">hover</div>
@@ -224,7 +224,7 @@ a:hover{color:var(--ss-link-hover,#21507B);}
           <p style="margin:0;font-size:13px;color:var(--ss-text-muted,#5B6874)">focus ring 0 0 0 3px rgba(41,96,147,.35) + outline:none až po nastavení ringu.</p>
         </div>
         <div style="background:var(--ss-surface-subtle,#FAF5EF);border-radius:12px;padding:24px">
-          <h3 style="margin:0 0 16px;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:600;font-size:20px">Motion</h3>
+          <h3 style="margin:0 0 16px;font-family:Oswald,Roboto,sans-serif;font-weight:600;font-size:20px">Motion</h3>
           <ul style="margin:0;padding-left:18px;font-size:14px;color:var(--ss-text-secondary,#3D4750);display:flex;flex-direction:column;gap:6px">
             <li>60 ms — stisk (transform, scale .98)</li>
             <li>120 ms — barvy a border</li>
@@ -234,7 +234,7 @@ a:hover{color:var(--ss-link-hover,#21507B);}
           <p style="margin:12px 0 0;font-size:13px;color:var(--ss-text-muted,#5B6874)">Křivka cubic-bezier(.22,.61,.36,1). prefers-reduced-motion vypíná posuny, ne barvy.</p>
         </div>
         <div style="background:var(--ss-surface-subtle,#FAF5EF);border-radius:12px;padding:24px">
-          <h3 style="margin:0 0 16px;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:600;font-size:20px">Rozměry</h3>
+          <h3 style="margin:0 0 16px;font-family:Oswald,Roboto,sans-serif;font-weight:600;font-size:20px">Rozměry</h3>
           <ul style="margin:0;padding-left:18px;font-size:14px;color:var(--ss-text-secondary,#3D4750);display:flex;flex-direction:column;gap:6px">
             <li>size.control 44 px — výchozí výška ovládacího prvku</li>
             <li>size.control.compact 36 px — v hustých lištách</li>
@@ -244,7 +244,7 @@ a:hover{color:var(--ss-link-hover,#21507B);}
           </ul>
         </div>
       </div>
-      <h3 style="margin:36px 0 16px;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:600;font-size:20px">Z-index registr</h3>
+      <h3 style="margin:36px 0 16px;font-family:Oswald,Roboto,sans-serif;font-weight:600;font-size:20px">Z-index registr</h3>
       <div style="display:flex;flex-wrap:wrap;gap:8px">
         <sc-for list="{{ zindex }}" as="z" hint-placeholder-count="9">
           <span style="display:inline-flex;align-items:baseline;gap:8px;background:var(--ss-surface-hover,#F0F5FA);border-radius:999px;padding:8px 16px;font-size:13px"><code style="font-family:ui-monospace,Menlo,monospace;color:var(--ss-link-hover,#21507B);font-weight:600">{{ z.v }}</code>{{ z.name }}</span>

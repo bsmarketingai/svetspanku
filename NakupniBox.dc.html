@@ -10,7 +10,7 @@
 <helmet>
 <link rel="stylesheet" href="./tmavy-rezim.css">
 <script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&display=swap" rel="stylesheet">
 </helmet>
 <div class="ss-elev" style="font-family:Roboto,Helvetica,Arial,sans-serif;width:100%;min-width:0;background:var(--ss-surface-box,#FFFFFF);border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:16px">
   <div style="display:flex;flex-wrap:wrap;align-items:flex-end;gap:12px">
@@ -18,7 +18,7 @@
       <sc-if value="{{ hasBefore }}" hint-placeholder-val="{{ false }}">
         <span style="font-size:15px;color:var(--ss-text-muted,#5B6874);text-decoration:line-through">{{ priceBefore }}</span>
       </sc-if>
-      <span style="font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:34px;line-height:1.05;color:{{ priceColor }}">{{ price }}</span>
+      <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:34px;line-height:1.05;color:{{ priceColor }}">{{ price }}</span>
       <span style="font-size:13px;color:var(--ss-text-muted,#5B6874)">{{ vatNote }}</span>
     </div>
     <sc-if value="{{ hasSaving }}" hint-placeholder-val="{{ false }}">

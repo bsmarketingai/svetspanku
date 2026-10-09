@@ -1,0 +1,1339 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="./tmavy-rezim.css">
+<script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&display=swap" rel="stylesheet">
+<style>
+h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
+html,body{margin:0!important;padding:0!important;}
+#dc-root{margin:0!important;padding:0!important;width:100%!important;max-width:none!important;border:0!important;}
+#dc-root>.sc-host{margin:0!important;padding:0!important;width:100%!important;}
+a{color:var(--ss-link,#296093);}
+a:hover{color:var(--ss-hover-text,#A4600C);}
+.ss-pd-ph{display:block;width:100%;border:0;padding:0;background:var(--ss-surface-subtle,#FAF5EF);border-radius:12px;overflow:hidden;cursor:zoom-in;position:relative;}
+.ss-pd-ph:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+@media (hover:hover) and (pointer:fine){.ss-pd-ph:hover img{transform:scale(1.03);}}
+.ss-pd-ph img{transition:transform .4s cubic-bezier(.22,.61,.36,1);}
+.ss-pd-arrow{position:absolute;top:50%;transform:translateY(-50%);display:flex;align-items:center;justify-content:center;width:44px;height:44px;border:0;border-radius:999px;background:rgba(255,255,255,.92);color:#21507B;cursor:pointer;box-shadow:0 2px 8px rgba(19,44,67,.08);}
+.ss-pd-arrow:hover{background:var(--ss-surface-page,#FEFAF7);color:var(--ss-hover-text,#A4600C);}
+.ss-pd-arrow:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+.ss-pd-round{display:flex;align-items:center;justify-content:center;width:44px;height:44px;border:0;border-radius:999px;background:var(--ss-surface-page,#FEFAF7);color:var(--ss-link-hover,#21507B);cursor:pointer;box-shadow:0 2px 8px rgba(19,44,67,.08);transition:transform .06s cubic-bezier(.22,.61,.36,1);}
+@media (hover:hover) and (pointer:fine){.ss-pd-round:not([aria-pressed]):hover{background:var(--ss-hover-bg,#FFF5E6)!important;color:var(--ss-hover-text,#A4600C);}.ss-pd-round[aria-pressed="false"]:hover{background:#FFF5E6!important;}.ss-pd-round[aria-pressed="false"]:hover span{color:#A4600C!important;}.ss-pd-round[aria-pressed="true"]:hover{background:#F09A2C!important;}}
+.ss-pd-round:active{transform:scale(.96);}
+.ss-pd-round:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+.ss-pd-row{display:flex;align-items:center;gap:16px;width:100%;text-align:left;padding:14px 16px;border:1px solid var(--ss-border-subtle,#E1E6EB);border-radius:12px;background:var(--ss-surface-box,#FFFFFF);cursor:pointer;font-family:inherit;transition:box-shadow .15s cubic-bezier(.22,.61,.36,1),border-color .12s cubic-bezier(.22,.61,.36,1);}
+@media (hover:hover) and (pointer:fine){.ss-pd-row:hover svg{color:var(--ss-hover-text,#A4600C);}.ss-pd-row:hover{border-color:var(--ss-hover-text,#A4600C);box-shadow:0 4px 12px rgba(19,44,67,.12);}}
+.ss-pd-row:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+.ss-pd-cs-radio{display:flex;align-items:center;gap:12px;width:100%;padding:0;border:0;background:none;cursor:pointer;font-family:inherit;text-align:left;color:var(--ss-text-primary,#1C2229);border-radius:6px;}
+.ss-pd-cs-radio:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+.ss-pd-cs-dot{width:22px;height:22px;flex:none;border-radius:999px;box-sizing:border-box;border:2px solid var(--ss-border-strong,#C8D0D8);background:var(--ss-surface-page,#FEFAF7);display:flex;align-items:center;justify-content:center;transition:border-color .12s cubic-bezier(.22,.61,.36,1);}
+.ss-pd-cs-dot[data-on="true"]{border-color:#FBB255;}
+.ss-pd-cs-dot[data-on="true"]::after{content:"";width:10px;height:10px;border-radius:999px;background:#FBB255;}
+@media (hover:hover) and (pointer:fine){.ss-pd-row:hover .ss-pd-cs-dot{border-color:var(--ss-hover-text,#A4600C);}}
+.ss-pd-cs-radio[aria-checked="true"] .ss-pd-cs-dot{border-color:#FBB255;}
+.ss-pd-cs-radio[aria-checked="true"] .ss-pd-cs-dot::after{content:"";width:10px;height:10px;border-radius:999px;background:#FBB255;}
+@media (hover:hover) and (pointer:fine){.ss-pd-cs-radio:hover .ss-pd-cs-dot{border-color:var(--ss-hover-text,#A4600C);}.ss-pd-cs-radio:hover .ss-pd-cs-t{color:#21507B;}html[data-mode="dark"] .ss-pd-cs-radio:hover .ss-pd-cs-t{color:#FBB255;}}
+.ss-pd-cs-info{position:relative;flex:none;display:flex;align-items:center;justify-content:center;width:36px;height:36px;padding:0;border:0;border-radius:999px;background:none;cursor:pointer;color:var(--ss-link,#296093);transition:color .12s cubic-bezier(.22,.61,.36,1),background-color .12s cubic-bezier(.22,.61,.36,1);}
+.ss-pd-cs-info:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+.ss-pd-cs-info[aria-expanded="true"]{color:var(--ss-hover-text,#A4600C);}
+@media (hover:hover) and (pointer:fine){.ss-pd-cs-info:hover{color:var(--ss-hover-text,#A4600C);background:var(--ss-hover-bg,#FFF5E6);}}
+.ss-pd-cs-f{position:relative;display:flex;align-items:center;}
+.ss-pd-cs-f>.ss-pd-cs-ic{position:absolute;left:12px;display:flex;color:var(--ss-text-muted,#5B6874);pointer-events:none;}
+.ss-pd-cs-f>.ss-pd-cs-u{position:absolute;right:12px;font-size:14px;color:var(--ss-text-muted,#5B6874);pointer-events:none;}
+.ss-pd-cs-in{width:100%;min-width:0;height:44px;box-sizing:border-box;padding:0 40px 0 44px;border:0;border-radius:6px;background:var(--ss-surface-page,#FEFAF7);box-shadow:inset 0 0 0 1px var(--ss-border-strong,#C8D0D8);font-family:inherit;font-size:15px;font-weight:500;color:var(--ss-text-primary,#1C2229);-moz-appearance:textfield;transition:box-shadow .15s cubic-bezier(.22,.61,.36,1);}
+.ss-pd-cs-in::-webkit-outer-spin-button,.ss-pd-cs-in::-webkit-inner-spin-button{-webkit-appearance:none;margin:0;}
+@media (hover:hover) and (pointer:fine){.ss-pd-cs-in:hover{box-shadow:inset 0 0 0 1px var(--ss-border-hover,#8DB3D3);}}
+.ss-pd-cs-in:focus{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35),inset 0 0 0 1px var(--ss-border-action,#296093);}
+.ss-pd-cs-in[aria-invalid="true"]{box-shadow:inset 0 0 0 1px var(--ss-status-error,#B3261E);}
+@media (max-width:549px){.ss-pd-cs-in{font-size:16px;}}
+.ss-pd-setbtn{transition:background-color .12s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1),box-shadow .15s cubic-bezier(.22,.61,.36,1);}
+@media (hover:hover) and (pointer:fine){a:hover>.ss-pd-setbtn[data-v="S4"]{background:var(--ss-hover-bg,#FFF5E6)!important;color:var(--ss-hover-text,#A4600C)!important;box-shadow:inset 0 0 0 1px var(--ss-hover-text,#A4600C)!important;}}
+a:focus-visible>.ss-pd-setbtn[data-v="S4"]{box-shadow:0 0 0 3px rgba(41,96,147,.35),inset 0 0 0 1px var(--ss-border-action,#296093)!important;}
+.ss-pd-glasswrap[data-v="S4"]{position:relative;border-radius:12px;}
+.ss-pd-glasswrap[data-v="S4"]::before{z-index:1;}
+.ss-pd-glasswrap:not([data-v="S4"]) .ss-pd-glass,.ss-pd-glasswrap[data-v="S4"]{box-shadow:0 4px 12px rgba(19,44,67,.12),0 16px 40px rgba(19,44,67,.10);}
+html[data-mode="dark"] .ss-pd-glasswrap:not([data-v="S4"]) .ss-pd-glass,html[data-mode="dark"] .ss-pd-glasswrap[data-v="S4"]{box-shadow:0 4px 12px rgba(0,0,0,.28),0 16px 40px rgba(0,0,0,.32);}
+.ss-pd-glasswrap[data-v="S4"] .ss-pd-glass::before{display:none;}
+.ss-pd-glass::before,.ss-pd-glasswrap[data-v="S4"]::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;pointer-events:none;background:linear-gradient(135deg,rgba(41,96,147,.40) 0%,rgba(41,96,147,.14) 35%,rgba(41,96,147,0) 70%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;}
+html[data-mode="dark"] .ss-pd-glass::before,html[data-mode="dark"] .ss-pd-glasswrap[data-v="S4"]::before{background:linear-gradient(135deg,rgba(255,255,255,.32) 0%,rgba(255,255,255,.10) 35%,rgba(255,255,255,0) 70%);}
+.ss-pd-segwrap{display:flex;gap:4px;padding:4px;border-radius:12px;background:var(--ss-surface-strong,#E3E8EF);}
+@media (max-width:549px){.ss-pd-segwrap{flex-direction:column;}.ss-pd-seg{min-height:64px;}}
+.ss-pd-seg{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px;align-items:center;justify-content:center;padding:12px 16px;border:0;border-radius:8px;background:transparent;cursor:pointer;font-family:inherit;min-height:72px;transition:background-color .12s cubic-bezier(.22,.61,.36,1),box-shadow .15s cubic-bezier(.22,.61,.36,1);}
+.ss-pd-seg:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);z-index:1;}
+@media (hover:hover) and (pointer:fine){.ss-pd-seg[aria-pressed="false"]:hover{background:var(--ss-hover-bg,#FFF5E6);color:var(--ss-hover-text,#A4600C);}.ss-pd-seg[aria-pressed="false"]:hover>span:first-child,.ss-pd-seg[aria-pressed="false"]:hover svg{color:var(--ss-hover-text,#A4600C);}}
+.ss-pd-seg[aria-pressed="true"]{background:var(--ss-surface-page,#FEFAF7);box-shadow:0 2px 8px rgba(19,44,67,.08);}
+.ss-pd-var{display:flex;flex-direction:column;gap:8px;width:100%;padding:0;border:0;background:none;cursor:pointer;text-align:left;font-family:inherit;border-radius:12px;}
+.ss-pd-var:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+.ss-pd-var-ph{position:relative;width:100%;border-radius:12px;overflow:hidden;background:var(--ss-surface-subtle,#FAF5EF);}
+.ss-pd-var img{transition:transform .4s cubic-bezier(.22,.61,.36,1);}
+@media (hover:hover) and (pointer:fine){.ss-pd-var:hover img{transform:scale(1.06);}}
+.ss-pd-soc{display:flex;align-items:center;justify-content:center;gap:8px;flex:1;min-width:0;min-height:44px;padding:0 12px;border-radius:6px;font-size:14px;font-weight:600;text-decoration:none;white-space:nowrap;}
+.ss-pd-soc:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+.ss-pd-fb{background:#3B5998;color:#FFFFFF;}
+.ss-pd-fb:hover{background:#31497D;color:#FFFFFF;}
+.ss-pd-gg{background:var(--ss-surface-page,#FEFAF7);color:var(--ss-text-primary,#1C2229);box-shadow:inset 0 0 0 1px var(--ss-border-subtle,#E1E6EB);}
+.ss-pd-gg:hover{background:var(--ss-surface-muted,#F0F3F6);color:var(--ss-text-primary,#1C2229);}
+.ss-pd-sz{background:#CC0000;color:#FFFFFF;}
+.ss-pd-sz:hover{background:#A80000;color:#FFFFFF;}
+.ss-pd-ap{background:#1C2229;color:#FFFFFF;}
+.ss-pd-ap:hover{background:#000000;color:#FFFFFF;}
+.ss-pd-var-check{position:absolute;top:8px;right:8px;display:flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:999px;background:#FBB255;color:#1C2229;box-shadow:0 2px 8px rgba(19,44,67,.08);}
+.ss-pd-tab{display:inline-flex;align-items:center;gap:6px;padding:12px 2px;font-size:15px;font-weight:600;color:var(--ss-text-secondary,#3D4750);text-decoration:none;border-bottom:2px solid transparent;}
+.ss-pd-tab:hover{color:var(--ss-hover-text,#A4600C);border-bottom-color:var(--ss-hover-text,#A4600C);}
+.ss-pd-tab:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+.ss-pd-faq{display:flex;align-items:center;justify-content:space-between;gap:16px;width:100%;text-align:left;padding:18px 0;border:0;border-bottom:1px solid var(--ss-border-subtle,#E1E6EB);background:none;cursor:pointer;font-family:inherit;}
+.ss-pd-faq:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+.ss-pd-faq:hover span:first-child,.ss-pd-faq:hover svg{color:var(--ss-hover-text,#A4600C);}
+.ss-pd-lbth{display:block;width:72px;height:56px;flex:none;border:0;padding:0;border-radius:8px;overflow:hidden;background:#12202D;cursor:pointer;opacity:.55;}
+.ss-pd-lbth[aria-current="true"]{opacity:1;box-shadow:inset 0 0 0 2px #FFFFFF;}
+.ss-pd-lbth:hover{opacity:1;}
+.ss-pd-lbth:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(255,255,255,.6);}
+</style>
+</helmet>
+<div style="width:100%;background:var(--ss-surface-page,#FEFAF7);font-family:Roboto,Helvetica,Arial,sans-serif;color:var(--ss-text-primary,#1C2229)">
+  <dc-import name="Hlavicka" style="position:sticky;top:0;z-index:200" ledMode="{{ ledMode }}" hint-size="100%,180px"></dc-import>
+  <dc-import name="PrezentacniLista" items="{{ presItems }}" onToggle="{{ onPresToggle }}" choices="{{ presChoices }}" onPick="{{ onPresPick }}" hint-size="460px,52px"></dc-import>
+
+  <main>
+    <div style="{{ inner }}">
+      <dc-import name="Drobeckova" items="{{ crumbs }}" hint-size="100%,48px"></dc-import>
+    </div>
+
+    <section style="width:100%;background:var(--ss-surface-page,#FEFAF7)">
+      <div style="{{ inner }}">
+        <sc-if value="{{ titleTop }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;gap:10px;padding:0 0 16px">
+            <h1 style="margin:0;font-size:{{ h1Size }};line-height:1.08">LEVITA — dřevěná postel s „levitujícím“ rámem a nočními stolky</h1>
+            <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;font-size:14px;color:var(--ss-text-muted,#5B6874)">
+              <dc-import name="Hodnoceni" value="{{ rating }}" count="{{ ratingCount }}" size="small" hint-size="160px,20px"></dc-import>
+              <span style="color:var(--ss-text-decor,#C8D0D8)">|</span>
+              <span>800+ lidí zakoupilo</span>
+            </div>
+          </div>
+        </sc-if>
+        <div style="display:grid;grid-template-columns:{{ topTemplate }};gap:{{ topGap }};padding:8px 0 0;align-items:start">
+
+          <div style="min-width:0;display:flex;flex-direction:column;gap:16px;{{ galleryStick }}">
+            <div style="position:relative">
+              <button type="button" class="ss-pd-ph" style="aspect-ratio:4/3" onClick="{{ openMain }}" aria-label="{{ mainAlt }}">
+                <sc-if value="{{ mainIsPhoto }}" hint-placeholder-val="{{ true }}">
+                  <img src="{{ mainSrc }}" alt="{{ mainAlt }}" style="width:100%;height:100%;object-fit:{{ mainFit }};display:block" />
+                </sc-if>
+                <sc-if value="{{ mainIsVideo }}" hint-placeholder-val="{{ false }}">
+                  <span style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;width:100%;height:100%;background:var(--ss-surface-muted,#F3EDE4);color:var(--ss-text-muted,#5B6874)">
+                    <span style="display:flex;color:var(--ss-link,#296093)"><dc-import name="Ikony" iconName="player-play" size="40" hint-size="40px,40px"></dc-import></span>
+                    <span style="font-size:14px">Video produktu — dodá klient</span>
+                  </span>
+                </sc-if>
+              </button>
+              <div style="position:absolute;top:12px;left:12px;display:flex;flex-direction:column;align-items:flex-start;gap:6px;pointer-events:none">
+                <dc-import name="Stitek" kind="sale" label="−7 %" size="small" hint-size="60px,24px"></dc-import>
+                <dc-import name="Stitek" kind="freeShip" label="Doprava zdarma" size="small" hint-size="130px,24px"></dc-import>
+                <dc-import name="Stitek" kind="news" label="Novinka" size="small" hint-size="80px,24px"></dc-import>
+              </div>
+              <button type="button" class="ss-pd-round" style="position:absolute;top:12px;right:12px;background-color:{{ favBg }};box-shadow:0 2px 8px rgba(19,44,67,.18)" onClick="{{ onFav }}" aria-pressed="{{ favPressed }}" aria-label="{{ favLabel }}">
+                <span style="display:flex;color:{{ favRoundIcon }}"><dc-import name="Ikony" iconName="{{ favIcon }}" size="22" hint-size="22px,22px"></dc-import></span>
+              </button>
+              <button type="button" class="ss-pd-arrow" style="left:12px" onClick="{{ prevPhoto }}" aria-label="Předchozí fotka">
+                <dc-import name="Ikony" iconName="chevron-left" size="22" hint-size="22px,22px"></dc-import>
+              </button>
+              <button type="button" class="ss-pd-arrow" style="right:12px" onClick="{{ nextPhoto }}" aria-label="Další fotka">
+                <dc-import name="Ikony" iconName="chevron-right" size="22" hint-size="22px,22px"></dc-import>
+              </button>
+              <span style="position:absolute;right:12px;bottom:12px;background:rgba(19,44,67,.82);color:#FFFFFF;font-size:13px;font-weight:600;border-radius:999px;padding:5px 12px" aria-live="polite">{{ counter }}</span>
+            </div>
+
+            <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px">
+              <button type="button" class="ss-pd-ph" style="aspect-ratio:4/3" onClick="{{ openSub1 }}" aria-label="LEVITA v ložnici s komodou a vínovým přehozem">
+                <img src="levita-loznice-1.jpeg" alt="LEVITA v ložnici s komodou a vínovým přehozem" style="width:100%;height:100%;object-fit:cover;display:block" />
+              </button>
+              <button type="button" class="ss-pd-ph" style="aspect-ratio:4/3;background:#FFFFFF" onClick="{{ openSub2 }}" aria-label="Schéma rozměrů postele LEVITA">
+                <img src="levita-rozmery.png" alt="Schéma rozměrů postele LEVITA" style="width:100%;height:100%;object-fit:contain;display:block" />
+              </button>
+            </div>
+
+            <sc-if value="{{ showVideo }}" hint-placeholder-val="{{ true }}">
+              <div class="ss-elev" style="position:relative;width:100%;aspect-ratio:16/9;background:var(--ss-surface-muted,#F3EDE4);border-radius:12px;overflow:hidden">
+                <iframe src="https://www.youtube-nocookie.com/embed/1UPsr_8rpOg?rel=0" title="Video produktu LEVITA" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" style="position:absolute;inset:0;width:100%;height:100%;border:0;display:block"></iframe>
+              </div>
+            </sc-if>
+          </div>
+
+          <div style="min-width:0;display:flex;flex-direction:column;gap:20px;{{ buyStick }}">
+            <div style="display:flex;flex-direction:column;gap:12px">
+              <sc-if value="{{ titleInColumn }}" hint-placeholder-val="{{ true }}">
+                <h1 style="margin:0;font-size:{{ h1Size }};line-height:1.08">LEVITA — dřevěná postel s „levitujícím“ rámem a nočními stolky</h1>
+                <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;font-size:14px;color:var(--ss-text-muted,#5B6874)">
+                  <dc-import name="Hodnoceni" value="{{ rating }}" count="{{ ratingCount }}" size="small" hint-size="160px,20px"></dc-import>
+                  <span style="color:var(--ss-text-decor,#C8D0D8)">|</span>
+                  <span>800+ lidí zakoupilo</span>
+                </div>
+              </sc-if>
+              <p style="margin:0;font-size:16px;line-height:1.6;color:var(--ss-text-secondary,#3D4750)">Postel LEVITA je skvělou volbou pro každého, kdo hledá nábytek, který nejen skvěle vypadá, ale také vám dopřeje kvalitní odpočinek.</p>
+              <div>
+                <div id="levita-perex-more" style="display:grid;grid-template-rows:{{ perexRows }};transition:grid-template-rows .4s cubic-bezier(.22,.61,.36,1)" aria-hidden="{{ perexHidden }}">
+                  <div style="overflow:hidden;min-height:0">
+                    <p style="margin:0;padding-bottom:12px;font-size:15px;line-height:1.65;color:var(--ss-text-secondary,#3D4750);opacity:{{ perexOpacity }};transition:opacity .4s cubic-bezier(.22,.61,.36,1)">„Levitující“ rám umožní pohodlný a bezpečný pohyb kolem postele a je praktický i při úklidu. Noha je nastavitelná ve dvou pozicích — základní a pro kombinaci s úložným prostorem. Výškově stavitelné kování roštu umožňuje nastavit výšku ložné plochy.</p>
+                  </div>
+                </div>
+                <dc-import name="Tlacitko" label="{{ perexLabel }}" variant="text" size="standard" iconRight="{{ perexIcon }}" onClick="{{ togglePerex }}" hint-size="150px,24px"></dc-import>
+              </div>
+            </div>
+
+            <div style="display:grid;grid-template-columns:{{ factsTemplate }};gap:16px 20px;padding:20px 0;border-top:1px solid var(--ss-border-subtle,#E1E6EB);border-bottom:1px solid var(--ss-border-subtle,#E1E6EB)">
+              <sc-for list="{{ facts }}" as="f" hint-placeholder-count="4">
+                <span style="display:flex;align-items:flex-start;gap:8px;font-size:14px;line-height:1.4;color:var(--ss-text-secondary,#3D4750)">
+                  <sc-if value="{{ f.isFlag }}" hint-placeholder-val="{{ false }}">
+                    <span style="position:relative;display:block;width:20px;height:20px;flex:none;border-radius:999px;overflow:hidden;box-shadow:inset 0 0 0 1px rgba(19,44,67,.15)">
+                      <span style="position:absolute;inset:0 0 50% 0;background:#FFFFFF"></span>
+                      <span style="position:absolute;inset:50% 0 0 0;background:#D7141A"></span>
+                      <span style="position:absolute;left:0;top:0;width:0;height:0;border-style:solid;border-width:10px 0 10px 12px;border-color:transparent transparent transparent #11457E"></span>
+                    </span>
+                  </sc-if>
+                  <sc-if value="{{ f.isIcon }}" hint-placeholder-val="{{ true }}">
+                    <span style="display:flex;color:var(--ss-link,#296093);flex:none"><dc-import name="Ikony" iconName="{{ f.icon }}" size="20" hint-size="20px,20px"></dc-import></span>
+                  </sc-if>
+                  <span style="min-width:0">{{ f.label }}</span>
+                </span>
+              </sc-for>
+            </div>
+
+            <sc-if value="{{ showVariants }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;flex-direction:column;gap:12px">
+              <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 16px">
+                <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:17px">Další varianty</span>
+              </div>
+              <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px">
+                <sc-for list="{{ variants }}" as="v" hint-placeholder-count="3">
+                  <button type="button" class="ss-pd-var" onClick="{{ v.onPick }}" aria-pressed="{{ v.pressed }}">
+                    <span class="ss-pd-var-ph" style="box-shadow:{{ v.ring }}">
+                      <img src="{{ v.src }}" alt="" style="display:block;width:100%;aspect-ratio:4/3;object-fit:cover" />
+                      <sc-if value="{{ v.selected }}" hint-placeholder-val="{{ false }}">
+                        <span class="ss-pd-var-check"><dc-import name="Ikony" iconName="check" size="16" hint-size="16px,16px"></dc-import></span>
+                      </sc-if>
+                    </span>
+                    <span style="display:block;font-size:13px;line-height:1.35;color:{{ v.labelColor }};font-weight:{{ v.labelWeight }}">{{ v.label }}</span>
+                  </button>
+                </sc-for>
+              </div>
+            </div>
+            </sc-if>
+
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:17px">Rozměr postele</span>
+              <sc-if value="{{ sizeChips }}" hint-placeholder-val="{{ true }}">
+                <div style="display:flex;flex-wrap:wrap;gap:8px">
+                  <sc-for list="{{ sizes }}" as="s" hint-placeholder-count="4">
+                    <dc-import name="Chip" label="{{ s.label }}" size="standard" variant="{{ s.variant }}" ariaPressed="{{ s.pressed }}" check="{{ s.pressed }}" onClick="{{ s.onPick }}" hint-size="120px,36px"></dc-import>
+                  </sc-for>
+                  <dc-import name="Chip" label="{{ customLinkLabel }}" icon="rozmer-postele" size="standard" variant="{{ customChipVariant }}" ariaPressed="{{ customChipPressed }}" check="{{ customChipPressed }}" onClick="{{ openCustom }}" hint-size="150px,36px"></dc-import>
+                </div>
+              </sc-if>
+              <sc-if value="{{ sizeSelect }}" hint-placeholder-val="{{ false }}">
+                <dc-import name="Select" label="" ariaLabel="Rozměr postele" variant="outline" fullWidth="{{ true }}" value="{{ sizeValue }}" options="{{ sizeOptions }}" onChange="{{ onSizeSelect }}" hint-size="100%,44px"></dc-import>
+              </sc-if>
+            </div>
+
+            <div class="ss-elev" style="background:var(--ss-surface-box,#FFFFFF);border:1px solid var(--ss-border-subtle,#E1E6EB);border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:16px">
+              <div style="display:flex;align-items:center;gap:12px">
+                <div style="flex:1;min-width:0">
+                <button type="button" id="ss-pd-cs" class="ss-pd-cs-radio" role="radio" aria-checked="{{ csChecked }}" aria-controls="ss-pd-cs-form" onClick="{{ toggleCs }}">
+                  <span class="ss-pd-cs-dot"></span>
+                  <span style="display:flex;flex-direction:column;gap:2px;min-width:0">
+                    <span class="ss-pd-cs-t" style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:21px;line-height:1.2;transition:color .12s">Vlastní rozměr</span>
+                    <span style="font-size:13px;color:var(--ss-text-muted,#5B6874)">Vyrobíme na míru, šířka 80–220 cm, délka 180–240 cm</span>
+                  </span>
+                </button>
+                </div>
+                <button type="button" class="ss-pd-cs-info" aria-label="Informace o vlastním rozměru" aria-expanded="{{ csInfoExp }}" aria-controls="ss-pd-cs-info" onClick="{{ toggleCsInfo }}"><dc-import name="Ikony" iconName="info-circle" size="22" hint-size="22px,22px"></dc-import></button>
+              </div>
+              <sc-if value="{{ csInfo }}" hint-placeholder-val="{{ false }}">
+                <p id="ss-pd-cs-info" style="margin:0;display:flex;gap:10px;padding:12px 16px;border-radius:6px;background:var(--ss-surface-page,#FEFAF7);font-size:14px;line-height:1.55;color:var(--ss-text-secondary,#3D4750)">Kvůli změnám rozměrů se může změnit dodací lhůta a cena. O všem vás budeme informovat e-mailem.</p>
+              </sc-if>
+              <sc-if value="{{ csOn }}" hint-placeholder-val="{{ false }}">
+                <div id="ss-pd-cs-form" style="display:flex;flex-direction:column;gap:12px">
+                  <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px">
+                    <label style="display:flex;flex-direction:column;gap:6px;min-width:0">
+                      <span style="font-size:13px;font-weight:600;color:var(--ss-text-secondary,#3D4750)">Šířka</span>
+                      <span class="ss-pd-cs-f">
+                        <span class="ss-pd-cs-ic"><dc-import name="Ikony" iconName="arrows-horizontal" size="20" hint-size="20px,20px"></dc-import></span>
+                        <input class="ss-pd-cs-in" type="text" inputmode="numeric" placeholder="např. 150" ref="{{ csWRef }}" value="{{ csW }}" onChange="{{ onCsW }}" aria-invalid="{{ csWInvalid }}" />
+                        <span class="ss-pd-cs-u">cm</span>
+                      </span>
+                    </label>
+                    <label style="display:flex;flex-direction:column;gap:6px;min-width:0">
+                      <span style="font-size:13px;font-weight:600;color:var(--ss-text-secondary,#3D4750)">Délka</span>
+                      <span class="ss-pd-cs-f">
+                        <span class="ss-pd-cs-ic"><dc-import name="Ikony" iconName="arrows-vertical" size="20" hint-size="20px,20px"></dc-import></span>
+                        <input class="ss-pd-cs-in" type="text" inputmode="numeric" placeholder="např. 210" value="{{ csL }}" onChange="{{ onCsL }}" aria-invalid="{{ csLInvalid }}" />
+                        <span class="ss-pd-cs-u">cm</span>
+                      </span>
+                    </label>
+                  </div>
+                  <sc-if value="{{ csHasPrice }}" hint-placeholder-val="{{ false }}">
+                    <div aria-live="polite" style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:4px 12px;padding:12px 16px;border-radius:6px;background:var(--ss-surface-page,#FEFAF7)">
+                      <span style="font-size:14px;color:var(--ss-text-secondary,#3D4750)">Příplatek za rozměr {{ csDims }}</span>
+                      <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:21px;color:var(--ss-text-primary,#1C2229)">+ {{ csAddFmt }}</span>
+                    </div>
+                    <sc-if value="{{ csNotConfirmed }}" hint-placeholder-val="{{ true }}">
+                      <dc-import name="Tlacitko" label="Potvrdit" variant="primary" size="standard" fullWidth="{{ true }}" onClick="{{ confirmCs }}" hint-size="100%,44px"></dc-import>
+                    </sc-if>
+                    <sc-if value="{{ csConfirmedOk }}" hint-placeholder-val="{{ false }}">
+                      <span role="status" style="display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:var(--ss-status-success,#157A41)"><dc-import name="Ikony" iconName="check" size="18" hint-size="18px,18px"></dc-import>Rozměr potvrzen, příplatek je započtený v ceně</span>
+                    </sc-if>
+                  </sc-if>
+                  <sc-if value="{{ csHasError }}" hint-placeholder-val="{{ false }}">
+                    <span role="alert" style="font-size:13px;color:var(--ss-status-error,#B3261E)">{{ csError }}</span>
+                  </sc-if>
+                </div>
+              </sc-if>
+            </div>
+
+            <div class="ss-elev" style="background:var(--ss-surface-box,#FFFFFF);border:1px solid var(--ss-border-subtle,#E1E6EB);border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:14px">
+              <button type="button" class="ss-pd-cs-radio" role="radio" aria-checked="{{ upYesPressed }}" onClick="{{ toggleUp }}">
+                <span class="ss-pd-cs-dot"></span>
+                <span class="ss-pd-cs-t" style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:21px;line-height:1.2;transition:color .12s">Chcete postel i s úložným prostorem?</span>
+              </button>
+              <div class="ss-pd-segwrap">
+                <button type="button" class="ss-pd-seg" onClick="{{ pickUpNo }}" aria-pressed="{{ upNoPressed }}">
+                  <span style="display:flex;align-items:center;gap:12px;width:100%;min-width:0">
+                    <span style="display:flex;align-items:center;justify-content:center;width:26px;flex:none">
+                      <sc-if value="{{ upNoSelected }}" hint-placeholder-val="{{ false }}">
+                        <span class="ss-pd-var-check" style="position:static"><dc-import name="Ikony" iconName="check" size="16" hint-size="16px,16px"></dc-import></span>
+                      </sc-if>
+                      <sc-if value="{{ upYesSelected }}" hint-placeholder-val="{{ true }}">
+                        <span class="ss-pd-var-check" style="position:static;background:transparent;box-shadow:inset 0 0 0 1px var(--ss-border-strong,#C8D0D8);color:var(--ss-text-muted,#5B6874)"><dc-import name="Ikony" iconName="minus" size="16" hint-size="16px,16px"></dc-import></span>
+                      </sc-if>
+                    </span>
+                    <span style="display:flex;flex-direction:column;gap:2px;min-width:0;text-align:left">
+                      <span style="font-size:16px;font-weight:600;color:var(--ss-text-primary,#1C2229)">bez úložného prostoru</span>
+                      <span style="font-size:13px;color:var(--ss-status-success,#157A41)">{{ upNoDiff }}</span>
+                    </span>
+                  </span>
+                </button>
+                <button type="button" class="ss-pd-seg" onClick="{{ pickUpYes }}" aria-pressed="{{ upYesPressed }}">
+                  <span style="display:flex;align-items:center;gap:12px;width:100%;min-width:0">
+                    <span style="display:flex;align-items:center;justify-content:center;width:26px;flex:none">
+                      <sc-if value="{{ upYesSelected }}" hint-placeholder-val="{{ true }}">
+                        <span class="ss-pd-var-check" style="position:static"><dc-import name="Ikony" iconName="check" size="16" hint-size="16px,16px"></dc-import></span>
+                      </sc-if>
+                      <sc-if value="{{ upNoSelected }}" hint-placeholder-val="{{ false }}">
+                        <span class="ss-pd-var-check" style="position:static;background:transparent;box-shadow:inset 0 0 0 1px var(--ss-border-strong,#C8D0D8);color:var(--ss-text-muted,#5B6874)"><dc-import name="Ikony" iconName="plus" size="16" hint-size="16px,16px"></dc-import></span>
+                      </sc-if>
+                    </span>
+                    <span style="display:flex;flex-direction:column;gap:2px;min-width:0;text-align:left">
+                      <span style="font-size:16px;font-weight:600;color:var(--ss-text-primary,#1C2229)">s úložným prostorem</span>
+                      <span style="font-size:13px;color:var(--ss-text-muted,#5B6874)">až 1 000 litrů pro uložení</span>
+                    </span>
+                  </span>
+                </button>
+              </div>
+            </div>
+
+            <div style="display:flex;flex-direction:column;gap:12px">
+              <sc-for list="{{ pickers }}" as="p" hint-placeholder-count="3">
+                <button type="button" class="ss-pd-row" onClick="{{ p.onOpen }}" aria-expanded="false">
+                  <span class="ss-pd-cs-dot" data-on="{{ p.on }}" aria-hidden="true" style="align-self:center"></span>
+                  <span style="flex:1;min-width:0;display:flex;flex-direction:column;gap:4px">
+                    <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:16px;color:var(--ss-text-primary,#1C2229)">{{ p.title }}</span>
+                    <span style="display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:14px;color:var(--ss-text-secondary,#3D4750)">
+                      <sc-if value="{{ p.hasSwatch }}" hint-placeholder-val="{{ false }}">
+                        <span style="width:22px;height:22px;flex:none;border-radius:999px;background:{{ p.swatch }};box-shadow:inset 0 0 0 1px rgba(19,44,67,.15)"></span>
+                      </sc-if>
+                      <span>{{ p.value }}</span>
+                    </span>
+                  </span>
+                  <span style="flex:none;font-size:15px;font-weight:600;color:{{ p.noteColor }};white-space:nowrap">{{ p.note }}</span>
+                  <span style="display:flex;color:var(--ss-status-warning,#A4600C);flex:none"><dc-import name="Ikony" iconName="chevron-right" size="22" hint-size="22px,22px"></dc-import></span>
+                </button>
+              </sc-for>
+            </div>
+
+            <div style="display:flex;flex-direction:column;gap:8px;padding:16px 0">
+              <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px">
+                <span style="display:flex;align-items:center;gap:4px;font-size:16px;font-weight:600;color:var(--ss-status-success,#157A41)">
+                  <span style="display:flex;color:var(--ss-status-success,#157A41)"><dc-import name="Ikony" iconName="circle-check" size="20" hint-size="20px,20px"></dc-import></span>
+                  <span>Skladem <span style="font-weight:400;color:var(--ss-text-secondary,#3D4750)">(3 ks)</span></span>
+                </span>
+                <span style="font-size:14px;color:var(--ss-text-secondary,#3D4750)">22. 10. u vás</span>
+                <a href="#dostupnost" style="font-size:14px">Zobrazit dostupnost</a>
+              </div>
+              <span style="display:flex;align-items:center;gap:8px;font-size:14px;color:var(--ss-text-secondary,#3D4750);padding-left:2px">
+                <span style="display:flex;color:var(--ss-text-muted,#5B6874);flex:none"><dc-import name="Ikony" iconName="map-pin" size="16" hint-size="16px,16px"></dc-import></span>
+                <span>Můžete mít hned na <a href="#prodejny">3 prodejnách</a></span>
+              </span>
+              <span style="display:flex;align-items:center;gap:8px;font-size:14px;color:var(--ss-text-secondary,#3D4750);padding-left:2px">
+                <span style="display:flex;color:var(--ss-text-muted,#5B6874);flex:none"><dc-import name="Ikony" iconName="map-pin" size="16" hint-size="16px,16px"></dc-import></span>
+                <span>Vyzkoušejte osobně na <a href="#prodejny">5 specializovaných prodejnách</a></span>
+              </span>
+            </div>
+
+            <div class="ss-pd-glasswrap" data-v="{{ setUiVal }}" style="{{ setWrapStyle }}">
+            <div class="ss-pd-glass" style="position:relative;background:var(--ss-surface-box,#FFFFFF);border-radius:{{ priceBoxRadius }};padding:20px;display:flex;flex-wrap:wrap;align-items:center;gap:16px">
+              <div style="display:flex;flex-direction:column;gap:6px;min-width:0">
+                <sc-if value="{{ showBefore }}" hint-placeholder-val="{{ true }}">
+                  <div style="display:flex;align-items:center;gap:10px">
+                    <dc-import name="Stitek" kind="sale" label="{{ discount }}" size="small" hint-size="56px,24px"></dc-import>
+                    <span style="font-size:15px;color:var(--ss-text-muted,#5B6874);text-decoration:line-through">{{ priceBefore }}</span>
+                  </div>
+                </sc-if>
+                <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:34px;line-height:1.05;color:var(--ss-text-primary,#1C2229)">{{ priceLine }}</span>
+                <span style="font-size:13px;color:var(--ss-text-muted,#5B6874)">{{ priceNote }}</span>
+              </div>
+              <div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-left:auto">
+                <sc-if value="{{ showBefore }}" hint-placeholder-val="{{ true }}">
+                  <dc-import name="Kvantifikator" value="{{ qty }}" onChange="{{ onQty }}" hint-size="132px,44px"></dc-import>
+                </sc-if>
+                <dc-import name="Tlacitko" label="{{ ctaLabel }}" variant="buy" size="{{ ctaSize }}" iconLeft="{{ ctaIcon }}" onClick="{{ onBuy }}" hint-size="220px,52px"></dc-import>
+              </div>
+            </div>
+
+            <sc-if value="{{ setBannerVisible }}" hint-placeholder-val="{{ true }}">
+            <a href="#komplety" style="{{ setBannerStyle }}">
+              <sc-if value="{{ setNotS4 }}" hint-placeholder-val="{{ true }}">
+              <span style="display:flex;align-items:center;gap:8px;flex:none">
+                <img src="produkt-valentina-ultrafresh.png" alt="" style="display:block;width:64px;height:48px;object-fit:contain" />
+                <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:26px;line-height:1;color:var(--ss-status-error,#B3261E)">+</span>
+                <img src="produkt-rost-polohovaci.png" alt="" style="display:block;width:64px;height:48px;object-fit:contain" />
+              </span>
+              </sc-if>
+              <sc-if value="{{ setIsS4 }}" hint-placeholder-val="{{ false }}">
+                <span style="display:flex;flex:none;color:var(--ss-hover-text,#A4600C)"><dc-import name="Ikony" iconName="discount" size="32" hint-size="32px,32px"></dc-import></span>
+              </sc-if>
+              <span style="flex:1;min-width:140px;font-size:15px;font-weight:600;line-height:1.35">Koupit výhodně jako set s matrací a roštem</span>
+              <span class="ss-pd-setbtn" data-v="{{ setUiVal }}" style="{{ setBtnStyle }}">
+                <sc-if value="{{ setNotS4 }}" hint-placeholder-val="{{ true }}">
+                  <span style="display:flex"><dc-import name="Ikony" iconName="discount" size="24" hint-size="24px,24px"></dc-import></span>
+                </sc-if>
+                <span>Ušetříte až 8 590 Kč</span>
+              </span>
+            </a>
+            </sc-if>
+            </div>
+
+            <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;padding-top:4px">
+              <button type="button" onClick="{{ onFav }}" style="display:flex;align-items:flex-start;gap:10px;padding:12px 0;border:0;background:none;cursor:pointer;font-family:inherit;text-align:left">
+                <span style="display:flex;color:{{ favColor }};flex:none"><dc-import name="Ikony" iconName="{{ favIcon }}" size="22" hint-size="22px,22px"></dc-import></span>
+                <span style="display:flex;flex-direction:column;gap:2px;min-width:0">
+                  <span style="font-size:14px;font-weight:600;color:var(--ss-text-primary,#1C2229)">{{ favLabel }}</span>
+                  <span style="font-size:13px;color:var(--ss-text-muted,#5B6874)">uložíme vám ji na později</span>
+                </span>
+              </button>
+              <button type="button" onClick="{{ onCompare }}" style="display:flex;align-items:flex-start;gap:10px;padding:12px 0;border:0;background:none;cursor:pointer;font-family:inherit;text-align:left">
+                <span style="display:flex;color:var(--ss-text-secondary,#3D4750);flex:none"><dc-import name="Ikony" iconName="arrows-diff" size="22" hint-size="22px,22px"></dc-import></span>
+                <span style="display:flex;flex-direction:column;gap:2px;min-width:0">
+                  <span style="font-size:14px;font-weight:600;color:var(--ss-text-primary,#1C2229)">{{ cmpLabel }}</span>
+                  <span style="font-size:13px;color:var(--ss-text-muted,#5B6874)">s možností konzultace s naším specialistou</span>
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="width:100%;background:var(--ss-surface-page,#FEFAF7);margin-top:{{ sectionGap }}">
+      <div style="{{ innerPadded }}">
+        <dc-import name="Usp" heading="Už 22 let pomáháme našim spáčům vyspat se do růžova" items="{{ uspItems }}" hint-size="100%,260px"></dc-import>
+      </div>
+    </section>
+
+    <nav aria-label="Obsah produktu" style="position:sticky;top:{{ tocTop }};transition:top .4s cubic-bezier(.22,.61,.36,1);z-index:100;box-shadow:0 2px 8px rgba(19,44,67,.08);width:100%;border-top:1px solid var(--ss-border-subtle,#E1E6EB);border-bottom:1px solid var(--ss-border-subtle,#E1E6EB);background:var(--ss-surface-page,#FEFAF7)">
+      <div style="{{ inner }}">
+        <div style="display:flex;flex-wrap:wrap;gap:8px 28px">
+          <sc-for list="{{ anchors }}" as="a" hint-placeholder-count="6">
+            <a class="ss-pd-tab" href="{{ a.href }}">{{ a.label }}</a>
+          </sc-for>
+        </div>
+      </div>
+    </nav>
+
+    <section id="popis" style="width:100%;background:var(--ss-surface-page,#FEFAF7)">
+      <div style="{{ innerPadded }}">
+        <div style="display:grid;grid-template-columns:{{ descTemplate }};gap:{{ topGap }};align-items:start">
+          <div style="min-width:0;display:flex;flex-direction:column;gap:20px">
+            <h2 style="margin:0;font-size:{{ h2Size }};line-height:1.15">Vyrobeno v České republice a navrženo našimi designéry</h2>
+            <p style="margin:0;font-size:16px;line-height:1.7;color:var(--ss-text-secondary,#3D4750)">Dřevěná postel LEVITA působí díky kombinaci masivního dřeva a čalounění velmi elegantně a současně robustně a pevně. Představuje čisté řešení ložnice, ve které je postel perfektně sladěná s nočními stolky se zásuvkami, jež jsou součástí čela postele. Mezi čalouněnými opěrkami v čele vyniká působivá dřevěná „mozaika“, která dotváří celkový dojem.</p>
+            <img src="levita-loznice-1.jpeg" alt="Postel LEVITA v ložnici z dubového masivu" style="display:block;width:100%;border-radius:12px" />
+          </div>
+          <div style="min-width:0;display:flex;flex-direction:column;gap:16px">
+            <h3 style="margin:0;font-size:{{ h3Size }};line-height:1.2">Parametry</h3>
+            <table style="width:100%;border-collapse:collapse;font-size:14px">
+              <tbody>
+                <sc-for list="{{ params }}" as="p" hint-placeholder-count="10">
+                  <tr style="background:{{ p.bg }}">
+                    <th scope="row" style="text-align:left;font-weight:600;color:var(--ss-text-primary,#1C2229);padding:10px 12px;width:46%">{{ p.label }}</th>
+                    <td style="color:var(--ss-text-secondary,#3D4750);padding:10px 12px">{{ p.value }}</td>
+                  </tr>
+                </sc-for>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="prednosti" style="width:100%;background:var(--ss-surface-page,#FEFAF7)">
+      <div style="{{ innerTight }}">
+        <div style="display:grid;grid-template-columns:{{ descTemplate }};gap:{{ topGap }};align-items:start">
+          <div style="min-width:0;display:flex;flex-direction:column;gap:20px">
+            <h2 style="margin:0;font-size:{{ h2Size }};line-height:1.15">Hlavní přednosti</h2>
+            <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:12px">
+              <sc-for list="{{ perks }}" as="p" hint-placeholder-count="8">
+                <li style="display:flex;align-items:flex-start;gap:12px;font-size:16px;line-height:1.5;color:var(--ss-text-secondary,#3D4750)">
+                  <span style="display:flex;color:var(--ss-status-success,#157A41);flex:none"><dc-import name="Ikony" iconName="{{ p.icon }}" size="20" hint-size="20px,20px"></dc-import></span>
+                  <span style="min-width:0">{{ p.label }}</span>
+                </li>
+              </sc-for>
+            </ul>
+          </div>
+          <div style="min-width:0">
+            <img src="levita-rozmery.png" alt="Schéma rozměrů postele LEVITA v provedení 180 × 200 cm" style="display:block;width:100%;border-radius:12px;background:var(--ss-surface-subtle,#FAF5EF)" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="materialy" style="width:100%;background:var(--ss-surface-subtle,#FAF5EF)">
+      <div style="{{ innerPadded }}">
+        <div style="display:grid;grid-template-columns:{{ descTemplate }};gap:{{ topGap }};align-items:center">
+          <div style="min-width:0;display:flex;flex-direction:column;gap:32px">
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <h2 style="margin:0;font-size:{{ h2Size }};line-height:1.15">Materiály</h2>
+              <span style="font-size:17px;font-weight:600">Kvalitní dřevo — masiv</span>
+              <p style="margin:0;font-size:15px;line-height:1.6;color:var(--ss-text-secondary,#3D4750)">Buk jádrový, divoký jasan nebo dub z českých lesů, s certifikací PEFC. Dřevotřísku tu nenajdete.</p>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <h3 style="margin:0;font-size:{{ h3Size }};line-height:1.2">Povrchová úprava</h3>
+              <p style="margin:0;font-size:15px;line-height:1.6;color:var(--ss-text-secondary,#3D4750)">Barevné odstíny mořením, přírodní oleje Biofa a Osmo. Údržba i oprava pouhým přebroušením a přeolejováním.</p>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <h3 style="margin:0;font-size:{{ h3Size }};line-height:1.2">Konstrukční spojení</h3>
+              <p style="margin:0;font-size:15px;line-height:1.6;color:var(--ss-text-secondary,#3D4750)">Odolné spoje, zaoblené hrany, středová noha a kování Hettich s doživotní zárukou.</p>
+            </div>
+          </div>
+          <div style="min-width:0;display:flex;flex-direction:column;gap:16px">
+            <img src="levita-ram.jpeg" alt="Detail masivního rámu postele LEVITA" style="display:block;width:100%;border-radius:12px" />
+            <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px">
+              <img src="levita-celo.jpeg" alt="Detail dřevěné mozaiky v čele postele" style="display:block;width:100%;border-radius:12px" />
+              <img src="levita-latky-kronos.jpeg" alt="Vzorník čalounických látek Kronos" style="display:block;width:100%;border-radius:12px" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="doplnky" style="width:100%;background:var(--ss-surface-page,#FEFAF7)">
+      <div style="{{ innerPadded }}">
+        <div style="display:flex;flex-direction:column;gap:8px;align-items:center;text-align:center;margin-bottom:32px">
+          <h2 style="margin:0;font-size:{{ h2Size }};line-height:1.15">Vyberte si z naší nabídky i další produkty, ať máte svou novou postel kompletní</h2>
+          <span style="font-size:15px;color:var(--ss-text-secondary,#3D4750)">Nakupte současně se slevou až 20 %</span>
+        </div>
+        <div style="display:grid;grid-template-columns:{{ tilesTemplate }};gap:20px">
+          <sc-for list="{{ addons }}" as="a" hint-placeholder-count="3">
+            <a href="{{ a.href }}" style="display:flex;flex-direction:column;gap:10px;text-decoration:none;color:var(--ss-text-primary,#1C2229)">
+              <img src="{{ a.src }}" alt="" style="display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:12px" />
+              <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:22px;text-transform:uppercase">{{ a.title }}</span>
+              <span style="font-size:14px;color:var(--ss-text-secondary,#3D4750)">{{ a.note }}</span>
+            </a>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+    <section id="na-miru" style="width:100%;background:var(--ss-surface-page,#FEFAF7)">
+      <div style="{{ innerTight }}">
+        <div style="display:grid;grid-template-columns:{{ descTemplate }};gap:{{ topGap }};align-items:center">
+          <div style="min-width:0;display:flex;flex-direction:column;gap:20px">
+            <h2 style="margin:0;font-size:{{ h2Size }};line-height:1.15">Masivní postel na míru</h2>
+            <p style="margin:0;font-size:16px;line-height:1.65;color:var(--ss-text-secondary,#3D4750)">Přejete si upravit naše výrobky, nebo máte zcela atypické požadavky? Sdělte nám, co potřebujete, a my uděláme maximum pro to, abychom splnili vaše očekávání.</p>
+            <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:12px">
+              <sc-for list="{{ customPoints }}" as="c" hint-placeholder-count="3">
+                <li style="display:flex;align-items:flex-start;gap:12px;font-size:15px;font-weight:600;line-height:1.45;color:var(--ss-text-primary,#1C2229)">
+                  <span style="display:flex;color:var(--ss-status-success,#157A41);flex:none"><dc-import name="Ikony" iconName="circle-check" size="20" hint-size="20px,20px"></dc-import></span>
+                  <span style="min-width:0">{{ c.label }}</span>
+                </li>
+              </sc-for>
+            </ul>
+            <div><dc-import name="Tlacitko" label="Ložnice na míru" variant="primary" size="large" href="#loznice-na-miru" hint-size="200px,52px"></dc-import></div>
+          </div>
+          <div style="min-width:0">
+            <img src="levita-loznice-2.jpeg" alt="Ložnice s postelí LEVITA upravenou na míru" style="display:block;width:100%;border-radius:12px" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="hodnoceni" style="width:100%;background:var(--ss-surface-page,#FEFAF7)">
+      <div style="{{ innerPadded }}">
+        <div style="display:grid;grid-template-columns:{{ reviewTemplate }};gap:{{ topGap }};align-items:start">
+          <div style="min-width:0;display:flex;flex-direction:column;gap:24px">
+            <h2 style="margin:0;font-size:{{ h2Size }};line-height:1.15">Hodnocení přímo od našich spáčů</h2>
+            <div class="ss-elev" style="background:var(--ss-surface-box,#FFFFFF);border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:16px">
+              <div style="display:flex;align-items:center;gap:16px">
+                <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:56px;line-height:1">4,9</span>
+                <dc-import name="Hodnoceni" value="{{ rating }}" count="{{ ratingCount }}" variant="hvezdy" hint-size="160px,24px"></dc-import>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:2px;font-size:14px;color:var(--ss-text-secondary,#3D4750)">
+                <span>1000+ lidí koupilo</span>
+                <span>93 % doporučuje</span>
+                <span>104 napsaných recenzí</span>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <sc-for list="{{ ratingBars }}" as="b" hint-placeholder-count="5">
+                  <div style="display:flex;align-items:center;gap:12px">
+                    <span style="display:flex;gap:1px;color:#F09A2C;flex:none">
+                      <dc-import name="Hodnoceni" value="{{ b.stars }}" size="small" variant="hvezdy" hint-size="90px,16px"></dc-import>
+                    </span>
+                    <span style="flex:1;min-width:0;height:8px;border-radius:999px;background:var(--ss-border-subtle,#E1E6EB);overflow:hidden">
+                      <span style="display:block;height:100%;width:{{ b.width }};background:#FBB255;border-radius:999px"></span>
+                    </span>
+                    <span style="font-size:13px;color:var(--ss-text-muted,#5B6874);width:36px;text-align:right">{{ b.count }}</span>
+                  </div>
+                </sc-for>
+              </div>
+              <dc-import name="Tlacitko" label="Přidat hodnocení" variant="primary" size="large" iconLeft="plus" fullWidth="{{ true }}" onClick="{{ noop }}" hint-size="100%,52px"></dc-import>
+            </div>
+          </div>
+          <div style="min-width:0;display:flex;flex-direction:column">
+            <sc-for list="{{ reviews }}" as="r" hint-placeholder-count="3">
+              <div style="display:flex;flex-direction:column;gap:10px;padding:24px 0;border-bottom:1px solid var(--ss-border-subtle,#E1E6EB)">
+                <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px">
+                  <span style="font-size:17px;font-weight:600">{{ r.author }}</span>
+                  <span style="display:flex;align-items:center;gap:6px;margin-left:auto;font-size:13px;color:var(--ss-text-muted,#5B6874)">
+                    <span style="display:flex;color:var(--ss-status-success,#157A41)"><dc-import name="Ikony" iconName="circle-check" size="16" hint-size="16px,16px"></dc-import></span>
+                    <span>Ověřená recenze</span>
+                  </span>
+                </div>
+                <div style="display:flex;align-items:center;gap:14px">
+                  <span style="font-size:13px;color:var(--ss-text-muted,#5B6874)">{{ r.date }}</span>
+                  <dc-import name="Hodnoceni" value="{{ r.value }}" size="small" variant="hvezdy" hint-size="90px,16px"></dc-import>
+                </div>
+                <p style="margin:0;font-size:15px;line-height:1.65;color:var(--ss-text-secondary,#3D4750);font-style:italic">„{{ r.text }}“</p>
+              </div>
+            </sc-for>
+            <div style="display:flex;justify-content:center;padding-top:24px">
+              <dc-import name="Tlacitko" label="{{ moreReviewsLabel }}" variant="secondary" size="large" iconRight="{{ moreReviewsIcon }}" onClick="{{ toggleReviews }}" hint-size="260px,52px"></dc-import>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" style="width:100%;background:var(--ss-surface-page,#FEFAF7)">
+      <div style="{{ innerTight }}">
+        <div style="max-width:900px;display:flex;flex-direction:column;gap:16px">
+          <h2 style="margin:0;font-size:{{ h2Size }};line-height:1.15">Časté dotazy našich spáčů</h2>
+          <div style="display:flex;flex-direction:column;border-top:1px solid var(--ss-border-subtle,#E1E6EB)">
+            <sc-for list="{{ faqs }}" as="q" hint-placeholder-count="3">
+              <div>
+                <button type="button" class="ss-pd-faq" onClick="{{ q.onToggle }}" aria-expanded="{{ q.expanded }}">
+                  <span style="font-size:16px;font-weight:600;color:var(--ss-text-primary,#1C2229)">{{ q.question }}</span>
+                  <span style="display:flex;align-items:center;justify-content:center;width:36px;height:36px;flex:none;border-radius:999px;background:{{ q.iconBg }};color:var(--ss-text-primary,#1C2229)"><dc-import name="Ikony" iconName="{{ q.icon }}" size="20" hint-size="20px,20px"></dc-import></span>
+                </button>
+                <sc-if value="{{ q.open }}" hint-placeholder-val="{{ false }}">
+                  <p style="margin:0;padding:0 0 20px;font-size:15px;line-height:1.7;color:var(--ss-text-secondary,#3D4750);max-width:70ch">{{ q.answer }}</p>
+                </sc-if>
+              </div>
+            </sc-for>
+          </div>
+          <span style="font-size:15px;color:var(--ss-text-secondary,#3D4750)">Další často kladené otázky naleznete v sekci <a href="#faq-vse">FAQ</a>.</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="souvisejici" style="width:100%;background:var(--ss-surface-page,#FEFAF7)">
+      <div style="{{ innerPadded }}">
+        <dc-import name="SouvisejiciProdukty" heading="Spáči ještě přikoupili" navPosition="below" hint-size="100%,560px"></dc-import>
+      </div>
+    </section>
+  </main>
+
+  <dc-import name="Paticka" ledMode="{{ ledMode }}" hint-size="100%,700px"></dc-import>
+
+  <sc-if value="{{ stickyOn }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed;left:0;right:0;bottom:0;z-index:100;background:var(--ss-surface-page,#FEFAF7);border-top:1px solid var(--ss-border-subtle,#E1E6EB);box-shadow:0 -2px 8px rgba(19,44,67,.08),0 -16px 40px rgba(19,44,67,.06)">
+      <div style="{{ inner }}">
+        <sc-if value="{{ stickyWide }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;padding:10px 0">
+            <img src="levita-hlavni.png" alt="" style="width:56px;height:44px;object-fit:cover;border-radius:6px;flex:none;background:var(--ss-surface-subtle,#FAF5EF)" />
+            <div style="display:flex;flex-direction:column;gap:2px;min-width:0;flex:1">
+              <span style="font-size:14px;font-weight:600;line-height:1.3">LEVITA — dřevěná postel s „levitujícím“ rámem a nočními stolky</span>
+              <span style="display:flex;flex-wrap:wrap;gap:6px;margin-top:4px">
+                <sc-for list="{{ stickyChips }}" as="ch" hint-placeholder-count="4">
+                  <span style="display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;border-radius:999px;background:var(--ss-surface-subtle,#FAF5EF);box-shadow:inset 0 0 0 1px var(--ss-border-subtle,#E1E6EB);font-size:13px;color:var(--ss-text-secondary,#3D4750);white-space:nowrap">
+                    <sc-if value="{{ ch.hasSwatch }}" hint-placeholder-val="{{ false }}">
+                      <span style="width:10px;height:10px;border-radius:999px;flex:none;box-shadow:inset 0 0 0 1px rgba(19,44,67,.18);background:{{ ch.color }}"></span>
+                    </sc-if>
+                    <span>{{ ch.label }}</span>
+                  </span>
+                </sc-for>
+              </span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:2px;text-align:right">
+              <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:21px">{{ price }}</span>
+              <span style="display:flex;align-items:center;justify-content:flex-end;gap:6px;font-size:13px;color:var(--ss-status-success,#157A41)"><span style="width:8px;height:8px;border-radius:999px;background:#157A41"></span>Skladem</span>
+            </div>
+            <dc-import name="Tlacitko" label="{{ ctaLabel }}" variant="buy" size="large" iconLeft="{{ ctaIcon }}" onClick="{{ onBuy }}" hint-size="180px,52px"></dc-import>
+          </div>
+        </sc-if>
+        <sc-if value="{{ stickyNarrow }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;gap:8px;padding:10px 0">
+            <span style="font-size:14px;font-weight:600;line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">LEVITA — dřevěná postel s „levitujícím“ rámem a nočními stolky</span>
+            <div style="display:flex;align-items:center;gap:16px">
+              <div style="display:flex;flex-direction:column;gap:4px;min-width:0;flex:1">
+                <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:10px">
+                  <sc-if value="{{ showBefore }}" hint-placeholder-val="{{ true }}">
+                    <span style="font-size:14px;color:var(--ss-text-muted,#5B6874);text-decoration:line-through">{{ priceBefore }}</span>
+                  </sc-if>
+                  <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:24px;line-height:1">{{ price }}</span>
+                </div>
+                <span style="display:flex;align-items:center;gap:6px;font-size:13px;color:var(--ss-status-success,#157A41)"><span style="width:8px;height:8px;border-radius:999px;background:#157A41;flex:none"></span>Skladem</span>
+              </div>
+              <dc-import name="Tlacitko" label="Do košíku" variant="buy" size="large" onClick="{{ onBuy }}" hint-size="150px,52px"></dc-import>
+            </div>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </sc-if>
+
+  <dc-import name="VariantaDrawer" open="{{ drawerOpen }}" title="{{ drawerTitle }}" note="{{ drawerNote }}" value="{{ drawerValue }}" groups="{{ drawerGroups }}" rows="{{ drawerRows }}" onPick="{{ onDrawerPick }}" onClose="{{ closeDrawer }}" hint-size="0px,0px"></dc-import>
+
+  <dc-import name="KosikPridanoModal" open="{{ addedOpen }}" title="Postel LEVITA" qty="{{ qty }}" variant="{{ addedVariant }}" image="levita-hlavni.png" stockKind="onWay" stockLabel="Vyrobíme během 2–4 týdnů" total="{{ addedTotal }}" onClose="{{ closeAdded }}" hint-size="0px,0px"></dc-import>
+
+  <sc-if value="{{ customOpen }}" hint-placeholder-val="{{ false }}">
+    <div class="ss-scrim" style="position:fixed;inset:0;z-index:500;display:flex;align-items:safe center;justify-content:center;overflow-y:auto;padding:24px 16px" onClick="{{ onCustomBackdrop }}">
+      <div role="dialog" aria-modal="true" aria-labelledby="ss-custom-title" ref="{{ customRef }}" style="width:100%;max-width:520px;background:var(--ss-surface-card,#FFFFFF);border-radius:12px;box-shadow:0 32px 80px rgba(4,10,16,.55),0 8px 24px rgba(4,10,16,.35),0 0 0 1px rgba(19,44,67,.08);padding:24px;display:flex;flex-direction:column;gap:20px">
+        <div style="display:flex;align-items:flex-start;gap:16px">
+          <h2 id="ss-custom-title" class="ss-plain" style="margin:0;flex:1;min-width:0;font-family:Oswald,sans-serif;font-weight:600;font-size:24px;line-height:1.15">Vlastní rozměr postele</h2>
+          <button type="button" class="ss-pd-round" style="box-shadow:none;background:var(--ss-surface-subtle,#FAF5EF)" onClick="{{ closeCustom }}" ref="{{ customCloseRef }}" aria-label="Zavřít okno">
+            <dc-import name="Ikony" iconName="x" size="22" hint-size="22px,22px"></dc-import>
+          </button>
+        </div>
+        <p style="margin:0;font-size:15px;line-height:1.6;color:var(--ss-text-secondary,#3D4750)">Postel vyrobíme na centimetr přesně. Zadejte rozměr ložné plochy — cenu vám spočítáme individuálně a pošleme jako cenovou nabídku.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:16px">
+          <div style="flex:1;min-width:140px">
+            <dc-import name="Input" label="Šířka (cm)" type="number" bordered="{{ true }}" placeholder="např. 175" value="{{ customW }}" onChange="{{ setCustomW }}" hint-size="100%,70px"></dc-import>
+          </div>
+          <div style="flex:1;min-width:140px">
+            <dc-import name="Input" label="Délka (cm)" type="number" bordered="{{ true }}" placeholder="např. 210" value="{{ customL }}" onChange="{{ setCustomL }}" hint-size="100%,70px"></dc-import>
+          </div>
+        </div>
+        <dc-import name="Input" label="E-mail pro zaslání nabídky" type="email" bordered="{{ true }}" placeholder="vas@email.cz" value="{{ customMail }}" onChange="{{ setCustomMail }}" hint-size="100%,70px"></dc-import>
+        <dc-import name="Checkbox" label="Beru na vědomí, že atypický rozměr nelze koupit rovnou — do dvou pracovních dnů mi pošlete cenovou nabídku." checked="{{ customAgree }}" onChange="{{ setCustomAgree }}" hint-size="100%,44px"></dc-import>
+        <div style="display:flex;gap:12px;align-items:flex-start;padding:16px;border-radius:12px;background:var(--ss-surface-subtle,#FAF5EF)">
+          <span style="display:flex;color:var(--ss-link,#296093);flex:none"><dc-import name="Ikony" iconName="user" size="20" hint-size="20px,20px"></dc-import></span>
+          <span style="display:flex;flex-direction:column;gap:6px;min-width:0">
+            <span style="font-size:14px;font-weight:600">Založte si účet a mějte nabídky pohromadě</span>
+            <span style="font-size:13px;line-height:1.5;color:var(--ss-text-secondary,#3D4750)">V účtu uvidíte všechny cenové nabídky, jejich platnost i historii komunikace s naším poradcem.</span>
+            <dc-import name="Checkbox" label="Chci si zároveň založit účet" size="compact" checked="{{ customReg }}" onChange="{{ setCustomReg }}" hint-size="100%,32px"></dc-import>
+            <span style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding-top:4px">
+              <a class="ss-pd-soc ss-pd-fb" href="#registrace-facebook">
+                <span style="display:flex"><dc-import name="Ikony" iconName="brand-facebook" size="20" hint-size="20px,20px"></dc-import></span>
+                <span>Facebook</span>
+              </a>
+              <a class="ss-pd-soc ss-pd-gg" href="#registrace-google">
+                <img src="logo-google.svg" alt="" aria-hidden="true" style="display:block;width:20px;height:20px" />
+                <span>Google</span>
+              </a>
+              <a class="ss-pd-soc ss-pd-sz" href="#registrace-seznam">
+                <img src="logo-seznam-znak.svg" alt="" aria-hidden="true" style="display:block;width:22px;height:22px;object-fit:contain;filter:brightness(0) invert(1)" />
+                <span>Seznam</span>
+              </a>
+              <a class="ss-pd-soc ss-pd-ap" href="#registrace-apple">
+                <span style="display:flex"><dc-import name="Ikony" iconName="brand-apple-filled" size="20" hint-size="20px,20px"></dc-import></span>
+                <span>Apple ID</span>
+              </a>
+            </span>
+          </span>
+        </div>
+        <sc-if value="{{ customError }}" hint-placeholder-val="{{ false }}">
+          <span style="font-size:13px;color:var(--ss-status-error,#B3261E)">Vyplňte prosím šířku, délku, e-mail a potvrďte souhlas s cenovou nabídkou.</span>
+        </sc-if>
+        <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:flex-end">
+          <dc-import name="Tlacitko" label="Zrušit" variant="secondary" size="large" onClick="{{ closeCustom }}" hint-size="120px,52px"></dc-import>
+          <dc-import name="Tlacitko" label="Odeslat poptávku" variant="primary" size="large" iconRight="arrow-right" onClick="{{ submitCustom }}" hint-size="200px,52px"></dc-import>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ lbOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed;inset:0;z-index:500;background:rgba(9,18,27,.88);display:flex;flex-direction:column" onClick="{{ onBackdrop }}">
+      <div role="dialog" aria-modal="true" aria-label="Galerie fotek produktu LEVITA" ref="{{ dialogRef }}" style="display:flex;flex-direction:column;flex:1;min-height:0;padding:16px;gap:12px">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:16px">
+          <span style="color:#FFFFFF;font-size:14px">{{ lbCounter }}</span>
+          <button type="button" class="ss-pd-round" onClick="{{ closeLb }}" ref="{{ closeRef }}" aria-label="Zavřít galerii">
+            <dc-import name="Ikony" iconName="x" size="22" hint-size="22px,22px"></dc-import>
+          </button>
+        </div>
+        <div style="position:relative;flex:1;min-height:0;display:flex;align-items:center;justify-content:center">
+          <sc-if value="{{ lbIsPhoto }}" hint-placeholder-val="{{ true }}">
+            <img src="{{ lbSrc }}" alt="{{ lbAlt }}" style="max-width:100%;max-height:100%;object-fit:contain;border-radius:12px" />
+          </sc-if>
+          <sc-if value="{{ lbIsVideo }}" hint-placeholder-val="{{ false }}">
+            <span style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;width:min(100%,900px);aspect-ratio:16/9;border-radius:12px;background:#12202D;color:#8DB3D3">
+              <span style="display:flex;color:#FFFFFF"><dc-import name="Ikony" iconName="player-play" size="48" hint-size="48px,48px"></dc-import></span>
+              <span style="font-size:14px">Video produktu — dodá klient</span>
+            </span>
+          </sc-if>
+          <button type="button" class="ss-pd-arrow" style="left:0" onClick="{{ lbPrev }}" aria-label="Předchozí fotka">
+            <dc-import name="Ikony" iconName="chevron-left" size="22" hint-size="22px,22px"></dc-import>
+          </button>
+          <button type="button" class="ss-pd-arrow" style="right:0" onClick="{{ lbNext }}" aria-label="Další fotka">
+            <dc-import name="Ikony" iconName="chevron-right" size="22" hint-size="22px,22px"></dc-import>
+          </button>
+        </div>
+        <div style="display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;justify-content:center;flex-wrap:wrap">
+          <sc-for list="{{ lbThumbs }}" as="t" hint-placeholder-count="6">
+            <button type="button" class="ss-pd-lbth" onClick="{{ t.onPick }}" aria-current="{{ t.current }}" aria-label="{{ t.aria }}">
+              <sc-if value="{{ t.isPhoto }}" hint-placeholder-val="{{ true }}">
+                <img src="{{ t.src }}" alt="" style="width:100%;height:100%;object-fit:cover;display:block" />
+              </sc-if>
+              <sc-if value="{{ t.isVideo }}" hint-placeholder-val="{{ false }}">
+                <span style="display:flex;align-items:center;justify-content:center;width:100%;height:100%;color:#FFFFFF"><dc-import name="Ikony" iconName="player-play" size="20" hint-size="20px,20px"></dc-import></span>
+              </sc-if>
+            </button>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:1000},&quot;zobrazitVarianty&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;fixniSloupec&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;nakup&quot;,&quot;options&quot;:[&quot;nakup&quot;,&quot;galerie&quot;,&quot;zadny&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;ukazatVideo&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;stickyLista&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  PHOTOS = [
+    { src: 'levita-hlavni.png', alt: 'Postel LEVITA z dubového masivu s nočními stolky', lifestyle: true },
+    { src: 'levita-loznice-1.jpeg', alt: 'LEVITA v ložnici s komodou a vínovým přehozem', lifestyle: true },
+    { src: 'levita-loznice-2.jpeg', alt: 'LEVITA ve světlé ložnici s kobercem', lifestyle: true },
+    { src: 'levita-celo.jpeg', alt: 'Detail dřevěné mozaiky mezi čalouněnými opěrkami' },
+    { src: 'levita-stolek.jpeg', alt: 'Noční stolek se zásuvkou jako součást čela postele' },
+    { src: 'levita-ram.jpeg', alt: 'Detail „levitujícího“ rámu postele' },
+    { src: 'levita-noha.jpeg', alt: 'Detail nastavitelné nohy postele' },
+    { src: 'levita-up.jpeg', alt: 'Postel v kombinaci s úložným prostorem' },
+    { src: 'levita-rozmery.png', alt: 'Schéma rozměrů postele LEVITA', fit: 'contain' },
+    { src: 'levita-latky-kronos.jpeg', alt: 'Vzorník čalounických látek Kronos', fit: 'contain' }
+  ];
+  state = {
+    width: typeof window !== 'undefined' ? document.documentElement.clientWidth : 1440,
+    led: true, photo: 0, lb: null, qty: 1, fav: (() => { try { return JSON.parse(localStorage.getItem('ss-fav') || '[]').includes('levita'); } catch (e) { return false; } })(), cmp: (() => { try { return JSON.parse(localStorage.getItem('ss-cmp') || '[]').includes('levita'); } catch (e) { return false; } })(), perex: false,
+    onlyStock: false, size: '180 × 200 cm', up: 'no', variant: 1, faq: 1,
+    rost: 'bez', mat: 'buk-cherry', cal: 'k26',
+    custom: false, customW: '', customL: '', customMail: '', customAgree: false, customReg: true,
+    customError: false, customSize: null, csOn: false, csW: '', csL: '', csOk: false, csInfo: false,
+    moreReviews: false, sticky: false, setUi: 'S4'
+  };
+  componentDidMount() {
+    this._resize = () => this.setState({ width: document.documentElement.clientWidth });
+    window.addEventListener('resize', this._resize);
+    this._scroll = () => {
+      const y = window.scrollY || document.documentElement.scrollTop;
+      const on = y > 900;
+      if (on !== this.state.sticky) this.setState({ sticky: on });
+    };
+    window.addEventListener('scroll', this._scroll, { passive: true });
+    this._measureHeader = () => {
+      const h = document.querySelector('header.ss-hd');
+      const full = h ? Math.round(h.getBoundingClientRect().height) : 0;
+      const hidden = !!window.__ssHdHidden;
+      const v = hidden ? 0 : full;
+      if (full) document.documentElement.style.scrollPaddingTop = (v + 64) + 'px';
+      const c = this._crumb ? Math.round(this._crumb.getBoundingClientRect().height) : 0;
+      if ((h && v !== this.state.headerH) || (c && c !== this.state.crumbH)) this.setState({ headerH: v, crumbH: c || this.state.crumbH });
+    };
+    this._headerTick = setInterval(this._measureHeader, 400);
+    this._hdHidden = () => this._measureHeader();
+    window.addEventListener('ss-hdhidden', this._hdHidden);
+    setTimeout(this._measureHeader, 80);
+    this._key = (e) => {
+      if (this.state.custom) {
+        if (e.key === 'Escape') { e.preventDefault(); this.closeCustom(); }
+        else if (e.key === 'Tab') this.trap(e, this._customDialog);
+        return;
+      }
+      if (this.state.lb === null) return;
+      if (e.key === 'Escape') { e.preventDefault(); this.closeLightbox(); }
+      else if (e.key === 'ArrowRight') this.moveLb(1);
+      else if (e.key === 'ArrowLeft') this.moveLb(-1);
+      else if (e.key === 'Tab') this.trap(e);
+    };
+    window.addEventListener('keydown', this._key);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('ss-hdhidden', this._hdHidden);
+    clearInterval(this._headerTick);
+    window.removeEventListener('resize', this._resize);
+    window.removeEventListener('scroll', this._scroll);
+    window.removeEventListener('keydown', this._key);
+    document.body.style.overflow = '';
+  }
+  trap(e, node) {
+    const root = node || this._dialog;
+    if (!root) return;
+    const f = Array.from(root.querySelectorAll('button, a[href], input:not([disabled]), select, textarea')).filter(el => el.offsetParent !== null);
+    if (!f.length) return;
+    const first = f[0], last = f[f.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  }
+  openLightbox(i) {
+    this._lastFocus = document.activeElement;
+    document.body.style.overflow = 'hidden';
+    this.setState({ lb: i, photo: i });
+    setTimeout(() => { if (this._close) this._close.focus(); }, 30);
+  }
+  photos() {
+    const narrow = this.state.width < 820;
+    if (!narrow || !(this.props.ukazatVideo ?? true)) return this.PHOTOS;
+    const list = this.PHOTOS.slice();
+    list.splice(2, 0, { video: true, alt: 'Video produktu LEVITA' });
+    return list;
+  }
+  openCsForm() {
+    this.setState({ csOn: true }, () => setTimeout(() => {
+      const el = document.getElementById('ss-pd-cs');
+      if (el) { const r = el.getBoundingClientRect(); if (r.top < 120 || r.bottom > window.innerHeight - 160) window.scrollTo({ top: window.scrollY + r.top - 160, behavior: 'smooth' }); }
+      const i = this._csWRef && this._csWRef.current; if (i) i.focus({ preventScroll: true });
+    }, 50));
+  }
+  openCustomDialog() {
+    this._customLast = document.activeElement;
+    document.body.style.overflow = 'hidden';
+    this.setState({ custom: true, customError: false });
+    setTimeout(() => { if (this._customClose) this._customClose.focus(); }, 30);
+  }
+  closeCustom() {
+    document.body.style.overflow = '';
+    this.setState({ custom: false });
+    if (this._customLast && this._customLast.focus) this._customLast.focus();
+  }
+  closeLightbox() {
+    document.body.style.overflow = '';
+    this.setState({ lb: null });
+    if (this._lastFocus && this._lastFocus.focus) this._lastFocus.focus();
+  }
+  moveLb(d) {
+    const n = this.photos().length;
+    this.setState(s => ({ lb: (s.lb + d + n) % n, photo: (s.lb + d + n) % n }));
+  }
+  renderVals() {
+    const w = this.state.width;
+    const narrow = w < 820;
+    const inner = { maxWidth: '1560px', margin: '0 auto', padding: narrow ? '0 16px' : '0 32px' };
+    const PH = this.photos();
+    const n = PH.length;
+    const i = this.state.photo % n;
+    const stick = this.props.fixniSloupec ?? 'galerie';
+    const canStick = w >= 1150;
+    const crumbH = 0;
+    const tocTop = (this.state.headerH || 0) + 'px';
+    const stickStyle = 'position:sticky;top:' + ((this.state.headerH || 0) + crumbH + 16) + 'px';
+    const ROSTY = [
+      { id: 'bez', label: 'Bez roštu', meta: 'rošty nejsou součástí postele', price: '0 Kč', stock: 'Skladem' },
+      { id: 'villach-s', label: 'Lamelový rošt Villach S', meta: '90 × 200 cm · 28 lamel', price: '1 344 Kč', stock: 'Skladem' },
+      { id: 'vyklopny-bok', label: 'Lamelový výklopný rošt — z boku', meta: '90 × 200 cm', price: '1 190 Kč', stock: 'Skladem' },
+      { id: 'vyklopny-nohy', label: 'Lamelový výklopný rošt — od nohou', meta: '90 × 200 cm', price: '1 190 Kč', stock: 'Skladem' },
+      { id: 'polohovaci', label: 'Polohovací rošt s kováním', meta: '90 × 200 cm · hlava i nohy', price: '2 890 Kč', stock: 'Na objednání (2–3 týdny)', outOfStock: true }
+    ];
+    const ODSTINY = [
+      { id: 'cherry', label: 'Cherry', color: '#8A4B2A' },
+      { id: 'eben', label: 'Eben', color: '#332A24' },
+      { id: 'kastan', label: 'Kaštan', color: '#7A4A22' },
+      { id: 'teak', label: 'Teak', color: '#A9702F' },
+      { id: 'orech', label: 'Ořech', color: '#5C3A22' },
+      { id: 'prirodni', label: 'Přírodní odstín', color: '#C8A272' }
+    ];
+    const drevo = [
+      { key: 'buk', title: 'Buk — jádrový', note: 'bez příplatku' },
+      { key: 'dub', title: 'Dub', note: '+ 4 200 Kč' },
+      { key: 'jasan', title: 'Jasan — divoký', note: '+ 2 600 Kč' }
+    ];
+    const MATERIALY = drevo.map(d => ({
+      title: d.title,
+      items: ODSTINY.map(o => ({ id: d.key + '-' + o.id, label: o.label, note: d.note, color: o.color }))
+    }));
+    const LATKY = [
+      { id: 'k26', label: 'Tyrkysová k26', note: 'bez příplatku', color: '#3FB8AE' },
+      { id: 'k05', label: 'Modrá k05', note: 'bez příplatku', color: '#3E6E9E' },
+      { id: 'k35', label: 'Béžová k35', note: 'bez příplatku', color: '#D3BC9A' },
+      { id: 'k15', label: 'Šedá k15', note: 'bez příplatku', color: '#6E7377' },
+      { id: 'k28', label: 'Hnědá k28', note: 'bez příplatku', color: '#7A5641' },
+      { id: 'k02', label: 'Červená k02', note: '+ 1 400 Kč', color: '#A8433E' },
+      { id: 'k07', label: 'Černá k07', note: '+ 1 400 Kč', color: '#2B2B2E' },
+      { id: '400', label: 'Vanilka 400', note: 'bez příplatku', color: '#E4CD8B' },
+      { id: '101', label: 'Bílá 101', note: 'bez příplatku', color: '#EFEDE8' }
+    ];
+    const rostData = ROSTY.find(r => r.id === (this.state.rost || 'bez')) || ROSTY[0];
+    const rost = { label: rostData.label, note: rostData.id === 'bez' ? 'Bez příplatku' : '+ ' + rostData.price };
+    const matId = this.state.mat || 'buk-cherry';
+    const matGroup = MATERIALY.find(g => g.items.some(i => i.id === matId)) || MATERIALY[0];
+    const matItem = matGroup.items.find(i => i.id === matId) || matGroup.items[0];
+    const mat = { label: matGroup.title + ' · ' + matItem.label, note: matItem.note === 'bez příplatku' ? 'Bez příplatku' : matItem.note, color: matItem.color };
+    const calItem = LATKY.find(l => l.id === (this.state.cal || 'k26')) || LATKY[0];
+    const cal = { label: calItem.label, note: calItem.note === 'bez příplatku' ? 'Bez příplatku' : calItem.note, color: calItem.color };
+    const fmt = (v) => String(v).replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0') + '\u00A0Kč';
+    const baseNow = 31990, baseBefore = 34290, upDiff = 7000;
+    const now = this.state.up === 'yes' ? baseNow : baseNow - upDiff;
+    const before = this.state.up === 'yes' ? baseBefore : baseBefore - upDiff;
+    const csWn = parseInt(this.state.csW, 10), csLn = parseInt(this.state.csL, 10);
+    const csWok = csWn >= 80 && csWn <= 220, csLok = csLn >= 180 && csLn <= 240;
+    const csValid = this.state.csOn && csWok && csLok;
+    const csAddRaw = csValid ? Math.round(now * 0.15 / 10) * 10 : 0;
+    const csAdd = csValid && this.state.csOk ? csAddRaw : 0;
+    const csErr = !this.state.csOn ? '' : (this.state.csW.length >= 2 && !csWok) ? 'Šířka musí být 80–220 cm.' : (this.state.csL.length >= 3 && !csLok) ? 'Délka musí být 180–240 cm.' : '';
+    const price = fmt(now + csAdd);
+    const priceBefore = fmt(before + csAdd);
+    const discount = '−' + Math.round((1 - now / before) * 100) + ' %';
+    const sizes = ['90 × 200 cm', '120 × 200 cm', '140 × 200 cm', '160 × 200 cm', '180 × 200 cm', '200 × 200 cm', '180 × 210 cm', '180 × 220 cm'];
+    const variants = [
+      { label: 'LEVITA bez stolků', src: 'levita-loznice-1.jpeg', stock: false },
+      { label: 'LEVITA s nočními stolky', src: 'levita-hlavni.png', stock: true },
+      { label: 'LEVITA s úložným prostorem', src: 'levita-up.jpeg', stock: true }
+    ];
+    const faqData = [
+      { question: 'Za jak dlouho postel dorazí?', answer: 'Skladové varianty expedujeme do 24 hodin a doručíme zpravidla do pěti pracovních dnů. Postele vyráběné na zakázku, v atypickém rozměru nebo s netypickým odstínem oleje dokončíme do 4–7 týdnů. Přesný termín vám potvrdíme e-mailem hned po objednávce.' },
+      { question: 'Lze postel doplnit o úložný prostor i dodatečně?', answer: 'Ano. Noha postele je nastavitelná ve dvou pozicích — základní a pro kombinaci s úložným prostorem. Celoplošný úložný box pro LEVITU dokoupíte kdykoli později, přestavba zabere pár minut a nevyžaduje žádné úpravy rámu.' },
+      { question: 'Jak vysoko budu na posteli ležet?', answer: 'Horní hrana bočnice je ve výšce 45 cm a kování roštu je výškově stavitelné v rozsahu 12–19 cm. S doporučenou matrací 15–18 cm se dostanete na obvyklou výšku ložné plochy kolem 50–55 cm.' }
+    ];
+    return {
+      ledMode: this.state.led ? 'on' : 'off',
+      presItems: [{ label: 'LED', value: this.state.led }],
+      onPresToggle: () => this.setState(s => ({ led: !s.led })),
+      presChoices: [
+        { label: 'Fixní sloupec', value: this.state.stickPick || (stick === 'zadny' ? 'Žádný' : 'Galerie'), options: ['Galerie', 'Žádný'] },
+        { label: 'Rozměr', value: this.state.sizeUi || 'V1', options: ['V1', 'V2'] },
+        { label: 'Set', value: this.state.setUi || 'S1', options: ['S1', 'S2', 'S3', 'S4'] }
+      ],
+      onPresPick: (ci, opt) => this.setState(ci === 0 ? { stickPick: opt } : ci === 1 ? { sizeUi: opt } : { setUi: opt }),
+      stickyChips: [
+        { label: this.state.customSize || this.state.size },
+        { label: this.state.up === 'yes' ? 'S úložným prostorem' : 'Bez úložného prostoru' },
+        { label: 'Rošt: ' + rost.label },
+        { label: mat.label, color: mat.color, hasSwatch: true },
+        { label: 'Čalounění: ' + cal.label, color: cal.color, hasSwatch: true }
+      ].filter(c => !!c.label),
+      crumbs: [
+        { label: 'Domů', href: 'index.dc.html' },
+        { label: 'Postele z masivu', href: '#postele' },
+        { label: 'Postele s nočními stolky', href: '#postele-ns' },
+        { label: 'LEVITA' }
+      ],
+      inner,
+      innerPadded: Object.assign({}, inner, { padding: narrow ? '40px 16px' : '64px 32px' }),
+      innerTight: Object.assign({}, inner, { padding: narrow ? '0 16px 40px' : '0 32px 64px' }),
+      sectionGap: narrow ? '24px' : '40px',
+      topGap: narrow ? '32px' : '48px',
+      topTemplate: w >= 1560 ? 'minmax(0,1fr) 600px' : w >= 1150 ? 'minmax(0,1fr) 560px' : w >= 1000 ? 'minmax(0,1fr) 440px' : 'minmax(0,1fr)',
+      descTemplate: w >= 1000 ? 'minmax(0,1fr) minmax(0,1fr)' : 'minmax(0,1fr)',
+      reviewTemplate: w >= 1000 ? 'minmax(0,420px) minmax(0,1fr)' : 'minmax(0,1fr)',
+      tilesTemplate: w >= 820 ? 'repeat(3,minmax(0,1fr))' : w >= 550 ? 'repeat(2,minmax(0,1fr))' : 'minmax(0,1fr)',
+      factsTemplate: w >= 550 ? 'repeat(2,minmax(0,1fr))' : 'minmax(0,1fr)',
+      galleryStick: canStick && (this.state.stickPick ? this.state.stickPick === 'Galerie' : stick !== 'zadny') ? stickStyle : '',
+      buyStick: '',
+      titleTop: w < 1000,
+      titleInColumn: w >= 1000,
+      h1Size: narrow ? '28px' : '40px',
+      h2Size: narrow ? '26px' : '34px',
+      h3Size: narrow ? '20px' : '24px',
+      tocTop,
+      showVariants: this.props.zobrazitVarianty ?? false,
+      mainSrc: PH[i].src || '',
+      mainFit: PH[i].fit || 'cover',
+      mainAlt: PH[i].alt,
+      mainIsVideo: !!PH[i].video,
+      mainIsPhoto: !PH[i].video,
+      counter: (i + 1) + ' / ' + n,
+      prevPhoto: () => this.setState({ photo: (i - 1 + n) % n }),
+      nextPhoto: () => this.setState({ photo: (i + 1) % n }),
+      openMain: () => this.openLightbox(i),
+      openSub1: () => this.openLightbox(Math.max(0, this.photos().findIndex(p => p.src === 'levita-loznice-1.jpeg'))),
+      openSub2: () => this.openLightbox(Math.max(0, this.photos().findIndex(p => p.src === 'levita-rozmery.png'))),
+      tiles: this.PHOTOS.filter((_, k) => k !== i).slice(0, 4).map(p => {
+        const k = this.PHOTOS.indexOf(p);
+        return { src: p.src, alt: p.alt, aria: 'Zvětšit fotku: ' + p.alt, onOpen: () => this.openLightbox(k) };
+      }),
+      showVideo: (this.props.ukazatVideo ?? true) && w >= 820,
+      rating: 4.9,
+      ratingCount: 104,
+      perexOpen: this.state.perex,
+      perexRows: this.state.perex ? '1fr' : '0fr',
+      perexOpacity: this.state.perex ? 1 : 0,
+      perexHidden: this.state.perex ? 'false' : 'true',
+      perexLabel: this.state.perex ? 'Skrýt informace' : 'Další informace',
+      perexIcon: this.state.perex ? 'chevron-up' : 'chevron-down',
+      togglePerex: () => this.setState(s => ({ perex: !s.perex })),
+      facts: [
+        { icon: '', label: 'Vyrobena v Česku z masivního dřeva', flag: true },
+        { icon: 'weight', label: 'Unese až 150 kg' },
+        { icon: 'shield-check', label: 'Pevná a stabilní konstrukce' },
+        { icon: 'calendar-time', label: '5letá záruka' }
+      ].map(f => ({ label: f.label, icon: f.icon, isFlag: !!f.flag, isIcon: !f.flag })),
+      variants: variants.map(v => {
+        const sel = (this.state.variantLabel || 'LEVITA s nočními stolky') === v.label;
+        return {
+          label: v.label, src: v.src, selected: sel,
+          ring: sel ? 'inset 0 0 0 2px #296093' : 'none',
+          labelColor: sel ? 'var(--ss-text-primary,#1C2229)' : 'var(--ss-text-secondary,#3D4750)',
+          labelWeight: sel ? '600' : '400',
+          pressed: sel ? 'true' : 'false',
+          onPick: () => this.setState({ variantLabel: v.label })
+        };
+      }),
+      sizeChips: (this.state.sizeUi || 'V1') === 'V1',
+      sizeSelect: this.state.sizeUi === 'V2',
+      sizeValue: this.state.csOn ? '__custom' : this.state.size,
+      sizeOptions: sizes.map(s => ({ value: s, label: s })).concat([{ value: '__custom', label: this.state.customSize ? 'Vlastní rozměr: ' + this.state.customSize : 'Vlastní rozměr…' }]),
+      onSizeSelect: (v) => {
+        if (v === '__custom') { this.openCsForm(); return; }
+        this.setState({ size: v, csOn: false, csOk: false });
+      },
+      sizes: sizes.map(s => ({
+        label: s,
+        variant: this.state.size === s && !this.state.csOn ? 'primary' : 'outline',
+        pressed: this.state.size === s && !this.state.csOn ? 'true' : 'false',
+        onPick: () => this.setState({ size: s, csOn: false, csOk: false })
+      })),
+      upNoBorder: this.state.up === 'no' ? '#296093' : '#E1E6EB',
+      upNoWidth: this.state.up === 'no' ? '2px' : '1px',
+      upNoBg: this.state.up === 'no' ? 'var(--ss-surface-page,#FEFAF7)' : 'var(--ss-surface-page,#FEFAF7)',
+      upNoPressed: this.state.up === 'no' ? 'true' : 'false',
+      upNoSelected: this.state.up === 'no',
+      upYesSelected: this.state.up === 'yes',
+      pickUpNo: () => this.setState({ up: 'no' }),
+      upYesBorder: this.state.up === 'yes' ? '#296093' : '#E1E6EB',
+      upYesWidth: this.state.up === 'yes' ? '2px' : '1px',
+      upYesBg: '#FFFFFF',
+      upYesPressed: this.state.up === 'yes' ? 'true' : 'false',
+      pickUpYes: () => this.setState({ up: 'yes' }),
+      toggleUp: () => this.setState(s => ({ up: s.up === 'yes' ? 'no' : 'yes' })),
+      pickers: [
+        { title: 'Rošty', value: rost.label, note: rost.note, on: rost.note === 'Bez příplatku' ? 'false' : 'true', noteColor: rost.note === 'Bez příplatku' ? 'var(--ss-status-success,#157A41)' : 'var(--ss-text-primary,#1C2229)', hasSwatch: false, swatch: '', onOpen: () => this.setState({ drawer: 'rosty' }) },
+        { title: 'Materiál a odstín (olej)', value: mat.label, note: mat.note, on: 'true', noteColor: mat.note === 'Bez příplatku' ? 'var(--ss-status-success,#157A41)' : 'var(--ss-text-primary,#1C2229)', hasSwatch: true, swatch: mat.color, onOpen: () => this.setState({ drawer: 'material' }) },
+        { title: 'Čalounění', value: cal.label, note: cal.note, on: 'true', noteColor: cal.note === 'Bez příplatku' ? 'var(--ss-status-success,#157A41)' : 'var(--ss-text-primary,#1C2229)', hasSwatch: true, swatch: cal.color, onOpen: () => this.setState({ drawer: 'calouneni' }) }
+      ],
+      drawerOpen: !!this.state.drawer,
+      drawerTitle: this.state.drawer === 'rosty' ? 'Rošt(y)' : this.state.drawer === 'material' ? 'Materiál a odstín dřeva' : 'Čalounění',
+      drawerNote: this.state.drawer === 'calouneni' ? 'Nevybrali jste si? Celou škálu látek Kronos a Paros najdete ve vzorníku níže na stránce nebo na našich prodejnách.' : '',
+      drawerValue: this.state.drawer === 'rosty' ? this.state.rost : this.state.drawer === 'material' ? this.state.mat : this.state.cal,
+      drawerGroups: this.state.drawer === 'material' ? MATERIALY : this.state.drawer === 'calouneni' ? [{ items: LATKY }] : [],
+      drawerRows: this.state.drawer === 'rosty' ? ROSTY : [],
+      onDrawerPick: (id) => {
+        const k = this.state.drawer;
+        this.setState(k === 'rosty' ? { rost: id } : k === 'material' ? { mat: id } : { cal: id });
+      },
+      closeDrawer: () => this.setState({ drawer: null }),
+      csOn: this.state.csOn,
+      csInfo: this.state.csInfo, csInfoExp: this.state.csInfo ? 'true' : 'false',
+      toggleCsInfo: () => this.setState(s => ({ csInfo: !s.csInfo })),
+      csChecked: this.state.csOn ? 'true' : 'false',
+      toggleCs: () => this.setState(s => ({ csOn: !s.csOn, csOk: false })),
+      csW: this.state.csW, csL: this.state.csL,
+      onCsW: (e) => this.setState({ csOk: false, csInfo: false, csW: e.target.value.replace(/\D/g, '').slice(0, 3) }),
+      onCsL: (e) => this.setState({ csOk: false, csInfo: false, csL: e.target.value.replace(/\D/g, '').slice(0, 3) }),
+      csWInvalid: this.state.csW.length >= 2 && !csWok ? 'true' : 'false',
+      csLInvalid: this.state.csL.length >= 3 && !csLok ? 'true' : 'false',
+      csHasPrice: csValid, csAddFmt: fmt(csAddRaw),
+      csNotConfirmed: csValid && !this.state.csOk, csConfirmedOk: csValid && this.state.csOk,
+      confirmCs: () => this.setState({ csOk: true }), csDims: csWn + ' × ' + csLn + ' cm',
+      csHasError: !!csErr, csError: csErr,
+      customOpen: this.state.custom,
+      customLinkLabel: this.state.customSize ? 'Vlastní rozměr: ' + this.state.customSize : 'Vlastní rozměr',
+      customChipVariant: this.state.csOn ? 'primary' : 'outline',
+      customChipPressed: this.state.csOn ? 'true' : 'false',
+      isCustom: this.state.size === '' && !!this.state.customSize,
+      openCustom: () => this.openCsForm(),
+      csWRef: this._csWRef || (this._csWRef = React.createRef()),
+      closeCustom: () => this.closeCustom(),
+      onCustomBackdrop: (e) => { if (e.target === e.currentTarget) this.closeCustom(); },
+      customRef: (el) => { this._customDialog = el; },
+      customCloseRef: (el) => { this._customClose = el; },
+      customW: this.state.customW,
+      customL: this.state.customL,
+      customMail: this.state.customMail,
+      customAgree: this.state.customAgree,
+      customReg: this.state.customReg,
+      customError: this.state.customError,
+      setCustomW: (v) => this.setState({ customW: v }),
+      setCustomL: (v) => this.setState({ customL: v }),
+      setCustomMail: (v) => this.setState({ customMail: v }),
+      setCustomAgree: (v) => this.setState({ customAgree: v }),
+      setCustomReg: (v) => this.setState({ customReg: v }),
+      submitCustom: () => {
+        const s = this.state;
+        if (!s.customW || !s.customL || !s.customMail || !s.customAgree) { this.setState({ customError: true }); return; }
+        this.setState({ customSize: s.customW + ' × ' + s.customL + ' cm', size: '' });
+        this.closeCustom();
+      },
+      setBannerVisible: (this.state.setUi || 'S1') !== 'S3',
+      ctaSize: (this.state.setUi || 'S1') === 'S2' ? 'medium' : 'large',
+      setBtnStyle: this.state.setUi === 'S4'
+        ? 'display:inline-flex;align-items:center;gap:8px;flex:none;border-radius:6px;background:var(--ss-surface-page,#FEFAF7);color:var(--ss-link,#296093);box-shadow:inset 0 0 0 1px var(--ss-border-action,#296093),0 1px 2px rgba(19,44,67,.08);font-weight:600;min-height:44px;padding:0 16px;font-size:14px'
+        : 'display:inline-flex;align-items:center;gap:8px;flex:none;border-radius:6px;background:#B3261E;color:#FFFFFF;font-weight:700;letter-spacing:.01em;'
+        + ((this.state.setUi || 'S1') === 'S2' ? 'min-height:52px;padding:0 24px;font-size:16px' : 'min-height:44px;padding:0 16px;font-size:14px'),
+      setUiVal: this.state.setUi || 'S1',
+      setIsS4: this.state.setUi === 'S4', setNotS4: this.state.setUi !== 'S4',
+      priceBoxRadius: this.state.setUi === 'S4' ? '12px 12px 0 0' : '12px',
+      setWrapStyle: this.state.setUi === 'S4' ? 'display:flex;flex-direction:column;gap:0' : (this.state.setUi || 'S1') === 'S2'
+        ? 'display:flex;flex-direction:column;gap:16px;border:1px solid var(--ss-border-error,#B3261E);border-radius:12px;padding:16px'
+        : 'display:flex;flex-direction:column;gap:20px',
+      setBannerStyle: this.state.setUi === 'S4'
+        ? 'display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding:12px 20px;border-radius:0 0 12px 12px;background:var(--ss-surface-hover,#F0F5FA);text-decoration:none;color:var(--ss-text-primary,#1C2229)'
+        : (this.state.setUi || 'S1') === 'S2'
+        ? 'display:flex;flex-wrap:wrap;align-items:center;gap:12px;text-decoration:none;color:var(--ss-text-primary,#1C2229)'
+        : 'display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding:12px 16px;border:1px solid var(--ss-border-error,#B3261E);border-radius:12px;text-decoration:none;color:var(--ss-text-primary,#1C2229)',
+      price: this.state.size === '' && this.state.customSize ? 'Zjistit cenu' : price,
+      priceLine: this.state.size === '' && this.state.customSize ? 'Zjistit cenu' : 'od ' + price,
+      priceNote: this.state.size === '' && this.state.customSize ? 'Cenovou nabídku pošleme do 2 pracovních dnů' : 'Cena včetně DPH',
+      showBefore: !(this.state.size === '' && this.state.customSize),
+      ctaLabel: this.state.size === '' && this.state.customSize ? 'Odeslat poptávku' : 'Přidat do košíku',
+      ctaIcon: this.state.size === '' && this.state.customSize ? 'mail' : 'shopping-cart',
+      priceBefore,
+      discount,
+      upNoDiff: '−' + fmt(upDiff),
+      qty: this.state.qty,
+      onQty: (v) => this.setState({ qty: v }),
+      onBuy: () => { if (this.state.size === '' && this.state.customSize) return; this.setState({ added: true }); },
+      addedOpen: !!this.state.added,
+      closeAdded: () => this.setState({ added: false }),
+      addedVariant: (this.state.size || this.state.customSize || '') + ' · ' + mat.label + ' · ' + cal.label,
+      addedTotal: fmt((now + csAdd) * (this.state.qty || 1)),
+      noop: () => {},
+      favIcon: this.state.fav ? 'heart-filled' : 'heart',
+      favColor: this.state.fav ? 'var(--ss-text-apricot,#A4600C)' : 'var(--ss-text-secondary,#3D4750)',
+      favRoundIcon: this.state.fav ? '#132C43' : '#21507B',
+      favBg: this.state.fav ? '#FBB255' : '#FFFFFF',
+      favLabel: this.state.fav ? 'V oblíbených' : 'Přidat do oblíbených',
+      favPressed: this.state.fav ? 'true' : 'false',
+      onFav: () => this.setState(s => {
+        const fav = !s.fav;
+        try { const id = 'levita'; let l = JSON.parse(localStorage.getItem('ss-fav') || '[]').filter(x => x !== id); if (fav) l.push(id); localStorage.setItem('ss-fav', JSON.stringify(l)); window.dispatchEvent(new Event('ss-fav')); } catch (e) {}
+        return { fav };
+      }),
+      cmpLabel: this.state.cmp ? 'V porovnání' : 'Porovnat',
+      onCompare: () => this.setState(s => {
+        const cmp = !s.cmp;
+        try { const id = 'levita'; let a = JSON.parse(localStorage.getItem('ss-cmp') || '[]').filter(x => x !== id); if (cmp) a.push(id); localStorage.setItem('ss-cmp', JSON.stringify(a)); window.dispatchEvent(new Event('ss-cmp')); } catch (e) {}
+        return { cmp };
+      }),
+      uspItems: [
+        { icon: 'duo-map-pin', title: 'České matrace', text: 'za ceny přímo do výrobce' },
+        { icon: 'duo-arrow-autofit-height', title: 'Anatomicky správná podpora', text: 'a prodyšnost po celou noc' },
+        { icon: 'duo-refresh', title: '30 dní jistoty', text: 'možnost výměny tuhosti jádra matrace zdarma' },
+        { icon: 'duo-calendar-time', title: '90 dní na vyzkoušení', text: 'pro rozměr 90 × 200 cm' },
+        { icon: 'duo-shield-check', title: 'Zdravotně nezávadné materiály', text: 'certifikované pěny i potahy' },
+        { icon: 'duo-ruler-3', title: 'Úpravy na míru', text: 'vyrobíme na centimetr přesně' }
+      ],
+      anchors: [
+        { label: 'Popis a parametry', href: '#popis' },
+        { label: 'Hlavní přednosti', href: '#prednosti' },
+        { label: 'Materiály', href: '#materialy' },
+        { label: 'Hodnocení', href: '#hodnoceni' },
+        { label: 'Časté dotazy', href: '#faq' },
+        { label: 'Související produkty', href: '#souvisejici' }
+      ],
+      params: [
+        ['Záruka', '5 let'],
+        ['Materiál', 'masivní dřevo z českých lesů (buk, jasan, dub)'],
+        ['Lakování', 'EKO barvy vhodné pro dětský nábytek i hračky'],
+        ['Nosnost', 'až 150 kg'],
+        ['Výška matrace', 'doporučujeme 15–18 cm'],
+        ['Údržba', 'utřete vlhkým hadříkem, nedoporučujeme agresivní čistidla či rozpouštědla'],
+        ['Dle certifikace', 'ČSN EN 71-3, vydal TZÚS Praha, s.p.'],
+        ['Výrobce', 'Svět spánku, navrhujeme i vyrábíme v ČR'],
+        ['Síla čela postele', '4 cm'],
+        ['Síla bočnice', '2,7 cm'],
+        ['Výška čela u hlavy', '100 cm'],
+        ['Výška čela u nohou', '45 cm'],
+        ['Výška bočnice', '45 cm'],
+        ['Uložení roštu', '12–19 cm (stavitelné)']
+      ].map((p, k) => ({ label: p[0] + ':', value: p[1], bg: k % 2 === 0 ? 'var(--ss-surface-subtle,#FAF5EF)' : 'var(--ss-surface-page,#FEFAF7)' })),
+      perks: [
+        { icon: 'map-pin', label: 'Vyrobena u nás v Česku' },
+        { icon: 'package', label: 'Masivní dřevo z českých lesů' },
+        { icon: 'palette', label: 'Ošetřeno přírodními oleji Biofa a Osmo' },
+        { icon: 'clock', label: 'Jednoduchá a rychlá montáž' },
+        { icon: 'shield-check', label: 'Pevná a stabilní konstrukce' },
+        { icon: 'circle-check', label: 'Kvalitní kování Hettich s doživotní zárukou' },
+        { icon: 'weight', label: 'Unese až 150 kg' },
+        { icon: 'package', label: 'Možnost kombinace s úložným prostorem' },
+        { icon: 'ruler-3', label: 'Úprava rozměrů na míru' },
+        { icon: 'calendar-time', label: 'Prodloužená záruka 5 let' }
+      ],
+      addons: [
+        { title: 'Matrace', note: 'Nakupte současně se slevou 10 %', href: '#matrace', src: 'levita-loznice-2.jpeg' },
+        { title: 'Rošty', note: 'Nakupte současně se slevou 10 %', href: '#rosty', src: 'levita-stolek.jpeg' },
+        { title: 'Povlečení', note: 'Nakupte současně se slevou 20 %', href: '#povleceni', src: 'levita-loznice-1.jpeg' }
+      ],
+      customPoints: [
+        { label: 'Postele, rošty i matrace na míru podle vašich potřeb s přesností na 1 mm' },
+        { label: 'Atypické odstíny oleje i kombinace dřevin podle vzorníku' },
+        { label: 'Návrh celé ložnice včetně komod a skříní ve stejném provedení' }
+      ],
+      ratingBars: [
+        { stars: 5, width: '95%', count: '82×' },
+        { stars: 4, width: '12%', count: '8×' },
+        { stars: 3, width: '3%', count: '1×' },
+        { stars: 2, width: '0%', count: '0×' },
+        { stars: 1, width: '0%', count: '0×' }
+      ],
+      reviews: (this.state.moreReviews
+        ? [0, 1, 2, 3, 4]
+        : [0, 1, 2]).map(k => ([
+          { author: 'Hedvika', date: '14. 8. 2024', value: 5, text: 'Především se mi líbil skvělý přístup personálu. Po celou dobu s námi při návštěvě prodejny byla ochotná slečna a poradila nám s každým výběrem.' },
+          { author: 'Eva Vránková', date: '10. 6. 2024', value: 5, text: 'Postel dorazila přesně v domluveném termínu a montáž nám zabrala hodinu. Rám vypadá přesně jako na fotkách a stolky jsou praktické.' },
+          { author: 'Marcela', date: '1. 6. 2024', value: 5, text: 'Třetí obchod, kam jsme jeli vybírat. Moc milý a ochotný prodavač, vyznal se. Matraci položil i na zem, když jsme řekli, že nemáme rošty.' },
+          { author: 'Petr Hanák', date: '18. 4. 2024', value: 4, text: 'Kvalita masivu je znát na první dotek. Jen dovoz do patra bylo potřeba domluvit dopředu.' },
+          { author: 'Lucie B.', date: '3. 3. 2024', value: 5, text: 'Levitující rám vypadá skvěle a vysávání pod postelí je konečně bez nadávání. Odstín Cherry sedí přesně podle vzorku.' }
+        ][k])),
+      moreReviewsLabel: this.state.moreReviews ? 'Skrýt hodnocení' : 'Zobrazit další hodnocení',
+      moreReviewsIcon: this.state.moreReviews ? 'chevron-up' : 'chevron-down',
+      toggleReviews: () => this.setState(s => ({ moreReviews: !s.moreReviews })),
+      faqs: faqData.map((q, k) => ({
+        question: q.question, answer: q.answer,
+        open: this.state.faq === k,
+        expanded: this.state.faq === k ? 'true' : 'false',
+        icon: this.state.faq === k ? 'x' : 'plus',
+        iconBg: this.state.faq === k ? '#EFF2F5' : '#F7F9FB',
+        onToggle: () => this.setState(s => ({ faq: s.faq === k ? -1 : k }))
+      })),
+      stickyOn: (this.props.stickyLista ?? true) && this.state.sticky && this.state.lb === null,
+      stickyWide: w >= 820,
+      stickyNarrow: w < 820,
+      lbOpen: this.state.lb !== null,
+      lbSrc: this.state.lb !== null ? (PH[this.state.lb].src || '') : '',
+      lbAlt: this.state.lb !== null ? PH[this.state.lb].alt : '',
+      lbIsVideo: this.state.lb !== null && !!PH[this.state.lb].video,
+      lbIsPhoto: this.state.lb !== null && !PH[this.state.lb].video,
+      lbCounter: this.state.lb !== null ? (this.state.lb + 1) + ' / ' + n : '',
+      lbPrev: (e) => { if (e) e.stopPropagation(); this.moveLb(-1); },
+      lbNext: (e) => { if (e) e.stopPropagation(); this.moveLb(1); },
+      closeLb: () => this.closeLightbox(),
+      onBackdrop: (e) => { if (e.target === e.currentTarget) this.closeLightbox(); },
+      dialogRef: (el) => { this._dialog = el; },
+      closeRef: (el) => { this._close = el; },
+      lbThumbs: PH.map((p, k) => ({
+        src: p.src || '', isVideo: !!p.video, isPhoto: !p.video,
+        aria: p.video ? 'Video produktu' : 'Fotka ' + (k + 1),
+        current: this.state.lb === k ? 'true' : 'false',
+        onPick: (e) => { if (e) e.stopPropagation(); this.setState({ lb: k, photo: k }); }
+      }))
+    };
+  }
+}
+
+</script>
+</body>
+</html>

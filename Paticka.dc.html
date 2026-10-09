@@ -10,16 +10,16 @@
 <helmet>
 <link rel="stylesheet" href="./tmavy-rezim.css">
 <script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&display=swap" rel="stylesheet">
 <style>
-h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
+h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
 
 .ss-ft{font-family:Roboto,Helvetica,Arial,sans-serif;width:100%;background:var(--ss-surface-page,#FEFAF7);color:var(--ss-text-secondary,#3D4750);border-top:1px solid var(--ss-border-subtle,#E1E6EB);}
 .ss-ft a{text-decoration:none;color:var(--ss-text-secondary,#3D4750);}
 .ss-ft-link{display:inline-flex;align-items:center;min-height:36px;font-size:15px;border-radius:4px;transition:color .12s cubic-bezier(.22,.61,.36,1);}
 .ss-ft-link:hover{color:var(--ss-text-apricot,#A4600C)!important;text-decoration:none;}
 .ss-ft-link:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
-.ss-ft-acc{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;min-height:48px;padding:0;border:0;background:none;font:inherit;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:17px;color:var(--ss-text-primary,#1C2229);cursor:pointer;text-align:left;}
+.ss-ft-acc{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;min-height:48px;padding:0;border:0;background:none;font:inherit;font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:17px;color:var(--ss-text-apricot,#A4600C);cursor:pointer;text-align:left;}
 .ss-ft-acc:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);border-radius:6px;}
 .ss-ft a.ss-ft-soc{display:inline-flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:999px;background:var(--ss-surface-page,#FEFAF7);color:var(--ss-link-hover,#21507B);box-shadow:inset 0 0 0 1px var(--ss-border-subtle,#E1E6EB);transition:background-color .12s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1);}
 .ss-ft a.ss-ft-soc:hover{background:var(--ss-hover-bg,#FFF5E6);color:var(--ss-hover-text,#A4600C)}
@@ -37,7 +37,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 .ss-ft[data-theme="blue"] .ss-ft-chip{color:#1C2229;}
 
 .ss-ft[data-theme="blue"]{background:#0B1F33;color:#DCE8F2;border-top-color:rgba(255,255,255,.14);}
-.ss-ft[data-theme="blue"] h2{color:#FFFFFF!important;}
+.ss-ft[data-theme="blue"] h2{color:#FBB255!important;}
 .ss-ft[data-theme="blue"] a{color:#DCE8F2;}
 .ss-ft[data-theme="blue"] .ss-ft-link{color:#DCE8F2!important;}
 .ss-ft[data-theme="blue"] .ss-ft-link:hover{color:#FBB255!important;text-decoration:none;}
@@ -47,7 +47,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 .ss-ft-tel:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
 .ss-ft[data-theme="blue"] .ss-ft-tel:focus-visible{box-shadow:0 0 0 3px rgba(251,178,85,.65);}
 .ss-ft[data-theme="blue"] .ss-ft-hours{color:#DCE8F2!important;}
-.ss-ft[data-theme="blue"] .ss-ft-acc{color:#FFFFFF;}
+.ss-ft[data-theme="blue"] .ss-ft-acc{color:#FBB255;}
 .ss-ft[data-theme="blue"] .ss-ft-accrow{border-top-color:#21507B!important;}
 .ss-ft[data-theme="blue"] .ss-ft-accicon{color:#DCE8F2!important;}
 .ss-ft[data-theme="blue"] a.ss-ft-soc{box-shadow:inset 0 0 0 1px rgba(255,255,255,.35);}
@@ -59,6 +59,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 .ss-ft[data-theme="blue"] .ss-ft-legal{background:#132C43;color:#DCE8F2;}
 .ss-ft[data-theme="blue"] .ss-ft-legal>div{border-top-color:#1A3E5F!important;}
 .ss-ft[data-theme="blue"] .ss-ft-caption{color:#FFFFFF!important;}
+.ss-ft[data-theme="blue"] a.ss-ft-caption{color:#FBB255!important;}
 .ss-ft[data-theme="blue"] .ss-ft-legaltext{color:#DCE8F2!important;}
 .ss-ft[data-theme="blue"] .ss-ft-logo{color:#FFFFFF;}
 .ss-ft[data-theme="blue"] .ss-ft-logoicon{color:#DCE8F2!important;}
@@ -71,11 +72,11 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
     <div style="display:grid;grid-template-columns:{{ colTemplate }};gap:32px 40px;align-items:start">
       <div style="display:flex;flex-direction:column;gap:28px;min-width:0">
         <div style="display:flex;flex-direction:column;gap:16px">
-          <h2 style="margin:0;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:19px;color:var(--ss-text-heading,#0B1F33)">Jsme tu pro vás</h2>
+          <h2 style="margin:0;font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:19px;color:var(--ss-text-apricot,#A4600C)">Jsme tu pro vás</h2>
           <div style="display:flex;align-items:center;gap:16px;min-width:0">
             <img src="foto-poradce-v5.png" alt="Spánková specialistka zákaznické podpory" style="width:72px;height:72px;flex:none;border-radius:999px;object-fit:cover;background:var(--ss-surface-muted,#F3EDE4);display:block" />
             <div style="display:flex;flex-direction:column;gap:2px;min-width:0">
-              <a class="ss-ft-tel" href="tel:+420543212855" style="font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:21px;color:var(--ss-link,#296093)">+420 543 212 855</a>
+              <a class="ss-ft-tel" href="tel:+420543212855" style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:21px;color:var(--ss-link,#296093)">+420 543 212 855</a>
               <span class="ss-ft-hours" style="display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--ss-text-muted,#5B6874)">
                 <sc-if value="{{ isOpenNow }}" hint-placeholder-val="{{ false }}">
                   <span class="ss-ft-led" role="img" aria-label="Právě jsme online"></span>
@@ -87,7 +88,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
           </div>
         </div>
         <div style="display:flex;flex-direction:column;gap:12px">
-          <h2 style="margin:0;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:17px;color:var(--ss-text-heading,#0B1F33)">Sledujte nás na sociálních sítích</h2>
+          <h2 style="margin:0;font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:17px;color:var(--ss-text-apricot,#A4600C)">Sledujte nás na sociálních sítích</h2>
           <div style="display:flex;gap:12px">
             <a class="ss-ft-soc ss-ft-soc-fb" href="#facebook" aria-label="Facebook"><dc-import name="Ikony" iconName="brand-facebook" size="24" hint-size="24px,24px"></dc-import></a>
             <a class="ss-ft-soc ss-ft-soc-ig" href="#instagram" aria-label="Instagram"><dc-import name="Ikony" iconName="brand-instagram" size="24" hint-size="24px,24px"></dc-import></a>
@@ -99,7 +100,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
       <sc-if value="{{ columnsMode }}" hint-placeholder-val="{{ true }}">
         <sc-for list="{{ columns }}" as="c" hint-placeholder-count="3">
           <nav aria-label="{{ c.title }}" style="display:flex;flex-direction:column;gap:2px;min-width:0">
-            <h2 style="margin:0 0 10px;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:19px;color:var(--ss-text-heading,#0B1F33)">{{ c.title }}</h2>
+            <h2 style="margin:0 0 10px;font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:19px;color:var(--ss-text-apricot,#A4600C)">{{ c.title }}</h2>
             <sc-for list="{{ c.items }}" as="i" hint-placeholder-count="5">
               <a class="ss-ft-link" href="{{ i.href }}">{{ i.label }}</a>
             </sc-for>
@@ -109,7 +110,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 
       <sc-if value="{{ accordionMode }}" hint-placeholder-val="{{ false }}">
         <div style="display:flex;flex-direction:column;min-width:0">
-          <sc-for list="{{ columns }}" as="c" hint-placeholder-count="3">
+          <sc-for list="{{ accColumns }}" as="c" hint-placeholder-count="4">
             <div class="ss-ft-accrow" style="border-top:1px solid var(--ss-border-subtle,#E1E6EB);padding:4px 0">
               <h2 style="margin:0">
                 <button type="button" class="ss-ft-acc" onClick="{{ c.onToggle }}" aria-expanded="{{ c.expanded }}">
@@ -129,12 +130,14 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
         </div>
       </sc-if>
 
+      <sc-if value="{{ columnsMode }}" hint-placeholder-val="{{ true }}">
       <nav aria-label="Prodejny" style="{{ storesStyle }}">
-        <a class="ss-ft-link ss-ft-caption" href="#prodejny" style="color:var(--ss-text-primary,#1C2229);font-weight:700;font-size:19px;font-family:'Archivo Narrow',Roboto,sans-serif;min-height:auto;margin-bottom:10px">5 prodejen</a>
+        <a class="ss-ft-link ss-ft-caption" href="#prodejny" style="color:var(--ss-text-apricot,#A4600C);font-weight:700;font-size:19px;font-family:Oswald,Roboto,sans-serif;min-height:auto;margin-bottom:10px">5 prodejen</a>
         <sc-for list="{{ stores }}" as="s" hint-placeholder-count="5">
           <a class="ss-ft-link" href="{{ s.href }}">{{ s.label }}</a>
         </sc-for>
       </nav>
+      </sc-if>
     </div>
   </div>
 
@@ -221,14 +224,21 @@ class Component extends DCLogic {
         ['Jak vybrat rošt do postele', '#jak-vybrat-rost']
       ] }
     ];
-    const columns = base.map((c, i) => ({
+    const stores = [
+      ['Brno – H-Park', '#prodejna-brno'], ['Praha 5 – Butovice', '#prodejna-praha-5'],
+      ['Praha 10 – Kutnohorská', '#prodejna-praha-10'], ['Ostrava', '#prodejna-ostrava'],
+      ['Olomouc', '#prodejna-olomouc']
+    ];
+    const mk = (c, i) => ({
       title: c.title,
       items: c.items.map(([label, href]) => ({ label, href })),
       open: !!this.state.open[i],
       expanded: this.state.open[i] ? 'true' : 'false',
       chevron: this.state.open[i] ? 'chevron-up' : 'chevron-down',
       onToggle: () => this.setState(s => ({ open: Object.assign({}, s.open, { [i]: !s.open[i] }) }))
-    }));
+    });
+    const columns = base.map(mk);
+    const accColumns = base.concat([{ title: '5 prodejen', items: stores }]).map(mk);
     const narrow = accordion;
     const p = this.props;
     return {
@@ -242,21 +252,18 @@ class Component extends DCLogic {
         return day >= 1 && day <= 5 && min >= 9 * 60 && min < 17 * 60;
       })(),
       columns,
+      accColumns,
       columnsMode: !accordion,
       accordionMode: accordion,
       colTemplate: accordion
         ? 'minmax(0,1fr)'
         : (twoCols ? 'repeat(2,minmax(0,1fr))' : 'minmax(0,1.1fr) repeat(3,minmax(0,1fr)) auto'),
       storesStyle: { display: 'flex', flexDirection: 'column', gap: '2px', alignItems: 'flex-start', minWidth: 0 },
-      stores: [
-        ['Brno – H-Park', '#prodejna-brno'], ['Praha 5 – Butovice', '#prodejna-praha-5'],
-        ['Praha 10 – Kutnohorská', '#prodejna-praha-10'], ['Ostrava', '#prodejna-ostrava'],
-        ['Olomouc', '#prodejna-olomouc']
-      ].map(([label, href]) => ({ label, href })),
+      stores: stores.map(([label, href]) => ({ label, href })),
       payTemplate: w >= 1150 ? 'minmax(0,1fr) minmax(0,1.2fr) auto' : (w >= 820 ? 'repeat(2,minmax(0,1fr))' : 'minmax(0,1fr)'),
       badgeWrapStyle: { display: 'flex', alignItems: 'center', paddingTop: '12px', justifyContent: w >= 1150 ? 'flex-end' : 'flex-start' },
       padTop: narrow ? '32px 16px 24px' : '56px 32px 40px',
-      padPay: narrow ? '8px 16px 24px' : '16px 32px 32px',
+      padPay: narrow ? '24px 16px 24px' : '32px 32px 32px',
       padLegal: narrow ? '20px 16px 28px' : '24px 32px 32px',
       delivery: [
         { label: 'PPL', src: 'logo-ppl.svg' },

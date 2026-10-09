@@ -10,7 +10,7 @@
 <helmet>
 <link rel="stylesheet" href="./tmavy-rezim.css">
 <script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&display=swap" rel="stylesheet">
 </helmet>
 <span style="{{ wrapStyle }}">
   <span style="display:inline-flex;align-items:center;gap:2px;color:{{ starColor }}" aria-hidden="true">
@@ -44,7 +44,7 @@ class Component extends DCLogic {
     const count = p.count;
     return {
       stars,
-      starColor: kompakt ? '#55616C' : '#F09A2C',
+      starColor: '#F09A2C',
       valueText: value.toFixed(1).replace('.', ','),
       countText: count ? '(' + String(count).replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0') + (kompakt ? '×)' : ' hodnocení)') : '',
       hasCount: !!count,

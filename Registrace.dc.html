@@ -12,9 +12,9 @@
 <script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&display=swap" rel="stylesheet">
 <style>
-h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
+h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
 
 html,body{margin:0!important;padding:0!important;}
 #dc-root{margin:0!important;padding:0!important;width:100%!important;max-width:none!important;border:0!important;}
@@ -42,7 +42,7 @@ a:hover{color:var(--ss-hover-text,#A4600C);}
       <span aria-hidden="true" style="{{ veilStyle }}"></span>
       <div style="{{ innerHead }}">
         <div style="padding:{{ headPad }};display:flex;flex-direction:column;gap:12px">
-          <h1 style="margin:0;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:{{ h1Size }};line-height:1.08;max-width:24ch">Zvažujete, že si u nás něco koupíte? Registrace se vyplatí!</h1>
+          <h1 style="margin:0;font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:{{ h1Size }};line-height:1.08;max-width:24ch">Zvažujete, že si u nás něco koupíte? Registrace se vyplatí!</h1>
           <p style="margin:0;max-width:60ch;font-size:17px;line-height:1.55;color:var(--ss-text-secondary,#3D4750)">Automaticky se stanete členem věrnostního programu rodiny Světa spánku a budete sbírat slevy za každý svůj nákup.</p>
         </div>
       </div>
@@ -53,7 +53,7 @@ a:hover{color:var(--ss-hover-text,#A4600C);}
         <div style="display:grid;grid-template-columns:{{ splitTemplate }};gap:{{ splitGap }};padding-bottom:{{ bottomPad }};align-items:start">
           <div style="display:flex;flex-direction:column;gap:32px;min-width:0">
             <div style="display:flex;flex-direction:column;gap:16px">
-              <h2 style="margin:0;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:26px">Registrujte se</h2>
+              <h2 style="margin:0;font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:26px">Registrujte se</h2>
               <div style="display:grid;grid-template-columns:{{ socialTemplate }};gap:12px">
                 <a class="ss-reg-soc ss-reg-fb" href="#registrace-facebook">
                   <span style="display:flex"><dc-import name="Ikony" iconName="brand-facebook" size="22" hint-size="22px,22px"></dc-import></span>
@@ -80,7 +80,7 @@ a:hover{color:var(--ss-hover-text,#A4600C);}
             </div>
 
             <form style="display:flex;flex-direction:column;gap:20px" onSubmit="{{ submit }}">
-              <h2 style="margin:0;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:21px">Osobní údaje</h2>
+              <h2 style="margin:0;font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:21px">Osobní údaje</h2>
               <dc-import name="Input" label="E-mail" required="{{ true }}" autoComplete="email" bordered="{{ true }}" type="email" placeholder="vas@email.cz" value="{{ email }}" onChange="{{ onEmail }}" hint-size="100%,72px"></dc-import>
               <dc-import name="Input" label="Heslo" required="{{ true }}" autoComplete="new-password" bordered="{{ true }}" type="password" hint="Alespoň 8 znaků" value="{{ pass }}" onChange="{{ onPass }}" hint-size="100%,72px"></dc-import>
               <dc-import name="Input" label="Heslo (kontrola)" required="{{ true }}" autoComplete="new-password" bordered="{{ true }}" type="password" value="{{ pass2 }}" onChange="{{ onPass2 }}" hint="{{ passError }}" invalid="{{ passInvalid }}" hint-size="100%,72px"></dc-import>
@@ -93,7 +93,7 @@ a:hover{color:var(--ss-hover-text,#A4600C);}
           <div style="{{ asideStyle }}">
             <div style="display:flex;flex-direction:column;gap:8px">
               <span style="font-size:15px;color:var(--ss-text-muted,#5B6874)">Co získáte</span>
-              <h2 style="margin:0;font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:24px">Registrujte se a získejte všechny výhody</h2>
+              <h2 style="margin:0;font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:24px">Registrujte se a získejte všechny výhody</h2>
             </div>
             <div style="display:grid;grid-template-columns:{{ benefitTemplate }};gap:28px 40px;align-items:start">
               <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:14px;min-width:0">

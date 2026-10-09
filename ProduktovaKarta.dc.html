@@ -10,9 +10,9 @@
 <helmet>
 <link rel="stylesheet" href="./tmavy-rezim.css">
 <script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&display=swap" rel="stylesheet">
 <style>
-h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,'Archivo Narrow',Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
+h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
 
 .ss-pc{position:relative;font-family:Roboto,Helvetica,Arial,sans-serif;display:flex;flex-direction:column;width:100%;min-width:0;height:100%;box-sizing:border-box;background:var(--ss-surface-card,#FFFFFF);border-radius:12px;padding:16px;transition:box-shadow .15s cubic-bezier(.22,.61,.36,1);}
 .sc-host:has(>.ss-pc){display:flex;width:100%;height:100%;min-width:0;}
@@ -34,13 +34,76 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 .ss-pc-more:hover{color:var(--ss-hover-text,#A4600C);text-decoration:underline;text-underline-offset:3px;}
 .ss-pc-more:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
 .ss-pc-media[data-photo="true"]{background:#FFFFFF!important;}
+.ss-pc-chip{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:6px;background:var(--ss-surface-subtle,#FAF5EF);font-size:13px;font-weight:500;line-height:1.35;color:var(--ss-text-secondary,#3D4750);}
+.ss-pc[data-layout="row"] .ss-pc-fav{top:8px;left:8px;right:auto;}
 .ss-pc-img{transition:transform .4s cubic-bezier(.22,.61,.36,1);}
 @media (hover:hover) and (pointer:fine){.ss-pc:hover .ss-pc-img{transform:scale(1.04);}}
 @media (prefers-reduced-motion:reduce){.ss-pc-img{transition:none;}.ss-pc:hover .ss-pc-img{transform:none;}}
 </style>
 </helmet>
-<article class="ss-pc">
+<article class="ss-pc" data-layout="{{ layout }}">
   <a class="ss-pc-cover" href="{{ href }}" aria-label="{{ title }}"></a>
+
+  <sc-if value="{{ isRow }}" hint-placeholder-val="{{ false }}">
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <sc-if value="{{ hasTopBadges }}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex;flex-wrap:wrap;gap:8px">
+          <sc-for list="{{ topBadges }}" as="b" hint-placeholder-count="1">
+            <dc-import name="Stitek" kind="{{ b.kind }}" label="{{ b.label }}" icon="{{ b.icon }}" hint-size="90px,26px"></dc-import>
+          </sc-for>
+        </div>
+      </sc-if>
+      <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:start">
+        <div class="ss-pc-media" data-photo="{{ hasImage }}" style="position:relative;width:100%;aspect-ratio:1/1;background:var(--ss-surface-subtle,#FAF5EF);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--ss-text-decor,#C8D0D8);overflow:hidden">
+          <sc-if value="{{ hasImage }}" hint-placeholder-val="{{ false }}">
+            <img class="ss-pc-img" src="{{ image }}" alt="{{ title }}" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block" />
+          </sc-if>
+          <sc-if value="{{ noImage }}" hint-placeholder-val="{{ true }}">
+            <dc-import name="Ikony" iconName="photo" size="36" hint-size="36px,36px"></dc-import>
+          </sc-if>
+          <button type="button" class="ss-pc-fav" onClick="{{ toggleFav }}" aria-label="{{ favLabel }}" aria-pressed="{{ favPressed }}">
+            <dc-import name="Ikony" iconName="{{ favIcon }}" size="20" hint-size="20px,20px"></dc-import>
+          </button>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;min-width:0">
+          <sc-if value="{{ hasRating }}" hint-placeholder-val="{{ true }}">
+            <dc-import name="Hodnoceni" variant="kompakt" value="{{ rating }}" count="{{ ratingCount }}" size="small" hint-size="120px,20px"></dc-import>
+          </sc-if>
+          <h3 class="ss-pc-title ss-plain" style="font-size:16px">{{ title }}</h3>
+          <dc-import name="Stitek" kind="{{ stockKind }}" label="{{ stockLabel }}" hint-size="140px,20px"></dc-import>
+          <div style="display:flex;flex-direction:column;gap:4px;padding-top:4px">
+            <sc-if value="{{ hasBefore }}" hint-placeholder-val="{{ false }}">
+              <span style="display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px">
+                <sc-if value="{{ hasDiscount }}" hint-placeholder-val="{{ false }}">
+                  <dc-import name="Stitek" kind="sale" label="{{ discount }}" size="small" hint-size="52px,22px"></dc-import>
+                </sc-if>
+                <span style="font-size:14px;color:var(--ss-status-error,#B3261E);text-decoration:line-through;white-space:nowrap">{{ priceBefore }}</span>
+              </span>
+            </sc-if>
+            <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:22px;line-height:1.1;color:var(--ss-text-primary,#1C2229);white-space:nowrap">{{ price }}</span>
+          </div>
+        </div>
+      </div>
+      <sc-if value="{{ hasTuhost }}" hint-placeholder-val="{{ false }}">
+        <div><dc-import name="Tuhost" value="{{ tuhost }}" size="compact" hint-size="200px,24px"></dc-import></div>
+      </sc-if>
+      <sc-if value="{{ hasParams }}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex;flex-wrap:wrap;gap:8px">
+          <sc-for list="{{ params }}" as="pm" hint-placeholder-count="4">
+            <span class="ss-pc-chip">
+              <span style="display:flex;color:var(--ss-text-heading,#0B1F33);flex:none"><dc-import name="Ikony" iconName="{{ pm.icon }}" size="16" hint-size="16px,16px"></dc-import></span>
+              <span>{{ pm.label }}</span>
+            </span>
+          </sc-for>
+        </div>
+      </sc-if>
+      <sc-if value="{{ hasMore }}" hint-placeholder-val="{{ true }}">
+        <a class="ss-pc-more" href="{{ href }}" style="padding:4px 0 0">{{ moreLabel }}</a>
+      </sc-if>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isStack }}" hint-placeholder-val="{{ true }}">
 
   <div class="ss-pc-media" data-photo="{{ hasImage }}" style="position:relative;width:100%;aspect-ratio:1/1;background:var(--ss-surface-subtle,#FAF5EF);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--ss-text-decor,#C8D0D8);margin-bottom:14px;overflow:hidden">
     <sc-if value="{{ hasImage }}" hint-placeholder-val="{{ false }}">
@@ -70,11 +133,14 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
       <p style="margin:0;font-size:14px;line-height:1.55;color:var(--ss-text-secondary,#3D4750)">{{ perex }}</p>
     </sc-if>
 
+    <sc-if value="{{ hasTuhost }}" hint-placeholder-val="{{ false }}">
+      <div><dc-import name="Tuhost" value="{{ tuhost }}" size="compact" hint-size="200px,24px"></dc-import></div>
+    </sc-if>
     <sc-if value="{{ hasParams }}" hint-placeholder-val="{{ true }}">
-      <div style="display:flex;flex-direction:column;gap:4px">
+      <div style="display:flex;flex-wrap:wrap;gap:8px">
         <sc-for list="{{ params }}" as="pm" hint-placeholder-count="3">
-          <span class="ss-pc-param">
-            <span style="display:flex;color:var(--ss-text-muted,#55616C);flex:none"><dc-import name="Ikony" iconName="{{ pm.icon }}" size="16" hint-size="16px,16px"></dc-import></span>
+          <span class="ss-pc-chip">
+            <span style="display:flex;color:var(--ss-text-heading,#0B1F33);flex:none"><dc-import name="Ikony" iconName="{{ pm.icon }}" size="16" hint-size="16px,16px"></dc-import></span>
             <span>{{ pm.label }}</span>
           </span>
         </sc-for>
@@ -88,7 +154,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
         <sc-if value="{{ hasBefore }}" hint-placeholder-val="{{ false }}">
           <span style="font-size:14px;color:var(--ss-status-error,#B3261E);text-decoration:line-through">{{ priceBefore }}</span>
         </sc-if>
-        <span style="font-family:'Archivo Narrow',Roboto,sans-serif;font-weight:700;font-size:24px;line-height:1.1;color:var(--ss-text-primary,#1C2229);white-space:nowrap">{{ price }}</span>
+        <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:24px;line-height:1.1;color:var(--ss-text-primary,#1C2229);white-space:nowrap">{{ price }}</span>
       </div>
       <div style="position:relative;z-index:2;flex:none">
         <dc-import name="Tlacitko" label="{{ ctaLabel }}" variant="{{ ctaVariant }}" size="medium" href="{{ href }}" hint-size="130px,44px"></dc-import>
@@ -96,9 +162,10 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
     </div>
 
   </div>
+  </sc-if>
 </article>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:340,&quot;height&quot;:640},&quot;product&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;Product&quot;},&quot;onFavourite&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(fav: boolean) =&gt; void&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:340,&quot;height&quot;:640},&quot;product&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;Product&quot;},&quot;layout&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;stack&quot;,&quot;row&quot;],&quot;default&quot;:&quot;stack&quot;,&quot;tsType&quot;:&quot;'stack' | 'row'&quot;},&quot;onFavourite&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(fav: boolean) =&gt; void&quot;}}">
 class Component extends DCLogic {
   state = { fav: null };
   renderVals() {
@@ -114,15 +181,25 @@ class Component extends DCLogic {
     if (d.secondBadge) badges.push({ kind: d.secondBadge, label: d.secondBadgeLabel });
     const price = d.price || '7 590 Kč';
     const from = d.priceFrom !== false;
+    const layout = p.layout === 'row' ? 'row' : 'stack';
+    const num = (v) => parseInt(String(v || '').replace(/\D/g, ''), 10) || 0;
+    const pct = d.priceBefore ? Math.round((1 - num(price) / num(d.priceBefore)) * 100) : 0;
+    const topBadges = badges.filter(b => b.kind !== 'sale');
     return {
+      layout, isRow: layout === 'row', isStack: layout !== 'row',
+      topBadges, hasTopBadges: topBadges.length > 0,
+      discount: '−' + pct + ' %', hasDiscount: pct > 0,
+      moreLabel: d.moreLabel, hasMore: !!d.moreLabel,
       hasImage, noImage: !hasImage, image: d.image,
-      href: (d.href && d.href !== '#produkt') ? d.href : 'Postel 3.0.dc.html',
+      href: (d.href && d.href !== '#produkt') ? d.href : 'Detail_Postel 3.0.dc.html',
       title: d.title || 'Matrace Spring Variant 22 cm',
       hasPerex: !!d.perex,
       perex: d.perex,
       hasRating: d.rating !== undefined && d.rating !== null,
       rating: d.rating ?? 4.8,
       ratingCount: d.ratingCount ?? 18,
+      hasTuhost: typeof d.tuhost === 'number',
+      tuhost: d.tuhost,
       hasParams: !!(d.params && d.params.length),
       params: d.params || [],
       badges,
