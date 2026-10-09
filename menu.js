@@ -381,7 +381,7 @@ export const MENU = [
         ]
       },
       {
-        "title": "Podle tvrdosti",
+        "title": "Podle tuhosti",
         "href": "Kategorie Matrace.dc.html#s=1",
         "items": [
           {

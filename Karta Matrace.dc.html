@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="./tmavy-rezim.css">
+<script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');}catch(e){}</script>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&display=swap" rel="stylesheet">
+<style>
+html,body{margin:0!important;padding:0!important;}
+#dc-root{margin:0!important;padding:0!important;width:100%!important;max-width:none!important;border:0!important;}
+#dc-root>.sc-host{margin:0!important;padding:0!important;width:100%!important;}
+a{color:var(--ss-link,#296093);}a:hover{color:var(--ss-hover-text,#21507B);}
+</style>
+</helmet>
+<div style="width:100%;min-height:100vh;background:var(--ss-surface-page,#FEFAF7);font-family:Roboto,Helvetica,Arial,sans-serif;color:var(--ss-text-primary,#1C2229)">
+  <div style="max-width:1560px;margin:0 auto;padding:32px;display:flex;flex-wrap:wrap;gap:48px;align-items:flex-start">
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <span style="font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ss-text-muted,#5B6874)">Standard · šířka sloupce XL ({{ stdW }} px)</span>
+      <div style="width:{{ stdW }}px">
+        <dc-import name="ProduktovaKarta" product="{{ product }}" hint-size="100%,620px"></dc-import>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <span style="font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ss-text-muted,#5B6874)">Řádek · S–XXS ({{ rowW }} px)</span>
+      <div style="width:{{ rowW }}px">
+        <dc-import name="ProduktovaKarta" product="{{ product }}" layout="row" hint-size="100%,420px"></dc-import>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;sirkaKarty&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:300,&quot;min&quot;:240,&quot;max&quot;:360,&quot;step&quot;:4,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;},&quot;sirkaRadku&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:390,&quot;min&quot;:320,&quot;max&quot;:520,&quot;step&quot;:10,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;}}">
+class Component extends DCLogic {
+  state = { product: null };
+  componentDidMount() {
+    Promise.all([import('./produkty.js'), import('./matrace.js')]).then(([m, mt]) => {
+      const r = mt.MATRACE_PARAMETRY.find(x => x.nazev === 'MEDICAL VISCO');
+      const mp = r && { tuhost: r.tuhost, tuhostPct: r.tuhostPct, zatizeniOd: r.zatizeni && r.zatizeni.od, zatizeniDo: r.zatizeni && r.zatizeni.do, nosnostMax: r.nosnostMax, vyska: r.vyska, vyskaJadra: r.vyskaJadra, zaruka: r.zaruka, spankNaBoku: r.spankNaBoku };
+      this.setState({ product: { ...m.PRODUKTY.find(p => p.id === 'p1'), mp } });
+    }).catch(() => {});
+  }
+  renderVals() {
+    return {
+      product: this.state.product || { title: 'Matrace Spring Variant 22 cm', tuhost: 4.5, price: '7 590 Kč' },
+      stdW: this.props.sirkaKarty ?? 300,
+      rowW: this.props.sirkaRadku ?? 390
+    };
+  }
+}
+</script>
+</body>
+</html>

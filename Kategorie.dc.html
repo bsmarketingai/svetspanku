@@ -278,7 +278,7 @@ class Component extends DCLogic {
         ctaLabel: 'Spustit průvodce výběrem', ctaHref: '#pruvodce' },
       { title: 'Jakou zvolit tuhost nové matrace?', intro: 'Správná tuhost drží páteř v rovině.',
         items: [{ h: 'H1–H2', t: 'Lehčí postavy a spaní na boku.' }, { h: 'H3', t: 'Univerzální volba pro 90–120 kg.' }, { h: 'H4–H5', t: 'Těžší postavy a spaní na zádech.' }],
-        ctaLabel: 'Matrace podle tvrdosti', ctaHref: 'Kategorie Matrace.dc.html#s=1' }
+        ctaLabel: 'Matrace podle tuhosti', ctaHref: 'Kategorie Matrace.dc.html#s=1' }
     ],
     rosty: [
       { title: 'Pevný, nebo polohovací rošt?', intro: 'Rošt ovlivňuje, jak matrace pracuje, a prodlužuje její životnost.',
@@ -413,8 +413,8 @@ class Component extends DCLogic {
       activeL1: r ? r.cat.label : 'Matrace',
       isMatrace: isMat && level === 1,
       hasPerex: perexSrc.length > 0,
-      hasDesc: isMat && level === 2 && !!r && r.g.title === 'Podle tvrdosti',
-      descTuhost: isMat && level === 2 && !!r && r.g.title === 'Podle tvrdosti',
+      hasDesc: isMat && level === 2 && !!r && r.g.title === 'Podle tuhosti',
+      descTuhost: isMat && level === 2 && !!r && r.g.title === 'Podle tuhosti',
       perexLinks: perexSrc.map((c, i) => ({ label: c.label.charAt(0).toLowerCase() + c.label.slice(1), href: c.href, sep: i < perexSrc.length - 2 ? ', ' : i === perexSrc.length - 2 ? ' a ' : '.' })),
       hasPromo,
       hasSub: chipRows.length > 0 || tiles.length > 0,
@@ -455,7 +455,7 @@ class Component extends DCLogic {
       resultsTemplate: sidebar ? '300px minmax(0,1fr)' : 'minmax(0,1fr)',
       resultsGap: sidebar ? '32px' : '0',
       productTemplate: sidebar
-        ? (w >= 1560 ? 'repeat(4,minmax(0,1fr))' : 'repeat(3,minmax(0,1fr))')
+        ? (w >= 1150 ? 'repeat(3,minmax(0,1fr))' : 'repeat(2,minmax(0,1fr))')
         : (w >= 820 ? 'repeat(3,minmax(0,1fr))' : (w >= 550 && this.state.cardV !== 'Řádek') ? 'repeat(2,minmax(0,1fr))' : 'minmax(0,1fr)'),
       facets: (this.state.facets || []).map(f => ({
         title: f.title,

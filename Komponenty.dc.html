@@ -102,7 +102,7 @@ a{color:var(--ss-link,#296093);}a:hover{color:var(--ss-hover-text,#A4600C);}
       <div style="background:var(--ss-surface-box,#FFFFFF);border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:24px">
         <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center">
           <dc-import name="Chip" label="Matrace" variant="filter" hint-size="110px,40px"></dc-import>
-          <dc-import name="Chip" label="Tvrdost H3" variant="filter" active="{{ true }}" hint-size="140px,40px"></dc-import>
+          <dc-import name="Chip" label="Tuhost H3" variant="filter" active="{{ true }}" hint-size="140px,40px"></dc-import>
           <dc-import name="Chip" label="Šířka 180 cm" variant="filter" count="24" hint-size="160px,40px"></dc-import>
           <dc-import name="Chip" label="Nejhledanější" variant="primary" hint-size="150px,40px"></dc-import>
           <dc-import name="Chip" label="Postele z masivu" variant="secondary" href="#" hint-size="170px,40px"></dc-import>
@@ -304,7 +304,7 @@ a{color:var(--ss-link,#296093);}a:hover{color:var(--ss-hover-text,#A4600C);}
           <dc-import name="Galerie" count="6" badge="sale" badgeLabel="Sleva 20 %" hint-size="100%,420px"></dc-import>
           <div style="display:flex;flex-direction:column;gap:20px;min-width:0">
             <dc-import name="VyberVariant" title="Rozměr" value="{{ variantSize }}" onPick="{{ pickSize }}" hint-size="100%,140px"></dc-import>
-            <dc-import name="VyberVariant" title="Tvrdost" layout="radky" value="{{ variantFirm }}" options="{{ firmOptions }}" onPick="{{ pickFirm }}" hint-size="100%,180px"></dc-import>
+            <dc-import name="VyberVariant" title="Tuhost" layout="radky" value="{{ variantFirm }}" options="{{ firmOptions }}" onPick="{{ pickFirm }}" hint-size="100%,180px"></dc-import>
             <dc-import name="NakupniBox" price="11 290 Kč" priceBefore="13 990 Kč" saving="Ušetříte 2 700 Kč" hint-size="100%,420px"></dc-import>
           </div>
         </div>
@@ -343,7 +343,7 @@ class Component extends DCLogic {
   state = {
     width: typeof window !== 'undefined' ? document.documentElement.clientWidth : 1440,
     products: [], drawerOpen: false, priceFrom: 3000, priceTo: 24000,
-    selected: { tvrdost: ['h3'], rozmer: ['180x200'] }
+    selected: { tuhost: ['h3'], rozmer: ['180x200'] }
   };
   componentDidMount() {
     import('./produkty.js').then(m => this.setState({ products: m.PRODUKTY.slice(0, 5), facets: m.FACETY }));

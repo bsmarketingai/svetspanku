@@ -111,11 +111,12 @@ Hover se nezjišťuje šířkou okna, ale `(hover:hover) and (pointer:fine)`. Fo
 - Emoji ne. Ikony ano, z jednoho registru.
 - Čas se píše vždy s dvojtečkou: „9:00–17:00“ (pomlčka bez mezer), nikdy „9.00“.
 - Ceny, skladovost a dostupnost se píšou jednotně: cena „7 590 Kč“ (pevná mezera, s DPH), „Skladem · odesíláme do 24 h“, „Poslední kusy“, „Nedostupné“. Formulace se ustálí jednou a drží.
+- Vždy **„tuhost“**, nikdy „tvrdost“ (9. 10. 2026). Přídavná jména stupňů (tvrdá, středně tvrdá, měkká) zůstávají.
 - Fotky klient dodá — do té doby placeholdery ve `surface.muted`.
 
 ## Funkční rozsah (potvrzeno klientem)
 
-Varianty produktů (rozměr, tvrdost, barva) · množstevní slevy · porovnávání · oblíbené/wishlist · konfigurátor „průvodce výběrem“ · hodnocení a recenze · dostupnost na prodejnách · poradna/rádce výběru · blog/magazín.
+Varianty produktů (rozměr, tuhost, barva) · množstevní slevy · porovnávání · oblíbené/wishlist · konfigurátor „průvodce výběrem“ · hodnocení a recenze · dostupnost na prodejnách · poradna/rádce výběru · blog/magazín.
 První kolo stránek: **Homepage**.
 
 ## Rozhodnuto — nevracet se k tomu

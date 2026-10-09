@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="./tmavy-rezim.css">
+<script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');}catch(e){}</script>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&display=swap" rel="stylesheet">
+<style>
+.ss-pm-t{position:relative;z-index:2;display:flex;width:100%;margin:0;padding:0;border:0;background:none;font:inherit;color:inherit;text-align:left;cursor:help;border-radius:6px;}
+.ss-pm-t:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+.ss-pm-tip{position:absolute;left:0;bottom:calc(100% + 8px);z-index:300;width:max-content;max-width:240px;padding:8px 12px;border-radius:6px;background:#132C43;color:#FFFFFF;font-size:13px;font-weight:400;line-height:1.45;box-shadow:0 16px 40px rgba(19,44,67,.18);opacity:0;visibility:hidden;transform:translateY(4px);transition:opacity .12s cubic-bezier(.22,.61,.36,1),transform .12s cubic-bezier(.22,.61,.36,1),visibility 0s .12s;pointer-events:none;text-wrap:pretty;}
+.ss-pm-t:focus-visible .ss-pm-tip{opacity:1;visibility:visible;transform:none;transition-delay:0s;}
+@media (hover:hover) and (pointer:fine){.ss-pm-t:hover .ss-pm-tip{opacity:1;visibility:visible;transform:none;transition-delay:0s;}}
+</style>
+</helmet>
+<div style="display:flex;flex-direction:column;gap:12px;width:100%;min-width:0;font-family:Roboto,Helvetica,Arial,sans-serif;color:var(--ss-text-secondary,#3D4750)">
+  <sc-if value="{{ hasTuhost }}" hint-placeholder-val="{{ true }}">
+    <button type="button" class="ss-pm-t" aria-describedby="{{ idT }}" style="flex-direction:column;gap:8px">
+      <span style="display:flex;justify-content:space-between;align-items:baseline;gap:8px;width:100%;font-size:13px;line-height:1.35">
+        <span style="flex:none;white-space:nowrap">Tuhost</span>
+        <span style="flex:none;white-space:nowrap;font-weight:600;color:var(--ss-text-primary,#1C2229)">{{ tuhostLabel }}</span>
+      </span>
+      <span aria-hidden="true" style="position:relative;display:block;width:100%;height:12px">
+        <span style="position:absolute;left:0;right:0;top:4px;height:4px;border-radius:999px;background:var(--ss-surface-strong,#E9E1D5)"></span>
+        <span style="position:absolute;top:0;left:calc({{ tuhostPos }}% - 6px);width:12px;height:12px;border-radius:999px;background:var(--ss-text-secondary,#3D4750)"></span>
+      </span>
+      <span class="ss-pm-tip" role="tooltip" id="{{ idT }}">Tuhost matrace na stupnici 1–5. Čím vyšší číslo, tím tužší matrace.</span>
+    </button>
+  </sc-if>
+  <sc-if value="{{ hasZatizeni }}" hint-placeholder-val="{{ true }}">
+    <button type="button" class="ss-pm-t" aria-describedby="{{ idZ }}" style="flex-direction:column;gap:8px">
+      <span style="display:flex;justify-content:space-between;align-items:baseline;gap:8px;width:100%;font-size:13px;line-height:1.35">
+        <span style="flex:none;white-space:nowrap">Ideální pro</span>
+        <span style="flex:none;white-space:nowrap;font-weight:600;color:var(--ss-text-primary,#1C2229)">{{ zatizeniLabel }}</span>
+      </span>
+      <span aria-hidden="true" style="display:flex;flex-direction:column;gap:4px;width:100%">
+        <span style="position:relative;display:block;height:12px">
+          <span style="position:absolute;left:0;right:0;top:4px;height:4px;border-radius:999px;background:var(--ss-surface-strong,#E9E1D5)"></span>
+          <span style="position:absolute;top:4px;height:4px;left:{{ odPos }}%;width:{{ rangeW }}%;background:var(--ss-text-secondary,#3D4750)"></span>
+          <span style="position:absolute;top:0;left:calc({{ odPos }}% - 6px);width:12px;height:12px;border-radius:999px;background:var(--ss-text-secondary,#3D4750)"></span>
+          <span style="position:absolute;top:0;left:calc({{ doPos }}% - 6px);width:12px;height:12px;border-radius:999px;background:var(--ss-text-secondary,#3D4750)"></span>
+        </span>
+        <span style="display:flex;justify-content:space-between;font-size:13px;line-height:1.2;color:var(--ss-text-muted,#5B6874)">
+          <span>0</span>
+          <span>{{ scaleLabel }}</span>
+        </span>
+      </span>
+      <sc-if value="{{ hasPoloha }}" hint-placeholder-val="{{ true }}">
+        <span style="font-size:13px;line-height:1.35">Spánek <strong style="font-weight:600;color:var(--ss-text-primary,#1C2229)">{{ polohaLabel }}</strong></span>
+      </sc-if>
+      <span class="ss-pm-tip" role="tooltip" id="{{ idZ }}">{{ tipZ }}</span>
+    </button>
+  </sc-if>
+  <div style="display:flex;flex-wrap:wrap;gap:8px;font-size:13px;font-weight:500;line-height:1.35">
+    <sc-for list="{{ facts }}" as="f" hint-placeholder-count="3">
+      <button type="button" class="ss-pm-t" aria-describedby="{{ f.id }}" style="width:auto;align-items:center;gap:8px;padding:6px 10px;background:var(--ss-surface-subtle,#FAF5EF);color:var(--ss-text-secondary,#3D4750)">
+        <span style="display:flex;color:var(--ss-text-heading,#0B1F33);flex:none"><dc-import name="Ikony" iconName="{{ f.icon }}" size="16" hint-size="16px,16px"></dc-import></span>
+        <span style="white-space:nowrap">{{ f.label }}</span>
+        <span class="ss-pm-tip" role="tooltip" id="{{ f.id }}">{{ f.tip }}</span>
+      </button>
+    </sc-for>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:320,&quot;height&quot;:200},&quot;tuhost&quot;:{&quot;editor&quot;:&quot;float&quot;,&quot;default&quot;:4.5,&quot;min&quot;:0,&quot;max&quot;:5,&quot;step&quot;:0.1,&quot;tsType&quot;:&quot;number&quot;},&quot;tuhostPct&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:90,&quot;min&quot;:0,&quot;max&quot;:100,&quot;tsType&quot;:&quot;number&quot;},&quot;zatizeniOd&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:70,&quot;tsType&quot;:&quot;number&quot;},&quot;zatizeniDo&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:100,&quot;tsType&quot;:&quot;number&quot;},&quot;nosnostMax&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:120,&quot;tsType&quot;:&quot;number&quot;},&quot;vyska&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:19,&quot;tsType&quot;:&quot;number&quot;},&quot;vyskaJadra&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:16,&quot;tsType&quot;:&quot;number&quot;},&quot;zaruka&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:8,&quot;tsType&quot;:&quot;number&quot;},&quot;spankNaBoku&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  uid = 'pm' + Math.random().toString(36).slice(2, 8);
+  renderVals() {
+    const p = this.props, u = this.uid;
+    const nb = '\u00A0';
+    const pct = typeof p.tuhostPct === 'number' ? p.tuhostPct : (typeof p.tuhost === 'number' ? p.tuhost / 5 * 100 : null);
+    const t = pct === null ? null : Math.round(pct / 20 * 10) / 10;
+    const od = p.zatizeniOd, dd = p.zatizeniDo;
+    const hasZ = typeof od === 'number' && typeof dd === 'number';
+    const max = Math.max(p.nosnostMax || 0, hasZ ? dd : 0) || 1;
+    const clamp = (v) => Math.max(0, Math.min(100, v));
+    const poloha = [];
+    if (pct !== null && pct >= 50) poloha.push('na zádech');
+    if (p.spankNaBoku) poloha.push('na boku');
+    const polohaLabel = poloha.join(' i ');
+    const facts = [];
+    if (p.vyska) facts.push({ icon: 'arrow-autofit-height', label: p.vyska + nb + 'cm', tip: 'Celková výška matrace včetně potahu' + (p.vyskaJadra ? ', jádro ' + p.vyskaJadra + nb + 'cm.' : '.') });
+    if (p.nosnostMax) facts.push({ icon: 'weight', label: 'max' + nb + p.nosnostMax + nb + 'kg', tip: 'Maximální nosnost na jednu osobu.' });
+    if (p.zaruka) facts.push({ icon: 'shield-check', label: p.zaruka + nb + (p.zaruka === 1 ? 'rok' : p.zaruka < 5 ? 'roky' : 'let'), tip: 'Délka záruky na matraci.' });
+    facts.forEach((f, i) => { f.id = u + 'f' + i; });
+    return {
+      idT: u + 't', idZ: u + 'z',
+      hasTuhost: t !== null,
+      tuhostLabel: t === null ? '' : String(t).replace('.', ',') + ' z 5',
+      tuhostPos: clamp(pct || 0),
+      hasZatizeni: hasZ,
+      zatizeniLabel: hasZ ? od + '–' + dd + nb + 'kg' : '',
+      odPos: hasZ ? clamp(od / max * 100) : 0,
+      doPos: hasZ ? clamp(dd / max * 100) : 0,
+      rangeW: hasZ ? clamp((dd - od) / max * 100) : 0,
+      scaleLabel: max + nb + 'kg',
+      hasPoloha: poloha.length > 0, polohaLabel,
+      tipZ: 'Doporučená váha jednoho spáče' + (hasZ ? ' (' + od + '–' + dd + nb + 'kg)' : '') + (poloha.length ? ' a poloha spánku, pro kterou se matrace hodí.' : '.'),
+      facts
+    };
+  }
+}
+</script>
+</body>
+</html>
