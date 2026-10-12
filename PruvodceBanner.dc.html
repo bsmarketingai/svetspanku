@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="./tmavy-rezim.css">
+<script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');}catch(e){}</script>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&display=swap" rel="stylesheet">
+<style>
+h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
+.ss-pb-bg{transition:transform .4s cubic-bezier(.22,.61,.36,1);}
+@media (hover:hover) and (pointer:fine){.ss-pb:hover .ss-pb-bg{transform:scale(1.06);}}
+@media (prefers-reduced-motion:reduce){.ss-pb-bg{transition:none;}.ss-pb:hover .ss-pb-bg{transform:none;}}
+</style>
+</helmet>
+<div class="ss-elev ss-pb" style="{{ boxStyle }}">
+  <span aria-hidden="true" style="position:absolute;inset:0;border-radius:inherit;overflow:hidden;pointer-events:none"><span class="ss-pb-bg" style="{{ bgStyle }}"></span><span style="{{ veilStyle }}"></span></span>
+  <img src="visacka-svetspanku.png" alt="" aria-hidden="true" style="{{ tagStyle }}" />
+  <div style="position:relative;display:flex;flex-direction:column;gap:12px;min-width:0">
+    <h2 style="{{ hStyle }}">Pomůžeme vám najít tu správnou matraci</h2>
+    <p style="margin:0;max-width:60ch;font-size:15px;line-height:1.6;color:#3D4750">Odpovíte na osm otázek o váze, poloze spánku a rozpočtu. Doporučíme tři modely a řekneme, proč zrovna je.</p>
+    <div style="margin-top:4px"><dc-import name="Tlacitko" label="Najít dokonalou matraci" variant="buy" size="large" href="#pruvodce" iconRight="arrow-right" hint-size="260px,52px"></dc-import></div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1200,&quot;height&quot;:360}}">
+class Component extends DCLogic {
+  state = { width: typeof window !== 'undefined' ? document.documentElement.clientWidth : 1440 };
+  componentDidMount() { this._r = () => this.setState({ width: document.documentElement.clientWidth }); window.addEventListener('resize', this._r); }
+  componentWillUnmount() { window.removeEventListener('resize', this._r); }
+  renderVals() {
+    const w = this.state.width, narrow = w < 820;
+    return {
+      boxStyle: { background: '#F2F2F0', borderRadius: '12px', padding: narrow ? '24px' : '40px', display: 'grid', gridTemplateColumns: narrow ? 'minmax(0,1fr)' : 'minmax(0,1.2fr) minmax(0,1fr)', gap: '24px', alignItems: 'center', minHeight: '320px', boxSizing: 'border-box', position: 'relative', fontFamily: 'Roboto,Helvetica,Arial,sans-serif' },
+      bgStyle: { position: 'absolute', inset: 0, background: 'url(pruvodce-matrace-povrch.png) ' + (narrow ? '70% center' : 'right center') + ' / cover no-repeat' },
+      veilStyle: { position: 'absolute', inset: 0, background: narrow ? 'rgba(255,255,255,.82)' : 'linear-gradient(90deg,rgba(255,255,255,.94) 0%,rgba(255,255,255,.8) 40%,rgba(255,255,255,0) 70%)' },
+      tagStyle: { position: 'absolute', top: '-8px', right: narrow ? '16px' : '64px', width: narrow ? '90px' : '140px', height: 'auto', pointerEvents: 'none', filter: 'drop-shadow(0 4px 6px rgba(19,44,67,.18))' },
+      hStyle: { margin: 0, fontSize: narrow ? '26px' : '34px', lineHeight: 1.15, color: '#1C2229' }
+    };
+  }
+}
+</script>
+</body>
+</html>

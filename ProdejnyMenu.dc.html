@@ -16,8 +16,8 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 .ss-pm,.ss-pm *{box-sizing:border-box;}
 .ss-pm{font-family:Roboto,Helvetica,Arial,sans-serif;}
 .ss-pm a{text-decoration:none;}
-.ss-pm-card{position:relative;display:flex;flex-direction:column;gap:10px;min-width:0;padding:10px;border-radius:12px;background:var(--ss-surface-page,#FEFAF7);transition:box-shadow .15s cubic-bezier(.22,.61,.36,1),background-color .12s cubic-bezier(.22,.61,.36,1);}
-.ss-pm-card:hover{background:var(--ss-hover-bg,#FFF5E6);box-shadow:0 4px 12px rgba(19,44,67,.12);color:var(--ss-hover-text,#A4600C)}
+.ss-pm-card{position:relative;display:grid;grid-template-rows:subgrid;grid-row:span 5;align-content:start;gap:10px;min-width:0;padding:10px;border-radius:12px;background:var(--ss-surface-card,#FFFFFF);transition:box-shadow .15s cubic-bezier(.22,.61,.36,1),background-color .12s cubic-bezier(.22,.61,.36,1);}
+.ss-pm-card:hover .ss-pm-title{color:var(--ss-hover-text,#21507B);}
 .ss-pm-title{font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:19px;color:var(--ss-text-primary,#1C2229);}
 .ss-pm-title:hover{color:var(--ss-hover-text,#A4600C);}
 .ss-pm-title:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);border-radius:6px;}
@@ -25,7 +25,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 .ss-pm-tel:hover{color:var(--ss-hover-text,#A4600C);text-decoration:underline;text-underline-offset:3px;}
 .ss-pm-tel:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
 .ss-pm-row{position:relative;display:flex;align-items:center;gap:12px;width:100%;min-height:72px;padding:8px 4px;border-bottom:1px solid var(--ss-border-subtle,#E1E6EB);}
-.ss-pm-row:hover{background:var(--ss-hover-bg,#FFF5E6);color:var(--ss-hover-text,#A4600C)}
+.ss-pm-row:hover .ss-pm-title{color:var(--ss-hover-text,#21507B);}
 .ss-pm-all{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 8px;font-size:14px;font-weight:600;color:var(--ss-link-hover,#21507B);border-radius:6px;}
 .ss-pm-all:hover{color:var(--ss-hover-text,#A4600C);text-decoration:underline;text-underline-offset:3px;}
 .ss-pm-all:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
@@ -75,7 +75,11 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
               </span>
               <span style="display:flex;align-items:flex-start;gap:8px;font-size:14px;line-height:1.4;color:var(--ss-text-secondary,#3D4750)">
                 <span style="display:flex;color:var(--ss-text-muted,#5B6874);flex:none;margin-top:2px"><dc-import name="Ikony" iconName="clock" size="16" hint-size="16px,16px"></dc-import></span>
-                <span>{{ s.hours }}</span>
+                <span style="display:grid;grid-template-columns:auto auto;justify-content:start;gap:2px 12px">
+                  <sc-for list="{{ s.hoursRows }}" as="r" hint-placeholder-count="2">
+                    <span>{{ r.d }}</span><span style="white-space:nowrap">{{ r.t }}</span>
+                  </sc-for>
+                </span>
               </span>
             </div>
             <a class="ss-pm-tel" href="{{ s.tel }}">
@@ -150,6 +154,7 @@ class Component extends DCLogic {
       photo: s.photo, href: s.href, tel: 'tel:' + s.phone.replace(/\s/g, ''),
       telLabel: 'Zavolat na prodejnu ' + s.city,
       detailLabel: 'Detail prodejny ' + s.city,
+      hoursRows: String(s.hours || '').split(' · ').map(x => { const i = x.indexOf(' '); return { d: x.slice(0, i), t: x.slice(i + 1) }; }),
       dist: s.km === undefined ? '' : Math.max(1, Math.round(s.km)) + ' km od vás'
     }));
 
@@ -174,7 +179,7 @@ class Component extends DCLogic {
       narrow,
       stores,
       shellStyle: {
-        width: '100%', background: 'var(--ss-surface-page,#FEFAF7)',
+        width: '100%', background: 'var(--ss-surface-card,#FFFFFF)',
         boxShadow: this.props.compact ? 'none' : '0 16px 40px rgba(19,44,67,.18)',
         borderRadius: this.props.compact ? '0' : '0 0 12px 12px'
       },

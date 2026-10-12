@@ -19,41 +19,53 @@
 @media (hover:hover) and (pointer:fine){.ss-pm-t:hover .ss-pm-tip{opacity:1;visibility:visible;transform:none;transition-delay:0s;}}
 </style>
 </helmet>
-<div style="display:flex;flex-direction:column;gap:12px;width:100%;min-width:0;font-family:Roboto,Helvetica,Arial,sans-serif;color:var(--ss-text-secondary,#3D4750)">
-  <sc-if value="{{ hasTuhost }}" hint-placeholder-val="{{ true }}">
-    <button type="button" class="ss-pm-t" aria-describedby="{{ idT }}" style="flex-direction:column;gap:8px">
+<div style="display:flex;flex-direction:column;gap:{{ rootGap }};width:100%;min-width:0;font-family:Roboto,Helvetica,Arial,sans-serif;color:var(--ss-text-secondary,#3D4750)">
+  <sc-if value="{{ plainTuhost }}" hint-placeholder-val="{{ false }}">
+    <span style="display:flex;flex-direction:column;gap:8px;width:100%">
       <span style="display:flex;justify-content:space-between;align-items:baseline;gap:8px;width:100%;font-size:13px;line-height:1.35">
-        <span style="flex:none;white-space:nowrap">Tuhost</span>
+        <span style="flex:none;white-space:nowrap">{{ tuhostTitle }}</span>
         <span style="flex:none;white-space:nowrap;font-weight:600;color:var(--ss-text-primary,#1C2229)">{{ tuhostLabel }}</span>
       </span>
       <span aria-hidden="true" style="position:relative;display:block;width:100%;height:12px">
         <span style="position:absolute;left:0;right:0;top:4px;height:4px;border-radius:999px;background:var(--ss-surface-strong,#E9E1D5)"></span>
         <span style="position:absolute;top:0;left:calc({{ tuhostPos }}% - 6px);width:12px;height:12px;border-radius:999px;background:var(--ss-text-secondary,#3D4750)"></span>
       </span>
+    </span>
+  </sc-if>
+  <sc-if value="{{ btnTuhost }}" hint-placeholder-val="{{ true }}">
+    <button type="button" class="ss-pm-t" aria-describedby="{{ idT }}" style="flex-direction:column;gap:8px">
+      <span style="display:flex;justify-content:space-between;align-items:baseline;gap:8px;width:100%;font-size:{{ lblSize }};line-height:1.35">
+        <span style="flex:none;white-space:nowrap;font-weight:{{ lblWeight }};color:{{ lblColor }}">{{ tuhostTitle }}</span>
+        <span style="flex:none;white-space:nowrap;font-weight:600;font-size:{{ valSize }};color:var(--ss-text-primary,#1C2229)">{{ tuhostLabel }}</span>
+      </span>
+      <span aria-hidden="true" style="position:relative;display:block;width:100%;height:{{ knob }}px">
+        <span style="position:absolute;left:0;right:0;top:{{ trackTop }}px;height:{{ track }}px;border-radius:999px;background:var(--ss-surface-strong,#E9E1D5)"></span>
+        <span style="position:absolute;top:0;left:calc({{ tuhostPos }}% - {{ knobHalf }}px);width:{{ knob }}px;height:{{ knob }}px;border-radius:999px;background:var(--ss-text-secondary,#3D4750)"></span>
+      </span>
+      <sc-if value="{{ large }}" hint-placeholder-val="{{ false }}">
+        <span aria-hidden="true" style="display:flex;justify-content:space-between;width:100%;font-size:13px;line-height:1.2;color:var(--ss-text-muted,#5B6874)"><span>Měkká</span><span>Tuhá</span></span>
+      </sc-if>
       <span class="ss-pm-tip" role="tooltip" id="{{ idT }}">Tuhost matrace na stupnici 1–5. Čím vyšší číslo, tím tužší matrace.</span>
     </button>
   </sc-if>
   <sc-if value="{{ hasZatizeni }}" hint-placeholder-val="{{ true }}">
     <button type="button" class="ss-pm-t" aria-describedby="{{ idZ }}" style="flex-direction:column;gap:8px">
-      <span style="display:flex;justify-content:space-between;align-items:baseline;gap:8px;width:100%;font-size:13px;line-height:1.35">
-        <span style="flex:none;white-space:nowrap">Ideální pro</span>
-        <span style="flex:none;white-space:nowrap;font-weight:600;color:var(--ss-text-primary,#1C2229)">{{ zatizeniLabel }}</span>
+      <span style="display:flex;justify-content:space-between;align-items:baseline;gap:8px;width:100%;font-size:{{ lblSize }};line-height:1.35">
+        <span style="flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:{{ lblWeight }};color:{{ lblColor }}">{{ idealLabel }}</span>
+        <span style="flex:none;white-space:nowrap;font-weight:600;font-size:{{ valSize }};color:var(--ss-text-primary,#1C2229)">{{ zatizeniLabel }}</span>
       </span>
       <span aria-hidden="true" style="display:flex;flex-direction:column;gap:4px;width:100%">
-        <span style="position:relative;display:block;height:12px">
-          <span style="position:absolute;left:0;right:0;top:4px;height:4px;border-radius:999px;background:var(--ss-surface-strong,#E9E1D5)"></span>
-          <span style="position:absolute;top:4px;height:4px;left:{{ odPos }}%;width:{{ rangeW }}%;background:var(--ss-text-secondary,#3D4750)"></span>
-          <span style="position:absolute;top:0;left:calc({{ odPos }}% - 6px);width:12px;height:12px;border-radius:999px;background:var(--ss-text-secondary,#3D4750)"></span>
-          <span style="position:absolute;top:0;left:calc({{ doPos }}% - 6px);width:12px;height:12px;border-radius:999px;background:var(--ss-text-secondary,#3D4750)"></span>
+        <span style="position:relative;display:block;height:{{ knob }}px">
+          <span style="position:absolute;left:0;right:0;top:{{ trackTop }}px;height:{{ track }}px;border-radius:999px;background:var(--ss-surface-strong,#E9E1D5)"></span>
+          <span style="position:absolute;top:{{ trackTop }}px;height:{{ track }}px;left:{{ odPos }}%;width:{{ rangeW }}%;background:var(--ss-pm-range,linear-gradient(90deg,#132C43 0%,#296093 100%))"></span>
+          <span style="position:absolute;top:0;left:calc({{ odPos }}% - {{ knobHalf }}px);width:{{ knob }}px;height:{{ knob }}px;border-radius:999px;background:var(--ss-text-secondary,#3D4750)"></span>
+          <span style="position:absolute;top:0;left:calc({{ doPos }}% - {{ knobHalf }}px);width:{{ knob }}px;height:{{ knob }}px;border-radius:999px;background:var(--ss-text-secondary,#3D4750)"></span>
         </span>
         <span style="display:flex;justify-content:space-between;font-size:13px;line-height:1.2;color:var(--ss-text-muted,#5B6874)">
           <span>0</span>
           <span>{{ scaleLabel }}</span>
         </span>
       </span>
-      <sc-if value="{{ hasPoloha }}" hint-placeholder-val="{{ true }}">
-        <span style="font-size:13px;line-height:1.35">Spánek <strong style="font-weight:600;color:var(--ss-text-primary,#1C2229)">{{ polohaLabel }}</strong></span>
-      </sc-if>
       <span class="ss-pm-tip" role="tooltip" id="{{ idZ }}">{{ tipZ }}</span>
     </button>
   </sc-if>
@@ -68,11 +80,13 @@
   </div>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:320,&quot;height&quot;:200},&quot;tuhost&quot;:{&quot;editor&quot;:&quot;float&quot;,&quot;default&quot;:4.5,&quot;min&quot;:0,&quot;max&quot;:5,&quot;step&quot;:0.1,&quot;tsType&quot;:&quot;number&quot;},&quot;tuhostPct&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:90,&quot;min&quot;:0,&quot;max&quot;:100,&quot;tsType&quot;:&quot;number&quot;},&quot;zatizeniOd&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:70,&quot;tsType&quot;:&quot;number&quot;},&quot;zatizeniDo&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:100,&quot;tsType&quot;:&quot;number&quot;},&quot;nosnostMax&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:120,&quot;tsType&quot;:&quot;number&quot;},&quot;vyska&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:19,&quot;tsType&quot;:&quot;number&quot;},&quot;vyskaJadra&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:16,&quot;tsType&quot;:&quot;number&quot;},&quot;zaruka&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:8,&quot;tsType&quot;:&quot;number&quot;},&quot;spankNaBoku&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:320,&quot;height&quot;:200},&quot;tuhost&quot;:{&quot;editor&quot;:&quot;float&quot;,&quot;default&quot;:4.5,&quot;min&quot;:0,&quot;max&quot;:5,&quot;step&quot;:0.1,&quot;tsType&quot;:&quot;number&quot;},&quot;tuhostPct&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:90,&quot;min&quot;:0,&quot;max&quot;:100,&quot;tsType&quot;:&quot;number&quot;},&quot;zatizeniOd&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:70,&quot;tsType&quot;:&quot;number&quot;},&quot;zatizeniDo&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:100,&quot;tsType&quot;:&quot;number&quot;},&quot;nosnostMax&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:120,&quot;tsType&quot;:&quot;number&quot;},&quot;vyska&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:19,&quot;tsType&quot;:&quot;number&quot;},&quot;vyskaJadra&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:16,&quot;tsType&quot;:&quot;number&quot;},&quot;zaruka&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:8,&quot;tsType&quot;:&quot;number&quot;},&quot;spankNaBoku&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;plain&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;size&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;standard&quot;,&quot;options&quot;:[&quot;standard&quot;,&quot;large&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;tuhostTitle&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Tuhost&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
 class Component extends DCLogic {
   uid = 'pm' + Math.random().toString(36).slice(2, 8);
   renderVals() {
     const p = this.props, u = this.uid;
+    const lg = p.size === 'large';
+    const k = lg ? 16 : 12, tr = lg ? 6 : 4;
     const nb = '\u00A0';
     const pct = typeof p.tuhostPct === 'number' ? p.tuhostPct : (typeof p.tuhost === 'number' ? p.tuhost / 5 * 100 : null);
     const t = pct === null ? null : Math.round(pct / 20 * 10) / 10;
@@ -91,7 +105,13 @@ class Component extends DCLogic {
     facts.forEach((f, i) => { f.id = u + 'f' + i; });
     return {
       idT: u + 't', idZ: u + 'z',
+      rootGap: lg ? '20px' : '12px',
+      lblSmall: lg ? '15px' : '13px',
+      large: lg, tuhostTitle: p.tuhostTitle || 'Tuhost',
+      lblSize: lg ? '15px' : '13px', lblWeight: lg ? 700 : 400, lblColor: lg ? 'var(--ss-text-primary,#1C2229)' : 'inherit', valSize: lg ? '17px' : '13px',
+      knob: k, knobHalf: k / 2, track: tr, trackTop: (k - tr) / 2,
       hasTuhost: t !== null,
+      plainTuhost: t !== null && !!p.plain, btnTuhost: t !== null && !p.plain,
       tuhostLabel: t === null ? '' : String(t).replace('.', ',') + ' z 5',
       tuhostPos: clamp(pct || 0),
       hasZatizeni: hasZ,
@@ -100,7 +120,7 @@ class Component extends DCLogic {
       doPos: hasZ ? clamp(dd / max * 100) : 0,
       rangeW: hasZ ? clamp((dd - od) / max * 100) : 0,
       scaleLabel: max + nb + 'kg',
-      hasPoloha: poloha.length > 0, polohaLabel,
+      idealLabel: 'Ideální pro' + (poloha.length ? (lg ? ' spánek ' + polohaLabel : ' ' + poloha.map(x => x === 'na zádech' ? 'záda' : 'bok').join(' i ')) : ''),
       tipZ: 'Doporučená váha jednoho spáče' + (hasZ ? ' (' + od + '–' + dd + nb + 'kg)' : '') + (poloha.length ? ' a poloha spánku, pro kterou se matrace hodí.' : '.'),
       facts
     };

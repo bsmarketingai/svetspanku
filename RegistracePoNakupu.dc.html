@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="./tmavy-rezim.css">
+<script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&display=swap" rel="stylesheet">
+<style>
+h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
+.ss-rp-soc{box-sizing:border-box;min-width:0;display:flex;align-items:center;gap:12px;width:100%;min-height:48px;padding:10px 16px;line-height:1.3;border-radius:6px;font-family:Roboto,Helvetica,Arial,sans-serif;font-size:15px;font-weight:600;text-decoration:none;transition:background-color .12s cubic-bezier(.22,.61,.36,1);}
+.ss-rp-soc:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+.ss-rp-fb{background:#3B5998;color:#FFFFFF;}
+.ss-rp-fb:hover{background:#31497D;color:#FFFFFF;}
+.ss-rp-gg{background:var(--ss-surface-page,#FFFFFF);color:var(--ss-text-primary,#1C2229);box-shadow:inset 0 0 0 1px var(--ss-border-subtle,#E1E6EB);}
+.ss-rp-gg:hover{background:var(--ss-hover-bg,#F0F5FA);color:var(--ss-hover-text,#21507B);}
+.ss-rp-sz{background:#CC0000;color:#FFFFFF;}
+.ss-rp-sz:hover{background:#A80000;color:#FFFFFF;}
+.ss-rp-ap{background:#1C2229;color:#FFFFFF;}
+.ss-rp-ap:hover{background:#2A323A;color:#FFFFFF;}
+</style>
+</helmet>
+<section aria-labelledby="ss-rp-h" style="{{ boxStyle }}">
+  <div style="display:flex;flex-direction:column;gap:12px">
+    <h2 id="ss-rp-h" style="margin:0;font-size:24px;line-height:1.2;text-wrap:balance">Registrujte se a využívejte výhody pro naše věrné zákazníky</h2>
+    <p style="margin:0;max-width:72ch;font-size:16px;line-height:1.55;color:var(--ss-text-secondary,#3D4750);text-wrap:pretty">Automaticky se stanete členem věrnostního programu rodiny Světa spánku a budete sbírat slevy za každý nákup. Údaje z objednávky už máme, stačí propojit účet nebo zadat heslo.</p>
+  </div>
+  <div style="{{ gridStyle }}">
+    <sc-if value="{{ notCreated }}" hint-placeholder-val="{{ true }}">
+      <div style="display:flex;flex-direction:column;gap:20px;min-width:0">
+        <div style="display:grid;grid-template-columns:{{ socialCols }};gap:12px">
+          <a class="ss-rp-soc ss-rp-fb" href="#registrace-facebook">
+            <span style="display:flex"><dc-import name="Ikony" iconName="brand-facebook" size="22" hint-size="22px,22px"></dc-import></span>
+            <span>Facebook</span>
+          </a>
+          <a class="ss-rp-soc ss-rp-gg" href="#registrace-google">
+            <img src="logo-google.svg" alt="" aria-hidden="true" style="display:block;width:22px;height:22px" />
+            <span>Google</span>
+          </a>
+          <a class="ss-rp-soc ss-rp-sz" href="#registrace-seznam">
+            <img src="logo-seznam-znak.svg" alt="" aria-hidden="true" style="display:block;width:22px;height:22px;object-fit:contain;filter:brightness(0) invert(1)" />
+            <span>Seznam</span>
+          </a>
+          <a class="ss-rp-soc ss-rp-ap" href="#registrace-apple">
+            <span style="display:flex"><dc-import name="Ikony" iconName="brand-apple-filled" size="22" hint-size="22px,22px"></dc-import></span>
+            <span>Apple ID</span>
+          </a>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px">
+          <span style="flex:1;height:1px;background:var(--ss-surface-strong,#E9E1D5)"></span>
+          <span style="font-size:14px;color:var(--ss-text-muted,#5B6874)">nebo s e-mailem {{ email }}</span>
+          <span style="flex:1;height:1px;background:var(--ss-surface-strong,#E9E1D5)"></span>
+        </div>
+        <dc-import name="Input" label="Heslo" type="password" required="{{ true }}" autoComplete="new-password" bordered="{{ true }}" value="{{ pass }}" onChange="{{ onPass }}" hint="Alespoň 8 znaků" hint-size="100%,90px"></dc-import>
+        <dc-import name="Input" label="Heslo (kontrola)" type="password" required="{{ true }}" autoComplete="new-password" bordered="{{ true }}" value="{{ pass2 }}" onChange="{{ onPass2 }}" hint="{{ passError }}" invalid="{{ passInvalid }}" hint-size="100%,72px"></dc-import>
+        <dc-import name="Checkbox" label="Nepřeji si dostávat exkluzivní slevy a tipy do e-mailu." checked="{{ noNews }}" onChange="{{ onNews }}" hint-size="100%,44px"></dc-import>
+        <p style="margin:0;font-size:14px;line-height:1.6;color:var(--ss-text-muted,#5B6874)">Registrací souhlasíte s <a href="#obchodni-podminky">obchodními podmínkami</a> a <a href="#ochrana-udaju">podmínkami ochrany osobních údajů</a>.</p>
+        <dc-import name="Tlacitko" label="Registrovat" variant="buy" size="large" fullWidth="{{ true }}" disabled="{{ cantCreate }}" onClick="{{ onCreate }}" hint-size="100%,52px"></dc-import>
+      </div>
+    </sc-if>
+    <sc-if value="{{ created }}" hint-placeholder-val="{{ false }}">
+      <div role="status" style="display:flex;gap:12px;align-items:flex-start;padding:24px;border-radius:12px;background:var(--ss-status-success-surface,#EEF8F2)">
+        <span style="display:flex;flex:none;color:var(--ss-status-success,#157A41)"><dc-import name="Ikony" iconName="circle-check" size="24" hint-size="24px,24px"></dc-import></span>
+        <span style="display:flex;flex-direction:column;gap:4px">
+          <span style="font-size:16px;font-weight:600;color:var(--ss-status-success,#157A41)">Účet je vytvořený</span>
+          <span style="font-size:14px;line-height:1.45;color:var(--ss-text-secondary,#3D4750)">Přihlásíte se e-mailem {{ email }} a zvoleným heslem. Objednávku najdete v historii nákupů.</span>
+        </span>
+      </div>
+    </sc-if>
+    <div style="{{ asideStyle }}">
+      <span style="font-size:15px;color:var(--ss-text-muted,#5B6874)">Co získáte</span>
+      <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:14px">
+        <sc-for list="{{ benefits }}" as="b" hint-placeholder-count="9">
+          <li style="display:flex;align-items:flex-start;gap:12px;font-size:15px;font-weight:600;line-height:1.5;color:var(--ss-text-primary,#1C2229)">
+            <span style="display:flex;flex:none;margin-top:1px;color:var(--ss-status-success,#157A41)"><dc-import name="Ikony" iconName="circle-check" size="20" hint-size="20px,20px"></dc-import></span>
+            <span style="min-width:0">{{ b }}</span>
+          </li>
+        </sc-for>
+      </ul>
+    </div>
+  </div>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:960,&quot;height&quot;:760},&quot;narrow&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;email&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;jana.novakova@seznam.cz&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;benefits&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;string[]&quot;}}">
+class Component extends DCLogic {
+  state = { pass: '', pass2: '', noNews: false, created: false, touched: false };
+  renderVals() {
+    const p = this.props;
+    const narrow = !!p.narrow;
+    const { pass, pass2, noNews, created, touched } = this.state;
+    const mismatch = touched && pass2 && pass !== pass2;
+    const ok = pass.length >= 8 && pass === pass2;
+    return {
+      email: p.email || 'jana.novakova@seznam.cz',
+      pass, pass2, noNews, created, notCreated: !created,
+      onPass: (v) => this.setState({ pass: v }),
+      onPass2: (v) => this.setState({ pass2: v, touched: true }),
+      onNews: (v) => this.setState({ noNews: v }),
+      passError: mismatch ? 'Hesla se neshodují.' : undefined,
+      passInvalid: !!mismatch,
+      cantCreate: !ok,
+      onCreate: () => { this.setState({ touched: true }); if (ok) this.setState({ created: true }); },
+      socialCols: narrow ? 'repeat(2,minmax(0,1fr))' : 'repeat(2,minmax(0,1fr))',
+      benefits: p.benefits || [
+        '90 dní na vrácení bez udání důvodu',
+        'Sleva na další nákup',
+        'Doprava zdarma na další objednávku',
+        'Sleva 50 % na dopravu a případně i montáž na další objednávku',
+        'Vlastní wishlist s možností konzultace přímo s pracovníkem vybrané prodejny — a při nákupu 5% sleva',
+        'Speciální slevy a akce pouze pro registrované',
+        'Věrnostní program',
+        'Informace o stavu vaší objednávky',
+        'Historie všech nákupů'
+      ],
+      gridStyle: { display: 'grid', gridTemplateColumns: narrow ? 'minmax(0,1fr)' : 'minmax(0,1fr) minmax(0,1fr)', gap: narrow ? '32px' : '48px', alignItems: 'start' },
+      asideStyle: { display: 'flex', flexDirection: 'column', gap: '16px', minWidth: 0, borderLeft: narrow ? 'none' : '1px dashed var(--ss-border-strong,#C8D0D8)', borderTop: narrow ? '1px dashed var(--ss-border-strong,#C8D0D8)' : 'none', paddingLeft: narrow ? 0 : '48px', paddingTop: narrow ? '32px' : 0 },
+      boxStyle: { boxSizing: 'border-box', width: '100%', fontFamily: 'Roboto,Helvetica,Arial,sans-serif', color: 'var(--ss-text-primary,#1C2229)', background: 'var(--ss-surface-box,#FFFFFF)', borderRadius: '12px', boxShadow: '0 4px 12px rgba(19,44,67,.12)', padding: narrow ? '32px 16px' : '40px', display: 'flex', flexDirection: 'column', gap: '32px' }
+    };
+  }
+}
+</script>
+</body>
+</html>

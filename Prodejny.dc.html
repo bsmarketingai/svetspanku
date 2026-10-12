@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="./tmavy-rezim.css">
+<script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');}catch(e){}</script>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&display=swap" rel="stylesheet">
+<style>
+h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
+.ss-pr a{color:var(--ss-link,#296093);}
+.ss-pr a:hover{color:var(--ss-hover-text,#21507B);}
+@media (min-width:820px) and (max-width:1149px){.ss-pr-map{grid-column:1 / -1;}}
+@media (min-width:550px) and (max-width:819px){.ss-pr-grid>:first-child{grid-column:1 / -1;}}
+</style>
+</helmet>
+<section class="ss-pr" aria-labelledby="ss-pr-h" style="width:100%;font-family:Roboto,Helvetica,Arial,sans-serif;color:var(--ss-text-primary,#1C2229)">
+  <div style="text-align:center;margin-bottom:24px">
+    <span style="display:block;font-family:Oswald,Helvetica,Arial,sans-serif;font-size:13px;font-weight:600;letter-spacing:.02em;color:var(--ss-link-hover,#21507B);margin-bottom:8px">Naše prodejny</span>
+    <h2 id="ss-pr-h" style="{{ hStyle }}">Přijďte si vše osobně vyzkoušet</h2>
+  </div>
+  <div role="group" aria-label="Výběr prodejny" style="display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-bottom:24px">
+    <sc-for list="{{ cityTabs }}" as="c" hint-placeholder-count="5">
+      <dc-import name="Chip" label="{{ c.label }}" size="small" variant="{{ c.variant }}" ariaPressed="{{ c.pressed }}" onClick="{{ c.onPick }}" hint-size="130px,32px"></dc-import>
+    </sc-for>
+  </div>
+  <div class="ss-pr-grid" style="{{ gridStyle }}">
+    <div class="ss-elev" style="background:var(--ss-surface-card,#FFFFFF);border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:16px;min-width:0">
+      <h3 style="margin:0;font-size:21px;line-height:1.2">{{ store.title }}</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:8px">
+        <sc-for list="{{ store.facts }}" as="f" hint-placeholder-count="2">
+          <span style="display:inline-flex;align-items:center;gap:8px;background:var(--ss-surface-subtle,#FAF5EF);border-radius:999px;padding:6px 14px;font-size:13px;font-weight:500;color:var(--ss-text-secondary,#3D4750)"><span style="display:flex;color:var(--ss-text-muted,#55616C)"><dc-import name="Ikony" iconName="{{ f.icon }}" size="16" hint-size="16px,16px"></dc-import></span>{{ f.label }}</span>
+        </sc-for>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <span style="display:flex;align-items:flex-start;gap:10px;font-size:15px;color:var(--ss-text-secondary,#3D4750)"><span style="display:flex;color:var(--ss-link,#296093);flex:none"><dc-import name="Ikony" iconName="map-pin" size="18" hint-size="18px,18px"></dc-import></span><span>{{ store.address }}</span></span>
+        <span style="display:flex;align-items:flex-start;gap:10px;font-size:15px;color:var(--ss-text-secondary,#3D4750)"><span style="display:flex;color:var(--ss-link,#296093);flex:none"><dc-import name="Ikony" iconName="clock" size="18" hint-size="18px,18px"></dc-import></span><span>{{ store.hours }}</span></span>
+        <span style="display:flex;align-items:flex-start;gap:10px;font-size:15px;color:var(--ss-text-secondary,#3D4750)"><span style="display:flex;color:var(--ss-link,#296093);flex:none"><dc-import name="Ikony" iconName="phone" size="18" hint-size="18px,18px"></dc-import></span><a href="{{ store.phoneHref }}" style="font-weight:600">{{ store.phone }}</a></span>
+        <span style="display:flex;align-items:flex-start;gap:10px;font-size:15px;color:var(--ss-text-secondary,#3D4750)"><span style="display:flex;color:var(--ss-link,#296093);flex:none"><dc-import name="Ikony" iconName="mail" size="18" hint-size="18px,18px"></dc-import></span><a href="{{ store.emailHref }}">{{ store.email }}</a></span>
+      </div>
+      <div><dc-import name="Tlacitko" label="Více o prodejně" variant="secondary" href="{{ store.href }}" iconRight="chevron-right" hint-size="180px,44px"></dc-import></div>
+    </div>
+    <div role="img" aria-label="{{ store.photoAlt }}" style="{{ photoStyle }}"></div>
+    <div class="ss-pr-map" style="{{ mapStyle }}">
+      <iframe src="{{ store.map }}" title="{{ store.mapTitle }}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe>
+    </div>
+  </div>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:640}}">
+class Component extends DCLogic {
+  state = { width: typeof window !== 'undefined' ? document.documentElement.clientWidth : 1440, city: 0 };
+  componentDidMount() { this._r = () => this.setState({ width: document.documentElement.clientWidth }); window.addEventListener('resize', this._r); }
+  componentWillUnmount() { window.removeEventListener('resize', this._r); }
+  renderVals() {
+    const w = this.state.width, narrow = w < 820;
+    const stores = [
+      { city: 'Brno – H-Park', title: 'Brno H-Park', address: 'H-Park, Heršpická 11f, 639 00 Brno',
+        hours: 'Po–Pá 9:00–18:00 · So 10:00–18:00',
+        phone: '+420 543 212 855', email: 'obchod@svetspanku.cz',
+        photo: 'prodejna-brno.jpg', href: 'https://showroomy.svetspanku.cz/prodejna/brno',
+        map: 'https://www.google.com/maps?q=Her%C5%A1pick%C3%A1+11f+639+00+Brno-st%C5%99ed&ll=49.174158,16.604449&z=16&hl=cs&output=embed',
+        facts: [{ icon: 'bed', label: '28 předváděcích postelí' }, { icon: 'ruler-3', label: '42 matrací k vyzkoušení' }] },
+      { city: 'Praha 5 – Butovice', title: 'Praha 5 Butovice', address: 'Galerie Butovice, Radlická 117, Praha 5',
+        hours: 'Po–Ne 9:00–20:00',
+        phone: '+420 222 261 497', email: 'butovice@svetspanku.cz',
+        photo: 'prodejna-praha-butovice.jpg', href: 'https://showroomy.svetspanku.cz/prodejna/butovice',
+        map: 'https://www.google.com/maps?cid=8282324235014765458&ll=50.047164,14.354621&z=16&hl=cs&output=embed',
+        facts: [{ icon: 'bed', label: '18 předváděcích postelí' }, { icon: 'ruler-3', label: '29 matrací k vyzkoušení' }] },
+      { city: 'Praha 10 – Kutnohorská', title: 'Praha 10 Kutnohorská', address: 'Retail Kutnohorská (u Penny), Kutnohorská 532, Praha 10',
+        hours: 'Po–Ne 9:00–20:00',
+        phone: '+420 272 656 213', email: 'sterboholy@svetspanku.cz',
+        photo: 'prodejna-praha-10.jpg', href: 'https://showroomy.svetspanku.cz/prodejna/sterboholy',
+        map: 'https://www.google.com/maps?cid=14642449341363822801&ll=50.066794,14.5492&z=16&hl=cs&output=embed',
+        facts: [{ icon: 'bed', label: '24 předváděcích postelí' }, { icon: 'ruler-3', label: '39 matrací k vyzkoušení' }] },
+      { city: 'Ostrava', title: 'Ostrava', address: 'Varenská 50, 702 00 Ostrava',
+        hours: 'Po–Ne 9:00–20:00',
+        phone: '+420 596 633 911', email: 'ostrava@svetspanku.cz',
+        photo: 'prodejna-ostrava.jpg', href: 'https://showroomy.svetspanku.cz/prodejna/ostrava',
+        map: 'https://www.google.com/maps?q=Sv%C4%9Btsp%C3%A1nku.cz+Ostrava&ll=49.8335365,18.2680417&z=16&hl=cs&output=embed',
+        facts: [{ icon: 'bed', label: '25 předváděcích postelí' }, { icon: 'ruler-3', label: '37 matrací k vyzkoušení' }] },
+      { city: 'Olomouc', title: 'Olomouc', address: 'Nákupní park OC Haná, Kafkova 15, 783 01 Olomouc-Slavonín',
+        hours: 'Po–Pá 9:00–20:00 · So–Ne 9:00–19:00',
+        phone: '+420 581 277 810', email: 'olomouc@svetspanku.cz',
+        photo: 'prodejna-olomouc.jpg', href: 'https://showroomy.svetspanku.cz/prodejna/olomouc',
+        map: 'https://www.google.com/maps?cid=5323467175451449000&ll=49.572849,17.223726&z=17&hl=cs&output=embed',
+        facts: [{ icon: 'dimensions', label: 'cca 600 m² výstavní plochy' }, { icon: 'bed', label: 'přes 40 předváděcích postelí' }, { icon: 'ruler-3', label: 'přes 70 matrací k vyzkoušení' }] }
+    ];
+    const s = stores[this.state.city] || stores[0];
+    const mh = narrow ? '200px' : '280px';
+    return {
+      hStyle: { margin: 0, fontSize: narrow ? '26px' : '34px', lineHeight: 1.15 },
+      cityTabs: stores.map((x, i) => ({ label: x.city, variant: this.state.city === i ? 'primary' : 'outline', pressed: this.state.city === i ? 'true' : 'false', onPick: () => this.setState({ city: i }) })),
+      store: Object.assign({}, s, { phoneHref: 'tel:' + String(s.phone || '').replace(/\s/g, ''), emailHref: 'mailto:' + s.email, mapTitle: 'Mapa — ' + s.title, photoAlt: 'Prodejna ' + s.title }),
+      gridStyle: { display: 'grid', gridTemplateColumns: w >= 1150 ? 'repeat(3,minmax(0,1fr))' : w >= 550 ? 'repeat(2,minmax(0,1fr))' : 'minmax(0,1fr)', gap: '20px', alignItems: 'stretch' },
+      photoStyle: { minHeight: mh, borderRadius: '12px', background: 'var(--ss-surface-muted,#F3EDE4) url(' + s.photo + ') center / cover no-repeat' },
+      mapStyle: { position: 'relative', overflow: 'hidden', minHeight: mh, borderRadius: '12px', background: 'var(--ss-surface-muted,#F3EDE4)' }
+    };
+  }
+}
+</script>
+</body>
+</html>

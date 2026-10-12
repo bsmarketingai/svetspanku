@@ -29,10 +29,10 @@ a:hover{color:var(--ss-hover-text,#A4600C);}
 @media (hover:hover) and (pointer:fine){.ss-pd-ph:hover img{transform:scale(1.03);}}
 .ss-pd-ph img{transition:transform .4s cubic-bezier(.22,.61,.36,1);}
 .ss-pd-arrow{position:absolute;top:50%;transform:translateY(-50%);display:flex;align-items:center;justify-content:center;width:44px;height:44px;border:0;border-radius:999px;background:rgba(255,255,255,.92);color:#21507B;cursor:pointer;box-shadow:0 2px 8px rgba(19,44,67,.08);}
-.ss-pd-arrow:hover{background:var(--ss-surface-page,#FEFAF7);color:var(--ss-hover-text,#A4600C);}
+.ss-pd-arrow:hover{background:var(--ss-surface-page,#FFFFFF);color:var(--ss-hover-text,#A4600C);}
 .ss-pd-arrow:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
-.ss-pd-round{display:flex;align-items:center;justify-content:center;width:44px;height:44px;border:0;border-radius:999px;background:var(--ss-surface-page,#FEFAF7);color:var(--ss-link-hover,#21507B);cursor:pointer;box-shadow:0 2px 8px rgba(19,44,67,.08);transition:transform .06s cubic-bezier(.22,.61,.36,1);}
-@media (hover:hover) and (pointer:fine){.ss-pd-round:not([aria-pressed]):hover{background:var(--ss-hover-bg,#FFF5E6)!important;color:var(--ss-hover-text,#A4600C);}.ss-pd-round[aria-pressed="false"]:hover{background:#FFF5E6!important;}.ss-pd-round[aria-pressed="false"]:hover span{color:#A4600C!important;}.ss-pd-round[aria-pressed="true"]:hover{background:#F09A2C!important;}}
+.ss-pd-round{display:flex;align-items:center;justify-content:center;width:44px;height:44px;border:0;border-radius:999px;background:var(--ss-surface-page,#FFFFFF);color:var(--ss-link-hover,#21507B);cursor:pointer;box-shadow:0 2px 8px rgba(19,44,67,.08);transition:transform .06s cubic-bezier(.22,.61,.36,1);}
+@media (hover:hover) and (pointer:fine){.ss-pd-round:not([aria-pressed]):hover{background:var(--ss-hover-bg,#FFF5E6)!important;color:var(--ss-hover-text,#A4600C);}.ss-pd-round[aria-pressed="false"]:hover{background:#FFF5E6!important;}.ss-pd-round[aria-pressed="false"]:hover span{color:#A4600C!important;}.ss-pd-round[aria-pressed="true"]:hover span{color:#F09A2C!important;}}
 .ss-pd-round:active{transform:scale(.96);}
 .ss-pd-round:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
 .ss-pd-row{display:flex;align-items:center;gap:16px;width:100%;text-align:left;padding:14px 16px;border:1px solid var(--ss-border-subtle,#E1E6EB);border-radius:12px;background:var(--ss-surface-box,#FFFFFF);cursor:pointer;font-family:inherit;transition:box-shadow .15s cubic-bezier(.22,.61,.36,1),border-color .12s cubic-bezier(.22,.61,.36,1);}
@@ -40,7 +40,7 @@ a:hover{color:var(--ss-hover-text,#A4600C);}
 .ss-pd-row:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
 .ss-pd-cs-radio{display:flex;align-items:center;gap:12px;width:100%;padding:0;border:0;background:none;cursor:pointer;font-family:inherit;text-align:left;color:var(--ss-text-primary,#1C2229);border-radius:6px;}
 .ss-pd-cs-radio:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
-.ss-pd-cs-dot{width:22px;height:22px;flex:none;border-radius:999px;box-sizing:border-box;border:2px solid var(--ss-border-strong,#C8D0D8);background:var(--ss-surface-page,#FEFAF7);display:flex;align-items:center;justify-content:center;transition:border-color .12s cubic-bezier(.22,.61,.36,1);}
+.ss-pd-cs-dot{width:22px;height:22px;flex:none;border-radius:999px;box-sizing:border-box;border:2px solid var(--ss-border-strong,#C8D0D8);background:var(--ss-surface-page,#FFFFFF);display:flex;align-items:center;justify-content:center;transition:border-color .12s cubic-bezier(.22,.61,.36,1);}
 .ss-pd-cs-dot[data-on="true"]{border-color:#FBB255;}
 .ss-pd-cs-dot[data-on="true"]::after{content:"";width:10px;height:10px;border-radius:999px;background:#FBB255;}
 @media (hover:hover) and (pointer:fine){.ss-pd-row:hover .ss-pd-cs-dot{border-color:var(--ss-hover-text,#A4600C);}}
@@ -54,7 +54,7 @@ a:hover{color:var(--ss-hover-text,#A4600C);}
 .ss-pd-cs-f{position:relative;display:flex;align-items:center;}
 .ss-pd-cs-f>.ss-pd-cs-ic{position:absolute;left:12px;display:flex;color:var(--ss-text-muted,#5B6874);pointer-events:none;}
 .ss-pd-cs-f>.ss-pd-cs-u{position:absolute;right:12px;font-size:14px;color:var(--ss-text-muted,#5B6874);pointer-events:none;}
-.ss-pd-cs-in{width:100%;min-width:0;height:44px;box-sizing:border-box;padding:0 40px 0 44px;border:0;border-radius:6px;background:var(--ss-surface-page,#FEFAF7);box-shadow:inset 0 0 0 1px var(--ss-border-strong,#C8D0D8);font-family:inherit;font-size:15px;font-weight:500;color:var(--ss-text-primary,#1C2229);-moz-appearance:textfield;transition:box-shadow .15s cubic-bezier(.22,.61,.36,1);}
+.ss-pd-cs-in{width:100%;min-width:0;height:44px;box-sizing:border-box;padding:0 40px 0 44px;border:0;border-radius:6px;background:var(--ss-surface-page,#FFFFFF);box-shadow:inset 0 0 0 1px var(--ss-border-strong,#C8D0D8);font-family:inherit;font-size:15px;font-weight:500;color:var(--ss-text-primary,#1C2229);-moz-appearance:textfield;transition:box-shadow .15s cubic-bezier(.22,.61,.36,1);}
 .ss-pd-cs-in::-webkit-outer-spin-button,.ss-pd-cs-in::-webkit-inner-spin-button{-webkit-appearance:none;margin:0;}
 @media (hover:hover) and (pointer:fine){.ss-pd-cs-in:hover{box-shadow:inset 0 0 0 1px var(--ss-border-hover,#8DB3D3);}}
 .ss-pd-cs-in:focus{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35),inset 0 0 0 1px var(--ss-border-action,#296093);}
@@ -75,7 +75,7 @@ html[data-mode="dark"] .ss-pd-glass::before,html[data-mode="dark"] .ss-pd-glassw
 .ss-pd-seg{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px;align-items:center;justify-content:center;padding:12px 16px;border:0;border-radius:8px;background:transparent;cursor:pointer;font-family:inherit;min-height:72px;transition:background-color .12s cubic-bezier(.22,.61,.36,1),box-shadow .15s cubic-bezier(.22,.61,.36,1);}
 .ss-pd-seg:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);z-index:1;}
 @media (hover:hover) and (pointer:fine){.ss-pd-seg[aria-pressed="false"]:hover{background:var(--ss-hover-bg,#FFF5E6);color:var(--ss-hover-text,#A4600C);}.ss-pd-seg[aria-pressed="false"]:hover>span:first-child,.ss-pd-seg[aria-pressed="false"]:hover svg{color:var(--ss-hover-text,#A4600C);}}
-.ss-pd-seg[aria-pressed="true"]{background:var(--ss-surface-page,#FEFAF7);box-shadow:0 2px 8px rgba(19,44,67,.08);}
+.ss-pd-seg[aria-pressed="true"]{background:var(--ss-surface-page,#FFFFFF);box-shadow:0 2px 8px rgba(19,44,67,.08);}
 .ss-pd-var{display:flex;flex-direction:column;gap:8px;width:100%;padding:0;border:0;background:none;cursor:pointer;text-align:left;font-family:inherit;border-radius:12px;}
 .ss-pd-var:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
 .ss-pd-var-ph{position:relative;width:100%;border-radius:12px;overflow:hidden;background:var(--ss-surface-subtle,#FAF5EF);}
@@ -85,7 +85,7 @@ html[data-mode="dark"] .ss-pd-glass::before,html[data-mode="dark"] .ss-pd-glassw
 .ss-pd-soc:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
 .ss-pd-fb{background:#3B5998;color:#FFFFFF;}
 .ss-pd-fb:hover{background:#31497D;color:#FFFFFF;}
-.ss-pd-gg{background:var(--ss-surface-page,#FEFAF7);color:var(--ss-text-primary,#1C2229);box-shadow:inset 0 0 0 1px var(--ss-border-subtle,#E1E6EB);}
+.ss-pd-gg{background:var(--ss-surface-page,#FFFFFF);color:var(--ss-text-primary,#1C2229);box-shadow:inset 0 0 0 1px var(--ss-border-subtle,#E1E6EB);}
 .ss-pd-gg:hover{background:var(--ss-surface-muted,#F0F3F6);color:var(--ss-text-primary,#1C2229);}
 .ss-pd-sz{background:#CC0000;color:#FFFFFF;}
 .ss-pd-sz:hover{background:#A80000;color:#FFFFFF;}
@@ -108,7 +108,7 @@ html[data-mode="dark"] .ss-pd-glass::before,html[data-mode="dark"] .ss-pd-glassw
 .ss-pd-lbth:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(255,255,255,.6);}
 </style>
 </helmet>
-<div style="width:100%;background:var(--ss-surface-page,#FEFAF7);font-family:Roboto,Helvetica,Arial,sans-serif;color:var(--ss-text-primary,#1C2229)">
+<div style="width:100%;background:var(--ss-surface-page,#FFFFFF);font-family:Roboto,Helvetica,Arial,sans-serif;color:var(--ss-text-primary,#1C2229)">
   <dc-import name="Hlavicka" style="position:sticky;top:0;z-index:200" ledMode="{{ ledMode }}" hint-size="100%,180px"></dc-import>
   <dc-import name="PrezentacniLista" items="{{ presItems }}" onToggle="{{ onPresToggle }}" choices="{{ presChoices }}" onPick="{{ onPresPick }}" hint-size="460px,52px"></dc-import>
 
@@ -117,7 +117,7 @@ html[data-mode="dark"] .ss-pd-glass::before,html[data-mode="dark"] .ss-pd-glassw
       <dc-import name="Drobeckova" items="{{ crumbs }}" hint-size="100%,48px"></dc-import>
     </div>
 
-    <section style="width:100%;background:var(--ss-surface-page,#FEFAF7)">
+    <section style="width:100%;background:var(--ss-surface-page,#FFFFFF)">
       <div style="{{ inner }}">
         <sc-if value="{{ titleTop }}" hint-placeholder-val="{{ false }}">
           <div style="display:flex;flex-direction:column;gap:10px;padding:0 0 16px">
@@ -149,7 +149,7 @@ html[data-mode="dark"] .ss-pd-glass::before,html[data-mode="dark"] .ss-pd-glassw
                 <dc-import name="Stitek" kind="freeShip" label="Doprava zdarma" size="small" hint-size="130px,24px"></dc-import>
                 <dc-import name="Stitek" kind="news" label="Novinka" size="small" hint-size="80px,24px"></dc-import>
               </div>
-              <button type="button" class="ss-pd-round" style="position:absolute;top:12px;right:12px;background-color:{{ favBg }};box-shadow:0 2px 8px rgba(19,44,67,.18)" onClick="{{ onFav }}" aria-pressed="{{ favPressed }}" aria-label="{{ favLabel }}">
+              <button type="button" class="ss-pd-round" style="position:absolute;top:12px;right:12px;background-color:{{ favBg }};box-shadow:none" onClick="{{ onFav }}" aria-pressed="{{ favPressed }}" aria-label="{{ favLabel }}">
                 <span style="display:flex;color:{{ favRoundIcon }}"><dc-import name="Ikony" iconName="{{ favIcon }}" size="22" hint-size="22px,22px"></dc-import></span>
               </button>
               <button type="button" class="ss-pd-arrow" style="left:12px" onClick="{{ prevPhoto }}" aria-label="Předchozí fotka">
@@ -287,7 +287,7 @@ html[data-mode="dark"] .ss-pd-glass::before,html[data-mode="dark"] .ss-pd-glassw
                   <button type="button" class="ss-pd-cs-info" aria-label="Informace o vlastním rozměru" aria-expanded="{{ csInfoExp }}" aria-controls="ss-pd-cs-info" onClick="{{ toggleCsInfo }}"><dc-import name="Ikony" iconName="info-circle" size="22" hint-size="22px,22px"></dc-import></button>
                 </div>
                 <sc-if value="{{ csInfo }}" hint-placeholder-val="{{ false }}">
-                  <p id="ss-pd-cs-info" style="margin:0;display:flex;gap:10px;padding:12px 16px;border-radius:6px;background:var(--ss-surface-page,#FEFAF7);font-size:14px;line-height:1.55;color:var(--ss-text-secondary,#3D4750)">Kvůli změnám rozměrů se může změnit dodací lhůta a cena. O všem vás budeme informovat e-mailem.</p>
+                  <p id="ss-pd-cs-info" style="margin:0;display:flex;gap:10px;padding:12px 16px;border-radius:6px;background:var(--ss-surface-page,#FFFFFF);font-size:14px;line-height:1.55;color:var(--ss-text-secondary,#3D4750)">Kvůli změnám rozměrů se může změnit dodací lhůta a cena. O všem vás budeme informovat e-mailem.</p>
                 </sc-if>
                 <sc-if value="{{ csOn }}" hint-placeholder-val="{{ false }}">
                   <div id="ss-pd-cs-form" style="display:flex;flex-direction:column;gap:12px">
@@ -310,7 +310,7 @@ html[data-mode="dark"] .ss-pd-glass::before,html[data-mode="dark"] .ss-pd-glassw
                       </label>
                     </div>
                     <sc-if value="{{ csHasPrice }}" hint-placeholder-val="{{ false }}">
-                      <div aria-live="polite" style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:4px 12px;padding:12px 16px;border-radius:6px;background:var(--ss-surface-page,#FEFAF7)">
+                      <div aria-live="polite" style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:4px 12px;padding:12px 16px;border-radius:6px;background:var(--ss-surface-page,#FFFFFF)">
                         <span style="font-size:14px;color:var(--ss-text-secondary,#3D4750)">Příplatek za rozměr {{ csDims }}</span>
                         <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:21px;color:var(--ss-text-primary,#1C2229)">+ {{ csAddFmt }}</span>
                       </div>
@@ -460,13 +460,13 @@ html[data-mode="dark"] .ss-pd-glass::before,html[data-mode="dark"] .ss-pd-glassw
       </div>
     </section>
 
-    <section style="width:100%;background:var(--ss-surface-page,#FEFAF7);margin-top:{{ sectionGap }}">
+    <section style="width:100%;background:var(--ss-surface-page,#FFFFFF);margin-top:{{ sectionGap }}">
       <div style="{{ innerPadded }}">
         <dc-import name="Usp" heading="Už 22 let pomáháme našim spáčům vyspat se do růžova" items="{{ uspItems }}" hint-size="100%,260px"></dc-import>
       </div>
     </section>
 
-    <nav aria-label="Obsah produktu" style="position:sticky;top:{{ tocTop }};transition:top .4s cubic-bezier(.22,.61,.36,1);z-index:100;box-shadow:0 2px 8px rgba(19,44,67,.08);width:100%;border-top:1px solid var(--ss-border-subtle,#E1E6EB);border-bottom:1px solid var(--ss-border-subtle,#E1E6EB);background:var(--ss-surface-page,#FEFAF7)">
+    <nav aria-label="Obsah produktu" style="position:sticky;top:{{ tocTop }};transition:top .4s cubic-bezier(.22,.61,.36,1);z-index:100;box-shadow:0 2px 8px rgba(19,44,67,.08);width:100%;border-top:1px solid var(--ss-border-subtle,#E1E6EB);border-bottom:1px solid var(--ss-border-subtle,#E1E6EB);background:var(--ss-surface-page,#FFFFFF)">
       <div style="{{ inner }}">
         <div style="display:flex;flex-wrap:wrap;gap:8px 28px">
           <sc-for list="{{ anchors }}" as="a" hint-placeholder-count="6">
@@ -476,7 +476,7 @@ html[data-mode="dark"] .ss-pd-glass::before,html[data-mode="dark"] .ss-pd-glassw
       </div>
     </nav>
 
-    <section id="popis" style="width:100%;background:var(--ss-surface-page,#FEFAF7)">
+    <section id="popis" style="width:100%;background:var(--ss-surface-page,#FFFFFF)">
       <div style="{{ innerPadded }}">
         <div style="display:grid;grid-template-columns:{{ descTemplate }};gap:{{ topGap }};align-items:start">
           <div style="min-width:0;display:flex;flex-direction:column;gap:20px">
@@ -501,7 +501,7 @@ html[data-mode="dark"] .ss-pd-glass::before,html[data-mode="dark"] .ss-pd-glassw
       </div>
     </section>
 
-    <section id="prednosti" style="width:100%;background:var(--ss-surface-page,#FEFAF7)">
+    <section id="prednosti" style="width:100%;background:var(--ss-surface-page,#FFFFFF)">
       <div style="{{ innerTight }}">
         <div style="display:grid;grid-template-columns:{{ descTemplate }};gap:{{ topGap }};align-items:start">
           <div style="min-width:0;display:flex;flex-direction:column;gap:20px">
@@ -551,7 +551,7 @@ html[data-mode="dark"] .ss-pd-glass::before,html[data-mode="dark"] .ss-pd-glassw
       </div>
     </section>
 
-    <section id="doplnky" style="width:100%;background:var(--ss-surface-page,#FEFAF7)">
+    <section id="doplnky" style="width:100%;background:var(--ss-surface-page,#FFFFFF)">
       <div style="{{ innerPadded }}">
         <div style="display:flex;flex-direction:column;gap:8px;align-items:center;text-align:center;margin-bottom:32px">
           <h2 style="margin:0;font-size:{{ h2Size }};line-height:1.15">Vyberte si z naší nabídky i další produkty, ať máte svou novou postel kompletní</h2>
@@ -569,7 +569,7 @@ html[data-mode="dark"] .ss-pd-glass::before,html[data-mode="dark"] .ss-pd-glassw
       </div>
     </section>
 
-    <section id="na-miru" style="width:100%;background:var(--ss-surface-page,#FEFAF7)">
+    <section id="na-miru" style="width:100%;background:var(--ss-surface-page,#FFFFFF)">
       <div style="{{ innerTight }}">
         <div style="display:grid;grid-template-columns:{{ descTemplate }};gap:{{ topGap }};align-items:center">
           <div style="min-width:0;display:flex;flex-direction:column;gap:20px">
@@ -592,7 +592,7 @@ html[data-mode="dark"] .ss-pd-glass::before,html[data-mode="dark"] .ss-pd-glassw
       </div>
     </section>
 
-    <section id="hodnoceni" style="width:100%;background:var(--ss-surface-page,#FEFAF7)">
+    <section id="hodnoceni" style="width:100%;background:var(--ss-surface-page,#FFFFFF)">
       <div style="{{ innerPadded }}">
         <div style="display:grid;grid-template-columns:{{ reviewTemplate }};gap:{{ topGap }};align-items:start">
           <div style="min-width:0;display:flex;flex-direction:column;gap:24px">
@@ -648,7 +648,7 @@ html[data-mode="dark"] .ss-pd-glass::before,html[data-mode="dark"] .ss-pd-glassw
       </div>
     </section>
 
-    <section id="faq" style="width:100%;background:var(--ss-surface-page,#FEFAF7)">
+    <section id="faq" style="width:100%;background:var(--ss-surface-page,#FFFFFF)">
       <div style="{{ innerTight }}">
         <div style="max-width:900px;display:flex;flex-direction:column;gap:16px">
           <h2 style="margin:0;font-size:{{ h2Size }};line-height:1.15">Časté dotazy našich spáčů</h2>
@@ -670,7 +670,7 @@ html[data-mode="dark"] .ss-pd-glass::before,html[data-mode="dark"] .ss-pd-glassw
       </div>
     </section>
 
-    <section id="souvisejici" style="width:100%;background:var(--ss-surface-page,#FEFAF7)">
+    <section id="souvisejici" style="width:100%;background:var(--ss-surface-tint,rgba(251,178,85,.05))">
       <div style="{{ innerPadded }}">
         <dc-import name="SouvisejiciProdukty" heading="Spáči ještě přikoupili" navPosition="below" hint-size="100%,560px"></dc-import>
       </div>
@@ -680,7 +680,7 @@ html[data-mode="dark"] .ss-pd-glass::before,html[data-mode="dark"] .ss-pd-glassw
   <dc-import name="Paticka" ledMode="{{ ledMode }}" hint-size="100%,700px"></dc-import>
 
   <sc-if value="{{ stickyOn }}" hint-placeholder-val="{{ false }}">
-    <div style="position:fixed;left:0;right:0;bottom:0;z-index:100;background:var(--ss-surface-page,#FEFAF7);border-top:1px solid var(--ss-border-subtle,#E1E6EB);box-shadow:0 -2px 8px rgba(19,44,67,.08),0 -16px 40px rgba(19,44,67,.06)">
+    <div style="position:fixed;left:0;right:0;bottom:0;z-index:100;background:var(--ss-surface-page,#FFFFFF);border-top:1px solid var(--ss-border-subtle,#E1E6EB);box-shadow:0 -2px 8px rgba(19,44,67,.08),0 -16px 40px rgba(19,44,67,.06)">
       <div style="{{ inner }}">
         <sc-if value="{{ stickyWide }}" hint-placeholder-val="{{ true }}">
           <div style="display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:8px 24px;padding:10px 0">
@@ -1175,7 +1175,7 @@ class Component extends DCLogic {
       })),
       upNoBorder: this.state.up === 'no' ? '#296093' : '#E1E6EB',
       upNoWidth: this.state.up === 'no' ? '2px' : '1px',
-      upNoBg: this.state.up === 'no' ? 'var(--ss-surface-page,#FEFAF7)' : 'var(--ss-surface-page,#FEFAF7)',
+      upNoBg: this.state.up === 'no' ? 'var(--ss-surface-page,#FFFFFF)' : 'var(--ss-surface-page,#FFFFFF)',
       upNoPressed: this.state.up === 'no' ? 'true' : 'false',
       upNoSelected: this.state.up === 'no',
       upYesSelected: this.state.up === 'yes',
@@ -1254,7 +1254,7 @@ class Component extends DCLogic {
       setBannerVisible: (this.state.setUi || 'S1') !== 'S3',
       ctaSize: (this.state.setUi || 'S1') === 'S2' ? 'medium' : 'large',
       setBtnStyle: this.state.setUi === 'S4'
-        ? 'display:inline-flex;align-items:center;gap:8px;flex:none;border-radius:6px;background:var(--ss-surface-page,#FEFAF7);color:var(--ss-link,#296093);box-shadow:inset 0 0 0 1px var(--ss-border-action,#296093),0 1px 2px rgba(19,44,67,.08);font-weight:600;min-height:44px;padding:0 16px;font-size:14px'
+        ? 'display:inline-flex;align-items:center;gap:8px;flex:none;border-radius:6px;background:var(--ss-surface-page,#FFFFFF);color:var(--ss-link,#296093);box-shadow:inset 0 0 0 1px var(--ss-border-action,#296093),0 1px 2px rgba(19,44,67,.08);font-weight:600;min-height:44px;padding:0 16px;font-size:14px'
         : 'display:inline-flex;align-items:center;gap:8px;flex:none;border-radius:6px;background:#B3261E;color:#FFFFFF;font-weight:700;letter-spacing:.01em;'
         + ((this.state.setUi || 'S1') === 'S2' ? 'min-height:52px;padding:0 24px;font-size:16px' : 'min-height:44px;padding:0 16px;font-size:14px'),
       setUiVal: this.state.setUi || 'S1',
@@ -1286,9 +1286,9 @@ class Component extends DCLogic {
       addedTotal: fmt((now + csAdd) * (this.state.qty || 1)),
       noop: () => {},
       favIcon: this.state.fav ? 'heart-filled' : 'heart',
-      favColor: this.state.fav ? 'var(--ss-text-apricot,#A4600C)' : 'var(--ss-text-secondary,#3D4750)',
-      favRoundIcon: this.state.fav ? '#132C43' : '#21507B',
-      favBg: this.state.fav ? '#FBB255' : '#FFFFFF',
+      favColor: this.state.fav ? '#FBB255' : 'var(--ss-text-secondary,#3D4750)',
+      favRoundIcon: this.state.fav ? '#FBB255' : '#21507B',
+      favBg: '#FFFFFF',
       favLabel: this.state.fav ? 'V oblíbených' : 'Přidat do oblíbených',
       favPressed: this.state.fav ? 'true' : 'false',
       onFav: () => this.setState(s => {
@@ -1333,7 +1333,7 @@ class Component extends DCLogic {
         ['Výška čela u nohou', '45 cm'],
         ['Výška bočnice', '45 cm'],
         ['Uložení roštu', '12–19 cm (stavitelné)']
-      ].map((p, k) => ({ label: p[0] + ':', value: p[1], bg: k % 2 === 0 ? 'var(--ss-surface-subtle,#FAF5EF)' : 'var(--ss-surface-page,#FEFAF7)' })),
+      ].map((p, k) => ({ label: p[0] + ':', value: p[1], bg: k % 2 === 0 ? 'var(--ss-surface-subtle,#FAF5EF)' : 'var(--ss-surface-page,#FFFFFF)' })),
       perks: [
         { icon: 'map-pin', label: 'Vyrobena u nás v Česku' },
         { icon: 'package', label: 'Masivní dřevo z českých lesů' },

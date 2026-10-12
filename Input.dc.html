@@ -107,7 +107,7 @@ class Component extends DCLogic {
       inputStyle: {
         height: h + 'px', fontSize: (compact ? 14 : 15) + 'px',
         padding: '0 ' + (p.iconRight ? (p.clearable && p.value ? 84 : 48) : 14) + 'px 0 ' + (p.icon && !p.iconRight ? 38 : 14) + 'px',
-        background: p.white ? 'var(--ss-surface-box,#FFFFFF)' : p.bordered ? 'var(--ss-surface-page,#FEFAF7)' : 'var(--ss-surface-subtle,#FAF5EF)',
+        background: p.white ? 'var(--ss-surface-box,#FFFFFF)' : p.bordered ? 'var(--ss-surface-page,#FFFFFF)' : 'var(--ss-surface-subtle,#FAF5EF)',
         boxShadow: 'inset 0 0 0 1px ' + (invalid ? 'var(--ss-border-error,#B3261E)' : (p.bordered ? 'var(--ss-border-subtle,#E1E6EB)' : 'transparent'))
       },
       hoverStyle: p.disabled ? {} : (p.bordered ? { boxShadow: 'inset 0 0 0 1px ' + (invalid ? 'var(--ss-border-error,#B3261E)' : 'var(--ss-border-strong,#C8D0D8)') } : { background: 'var(--ss-surface-muted,#F3EDE4)' }),

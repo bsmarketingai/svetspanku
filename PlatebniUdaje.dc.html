@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="./tmavy-rezim.css">
+<script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&display=swap" rel="stylesheet">
+<style>
+h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
+.ss-pu-copy{position:relative;display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;padding:0;border:0;border-radius:6px;background:transparent;color:var(--ss-text-muted,#5B6874);cursor:pointer;transition:background-color .12s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1);}
+.ss-pu-copy:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+@media (hover:hover) and (pointer:fine){.ss-pu-copy:hover{background:var(--ss-hover-bg,#F0F5FA);color:var(--ss-hover-text,#21507B);}}
+</style>
+</helmet>
+<section aria-labelledby="ss-pu-h" style="{{ boxStyle }}">
+  <div style="display:flex;flex-direction:column;gap:20px;min-width:0">
+    <h2 id="ss-pu-h" style="margin:0;font-size:24px;line-height:1.2">Doprava a platba</h2>
+    <dl style="margin:0;display:flex;flex-direction:column;gap:12px">
+      <sc-for list="{{ rows }}" as="r" hint-placeholder-count="4">
+        <div style="{{ rowStyle }}">
+          <dt style="font-size:14px;color:var(--ss-text-muted,#5B6874);padding-top:2px">{{ r.label }}</dt>
+          <dd style="margin:0;display:flex;align-items:flex-start;gap:4px;min-width:0">
+            <span style="display:flex;flex-direction:column;gap:2px;min-width:0">
+              <span style="{{ r.valueStyle }}">{{ r.value }}</span>
+              <sc-if value="{{ r.hasSub }}" hint-placeholder-val="{{ false }}"><span style="font-size:14px;line-height:1.45;color:var(--ss-text-secondary,#3D4750)">{{ r.sub }}</span></sc-if>
+            </span>
+            <sc-if value="{{ r.canCopy }}" hint-placeholder-val="{{ false }}">
+              <button type="button" class="ss-pu-copy" style="margin-top:-6px" onClick="{{ r.onCopy }}" aria-label="{{ r.copyLabel }}"><dc-import name="Ikony" iconName="{{ r.copyIcon }}" size="18" hint-size="18px,18px"></dc-import></button>
+            </sc-if>
+          </dd>
+        </div>
+      </sc-for>
+    </dl>
+    <span aria-live="polite" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">{{ live }}</span>
+  </div>
+
+  <sc-if value="{{ isQr }}" hint-placeholder-val="{{ true }}">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center">
+      <span style="font-size:15px;font-weight:600">Zaplaťte jednoduše a rychle</span>
+      <img src="qrkod.png" alt="QR kód pro platbu" width="160" height="160" style="display:block;width:160px;height:160px;padding:8px;border-radius:6px;background:#FFFFFF;box-sizing:content-box" />
+      <span style="max-width:200px;font-size:13px;line-height:1.45;color:var(--ss-text-secondary,#3D4750);text-wrap:pretty">Stačí naskenovat QR kód ve vaší bankovní aplikaci.</span>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isPaid }}" hint-placeholder-val="{{ false }}">
+    <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;padding:24px;border-radius:12px;background:var(--ss-status-success-surface,#EEF8F2)">
+      <span style="display:flex;color:var(--ss-status-success,#157A41)"><dc-import name="Ikony" iconName="circle-check" size="40" hint-size="40px,40px"></dc-import></span>
+      <span style="font-family:Oswald,Roboto,sans-serif;font-weight:600;font-size:20px;color:var(--ss-status-success,#157A41)">Zaplaceno</span>
+      <span style="font-size:14px;color:var(--ss-text-secondary,#3D4750)">{{ paidAt }}</span>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isFailed }}" hint-placeholder-val="{{ false }}">
+    <div style="display:flex;flex-direction:column;gap:16px;padding:24px;border-radius:12px;background:var(--ss-status-error-surface,#FCF2F1)">
+      <div style="display:flex;gap:12px;align-items:flex-start">
+        <span style="display:flex;flex:none;color:var(--ss-status-error,#B3261E)"><dc-import name="Ikony" iconName="alert-circle" size="24" hint-size="24px,24px"></dc-import></span>
+        <span style="display:flex;flex-direction:column;gap:4px">
+          <span style="font-size:15px;font-weight:600;color:var(--ss-status-error,#B3261E)">Platba se nezdařila</span>
+          <span style="font-size:14px;line-height:1.45;color:var(--ss-text-secondary,#3D4750);text-wrap:pretty">Objednávka je uložená. Zaplaťte ji prosím do 3 dnů, jinak ji zrušíme.</span>
+        </span>
+      </div>
+      <dc-import name="Tlacitko" label="{{ payLabel }}" variant="buy" size="large" fullWidth="{{ true }}" onClick="{{ onPay }}" hint-size="100%,52px"></dc-import>
+      <div style="display:flex;justify-content:center">
+        <dc-import name="Tlacitko" label="Zvolit jinou platbu" variant="text" href="KosikKrok2.dc.html" hint-size="160px,24px"></dc-import>
+      </div>
+    </div>
+  </sc-if>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:880,&quot;height&quot;:360},&quot;stav&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;prevod&quot;,&quot;options&quot;:[&quot;prevod&quot;,&quot;zaplaceno&quot;,&quot;nezaplaceno&quot;,&quot;dobirka&quot;,&quot;osobni&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;narrow&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;doprava&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Vlastní doprava Světspánku&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;dopravaAdresa&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Školní 279, 281 63 Žehušice&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;platba&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Okamžitý bankovní převod&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;castka&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;41 480 Kč&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;ucet&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;123456789/1000&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;vs&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;111666&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;zaplaceno&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;12. 10. 2026 v 13:42&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;onPay&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;() =&gt; void&quot;}}">
+class Component extends DCLogic {
+  state = { copied: -1 };
+  componentWillUnmount() { clearTimeout(this._t); }
+  copy(i, text) {
+    try { navigator.clipboard && navigator.clipboard.writeText(text.replace(/\u00A0/g, ' ')); } catch (e) {}
+    clearTimeout(this._t);
+    this.setState({ copied: i });
+    this._t = setTimeout(() => this.setState({ copied: -1 }), 2000);
+  }
+  renderVals() {
+    const p = this.props;
+    const stav = p.stav || 'prevod';
+    const narrow = !!p.narrow;
+    const amount = p.castka || '41 480 Kč';
+    const strong = { fontSize: '15px', fontWeight: 600, lineHeight: 1.4 };
+    const price = { fontFamily: 'Oswald,Roboto,sans-serif', fontWeight: 700, fontSize: '18px', lineHeight: 1.3 };
+    const raw = [
+      { label: 'Doprava', value: p.doprava || 'Vlastní doprava Světspánku', sub: p.dopravaAdresa || 'Školní 279, 281 63 Žehušice' },
+      { label: 'Platba', value: p.platba || 'Okamžitý bankovní převod' }
+    ];
+    if (stav === 'prevod') raw.push(
+      { label: 'Částka k úhradě', value: amount, price: true, copy: true },
+      { label: 'Číslo účtu', value: p.ucet || '123456789/1000', copy: true },
+      { label: 'Variabilní symbol', value: p.vs || '111666', copy: true }
+    );
+    if (stav === 'dobirka' || stav === 'osobni') raw.push({ label: stav === 'osobni' ? 'Zaplatíte na prodejně' : 'Zaplatíte při převzetí', value: amount, price: true, sub: stav === 'osobni' ? 'Hotově nebo kartou' : 'Hotově nebo kartou řidiči' });
+    const c = this.state.copied;
+    const rows = raw.map((r, i) => ({
+      label: r.label, value: r.value, sub: r.sub || '', hasSub: !!r.sub,
+      valueStyle: r.price ? price : strong,
+      canCopy: !!r.copy,
+      copyIcon: c === i ? 'check' : 'copy',
+      copyLabel: 'Zkopírovat: ' + r.label.toLowerCase(),
+      onCopy: () => this.copy(i, r.value)
+    }));
+    const hasSide = stav === 'prevod' || stav === 'zaplaceno' || stav === 'nezaplaceno';
+    return {
+      rows,
+      live: c >= 0 ? 'Zkopírováno' : '',
+      isQr: stav === 'prevod', isPaid: stav === 'zaplaceno', isFailed: stav === 'nezaplaceno',
+      paidAt: p.zaplaceno || '12. 10. 2026 v 13:42',
+      payLabel: 'Zaplatit ' + amount,
+      onPay: () => { if (p.onPay) p.onPay(); },
+      rowStyle: { display: 'grid', gridTemplateColumns: narrow ? 'minmax(0,1fr)' : '160px minmax(0,1fr)', gap: narrow ? '2px' : '16px' },
+      boxStyle: { position: 'relative', boxSizing: 'border-box', width: '100%', fontFamily: 'Roboto,Helvetica,Arial,sans-serif', color: 'var(--ss-text-primary,#1C2229)', background: 'var(--ss-surface-box,#FFFFFF)', borderRadius: '12px', boxShadow: '0 4px 12px rgba(19,44,67,.12)', padding: narrow ? '24px 16px' : '32px', display: 'grid', gridTemplateColumns: hasSide && !narrow ? 'minmax(0,1fr) 260px' : 'minmax(0,1fr)', gap: narrow ? '24px' : '40px', alignItems: 'start' }
+    };
+  }
+}
+</script>
+</body>
+</html>

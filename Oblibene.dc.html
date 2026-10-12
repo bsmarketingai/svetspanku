@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="./tmavy-rezim.css">
+<script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&display=swap" rel="stylesheet">
+<style>
+h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
+html,body{margin:0!important;padding:0!important;}
+#dc-root{margin:0!important;padding:0!important;width:100%!important;max-width:none!important;border:0!important;}
+#dc-root>.sc-host{margin:0!important;padding:0!important;width:100%!important;}
+a{color:var(--ss-link,#296093);}
+a:hover{color:var(--ss-hover-text,#21507B);}
+</style>
+</helmet>
+<div style="width:100%;background:var(--ss-surface-page,#FFFFFF);font-family:Roboto,Helvetica,Arial,sans-serif;color:var(--ss-text-primary,#1C2229)">
+  <dc-import name="Hlavicka" style="position:sticky;top:0;z-index:200" ledMode="{{ ledMode }}" hint-size="100%,180px"></dc-import>
+  <dc-import name="PrezentacniLista" items="{{ presItems }}" onToggle="{{ onPresToggle }}" hint-size="320px,52px"></dc-import>
+
+  <main>
+    <section class="ss-grad-top" style="width:100%;background-color:var(--ss-surface-page,#FFFFFF)">
+      <div style="{{ innerTop }}">
+        <dc-import name="Drobeckova" items="{{ crumbs }}" hint-size="100%,56px"></dc-import>
+        <h1 style="{{ h1Style }}">Můj wishlist <span style="font-weight:400;color:var(--ss-text-muted,#5B6874)">({{ count }})</span></h1>
+      </div>
+    </section>
+
+    <section style="width:100%;background:var(--ss-surface-tint,rgba(251,178,85,.05))">
+      <div style="{{ innerBody }}">
+        <div style="{{ layoutStyle }}">
+          <div style="display:flex;flex-direction:column;gap:32px;min-width:0">
+            <sc-if value="{{ hasItems }}" hint-placeholder-val="{{ true }}">
+              <h2 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0">Oblíbené produkty</h2>
+              <div style="{{ gridStyle }}">
+                <sc-for list="{{ items }}" as="it" hint-placeholder-count="3">
+                  <dc-import name="ProduktovaKarta" product="{{ it.data }}" removable="{{ true }}" onRemove="{{ it.onRemove }}" hint-size="100%,620px"></dc-import>
+                </sc-for>
+              </div>
+              <div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px">
+                <dc-import name="Tlacitko" label="Sdílet wishlist" variant="secondary" size="large" iconLeft="share" onClick="{{ onShare }}" hint-size="200px,52px"></dc-import>
+                <span role="status" style="font-size:14px;color:var(--ss-status-success,#157A41)">{{ shareMsg }}</span>
+              </div>
+            </sc-if>
+            <sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}">
+              <dc-import name="PrazdnyStav" icon="heart" title="Wishlist je prázdný" text="Produkty si do oblíbených uložíte srdíčkem na kartě produktu nebo v jeho detailu." suggestions="{{ emptySugg }}" primaryLabel="Prohlédnout matrace" onPrimary="{{ goMatrace }}" secondaryLabel="Průvodce výběrem" hint-size="100%,340px"></dc-import>
+            </sc-if>
+          </div>
+          <div style="{{ asideWrap }}">
+            <dc-import name="PoradceBox" ledMode="{{ ledMode }}" horizontal="{{ asideRow }}" hint-size="100%,460px"></dc-import>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ss-grad-top ss-grad-glow" style="width:100%;background-color:var(--ss-surface-page,#FFFFFF)">
+      <div style="{{ innerNews }}">
+        <dc-import name="Newsletter" narrow="{{ narrowNews }}" hint-size="100%,160px"></dc-import>
+      </div>
+    </section>
+  </main>
+
+  <dc-import name="Paticka" ledMode="{{ ledMode }}" hint-size="100%,700px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:1600}}">
+class Component extends DCLogic {
+  state = { width: typeof window !== 'undefined' ? document.documentElement.clientWidth : 1440, led: true, all: null, ids: null, shareMsg: '' };
+  componentDidMount() {
+    this._r = () => this.setState({ width: document.documentElement.clientWidth });
+    window.addEventListener('resize', this._r);
+    let stored = [];
+    try { stored = JSON.parse(localStorage.getItem('ss-fav') || '[]'); } catch (e) {}
+    import('./produkty.js').then(m => {
+      const all = m.PRODUKTY;
+      const known = stored.filter(id => all.some(p => String(p.id) === id));
+      this.setState({ all, ids: known.length ? known : ['p1', 'p4', 'p5'] });
+    });
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this._r); clearTimeout(this._t); }
+  remove(id) {
+    this.setState(s => ({ ids: s.ids.filter(x => x !== id) }));
+    try { const l = JSON.parse(localStorage.getItem('ss-fav') || '[]').filter(x => x !== id); localStorage.setItem('ss-fav', JSON.stringify(l)); window.dispatchEvent(new Event('ss-fav')); } catch (e) {}
+  }
+  renderVals() {
+    const w = this.state.width, narrow = w < 820, wide = w >= 1150;
+    const pad = narrow ? '16px' : '32px';
+    const box = (t, b) => ({ maxWidth: '1560px', margin: '0 auto', boxSizing: 'border-box', padding: t + ' ' + pad + ' ' + b });
+    const all = this.state.all || [];
+    const ids = this.state.ids || [];
+    const items = ids.map(id => all.find(p => String(p.id) === id)).filter(Boolean)
+      .map(p => ({ data: Object.assign({}, p, { ctaLabel: 'Vybrat variantu', fav: true }), onRemove: () => this.remove(String(p.id)) }));
+    const cols = wide ? 3 : w >= 820 ? 3 : w >= 550 ? 2 : 1;
+    return {
+      ledMode: this.state.led ? 'on' : 'off',
+      presItems: [{ label: 'LED', value: this.state.led }],
+      onPresToggle: () => this.setState(s => ({ led: !s.led })),
+      crumbs: [{ label: 'Domů', href: 'index.dc.html' }, { label: 'Oblíbené' }],
+      h1Style: { margin: narrow ? '8px 0 0' : '16px 0 0', fontSize: narrow ? '28px' : '40px', lineHeight: 1.15 },
+      count: items.length,
+      innerTop: box(narrow ? '8px' : '16px', narrow ? '32px' : '48px'),
+      innerBody: box(narrow ? '32px' : '48px', narrow ? '48px' : '80px'),
+      innerNews: box(narrow ? '40px' : '64px', narrow ? '40px' : '64px'),
+      narrowNews: w < 1000,
+      layoutStyle: { display: 'grid', gridTemplateColumns: wide ? 'minmax(0,3fr) minmax(0,1fr)' : 'minmax(0,1fr)', gap: wide ? '20px' : '32px', alignItems: 'start' },
+      gridStyle: { display: 'grid', gridTemplateColumns: 'repeat(' + cols + ',minmax(0,1fr))', gap: '20px' },
+      asideWrap: wide ? { minWidth: 0, position: 'sticky', top: '24px' } : { minWidth: 0, order: -1 },
+      asideRow: !wide && w >= 480,
+      items, hasItems: items.length > 0, isEmpty: !!this.state.all && items.length === 0,
+      emptySugg: [{ label: 'Matrace', href: 'Kategorie Matrace.dc.html' }, { label: 'Postele z masivu', href: 'Kategorie Postele.dc.html' }, { label: 'Rošty', href: 'Kategorie Rosty.dc.html' }],
+      goMatrace: () => { window.location.href = 'Kategorie Matrace.dc.html'; },
+      shareMsg: this.state.shareMsg,
+      onShare: () => {
+        try { navigator.clipboard && navigator.clipboard.writeText(window.location.href); } catch (e) {}
+        clearTimeout(this._t);
+        this.setState({ shareMsg: 'Odkaz na wishlist je zkopírovaný' });
+        this._t = setTimeout(() => this.setState({ shareMsg: '' }), 3000);
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -45,7 +45,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
       </sc-for>
     </div>
 
-    <div style="flex:none;display:flex;gap:12px;padding:16px 20px;border-top:1px solid var(--ss-border-subtle,#E1E6EB);background:var(--ss-surface-page,#FEFAF7)">
+    <div style="flex:none;display:flex;gap:12px;padding:16px 20px;border-top:1px solid var(--ss-border-subtle,#E1E6EB);background:var(--ss-surface-page,#FFFFFF)">
       <dc-import name="Tlacitko" label="Smazat vše" variant="secondary" onClick="{{ clear }}" hint-size="130px,44px"></dc-import>
       <div style="flex:1;min-width:0">
         <dc-import name="Tlacitko" label="{{ applyLabel }}" variant="primary" fullWidth="{{ true }}" onClick="{{ close }}" hint-size="100%,44px"></dc-import>
@@ -125,7 +125,7 @@ class Component extends DCLogic {
       },
       panelStyle: {
         position: 'fixed', top: 0, right: 0, bottom: 0, zIndex: 410,
-        width: (typeof document !== 'undefined' && document.documentElement.clientWidth < 420) ? '100%' : 'min(92vw,420px)', background: 'var(--ss-surface-page,#FEFAF7)', display: 'flex', flexDirection: 'column',
+        width: (typeof document !== 'undefined' && document.documentElement.clientWidth < 420) ? '100%' : 'min(92vw,420px)', background: 'var(--ss-surface-page,#FFFFFF)', display: 'flex', flexDirection: 'column',
         boxShadow: '0 16px 40px rgba(19,44,67,.18)',
         transform: visible ? 'translateX(0)' : 'translateX(100%)',
         transition: 'transform .4s cubic-bezier(.22,.61,.36,1)'

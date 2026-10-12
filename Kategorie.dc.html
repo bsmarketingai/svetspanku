@@ -21,7 +21,7 @@ html,body{margin:0!important;padding:0!important;}
 #dc-root>.sc-host{margin:0!important;padding:0!important;width:100%!important;}
 a{color:var(--ss-link,#296093);}
 a:hover{color:var(--ss-hover-text,#A4600C);}
-.ss-seg{display:inline-flex;align-items:center;justify-content:center;height:52px;padding:0 24px;border:1px solid var(--ss-border-subtle,#E1E6EB);border-radius:6px;background:var(--ss-surface-page,#FEFAF7);font:inherit;font-size:15px;font-weight:600;color:var(--ss-text-secondary,#3D4750);cursor:pointer;white-space:nowrap;transition:background-color .12s cubic-bezier(.22,.61,.36,1),border-color .12s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1);}
+.ss-seg{display:inline-flex;align-items:center;justify-content:center;height:52px;padding:0 24px;border:1px solid var(--ss-border-subtle,#E1E6EB);border-radius:6px;background:var(--ss-surface-page,#FFFFFF);font:inherit;font-size:15px;font-weight:600;color:var(--ss-text-secondary,#3D4750);cursor:pointer;white-space:nowrap;transition:background-color .12s cubic-bezier(.22,.61,.36,1),border-color .12s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1);}
 @media (hover:hover) and (pointer:fine){.ss-seg:hover{border-color:var(--ss-border-action,#296093);color:var(--ss-hover-text,#A4600C);}}
 .ss-seg:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
 .ss-seg[aria-pressed="true"]{background:var(--ss-surface-hover,#F0F5FA);border-color:var(--ss-border-action,#296093);color:var(--ss-link-hover,#21507B);}
@@ -56,12 +56,12 @@ a.ss-promo:hover{color:#FFFFFF;}
 @media (prefers-reduced-motion:reduce){.ss-kg-pvbg{transition:none;}.ss-kg-pv:hover .ss-kg-pvbg{transform:none;}}
 </style>
 </helmet>
-<div style="width:100%;background:var(--ss-surface-page,#FEFAF7);font-family:Roboto,Helvetica,Arial,sans-serif;color:var(--ss-text-primary,#1C2229)">
+<div style="width:100%;background:var(--ss-surface-page,#FFFFFF);font-family:Roboto,Helvetica,Arial,sans-serif;color:var(--ss-text-primary,#1C2229)">
   <dc-import name="Hlavicka" style="position:sticky;top:0;z-index:200" ledMode="{{ ledMode }}" activeCategory="{{ activeL1 }}" hint-size="100%,180px"></dc-import>
   <dc-import name="PrezentacniLista" items="{{ presItems }}" onToggle="{{ onPresToggle }}" choices="{{ presChoices }}" onPick="{{ onPresPick }}" hint-size="400px,52px"></dc-import>
 
   <main>
-    <section class="ss-grad-top" style="width:100%;background-color:var(--ss-surface-page,#FEFAF7)">
+    <section class="ss-grad-top" style="width:100%;background-color:var(--ss-surface-page,#FFFFFF)">
       <div style="{{ innerTop }}">
         <div style="display:grid;grid-template-columns:{{ topCols }};grid-template-areas:{{ topAreas }};gap:{{ topGap }};align-items:start">
           <div style="grid-area:a;min-width:0">
@@ -147,7 +147,7 @@ a.ss-promo:hover{color:#FFFFFF;}
     </section>
 
     <sc-if value="{{ hasSub }}" hint-placeholder-val="{{ true }}">
-    <section style="width:100%;background:var(--ss-surface-page,#FEFAF7)">
+    <section class="ss-grad-top ss-grad-glow" style="width:100%;background-color:var(--ss-surface-page,#FFFFFF)">
       <div style="{{ innerSub }}">
         <nav aria-label="Podkategorie" style="display:flex;flex-direction:column;gap:32px">
           <sc-for list="{{ chipRows }}" as="r" hint-placeholder-count="0">
@@ -161,7 +161,7 @@ a.ss-promo:hover{color:#FFFFFF;}
             </div>
           </sc-for>
           <sc-if value="{{ hasTiles }}" hint-placeholder-val="{{ true }}">
-            <dc-import name="VypisKategorii" items="{{ subcats }}" variant="{{ subVariant }}" hint-size="100%,380px"></dc-import>
+            <dc-import name="VypisKategorii" items="{{ subcats }}" variant="{{ subVariant }}" dense="{{ true }}" hint-size="100%,380px"></dc-import>
           </sc-if>
         </nav>
       </div>
@@ -169,7 +169,7 @@ a.ss-promo:hover{color:#FFFFFF;}
     </sc-if>
 
     <sc-if value="{{ hasProducts }}" hint-placeholder-val="{{ true }}">
-    <section style="width:100%;background:var(--ss-surface-page,#FEFAF7)">
+    <section style="width:100%;background:var(--ss-surface-tint,rgba(251,178,85,.05))">
       <div style="{{ innerResults }}">
         <div style="display:grid;grid-template-columns:{{ resultsTemplate }};gap:{{ resultsGap }};align-items:start">
 
@@ -405,7 +405,7 @@ class Component extends DCLogic {
       onPresPick: (ci, opt) => this.setState(ci === 0 ? { subV: opt } : { cardV: opt }),
       cardLayout: (this.state.cardV === 'Řádek' && w < 820) ? 'row' : 'stack',
       innerTop: Object.assign({}, inner, { padding: narrow ? '8px 16px 32px' : '16px 32px 64px' }),
-      innerSub: Object.assign({}, inner, { padding: narrow ? '40px 16px 0' : '64px 32px 0' }),
+      innerSub: Object.assign({}, inner, { padding: narrow ? '32px 16px 48px' : '48px 32px 64px' }),
       innerResults: Object.assign({}, inner, { padding: narrow ? '32px 16px 48px' : '48px 32px 80px' }),
       h1Size: narrow ? '28px' : '40px',
       h1Margin: narrow ? '8px 0 0' : '16px 0 0',
@@ -428,7 +428,7 @@ class Component extends DCLogic {
       topGap: sidebar ? '40px 64px' : (narrow ? '32px' : '40px'),
       bodySize: narrow ? '15px' : '16px',
       introMax: sidebar ? '72ch' : 'none',
-      promoRatio: w < 420 ? 'auto' : w < 550 ? '16 / 9' : narrow ? '2 / 1' : (sidebar ? '16 / 10' : '32 / 9'),
+      promoRatio: w < 420 ? 'auto' : w < 550 ? '32 / 9' : narrow ? '4 / 1' : (sidebar ? '16 / 10' : '32 / 9'),
       promoPad: narrow ? '24px' : '32px',
       promoVeil: narrow ? 'rgba(255,255,255,.82)' : 'linear-gradient(90deg,rgba(255,255,255,.94) 0%,rgba(255,255,255,.8) 45%,rgba(255,255,255,0) 75%)',
       promoTextMax: narrow ? 'none' : '60%',

@@ -44,6 +44,8 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 .ss-ct[data-pop="true"]::before{content:"";position:absolute;left:0;right:0;bottom:0;top:calc(12px + (100cqw - 32px) * .2222);background:var(--ss-surface-card,#FFFFFF);border-radius:12px;transition:box-shadow .15s cubic-bezier(.22,.61,.36,1);}
 .ss-ct[data-pop="true"]:hover::before{box-shadow:0 4px 12px rgba(19,44,67,.12);}
 .ss-ct[data-pop="true"] .ss-ct-std{position:relative;z-index:1;}
+.ss-ct[data-dense="true"],.ss-ct[data-dense="true"]::before{border-radius:6px;}
+.ss-ct[data-dense="true"] .ss-ct-media{border-radius:4px;}
 .ss-ct[data-pop="true"] .ss-ct-media{overflow:visible;overflow-x:clip;flex:none;min-height:0;}
 @media (max-width:819px){.ss-ct-std>.ss-ct-media{aspect-ratio:3/2!important;margin-bottom:0!important;}.ss-ct-title[data-std="true"]{font-size:15px!important;}.ss-ct[data-pop="true"]::before{top:calc(12px + (100cqw - 32px) * .3333);}}
 .ss-ct-chev{transition:transform .15s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1);}
@@ -51,7 +53,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 @media (prefers-reduced-motion:reduce){.ss-ct-chev{transition:none;}.ss-ct:hover .ss-ct-chev{transform:none;}}
 </style>
 </helmet>
-<a class="ss-ct" href="{{ href }}" data-photo="{{ photoStr }}" data-pop="{{ popStr }}" style="{{ wrapStyle }}">
+<a class="ss-ct" href="{{ href }}" data-photo="{{ photoStr }}" data-pop="{{ popStr }}" data-dense="{{ denseStr }}" style="{{ wrapStyle }}">
   <sc-if value="{{ isStandard }}" hint-placeholder-val="{{ true }}">
     <span class="ss-ct-std" style="display:flex;flex-direction:column;gap:12px;width:100%;min-width:0;height:100%">
       <span class="ss-ct-media" style="width:100%;aspect-ratio:9/4">
@@ -95,7 +97,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
       </span>
       <span class="ss-ct-title" style="font-size:15px;font-weight:600;line-height:1.35;min-width:0">{{ label }}</span>
       <sc-if value="{{ hasCount }}" hint-placeholder-val="{{ true }}">
-        <span style="margin-left:auto;font-size:13px;color:var(--ss-text-muted,#5B6874);white-space:nowrap">{{ count }}</span>
+        <span style="margin-left:auto;padding-right:8px;font-size:13px;color:var(--ss-text-muted,#5B6874);white-space:nowrap">{{ count }}</span>
       </sc-if>
     </span>
   </sc-if>
@@ -141,6 +143,7 @@ class Component extends DCLogic {
       isPhoto: photo,
       photoStr: photo ? 'true' : 'false',
       popStr: p.variant === 'vystup' ? 'true' : 'false',
+      denseStr: p.dense ? 'true' : 'false',
       bgImage: p.image ? 'url(' + p.image + ')' : 'none',
       isCompact: compact,
       hasSub: !compact && sub.length > 0,

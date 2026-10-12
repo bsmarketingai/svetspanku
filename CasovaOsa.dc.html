@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="./tmavy-rezim.css">
+<script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');}catch(e){}</script>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&display=swap" rel="stylesheet">
+<style>
+h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
+.ss-co-scroll{overflow-x:auto;overflow-y:hidden;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;}
+.ss-co-scroll:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);border-radius:6px;}
+.ss-co-col{scroll-snap-align:start;}
+.ss-co-year{font-family:Oswald,Helvetica,Arial,sans-serif;font-weight:600;line-height:1;color:transparent;-webkit-text-stroke:1.5px var(--ss-text-heading,#0B1F33);letter-spacing:.01em;}
+</style>
+</helmet>
+<section aria-labelledby="ss-co-h" style="width:100%;font-family:Roboto,Helvetica,Arial,sans-serif;color:var(--ss-text-primary,#1C2229);display:flex;flex-direction:column;gap:{{ headGap }}">
+  <h2 id="ss-co-h" style="{{ hStyle }}">{{ heading }}</h2>
+  <div class="ss-co-scroll" tabindex="0" role="region" aria-label="Časová osa — posuňte do strany">
+    <ol style="{{ trackStyle }}">
+      <span aria-hidden="true" style="{{ lineStyle }}"></span>
+      <sc-for list="{{ items }}" as="m" hint-placeholder-count="5">
+        <li class="ss-co-col" style="display:flex;flex-direction:column;min-width:0">
+          <div style="{{ m.topStyle }}">
+            <sc-if value="{{ m.up }}" hint-placeholder-val="{{ true }}"><span class="ss-co-year" style="{{ yearStyle }}">{{ m.year }}</span></sc-if>
+          </div>
+          <div style="display:flex;align-items:center;height:48px">
+            <span aria-hidden="true" style="{{ m.dotStyle }}"></span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:12px;padding-top:24px;padding-right:24px">
+            <sc-if value="{{ m.down }}" hint-placeholder-val="{{ false }}"><span class="ss-co-year" style="{{ yearDownStyle }}">{{ m.year }}</span></sc-if>
+            <h3 style="margin:0;font-size:18px;line-height:1.3">{{ m.title }}</h3>
+            <p style="margin:0;font-size:15px;line-height:1.6;color:var(--ss-text-secondary,#3D4750);text-wrap:pretty">{{ m.text }}</p>
+          </div>
+        </li>
+      </sc-for>
+    </ol>
+  </div>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:520},&quot;heading&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Historie&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;active&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:2,&quot;tsType&quot;:&quot;number&quot;},&quot;items&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;{year: string, title: string, text: string}[]&quot;}}">
+class Component extends DCLogic {
+  state = { width: typeof window !== 'undefined' ? document.documentElement.clientWidth : 1440 };
+  componentDidMount() { this._r = () => this.setState({ width: document.documentElement.clientWidth }); window.addEventListener('resize', this._r); }
+  componentWillUnmount() { window.removeEventListener('resize', this._r); }
+  renderVals() {
+    const p = this.props;
+    const w = this.state.width, narrow = w < 820;
+    const yearSize = narrow ? 56 : 88;
+    const src = p.items || [
+      { year: '2002', title: 'Začátek v malé dílně', text: 'Na Moravě vyrábíme první postele z masivu. Část z nich slouží svým majitelům dodnes.' },
+      { year: '2005', title: 'První vlastní prodejna', text: 'Otevíráme showroom v Brně, kde si zákazníci mohou postel i matraci vyzkoušet.' },
+      { year: '2008', title: 'Vlastní výroba matrací', text: 'K postelím přidáváme matrace z vlastní výroby a rozvážíme je naší dopravou.' },
+      { year: '2018', title: 'Pět prodejen po republice', text: 'Prodejny v Praze, Brně, Ostravě a Olomouci a nová moderní linka v dílně.' },
+      { year: '2025', title: '28 000 prodaných postelí', text: 'Stále vyrábíme na Moravě, z buku, jasanu a dubu ve 14 odstínech.' }
+    ];
+    const active = p.active ?? 2;
+    const colW = narrow ? 260 : 280;
+    const topH = yearSize + 24;
+    return {
+      heading: p.heading || 'Historie',
+      headGap: narrow ? '24px' : '40px',
+      hStyle: { margin: 0, fontSize: narrow ? '26px' : '34px', lineHeight: 1.15 },
+      yearStyle: { fontSize: yearSize + 'px' },
+      yearDownStyle: { display: 'block', fontSize: yearSize + 'px', lineHeight: 1.15, marginBottom: '8px' },
+      trackStyle: { position: 'relative', margin: 0, padding: '0 0 8px', listStyle: 'none', display: 'grid', gridTemplateColumns: 'repeat(' + src.length + ',minmax(' + colW + 'px,1fr))', minWidth: (src.length * colW) + 'px' },
+      lineStyle: { position: 'absolute', left: 0, right: 0, top: (topH + 24) + 'px', height: '1px', background: 'var(--ss-border-strong,#C8D0D8)' },
+      items: src.map((m, i) => {
+        const up = i % 2 === 0, on = i === active;
+        return {
+          year: m.year, title: m.title, text: m.text, up, down: !up,
+          topStyle: { height: topH + 'px', display: 'flex', alignItems: 'flex-end', paddingBottom: '8px', boxSizing: 'border-box' },
+          dotStyle: on
+            ? { position: 'relative', zIndex: 1, width: '20px', height: '20px', borderRadius: '999px', background: 'var(--ss-text-heading,#0B1F33)', boxShadow: '0 0 0 6px var(--ss-surface-page,#FFFFFF), 0 0 0 7px var(--ss-border-strong,#C8D0D8), 0 0 0 12px var(--ss-surface-page,#FFFFFF), 0 0 0 13px var(--ss-border-subtle,#E1E6EB)' }
+            : { position: 'relative', zIndex: 1, width: '14px', height: '14px', borderRadius: '999px', background: 'var(--ss-text-heading,#0B1F33)', boxShadow: '0 0 0 4px var(--ss-surface-page,#FFFFFF)' }
+        };
+      })
+    };
+  }
+}
+</script>
+</body>
+</html>

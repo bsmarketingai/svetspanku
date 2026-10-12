@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="./tmavy-rezim.css">
+<script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');}catch(e){}</script>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&display=swap" rel="stylesheet">
+<style>
+h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
+.ss-pbx a{color:#296093;border-radius:4px;transition:color .12s cubic-bezier(.22,.61,.36,1);}
+@media (hover:hover) and (pointer:fine){.ss-pbx a:hover{color:var(--ss-hover-text,#21507B);}}
+.ss-pbx a:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+@keyframes ss-pbx-led{0%{box-shadow:0 0 0 0 rgba(21,122,65,.45);}70%{box-shadow:0 0 0 6px rgba(21,122,65,0);}100%{box-shadow:0 0 0 0 rgba(21,122,65,0);}}
+.ss-pbx-led{display:inline-block;width:8px;height:8px;flex:none;border-radius:999px;background:#157A41;animation:ss-pbx-led 1.8s cubic-bezier(.22,.61,.36,1) infinite;}
+@media (prefers-reduced-motion:reduce){.ss-pbx-led{animation:none;}}
+</style>
+</helmet>
+<aside class="ss-pbx" aria-labelledby="ss-pbx-h" style="{{ boxStyle }}">
+  <div style="display:flex;flex-direction:column;gap:8px">
+    <h2 id="ss-pbx-h" style="margin:0;font-size:22px;line-height:1.2;text-wrap:balance;color:#FFFFFF">Nevíte si rady s výběrem?</h2>
+    <p style="margin:0;font-size:15px;line-height:1.5;color:#DCE8F2;text-wrap:pretty">Naši spánkoví specialisté vám poradí on-line nebo přímo na pobočce.</p>
+  </div>
+  <div style="{{ gridStyle }}">
+    <div style="background:#FFFFFF;color:#1C2229;border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:8px;min-width:0;box-shadow:0 2px 8px rgba(19,44,67,.08)">
+      <h3 style="color:#0B1F33;margin:0 0 4px;font-size:16px;line-height:1.3">Chcete poradit on-line?</h3>
+      <a href="tel:+420543212855" style="font-family:Oswald,Roboto,sans-serif;font-size:21px;font-weight:700;text-decoration:none">+420 543 212 855</a>
+      <span style="display:inline-flex;align-items:center;gap:8px;font-size:13px;color:#3D4750">
+        <sc-if value="{{ isOn }}" hint-placeholder-val="{{ true }}"><span class="ss-pbx-led" role="img" aria-label="Právě jsme online"></span></sc-if>
+        <span>Po–Pá 9:00–17:00</span>
+      </span>
+      <a href="mailto:podpora@svetspanku.cz" style="font-size:15px;text-decoration:underline;text-underline-offset:3px;overflow-wrap:anywhere">podpora@svetspanku.cz</a>
+    </div>
+    <div style="background:#FFFFFF;color:#1C2229;border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:16px;align-items:flex-start;min-width:0;box-shadow:0 2px 8px rgba(19,44,67,.08)">
+      <h3 style="color:#0B1F33;margin:0;font-size:16px;line-height:1.3;text-wrap:balance">Chcete si produkty vyzkoušet osobně na pobočce?</h3>
+      <dc-import name="Tlacitko" label="Vybrat pobočku" variant="secondary" size="medium" href="#prodejny" iconLeft="map-pin" hint-size="180px,44px"></dc-import>
+    </div>
+  </div>
+</aside>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:340,&quot;height&quot;:520},&quot;ledMode&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;on&quot;,&quot;options&quot;:[&quot;on&quot;,&quot;off&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;horizontal&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const p = this.props;
+    const row = !!p.horizontal;
+    return {
+      isOn: (p.ledMode || 'on') === 'on',
+      gridStyle: { display: 'grid', gridTemplateColumns: row ? 'repeat(2,minmax(0,1fr))' : 'minmax(0,1fr)', gap: '12px' },
+      boxStyle: { boxSizing: 'border-box', width: '100%', fontFamily: 'Roboto,Helvetica,Arial,sans-serif', color: 'var(--ss-text-primary,#1C2229)', background: '#0B1F33', borderRadius: '12px', padding: '24px', display: 'flex', flexDirection: 'column', gap: '20px' }
+    };
+  }
+}
+</script>
+</body>
+</html>

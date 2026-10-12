@@ -20,16 +20,9 @@ html,body{margin:0!important;padding:0!important;}
 #dc-root{margin:0!important;padding:0!important;width:100%!important;max-width:none!important;border:0!important;}
 #dc-root>.sc-host{margin:0!important;padding:0!important;width:100%!important;}
 a{color:var(--ss-link,#296093);}
-a:hover{color:var(--ss-hover-text,#A4600C);}
-.ss-seg{display:inline-flex;align-items:center;justify-content:center;height:52px;padding:0 24px;border:1px solid var(--ss-border-subtle,#E1E6EB);border-radius:6px;background:var(--ss-surface-page,#FEFAF7);font:inherit;font-size:15px;font-weight:600;color:var(--ss-text-secondary,#3D4750);cursor:pointer;white-space:nowrap;transition:background-color .12s cubic-bezier(.22,.61,.36,1),border-color .12s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1);}
-@media (hover:hover) and (pointer:fine){.ss-seg:hover{border-color:var(--ss-border-action,#296093);color:var(--ss-hover-text,#A4600C);}}
-.ss-seg:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
-.ss-seg[aria-pressed="true"]{background:var(--ss-surface-hover,#F0F5FA);border-color:var(--ss-border-action,#296093);color:var(--ss-link-hover,#21507B);}
-.ss-cat{position:relative;display:flex;align-items:center;gap:12px;padding:16px;border:1px solid var(--ss-border-subtle,#E1E6EB);border-radius:12px;background:var(--ss-surface-card,#FFFFFF);text-decoration:none;color:var(--ss-text-primary,#1C2229);min-width:0;transition:box-shadow .15s cubic-bezier(.22,.61,.36,1),border-color .12s cubic-bezier(.22,.61,.36,1);}
-@media (hover:hover) and (pointer:fine){.ss-cat:hover{border-color:var(--ss-border-action,#296093);box-shadow:0 4px 12px rgba(19,44,67,.12);}}
-.ss-cat:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
-.ss-art{position:relative;display:flex;flex-direction:column;gap:12px;padding:12px;margin:-12px;text-decoration:none;color:var(--ss-text-primary,#1C2229);border-radius:12px;transition:box-shadow .15s cubic-bezier(.22,.61,.36,1);}
-@media (hover:hover) and (pointer:fine){.ss-art:hover{box-shadow:0 4px 12px rgba(19,44,67,.12);}.ss-art:hover .ss-art-t{color:var(--ss-hover-text,#A4600C);}}
+a:hover{color:var(--ss-hover-text,#21507B);}
+.ss-art{position:relative;display:flex;align-items:center;gap:12px;padding:12px;text-decoration:none;color:var(--ss-text-primary,#1C2229);border-radius:12px;background:var(--ss-surface-card,#FFFFFF);box-shadow:0 2px 8px rgba(19,44,67,.08);min-width:0;transition:box-shadow .15s cubic-bezier(.22,.61,.36,1);}
+@media (hover:hover) and (pointer:fine){.ss-art:hover{box-shadow:0 4px 12px rgba(19,44,67,.12);}.ss-art:hover .ss-art-t{color:var(--ss-hover-text,#21507B);}}
 .ss-art:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
 .ss-ph{display:flex;align-items:center;justify-content:center;background:var(--ss-surface-muted,#F3EDE4);color:var(--ss-text-decor,#C8D0D8);border-radius:12px;}
 .ss-sort{position:relative;display:inline-flex;align-items:center;height:44px;border:0;padding:0 2px;background:none;font:inherit;font-size:15px;font-weight:600;color:var(--ss-text-muted,#55616C);cursor:pointer;white-space:nowrap;transition:color .12s cubic-bezier(.22,.61,.36,1);}
@@ -40,61 +33,49 @@ a:hover{color:var(--ss-hover-text,#A4600C);}
 .ss-sort[aria-pressed="true"]::after{background:#FBB255;}
 </style>
 </helmet>
-<div style="width:100%;background:var(--ss-surface-page,#FEFAF7);font-family:Roboto,Helvetica,Arial,sans-serif;color:var(--ss-text-primary,#1C2229)">
+<div style="width:100%;background:var(--ss-surface-page,#FFFFFF);font-family:Roboto,Helvetica,Arial,sans-serif;color:var(--ss-text-primary,#1C2229)">
   <dc-import name="Hlavicka" style="position:sticky;top:0;z-index:200" ledMode="{{ ledMode }}" hint-size="100%,180px"></dc-import>
   <dc-import name="PrezentacniLista" items="{{ presItems }}" onToggle="{{ onPresToggle }}" hint-size="320px,52px"></dc-import>
 
   <main>
-    <section class="ss-grad-top" style="width:100%;background-color:var(--ss-surface-page,#FEFAF7)">
+    <section class="ss-grad-top" style="width:100%;background-color:var(--ss-surface-page,#FFFFFF)">
       <div style="{{ innerTop }}">
         <h1 style="margin:0 0 8px;font-size:{{ h1Size }};line-height:1.1">Výsledky pro „postele“ (126)</h1>
         <p style="margin:0;font-size:15px;color:var(--ss-text-secondary,#3D4750)">Pro upřesnění výsledků použijte filtr.</p>
 
         <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:24px">
-          <button type="button" class="ss-seg" aria-pressed="{{ tabCatPressed }}" onClick="{{ pickCat }}">Kategorie (8)</button>
-          <button type="button" class="ss-seg" aria-pressed="{{ tabArtPressed }}" onClick="{{ pickArt }}">Články (10)</button>
+          <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="2">
+            <dc-import name="Chip" label="{{ t.label }}" variant="{{ t.variant }}" ariaPressed="{{ t.pressed }}" onClick="{{ t.onPick }}" hint-size="140px,40px"></dc-import>
+          </sc-for>
         </div>
-      </div>
-    </section>
-
-    <section style="width:100%;background:var(--ss-surface-page,#FEFAF7)">
-      <div style="{{ innerTabBody }}">
 
         <sc-if value="{{ isCat }}" hint-placeholder-val="{{ true }}">
           <div style="margin-top:20px">
-            <h2 style="margin:0 0 12px;font-size:13px;letter-spacing:.1em;color:var(--ss-text-muted,#55616C)">Kategorie</h2>
-            <div style="display:grid;grid-template-columns:{{ catTemplate }};gap:12px">
-              <sc-for list="{{ categories }}" as="c" hint-placeholder-count="8">
-                <a class="ss-cat" href="{{ c.href }}">
-                  <span class="ss-ph" style="flex:none;width:40px;height:40px;border-radius:6px"><dc-import name="Ikony" iconName="photo" size="20" hint-size="20px,20px"></dc-import></span>
-                  <span style="display:flex;flex-direction:column;gap:2px;min-width:0">
-                    <span style="font-size:15px;font-weight:600;line-height:1.3;color:var(--ss-link-hover,#21507B)">{{ c.label }}</span>
-                    <span style="font-size:13px;color:var(--ss-text-muted,#5B6874)">{{ c.countText }}</span>
+            <h2 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0">Kategorie</h2>
+            <dc-import name="VypisKategorii" variant="kompaktni" items="{{ categories }}" hint-size="100%,160px"></dc-import>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isArt }}" hint-placeholder-val="{{ false }}">
+          <div style="margin-top:20px">
+            <h2 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0">Články</h2>
+            <div style="display:grid;grid-template-columns:{{ artTemplate }};gap:12px">
+              <sc-for list="{{ articles }}" as="a" hint-placeholder-count="4">
+                <a class="ss-art" href="{{ a.href }}">
+                  <img src="{{ a.image }}" alt="" loading="lazy" style="display:block;flex:none;width:72px;height:72px;object-fit:cover;border-radius:6px;background:var(--ss-surface-muted,#F3EDE4)" />
+                  <span style="display:flex;flex-direction:column;gap:4px;min-width:0">
+                  <span class="ss-art-t" style="font-size:15px;font-weight:600;line-height:1.35;transition:color .12s cubic-bezier(.22,.61,.36,1)">{{ a.title }}</span>
+                  <span style="display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-size:13px;line-height:1.45;color:var(--ss-text-muted,#5B6874)">{{ a.perex }}</span>
                   </span>
                 </a>
               </sc-for>
             </div>
           </div>
         </sc-if>
-
-        <sc-if value="{{ isArt }}" hint-placeholder-val="{{ false }}">
-          <div style="margin-top:20px">
-            <h2 style="margin:0 0 12px;font-size:13px;letter-spacing:.1em;color:var(--ss-text-muted,#55616C)">Články</h2>
-            <div style="display:grid;grid-template-columns:{{ artTemplate }};gap:20px">
-              <sc-for list="{{ articles }}" as="a" hint-placeholder-count="4">
-                <a class="ss-art" href="{{ a.href }}">
-                  <span class="ss-ph" style="height:180px"><dc-import name="Ikony" iconName="photo" size="28" hint-size="28px,28px"></dc-import></span>
-                  <span class="ss-art-t" style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:19px;line-height:1.25;transition:color .12s cubic-bezier(.22,.61,.36,1)">{{ a.title }}</span>
-                  <span style="font-size:14px;line-height:1.55;color:var(--ss-text-secondary,#3D4750)">{{ a.perex }}</span>
-                </a>
-              </sc-for>
-            </div>
-          </div>
-        </sc-if>
       </div>
     </section>
 
-    <section style="width:100%;background:var(--ss-surface-page,#FEFAF7)">
+    <section style="width:100%;background:var(--ss-surface-tint,rgba(251,178,85,.05))">
       <div style="{{ innerResults }}">
         <div style="display:grid;grid-template-columns:{{ resultsTemplate }};gap:{{ resultsGap }};align-items:start">
 
@@ -165,33 +146,33 @@ class Component extends DCLogic {
       ledMode: this.state.led ? 'on' : 'off',
       presItems: [{ label: 'LED', value: this.state.led }],
       onPresToggle: () => this.setState(s => ({ led: !s.led })),
-      innerTop: Object.assign({}, inner, { padding: narrow ? '32px 16px 32px' : '48px 32px 48px' }),
+      innerTop: Object.assign({}, inner, { padding: narrow ? '32px 16px 48px' : '48px 32px 64px' }),
       innerTabBody: Object.assign({}, inner, { paddingTop: '4px' }),
       innerResults: Object.assign({}, inner, { padding: narrow ? '32px 16px 48px' : '48px 32px 80px' }),
       h1Size: narrow ? '28px' : '40px',
       isCat: this.state.tab === 'kategorie',
       isArt: this.state.tab === 'clanky',
-      tabCatPressed: this.state.tab === 'kategorie' ? 'true' : 'false',
-      tabArtPressed: this.state.tab === 'clanky' ? 'true' : 'false',
-      pickCat: () => this.setState({ tab: 'kategorie' }),
-      pickArt: () => this.setState({ tab: 'clanky' }),
-      catTemplate: w >= 1150 ? 'repeat(4,minmax(0,1fr))' : w >= 820 ? 'repeat(3,minmax(0,1fr))' : w >= 550 ? 'repeat(2,minmax(0,1fr))' : 'minmax(0,1fr)',
-      artTemplate: w >= 1150 ? 'repeat(4,minmax(0,1fr))' : w >= 820 ? 'repeat(2,minmax(0,1fr))' : 'minmax(0,1fr)',
+      tabs: [['kategorie', 'Kategorie (8)'], ['clanky', 'Články (10)']].map(([id, label]) => ({
+        label, variant: this.state.tab === id ? 'primary' : 'outline',
+        pressed: this.state.tab === id ? 'true' : 'false',
+        onPick: () => this.setState({ tab: id })
+      })),
+      artTemplate: w >= 1150 ? 'repeat(4,minmax(0,1fr))' : w >= 820 ? 'repeat(3,minmax(0,1fr))' : w >= 550 ? 'repeat(2,minmax(0,1fr))' : 'minmax(0,1fr)',
       categories: [
-        { label: 'Manželské postele', count: 46, href: '#manzelske-postele' },
-        { label: 'Čalouněné postele', count: 46, href: '#calounene-postele' },
-        { label: 'Patrové postele', count: 46, href: '#patrove-postele' },
-        { label: 'Jednolůžkové postele', count: 46, href: '#jednoluzkove-postele' },
-        { label: 'Boxspring — americké postele', count: 46, href: '#boxspring' },
-        { label: 'Postele s úložným prostorem', count: 46, href: '#uloz-prostor' },
-        { label: 'Postele s nočními stolky', count: 46, href: '#postele-se-stolky' },
-        { label: 'Postele na míru', count: 46, href: '#na-miru' }
-      ].map(c => ({ label: c.label, href: c.href, countText: '(' + c.count + ')' })),
+        { label: 'Manželské postele', count: 46, href: 'Kategorie Postele.dc.html#s=1', image: 'kategorie-manzelske-postele.png' },
+        { label: 'Čalouněné postele', count: 31, href: 'Kategorie Postele.dc.html#s=2', image: 'kategorie-calounene-postele.png' },
+        { label: 'Patrové postele', count: 12, href: 'Kategorie Postele.dc.html', image: 'kategorie-jednoluzka.png' },
+        { label: 'Jednolůžkové postele', count: 24, href: 'Kategorie Postele.dc.html#s=10', image: 'kategorie-jednoluzka.png' },
+        { label: 'Boxspring – americké postele', count: 18, href: 'Kategorie Postele.dc.html', image: 'kategorie-calounene-postele.png' },
+        { label: 'Postele s úložným prostorem', count: 38, href: 'Kategorie Postele.dc.html', image: 'kategorie-manzelske-postele.png' },
+        { label: 'Postele s nočními stolky', count: 9, href: 'Kategorie Postele.dc.html', image: 'kategorie-nabytek.png' },
+        { label: 'Postele na míru', count: 14, href: 'Kategorie Postele.dc.html', image: 'kategorie-manzelske-postele.png' }
+      ],
       articles: [
-        { title: 'Proč se vyplatí investovat do postele z masivu?', perex: 'Kvalita povrchu závisí na použitém materiálu. Ukážeme, podle čeho poznáte dřevo, které vydrží dvacet let.', href: 'Clanek.dc.html' },
-        { title: 'Jakou postel vybrat do malé ložnice', perex: 'Úložný prostor, výklopný rošt nebo nižší rám? Tři cesty, jak ušetřit metr čtvereční bez ztráty pohodlí.', href: 'Clanek.dc.html' },
-        { title: 'Masiv, nebo čalouněná postel?', perex: 'Srovnání životnosti, údržby a ceny za deset let používání. Rozdíl není tam, kde ho čekáte.', href: 'Clanek.dc.html' },
-        { title: 'Jak vysoká má být postel', perex: 'Výška lože rozhoduje o tom, jak snadno se vstává. Jednoduché měření podle výšky kolen.', href: 'Clanek.dc.html' }
+        { title: 'Proč se vyplatí investovat do postele z masivu?', image: 'clanek-dum.jpg', perex: 'Kvalita povrchu závisí na použitém materiálu. Ukážeme, podle čeho poznáte dřevo, které vydrží dvacet let.', href: 'Clanek.dc.html' },
+        { title: 'Jakou postel vybrat do malé ložnice', image: 'clanek-komplet.jpg', perex: 'Úložný prostor, výklopný rošt nebo nižší rám? Tři cesty, jak ušetřit metr čtvereční bez ztráty pohodlí.', href: 'Clanek.dc.html' },
+        { title: 'Masiv, nebo čalouněná postel?', image: 'clanek-potah.jpg', perex: 'Srovnání životnosti, údržby a ceny za deset let používání. Rozdíl není tam, kde ho čekáte.', href: 'Clanek.dc.html' },
+        { title: 'Jak vysoká má být postel', image: 'clanek-led.jpg', perex: 'Výška lože rozhoduje o tom, jak snadno se vstává. Jednoduché měření podle výšky kolen.', href: 'Clanek.dc.html' }
       ],
       hasSidebar: sidebar,
       noSidebar: !sidebar,

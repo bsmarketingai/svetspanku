@@ -3,11 +3,13 @@
 /* Hover ve světlém režimu modrý (6. 10. 2026), v tmavém meruňkový */
 html:not([data-mode="dark"]){--ss-hover-text:#21507B;--ss-hover-bg:#F0F5FA;
   /* Teplé meruňkové podklady (7. 10. 2026) */
-  --ss-surface-page:#FEFAF7;--ss-surface-subtle:#FAF5EF;--ss-surface-muted:#F3EDE4;--ss-surface-strong:#E9E1D5;--ss-surface-card:#FFFFFF;--ss-surface-box:#FFFFFF;--ss-text-heading:#0B1F33;
+  --ss-surface-page:#FFFFFF;--ss-surface-subtle:#FAF5EF;--ss-surface-muted:#F3EDE4;--ss-surface-strong:#E9E1D5;--ss-surface-card:#FFFFFF;--ss-surface-box:#FFFFFF;--ss-text-heading:#0B1F33;
   /* Sekundární tlačítko tonální meruňkové (7. 10. 2026) */
   --ss-action-tonal-bg:#FEEDD4;--ss-action-tonal-hover-bg:#FDDCAA;--ss-action-tonal-fg:#7A4708;--ss-action-tonal-hover-fg:#7A4708;}
-html:not([data-mode="dark"]),html:not([data-mode="dark"]) body{background:#FEFAF7;}
+html:not([data-mode="dark"]),html:not([data-mode="dark"]) body{background:#FFFFFF;}
 html[data-mode="dark"]{color-scheme:dark;
+  --ss-surface-tint:rgba(251,178,85,.04);
+  --ss-pm-range:linear-gradient(90deg,#4F82B0 0%,#8DB3D3 100%);
   --ss-border-accent-subtle:#5A4425;
   --ss-border-action:#8DB3D3;
   --ss-action-tonal-bg:rgba(141,179,211,.16);
@@ -135,20 +137,20 @@ html[data-mode="dark"] .ss-pc::before{content:"";position:absolute;inset:0;borde
 html[data-mode="dark"] .ss-pm-card:hover .ss-pm-title,html[data-mode="dark"] .ss-pm-row:hover .ss-pm-title,html[data-mode="dark"] .ss-pc:hover .ss-pc-title,html[data-mode="dark"] .ss-mm-ban:hover{color:#FBB255!important;}
 
 /* Podklad webu: jemný radiální gradient ze středu viewportu (hloubka). Fixní → plynule přes všechny sekce. */
-main,main>section{background-image:radial-gradient(ellipse 70% 60% at 50% 45%,rgba(255,255,255,0) 0%,rgba(19,44,67,.044) 100%)!important;background-attachment:fixed!important;}
-html[data-mode="dark"] main,html[data-mode="dark"] main>section{background-image:radial-gradient(ellipse 60% 55% at 50% 45%,rgba(141,179,211,.101) 0%,rgba(141,179,211,.038) 45%,rgba(0,0,0,0) 80%)!important;}
-html[data-bg="off"] main,html[data-bg="off"] main>section{background-image:none!important;}
+/* Vinětace (Elevace) odebrána 12. 10. 2026 — plné podklady, stíny karet zůstávají vždy */
+
+
 /* Gradient Zap: elevace všech ploch, které by na gradientu splývaly (karty, filtry, video, boxy). Gradient Vyp = beze změny. */
-html[data-bg="on"] .ss-elev,html[data-bg="on"] .ss-ct:not([data-pop="true"]),html[data-bg="on"] .ss-cat,html[data-bg="on"] .ss-hp-tile,html[data-bg="on"] .ss-pd-row,html[data-bg="on"] .ss-mm-art{box-shadow:0 2px 8px rgba(19,44,67,.08)!important;}
-html[data-bg="on"][data-mode="dark"] .ss-elev,html[data-bg="on"][data-mode="dark"] .ss-ct:not([data-pop="true"]),html[data-bg="on"][data-mode="dark"] .ss-cat,html[data-bg="on"][data-mode="dark"] .ss-hp-tile,html[data-bg="on"][data-mode="dark"] .ss-pd-row{box-shadow:inset 0 1px 0 rgba(141,179,211,.14),0 0 0 1px rgba(141,179,211,.10),0 2px 8px rgba(0,0,0,.35)!important;}
+html .ss-elev,html .ss-ct:not([data-pop="true"]),html .ss-cat,html .ss-hp-tile,html .ss-pd-row,html .ss-mm-art{box-shadow:0 2px 8px rgba(19,44,67,.08)!important;}
+html[data-mode="dark"] .ss-elev,html[data-mode="dark"] .ss-ct:not([data-pop="true"]),html[data-mode="dark"] .ss-cat,html[data-mode="dark"] .ss-hp-tile,html[data-mode="dark"] .ss-pd-row{box-shadow:inset 0 1px 0 rgba(141,179,211,.14),0 0 0 1px rgba(141,179,211,.10),0 2px 8px rgba(0,0,0,.35)!important;}
 @media (hover:hover) and (pointer:fine){
-html[data-bg="on"] a.ss-elev:hover,html[data-bg="on"] button.ss-elev:hover,html[data-bg="on"] .ss-ct:not([data-pop="true"]):hover,html[data-bg="on"] .ss-cat:hover,html[data-bg="on"] .ss-hp-tile:hover,html[data-bg="on"] .ss-pd-row:hover{box-shadow:0 4px 12px rgba(19,44,67,.12)!important;}
-html[data-bg="on"][data-mode="dark"] a.ss-elev:hover,html[data-bg="on"][data-mode="dark"] button.ss-elev:hover,html[data-bg="on"][data-mode="dark"] .ss-ct:not([data-pop="true"]):hover,html[data-bg="on"][data-mode="dark"] .ss-cat:hover,html[data-bg="on"][data-mode="dark"] .ss-hp-tile:hover,html[data-bg="on"][data-mode="dark"] .ss-pd-row:hover{box-shadow:inset 0 1px 0 rgba(141,179,211,.18),0 0 0 1px rgba(141,179,211,.14),0 8px 24px rgba(0,0,0,.45)!important;}
+html a.ss-elev:hover,html button.ss-elev:hover,html .ss-ct:not([data-pop="true"]):hover,html .ss-cat:hover,html .ss-hp-tile:hover,html .ss-pd-row:hover{box-shadow:0 4px 12px rgba(19,44,67,.12)!important;}
+html[data-mode="dark"] a.ss-elev:hover,html[data-mode="dark"] button.ss-elev:hover,html[data-mode="dark"] .ss-ct:not([data-pop="true"]):hover,html[data-mode="dark"] .ss-cat:hover,html[data-mode="dark"] .ss-hp-tile:hover,html[data-mode="dark"] .ss-pd-row:hover{box-shadow:inset 0 1px 0 rgba(141,179,211,.18),0 0 0 1px rgba(141,179,211,.14),0 8px 24px rgba(0,0,0,.45)!important;}
 }
-html[data-bg="on"] .ss-ct[data-pop="true"]::before{box-shadow:0 2px 8px rgba(19,44,67,.08);}
-html[data-bg="on"][data-mode="dark"] .ss-ct[data-pop="true"]::before{box-shadow:inset 0 1px 0 rgba(141,179,211,.14),0 0 0 1px rgba(141,179,211,.10),0 2px 8px rgba(0,0,0,.35);}
-@media (hover:hover) and (pointer:fine){html[data-bg="on"] .ss-ct[data-pop="true"]:hover::before{box-shadow:0 4px 12px rgba(19,44,67,.12);}html[data-bg="on"][data-mode="dark"] .ss-ct[data-pop="true"]:hover::before{box-shadow:inset 0 1px 0 rgba(141,179,211,.18),0 0 0 1px rgba(141,179,211,.14),0 8px 24px rgba(0,0,0,.45);}}
-html[data-bg="on"] .ss-elev:focus-visible{box-shadow:0 0 0 3px rgba(41,96,147,.35)!important;}
+html .ss-ct[data-pop="true"]::before{box-shadow:0 2px 8px rgba(19,44,67,.08);}
+html[data-mode="dark"] .ss-ct[data-pop="true"]::before{box-shadow:inset 0 1px 0 rgba(141,179,211,.14),0 0 0 1px rgba(141,179,211,.10),0 2px 8px rgba(0,0,0,.35);}
+@media (hover:hover) and (pointer:fine){html .ss-ct[data-pop="true"]:hover::before{box-shadow:0 4px 12px rgba(19,44,67,.12);}html[data-mode="dark"] .ss-ct[data-pop="true"]:hover::before{box-shadow:inset 0 1px 0 rgba(141,179,211,.18),0 0 0 1px rgba(141,179,211,.14),0 8px 24px rgba(0,0,0,.45);}}
+html .ss-elev:focus-visible{box-shadow:0 0 0 3px rgba(41,96,147,.35)!important;}
 
 /* Prezentační přepínač fontů — html[data-font-h|data-font-b]="alt" */
 html[data-font-h="alt"] h1:not(.ss-plain),html[data-font-h="alt"] h2:not(.ss-plain),html[data-font-h="alt"] h3:not(.ss-plain),html[data-font-h="alt"] h4:not(.ss-plain),html[data-font-h="alt"] [style*="Oswald"]{font-family:'Barlow Condensed',Oswald,Helvetica,Arial,sans-serif!important;}
@@ -167,17 +169,17 @@ html[data-mode="dark"] .ss-hd-tab[aria-current="page"]{color:#FBB255;}
 html[data-mode="dark"] .ss-filtr{background:var(--ss-surface-subtle,#13283C)!important;}
 
 /* Úvodní sekce s gradientem (Kategorie): surface.page nahoře → surface.muted dole; vrství se pod vinětaci */
-main>section.ss-grad-top{background-image:radial-gradient(ellipse 70% 60% at 50% 45%,rgba(255,255,255,0) 0%,rgba(19,44,67,.044) 100%),linear-gradient(180deg,var(--ss-surface-page,#FEFAF7) 0%,var(--ss-surface-muted,#F3EDE4) 100%)!important;background-attachment:fixed,scroll!important;}
-html[data-mode="dark"] main>section.ss-grad-top{background-image:radial-gradient(ellipse 60% 55% at 50% 45%,rgba(141,179,211,.101) 0%,rgba(141,179,211,.038) 45%,rgba(0,0,0,0) 80%),linear-gradient(180deg,var(--ss-surface-page,#0E1F2F) 0%,var(--ss-surface-muted,#183049) 100%)!important;}
-html[data-bg="off"] main>section.ss-grad-top{background-image:linear-gradient(180deg,var(--ss-surface-page,#FEFAF7) 0%,var(--ss-surface-muted,#F3EDE4) 100%)!important;background-attachment:scroll!important;}
+main>section.ss-grad-top{background-image:linear-gradient(180deg,var(--ss-surface-page,#FFFFFF) 0%,var(--ss-surface-muted,#F3EDE4) 100%)!important;background-attachment:scroll!important;}
+
+
 
 /* Nadpisy: světlý režim tmavá modrá z hlavičky #0B1F33 (inline barva vyhrává — bílé nadpisy na tmavých pásech zůstávají) */
 h1,h2,h3,h4{color:var(--ss-text-heading,#0B1F33);}
 
 /* Sekce s meruňkovým podsvícením zespoda — poloviční radiál od spodní hrany, vrstvený nad .ss-grad-top */
-main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 55% 100% at 50% 100%,rgba(251,178,85,.22) 0%,rgba(251,178,85,.09) 45%,rgba(251,178,85,0) 75%),radial-gradient(ellipse 70% 60% at 50% 45%,rgba(255,255,255,0) 0%,rgba(19,44,67,.044) 100%),linear-gradient(180deg,var(--ss-surface-page,#FEFAF7) 0%,var(--ss-surface-muted,#F3EDE4) 100%)!important;background-size:100% 520px,auto,auto!important;background-position:center bottom,center,center!important;background-repeat:no-repeat!important;background-attachment:scroll,fixed,scroll!important;}
-html[data-mode="dark"] main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 55% 100% at 50% 100%,rgba(251,178,85,.14) 0%,rgba(251,178,85,.05) 45%,rgba(251,178,85,0) 75%),radial-gradient(ellipse 60% 55% at 50% 45%,rgba(141,179,211,.101) 0%,rgba(141,179,211,.038) 45%,rgba(0,0,0,0) 80%),linear-gradient(180deg,var(--ss-surface-page,#0E1F2F) 0%,var(--ss-surface-muted,#183049) 100%)!important;}
-html[data-bg="off"] main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 55% 100% at 50% 100%,rgba(251,178,85,.22) 0%,rgba(251,178,85,.09) 45%,rgba(251,178,85,0) 75%),linear-gradient(180deg,var(--ss-surface-page,#FEFAF7) 0%,var(--ss-surface-muted,#F3EDE4) 100%)!important;background-size:100% 520px,auto!important;background-position:center bottom,center!important;background-repeat:no-repeat!important;background-attachment:scroll!important;}
+main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 55% 100% at 50% 100%,rgba(251,178,85,.22) 0%,rgba(251,178,85,.09) 45%,rgba(251,178,85,0) 75%),linear-gradient(180deg,var(--ss-surface-page,#FFFFFF) 0%,var(--ss-surface-muted,#F3EDE4) 100%)!important;background-size:100% 520px,auto!important;background-position:center bottom,center!important;background-repeat:no-repeat!important;background-attachment:scroll!important;}
+html[data-mode="dark"] main>section.ss-grad-top.ss-grad-glow{background-image:radial-gradient(ellipse 55% 100% at 50% 100%,rgba(251,178,85,.14) 0%,rgba(251,178,85,.05) 45%,rgba(251,178,85,0) 75%),linear-gradient(180deg,var(--ss-surface-page,#0E1F2F) 0%,var(--ss-surface-muted,#183049) 100%)!important;}
+
 
 /* Scrollbar: jen táhlo v barvách webu, bez podkladu (platí globálně) */
 *{scrollbar-width:auto;scrollbar-color:var(--ss-scrollbar-thumb,#FBB255) transparent;}

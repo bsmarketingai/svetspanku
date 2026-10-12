@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="./tmavy-rezim.css">
+<script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&display=swap" rel="stylesheet">
+<style>
+h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
+.ss-kl a.ss-kl-tel,.ss-kl a.ss-kl-mail{color:#FFFFFF;border-radius:4px;transition:color .12s cubic-bezier(.22,.61,.36,1);}
+.ss-kl a.ss-kl-tel{text-decoration:none;}
+.ss-kl a.ss-kl-mail{text-decoration:underline;text-underline-offset:3px;}
+@media (hover:hover) and (pointer:fine){.ss-kl a.ss-kl-tel:hover,.ss-kl a.ss-kl-mail:hover{color:#FBB255;}}
+.ss-kl a.ss-kl-tel:focus-visible,.ss-kl a.ss-kl-mail:focus-visible,.ss-kl a.ss-kl-soc:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(251,178,85,.65);}
+.ss-kl a.ss-kl-soc{display:inline-flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:999px;background:var(--ss-surface-page,#FFFFFF);box-shadow:inset 0 0 0 1px rgba(255,255,255,.35);transition:background-color .12s cubic-bezier(.22,.61,.36,1);}
+@media (hover:hover) and (pointer:fine){.ss-kl a.ss-kl-soc:hover{background:var(--ss-surface-selected,#DCE8F2);}}
+.ss-kl a.ss-kl-fb{color:#1877F2;}
+.ss-kl a.ss-kl-ig{color:#D6249F;}
+.ss-kl a.ss-kl-yt{color:#FF0000;}
+@keyframes ss-kl-led{0%{box-shadow:0 0 0 0 rgba(113,204,146,.5);}70%{box-shadow:0 0 0 6px rgba(113,204,146,0);}100%{box-shadow:0 0 0 0 rgba(113,204,146,0);}}
+.ss-kl-led{display:inline-block;width:8px;height:8px;flex:none;border-radius:999px;background:#71CC92;animation:ss-kl-led 1.8s cubic-bezier(.22,.61,.36,1) infinite;}
+@media (prefers-reduced-motion:reduce){.ss-kl-led{animation:none;}}
+</style>
+</helmet>
+<div class="ss-kl" style="{{ rowStyle }}">
+  <div style="display:flex;flex-wrap:wrap;align-items:center;gap:16px 40px;min-width:0">
+    <h2 style="margin:0;font-size:24px;line-height:1.2;color:#FBB255">Jsme tu pro vás</h2>
+    <div style="display:flex;align-items:center;gap:16px;min-width:0">
+      <img src="foto-poradce-v7.png" alt="Spánková specialistka zákaznické podpory" style="display:block;width:72px;height:72px;flex:none;border-radius:999px;object-fit:cover;background:#132C43" />
+      <div style="display:flex;flex-direction:column;gap:2px;min-width:0">
+        <a class="ss-kl-tel" href="tel:+420543212855" style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:21px">+420 543 212 855</a>
+        <span style="display:inline-flex;align-items:center;gap:6px;font-size:13px;color:#DCE8F2">
+          <sc-if value="{{ isOn }}" hint-placeholder-val="{{ false }}"><span class="ss-kl-led" role="img" aria-label="Právě jsme online"></span></sc-if>
+          <span>Po–Pá 9:00–17:00</span>
+        </span>
+        <a class="ss-kl-mail" href="mailto:podpora@svetspanku.cz" style="font-size:15px">podpora@svetspanku.cz</a>
+      </div>
+    </div>
+  </div>
+  <div style="display:flex;flex-wrap:wrap;align-items:center;gap:16px 24px;min-width:0">
+    <h2 style="margin:0;font-size:17px;line-height:1.3;color:#FFFFFF">Sledujte nás na sociálních sítích</h2>
+    <div style="display:flex;gap:12px">
+      <a class="ss-kl-soc ss-kl-fb" href="#facebook" aria-label="Facebook"><dc-import name="Ikony" iconName="brand-facebook" size="24" hint-size="24px,24px"></dc-import></a>
+      <a class="ss-kl-soc ss-kl-ig" href="#instagram" aria-label="Instagram"><dc-import name="Ikony" iconName="brand-instagram" size="24" hint-size="24px,24px"></dc-import></a>
+      <a class="ss-kl-soc ss-kl-yt" href="#youtube" aria-label="YouTube"><dc-import name="Ikony" iconName="brand-youtube" size="24" hint-size="24px,24px"></dc-import></a>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1200,&quot;height&quot;:140},&quot;ledMode&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;on&quot;,&quot;options&quot;:[&quot;on&quot;,&quot;off&quot;],&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const p = this.props;
+    return {
+      isOn: (p.ledMode || 'on') === 'on',
+      rowStyle: { boxSizing: 'border-box', width: '100%', fontFamily: 'Roboto,Helvetica,Arial,sans-serif', color: '#DCE8F2', display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: '24px 48px' }
+    };
+  }
+}
+</script>
+</body>
+</html>

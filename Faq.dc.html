@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="./tmavy-rezim.css">
+<script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');}catch(e){}</script>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&display=swap" rel="stylesheet">
+<style>
+h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
+.ss-faq-q{display:flex;align-items:center;justify-content:space-between;gap:16px;width:100%;text-align:left;padding:18px 0;border:0;border-bottom:1px solid var(--ss-border-subtle,#E1E6EB);background:none;cursor:pointer;font-family:inherit;}
+.ss-faq-q:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+@media (hover:hover) and (pointer:fine){.ss-faq-q:hover .ss-faq-t{color:var(--ss-hover-text,#21507B);}.ss-faq-q:hover .ss-faq-i{background:var(--ss-hover-bg,#F0F5FA);color:var(--ss-hover-text,#21507B);}}
+.ss-faq-i{transition:background-color .12s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1);}
+.ss-faq-t{transition:color .12s cubic-bezier(.22,.61,.36,1);}
+</style>
+</helmet>
+<section aria-labelledby="{{ hId }}" style="width:100%;max-width:900px;display:flex;flex-direction:column;gap:16px;font-family:Roboto,Helvetica,Arial,sans-serif;color:var(--ss-text-primary,#1C2229)">
+  <h2 id="{{ hId }}" style="{{ hStyle }}">{{ heading }}</h2>
+  <div style="display:flex;flex-direction:column;border-top:1px solid var(--ss-border-subtle,#E1E6EB)">
+    <sc-for list="{{ items }}" as="q" hint-placeholder-count="3">
+      <div>
+        <h3 class="ss-plain" style="margin:0">
+          <button type="button" class="ss-faq-q" onClick="{{ q.onToggle }}" aria-expanded="{{ q.expanded }}" aria-controls="{{ q.pid }}">
+            <span class="ss-faq-t" style="font-size:16px;font-weight:600;line-height:1.4;color:var(--ss-text-primary,#1C2229)">{{ q.question }}</span>
+            <span class="ss-faq-i" style="{{ q.iconStyle }}"><span style="{{ q.chevStyle }}"><dc-import name="Ikony" iconName="chevron-down" size="20" hint-size="20px,20px"></dc-import></span></span>
+          </button>
+        </h3>
+        <sc-if value="{{ q.open }}" hint-placeholder-val="{{ false }}">
+          <p id="{{ q.pid }}" style="margin:0;padding:16px 0 20px;font-size:15px;line-height:1.7;color:var(--ss-text-secondary,#3D4750);max-width:70ch;text-wrap:pretty">{{ q.answer }}</p>
+        </sc-if>
+      </div>
+    </sc-for>
+  </div>
+  <sc-if value="{{ hasMore }}" hint-placeholder-val="{{ false }}">
+    <span style="font-size:15px;color:var(--ss-text-secondary,#3D4750)">{{ moreText }} <a href="{{ moreHref }}">{{ moreLabel }}</a>.</span>
+  </sc-if>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:900,&quot;height&quot;:400},&quot;heading&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Nejčastější dotazy&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;items&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;{question: string, answer: string}[]&quot;},&quot;narrow&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;idPrefix&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;faq&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;moreText&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;moreLabel&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;moreHref&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;#&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { open: -1 };
+  renderVals() {
+    const p = this.props;
+    const open = this.state.open;
+    const src = p.items || [
+      { question: 'Jak funguje 90 dní na vyzkoušení?', answer: 'Matraci si doma vyzkoušíte 90 nocí. Když vám nesedne, ozvěte se nám, vyzvedneme ji a vrátíme peníze.' },
+      { question: 'Je možné vyrobit matraci na míru?', answer: 'Ano. Matrace vyrábíme v rozměrech od 70 × 180 cm po 200 × 220 cm, i atypické tvary podle šablony.' }
+    ];
+    const uid = p.idPrefix || 'faq';
+    return {
+      hId: uid + '-h',
+      heading: p.heading || 'Nejčastější dotazy',
+      hStyle: { margin: 0, fontSize: p.narrow ? '26px' : '34px', lineHeight: 1.15 },
+      items: src.map((q, k) => ({
+        question: q.question, answer: q.answer,
+        pid: uid + '-a' + k,
+        open: open === k,
+        expanded: open === k ? 'true' : 'false',
+        chevStyle: { display: 'flex', transform: open === k ? 'rotate(180deg)' : 'none', transition: 'transform .15s cubic-bezier(.22,.61,.36,1)' },
+        iconStyle: { display: 'flex', alignItems: 'center', justifyContent: 'center', width: '44px', height: '44px', flex: 'none', borderRadius: '6px', background: open === k ? 'var(--ss-surface-hover,#F0F5FA)' : 'transparent', color: 'var(--ss-link-hover,#21507B)' },
+        onToggle: () => this.setState(s => ({ open: s.open === k ? -1 : k }))
+      })),
+      hasMore: !!p.moreLabel, moreText: p.moreText || '', moreLabel: p.moreLabel || '', moreHref: p.moreHref || '#'
+    };
+  }
+}
+</script>
+</body>
+</html>

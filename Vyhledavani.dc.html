@@ -32,7 +32,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
 </helmet>
 <div class="ss-sg" role="region" aria-label="Našeptávač vyhledávání" style="width:100%;background:var(--ss-surface-card,#FFFFFF);border-radius:0;border-top:1px solid var(--ss-border-subtle,#E1E6EB);box-shadow:0 16px 40px rgba(19,44,67,.18);font-family:Roboto,Helvetica,Arial,sans-serif;color:var(--ss-text-primary,#1C2229);overflow:hidden">
   <div style="display:grid;grid-template-columns:{{ shellTemplate }};gap:0;max-width:1560px;margin:0 auto">
-    <div style="padding:{{ padSide }};display:flex;flex-direction:column;gap:28px;min-width:0">
+    <div style="{{ sideStyle }}">
       <sc-if value="{{ hasFrequent }}" hint-placeholder-val="{{ true }}">
         <div style="display:flex;flex-direction:column;gap:12px">
           <h2 style="margin:0;font-family:Oswald,Roboto,sans-serif;font-size:19px;font-weight:700;line-height:1.2;color:var(--ss-text-heading,#0B1F33)">Často hledáte</h2>
@@ -144,6 +144,7 @@ class Component extends DCLogic {
     return {
       shellTemplate: narrow ? 'minmax(0,1fr)' : '320px minmax(0,1fr)',
       padSide: narrow ? '20px 16px 0' : '28px 28px 32px',
+      sideStyle: { padding: narrow ? '20px 16px 24px' : '28px 28px 32px', display: 'flex', flexDirection: 'column', gap: '28px', minWidth: 0, order: narrow ? 2 : 0, borderTop: narrow ? '1px solid var(--ss-border-subtle,#E1E6EB)' : 'none' },
       padMain: narrow ? '20px 16px 24px' : '28px 28px 24px',
       productTemplate: w >= 1150 ? 'repeat(2,minmax(0,1fr))' : 'minmax(0,1fr)',
       products, categories, articles, frequent,
@@ -153,9 +154,9 @@ class Component extends DCLogic {
       articlesBelow: narrow && articles.length > 0,
       mainStyle: {
         borderLeft: narrow ? 'none' : '1px solid var(--ss-border-subtle,#E1E6EB)',
-        borderTop: narrow ? '1px solid var(--ss-border-subtle,#E1E6EB)' : 'none',
+        borderTop: 'none',
         padding: narrow ? '20px 16px 24px' : '28px 28px 24px',
-        margin: narrow ? '20px 0 0' : 0,
+        margin: 0, order: narrow ? 1 : 0,
         display: 'flex', flexDirection: 'column', gap: '20px', minWidth: 0
       },
       categoryCount: p.categoryCount ?? categories.length,

@@ -89,7 +89,7 @@ class Component extends DCLogic {
       selectStyle: {
         height: (compact ? 36 : 44) + 'px', fontSize: (compact ? 14 : 15) + 'px',
         padding: '0 40px 0 ' + (compact ? 12 : 16) + 'px',
-        background: outline ? 'var(--ss-surface-page,#FEFAF7)' : 'var(--ss-surface-subtle,#FAF5EF)',
+        background: outline ? 'var(--ss-surface-page,#FFFFFF)' : 'var(--ss-surface-subtle,#FAF5EF)',
         boxShadow: 'inset 0 0 0 1px ' + (s.open ? 'var(--ss-border-action,#296093)' : outline ? 'var(--ss-border-strong,#C8D0D8)' : 'transparent')
       },
       hoverStyle: p.disabled ? {} : { background: outline ? 'var(--ss-surface-subtle,#FAF5EF)' : 'var(--ss-surface-muted,#F3EDE4)', boxShadow: 'inset 0 0 0 1px ' + (s.open ? 'var(--ss-border-action,#296093)' : outline ? 'var(--ss-border-hover,#8DB3D3)' : 'transparent') },

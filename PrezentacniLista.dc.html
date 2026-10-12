@@ -90,7 +90,6 @@ class Component extends DCLogic {
     const base = [
       grp('Režim', [['Světlý', 'light'], ['Tmavý', 'dark']], this.state.mode, v => this.setMode(v))
     ];
-    base.push(grp('Elevace', [['Zap', 'on'], ['Vyp', 'off']], this.state.bg, v => { this.setAttr('ss-bg', 'data-bg', v); this.setState({ bg: v }); }));
     base.push(grp('Sticky hlavička', [['H1', 'H1'], ['H2', 'H2']], this.state.hd, v => { try { localStorage.setItem('ss-hdmode', v); } catch (e) {} window.dispatchEvent(new Event('ss-hdmode')); this.setState({ hd: v }); }));
     if (this.state.mode === 'dark') base.push(grp('Logo', [['Statické', 'none'], ['A pulz', 'a'], ['D přejezd', 'd']], this.state.logo, v => this.setLogo(v)));
     return {

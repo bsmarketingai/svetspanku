@@ -15,11 +15,12 @@
 h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
 
 .ss-kd,.ss-kd *{box-sizing:border-box;}
-.ss-kd{font-family:Roboto,Helvetica,Arial,sans-serif;display:flex;flex-direction:column;height:100%;width:100%;background:var(--ss-surface-page,#FEFAF7);color:var(--ss-text-primary,#1C2229);overflow-x:hidden;}
-.ss-kd .ss-qty{background:transparent;}
+.ss-kd{font-family:Roboto,Helvetica,Arial,sans-serif;display:flex;flex-direction:column;height:100%;width:100%;background:var(--ss-surface-card,#FFFFFF);color:var(--ss-text-primary,#1C2229);overflow-x:hidden;}
 .ss-kd-icon{display:flex;align-items:center;justify-content:center;width:44px;height:44px;border:0;border-radius:6px;background:none;color:var(--ss-text-muted,#55616C);cursor:pointer;transition:background-color .12s cubic-bezier(.22,.61,.36,1),color .12s cubic-bezier(.22,.61,.36,1);}
 .ss-kd-icon:hover{background:var(--ss-hover-bg,#FFF5E6);color:var(--ss-hover-text,#A4600C);}
 .ss-kd-icon:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+.ss-kd-del{color:var(--ss-status-error,#B3261E);}
+.ss-kd-del:hover{background:var(--ss-status-error-surface,#FDF0EF);color:var(--ss-status-error-strong,#8E1E18);}
 .ss-kd-title{font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:26px;margin:0;}
 .ss-kd-row{display:grid;grid-template-columns:88px minmax(0,1fr);gap:16px;padding:20px 0;border-bottom:1px solid var(--ss-border-subtle,#E1E6EB);}
 </style>
@@ -47,7 +48,7 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
             <div style="display:flex;flex-direction:column;gap:10px;min-width:0">
               <div style="display:flex;align-items:flex-start;gap:12px">
                 <a href="{{ i.href }}" style="font-size:15px;font-weight:600;line-height:1.35;color:var(--ss-text-primary,#1C2229);text-decoration:none;min-width:0">{{ i.title }}</a>
-                <button type="button" class="ss-kd-icon" style="width:32px;height:32px;margin-left:auto;flex:none" onClick="{{ i.onRemove }}" aria-label="{{ i.removeLabel }}">
+                <button type="button" class="ss-kd-icon ss-kd-del" style="width:32px;height:32px;margin-left:auto;flex:none" onClick="{{ i.onRemove }}" aria-label="{{ i.removeLabel }}">
                   <dc-import name="Ikony" iconName="trash" size="18" hint-size="18px,18px"></dc-import>
                 </button>
               </div>
@@ -66,15 +67,14 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
         <span style="margin-left:auto;font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:26px;white-space:nowrap">{{ total }}</span>
       </div>
 
-      <div style="display:flex;align-items:center;justify-content:center;gap:10px;padding:20px 0">
-        <span style="display:flex;color:var(--ss-link,#296093)"><dc-import name="Ikony" iconName="truck" size="22" hint-size="22px,22px"></dc-import></span>
-        <span style="font-size:14px;font-weight:600;color:var(--ss-link,#296093)">Vlastní doprava a montáž po celé ČR</span>
+      <div style="display:flex;padding:20px 0;min-width:0">
+        <dc-import name="DopravaZdarma" total="{{ totalNum }}" threshold="{{ threshold }}" hint-size="100%,96px"></dc-import>
       </div>
     </sc-if>
 
     <sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}">
       <div style="display:flex;flex-direction:column;align-items:center;gap:12px;padding:64px 0;text-align:center">
-        <span style="display:flex;color:var(--ss-text-decor,#C8D0D8)"><dc-import name="Ikony" iconName="shopping-bag" size="40" hint-size="40px,40px"></dc-import></span>
+        <span aria-hidden="true" style="display:flex;color:var(--ss-usp-from-c,#1F5C99);--ss-usp-accent:var(--ss-usp-to-c,#EE8A0E)"><dc-import name="Ikony" iconName="duo-shopping-bag-x" size="72" strokeWidth="1.25" hint-size="72px,72px"></dc-import></span>
         <span style="font-family:Oswald,Roboto,sans-serif;font-weight:700;font-size:21px">Košík je zatím prázdný</span>
         <p style="margin:0;max-width:40ch;font-size:14px;color:var(--ss-text-secondary,#3D4750)">Vyberte postel, matraci nebo rošt — doporučení najdete v průvodci výběrem.</p>
         <dc-import name="Tlacitko" label="Průvodce výběrem" variant="secondary" href="#pruvodce" hint-size="200px,44px"></dc-import>
@@ -122,6 +122,8 @@ class Component extends DCLogic {
       hasItems: items.length > 0,
       isEmpty: items.length === 0,
       total: p.total ?? '49 870 Kč',
+      totalNum: Number(String(p.total ?? '49870').replace(/[^\d]/g, '')) || 0,
+      threshold: p.threshold ?? 50000,
       padX: p.compact ? '0 16px' : '0 24px',
       close: () => { if (p.onClose) p.onClose(); }
     };

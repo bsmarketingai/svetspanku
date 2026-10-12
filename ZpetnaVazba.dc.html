@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="./tmavy-rezim.css">
+<script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&display=swap" rel="stylesheet">
+<style>
+h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
+.ss-zv-b{display:flex;flex-direction:column;align-items:center;gap:8px;width:100%;padding:8px 0;border:0;border-radius:12px;background:transparent;font-family:inherit;font-size:16px;color:var(--ss-text-secondary,#3D4750);cursor:pointer;transition:background-color .12s cubic-bezier(.22,.61,.36,1),box-shadow .15s cubic-bezier(.22,.61,.36,1),transform .06s cubic-bezier(.22,.61,.36,1);}
+.ss-zv-b:active{transform:scale(.96);}
+.ss-zv-b:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35);}
+.ss-zv-b[aria-pressed="true"]{background:var(--ss-surface-subtle,#FAF5EF);box-shadow:inset 0 0 0 2px var(--ss-border-action,#296093);color:var(--ss-text-primary,#1C2229);font-weight:600;}
+@media (hover:hover) and (pointer:fine){.ss-zv-b:hover{background:var(--ss-hover-bg,#F0F5FA);}}
+.ss-zv-ta{box-sizing:border-box;width:100%;min-height:112px;padding:12px 14px;border:0;border-radius:6px;font-family:Roboto,Helvetica,Arial,sans-serif;font-size:15px;line-height:1.5;color:var(--ss-text-primary,#1C2229);background:var(--ss-surface-page,#FFFFFF);box-shadow:inset 0 0 0 1px var(--ss-border-subtle,#E1E6EB);resize:vertical;transition:box-shadow .15s cubic-bezier(.22,.61,.36,1);}
+.ss-zv-ta:hover{box-shadow:inset 0 0 0 1px var(--ss-border-strong,#C8D0D8);}
+.ss-zv-ta:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(41,96,147,.35),inset 0 0 0 1px var(--ss-border-action,#296093);}
+@media (max-width:549px){.ss-zv-ta{font-size:16px;}}
+</style>
+</helmet>
+<section aria-labelledby="ss-zv-h" style="{{ boxStyle }}">
+  <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:24px;width:100%">
+      <h2 id="ss-zv-h" style="margin:0;font-size:24px;line-height:1.2;text-align:center;text-wrap:balance">Bylo pro vás snadné u nás nakoupit?</h2>
+      <div role="group" aria-labelledby="ss-zv-h" aria-describedby="ss-zv-scale" style="display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px;width:100%;max-width:520px">
+        <sc-for list="{{ scores }}" as="s" hint-placeholder-count="7">
+          <button type="button" class="ss-zv-b" aria-pressed="{{ s.pressed }}" aria-label="{{ s.aria }}" onClick="{{ s.onPick }}">
+            <span style="{{ s.iconStyle }}"><dc-import name="Ikony" iconName="{{ s.icon }}" size="{{ iconSize }}" hint-size="40px,40px"></dc-import></span>
+            <span>{{ s.n }}</span>
+          </button>
+        </sc-for>
+      </div>
+      <p id="ss-zv-scale" style="margin:0;display:flex;flex-direction:column;gap:2px;font-size:13px;line-height:1.45;color:var(--ss-text-muted,#5B6874);text-align:center">
+        <span>1 – zcela nesouhlasím, bylo to velmi těžké</span>
+        <span>7 – zcela souhlasím, bylo to velmi snadné</span>
+      </p>
+      <sc-if value="{{ needComment }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:6px;width:100%;max-width:520px">
+          <label for="ss-zv-ta" style="font-size:13px;font-weight:600;color:var(--ss-text-secondary,#3D4750)">Co vám nákup zkomplikovalo?</label>
+          <textarea id="ss-zv-ta" class="ss-zv-ta" placeholder="Napište nám, co bychom měli zlepšit" value="{{ comment }}" onChange="{{ onComment }}"></textarea>
+        </div>
+      </sc-if>
+      <div style="width:100%;max-width:320px">
+        <dc-import name="Tlacitko" label="Odeslat zpětnou vazbu" variant="secondary" size="large" fullWidth="{{ true }}" disabled="{{ noScore }}" onClick="{{ onSubmit }}" hint-size="100%,52px"></dc-import>
+      </div>
+    </div>
+  </sc-if>
+  <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+    <div role="status" style="display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center">
+      <span style="display:flex;color:var(--ss-status-success,#157A41)"><dc-import name="Ikony" iconName="circle-check" size="40" hint-size="40px,40px"></dc-import></span>
+      <h2 style="margin:0;font-size:24px;line-height:1.2">Děkujeme za zpětnou vazbu</h2>
+      <p style="margin:0;max-width:52ch;font-size:15px;line-height:1.55;color:var(--ss-text-secondary,#3D4750);text-wrap:pretty">{{ thanks }}</p>
+    </div>
+  </sc-if>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:880,&quot;height&quot;:420},&quot;narrow&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;onSubmit&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(score: number, comment: string) =&gt; void&quot;}}">
+class Component extends DCLogic {
+  state = { score: 0, comment: '', sent: false };
+  static MOODS = [
+    { icon: 'mood-angry', color: 'var(--ss-status-error,#B3261E)' },
+    { icon: 'mood-sad', color: 'var(--ss-status-error,#B3261E)' },
+    { icon: 'mood-confuzed', color: 'var(--ss-text-apricot,#A4600C)' },
+    { icon: 'mood-empty', color: 'var(--ss-text-apricot,#A4600C)' },
+    { icon: 'mood-smile', color: 'var(--ss-status-success,#157A41)' },
+    { icon: 'mood-smile-beam', color: 'var(--ss-status-success,#157A41)' },
+    { icon: 'mood-happy', color: 'var(--ss-status-success,#157A41)' }
+  ];
+  renderVals() {
+    const p = this.props;
+    const { score, comment, sent } = this.state;
+    const narrow = !!p.narrow;
+    return {
+      notSent: !sent, sent,
+      iconSize: narrow ? 32 : 40,
+      scores: Component.MOODS.map((m, i) => ({
+        n: i + 1, icon: m.icon,
+        pressed: score === i + 1 ? 'true' : 'false',
+        aria: (i + 1) + ' ze 7',
+        iconStyle: { display: 'flex', color: m.color },
+        onPick: () => this.setState({ score: i + 1 })
+      })),
+      needComment: score > 0 && score <= 4,
+      comment,
+      onComment: (e) => this.setState({ comment: e.target.value }),
+      noScore: !score,
+      onSubmit: () => { if (!score) return; this.setState({ sent: true }); if (p.onSubmit) p.onSubmit(score, score <= 4 ? comment : ''); },
+      thanks: score <= 4 ? 'Mrzí nás, že to nebylo snadné. Vaše připomínky předáme týmu, který se o e-shop stará.' : 'Těší nás, že se vám u nás nakupovalo dobře.',
+      boxStyle: { boxSizing: 'border-box', width: '100%', fontFamily: 'Roboto,Helvetica,Arial,sans-serif', color: 'var(--ss-text-primary,#1C2229)', background: 'var(--ss-surface-box,#FFFFFF)', borderRadius: '12px', boxShadow: '0 4px 12px rgba(19,44,67,.12)', padding: narrow ? '32px 16px' : '40px 32px', display: 'flex', justifyContent: 'center' }
+    };
+  }
+}
+</script>
+</body>
+</html>

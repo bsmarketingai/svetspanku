@@ -69,8 +69,8 @@ class Component extends DCLogic {
       dangerouslySetInnerHTML: { __html: src[name] }
     });
     return React.createElement('svg', {
-      key: name, width: size, height: size, viewBox: '0 0 24 24', fill: 'none',
-      stroke: 'currentColor', strokeWidth: stroke, strokeLinecap: 'round', strokeLinejoin: 'round',
+      key: name, width: size, height: size, viewBox: '0 0 24 24', fill: /-filled$/.test(name) ? 'currentColor' : 'none',
+      stroke: /-filled$/.test(name) ? 'none' : 'currentColor', strokeWidth: stroke, strokeLinecap: 'round', strokeLinejoin: 'round',
       'aria-hidden': true, focusable: 'false', style: { display: 'block' },
       dangerouslySetInnerHTML: { __html: icons[name] }
     });

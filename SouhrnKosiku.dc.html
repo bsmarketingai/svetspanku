@@ -32,14 +32,17 @@ h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-fam
     </div>
     <span style="align-self:flex-end;font-size:14px;color:var(--ss-text-muted,#5B6874);white-space:nowrap">{{ totalNoVat }} bez DPH</span>
   </div>
-  <dc-import name="Tlacitko" label="{{ ctaLabel }}" sublabel="{{ ctaSublabel }}" variant="buy" size="large" href="{{ ctaHref }}" iconRight="chevron-right" fullWidth="{{ true }}" hint-size="100%,52px"></dc-import>
+  <sc-if value="{{ hasCta }}" hint-placeholder-val="{{ true }}">
+    <dc-import name="Tlacitko" label="{{ ctaLabel }}" sublabel="{{ ctaSublabel }}" variant="buy" size="large" href="{{ ctaHref }}" iconRight="chevron-right" fullWidth="{{ true }}" hint-size="100%,52px"></dc-import>
+  </sc-if>
 </section>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:420,&quot;height&quot;:240},&quot;total&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;47 570 Kč&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;totalNoVat&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;39 314 Kč&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;discount&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;flush&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;totalLabel&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Celkem za zboží&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;termsChecked&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;onTerms&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(checked: boolean) =&gt; void&quot;},&quot;termsNote&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;ctaSublabel&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;ctaLabel&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Pokračovat v objednávce&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;ctaHref&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;#doprava&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:420,&quot;height&quot;:240},&quot;total&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;47 570 Kč&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;totalNoVat&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;39 314 Kč&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;discount&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;flush&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;totalLabel&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Celkem za zboží&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;termsChecked&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;onTerms&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(checked: boolean) =&gt; void&quot;},&quot;termsNote&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;ctaSublabel&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;ctaLabel&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Pokračovat v objednávce&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;ctaHref&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;#doprava&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;noCta&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;plain&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;}}">
 class Component extends DCLogic {
   renderVals() {
     const p = this.props;
     const flush = !!p.flush;
+    const plain = !!p.plain;
     return {
       total: p.total ?? '47 570 Kč',
       totalNoVat: p.totalNoVat ?? '39 314 Kč',
@@ -48,10 +51,11 @@ class Component extends DCLogic {
       ctaLabel: p.ctaLabel || 'Pokračovat v objednávce',
       totalLabel: p.totalLabel || 'Celkem za zboží',
       termsNote: !!p.termsNote,
+      hasCta: !p.noCta,
       termsChecked: !!p.termsChecked,
       onTerms: (v) => { if (p.onTerms) p.onTerms(v); },
       termsParts: [{ text: 'Souhlasím s ' }, { text: 'obchodními podmínkami', href: '#obchodni-podminky' }, { text: ' a beru na vědomí ' }, { text: 'zásady ochrany osobních údajů', href: '#ochrana-osobnich-udaju' }, { text: '.' }], ctaSublabel: p.ctaSublabel || '',
-      boxStyle: { fontFamily: 'Roboto,Helvetica,Arial,sans-serif', color: 'var(--ss-text-primary,#1C2229)', boxSizing: 'border-box', width: '100%', display: 'flex', flexDirection: 'column', gap: '24px', padding: flush ? '24px 16px' : '32px', borderRadius: flush ? 0 : '12px', background: flush ? 'var(--ss-surface-hover,#F0F5FA)' : 'var(--ss-surface-page,#FEFAF7)', boxShadow: flush ? 'none' : '0 4px 12px rgba(19,44,67,.12)' }
+      boxStyle: { fontFamily: 'Roboto,Helvetica,Arial,sans-serif', color: 'var(--ss-text-primary,#1C2229)', boxSizing: 'border-box', width: '100%', display: 'flex', flexDirection: 'column', gap: '24px', padding: plain ? '24px 0 0' : (flush ? '24px 16px' : '32px'), borderRadius: (flush || plain) ? 0 : '12px', background: plain ? 'transparent' : (flush ? 'var(--ss-surface-hover,#F0F5FA)' : 'var(--ss-surface-page,#FFFFFF)'), boxShadow: (flush || plain) ? 'none' : '0 4px 12px rgba(19,44,67,.12)', borderTop: plain ? '1px solid var(--ss-border-subtle,#E1E6EB)' : undefined }
     };
   }
 }

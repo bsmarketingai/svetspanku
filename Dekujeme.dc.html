@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="./tmavy-rezim.css">
+<script>try{var d=document.documentElement;if(localStorage.getItem('ss-mode')==='dark')d.setAttribute('data-mode','dark');d.setAttribute('data-logo',localStorage.getItem('ss-logo')||'a');d.setAttribute('data-font-h','base');d.setAttribute('data-font-b','base');d.setAttribute('data-bg',localStorage.getItem('ss-bg')||'on');}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Roboto:wght@400..700&display=swap" rel="stylesheet">
+<style>
+h1:not(.ss-plain),h2:not(.ss-plain),h3:not(.ss-plain),h4:not(.ss-plain){font-family:Oswald,Helvetica,Arial,sans-serif!important;font-weight:600!important;text-transform:none;letter-spacing:0;}
+html,body{margin:0!important;padding:0!important;}
+#dc-root{margin:0!important;padding:0!important;width:100%!important;max-width:none!important;border:0!important;}
+#dc-root>.sc-host{margin:0!important;padding:0!important;width:100%!important;}
+a{color:var(--ss-link,#296093);}
+a:hover{color:var(--ss-hover-text,#21507B);}
+</style>
+</helmet>
+<div style="width:100%;background:var(--ss-surface-page,#FFFFFF);font-family:Roboto,Helvetica,Arial,sans-serif;color:var(--ss-text-primary,#1C2229)">
+  <dc-import name="Hlavicka" style="position:sticky;top:0;z-index:200" ledMode="{{ ledMode }}" hint-size="100%,180px"></dc-import>
+  <dc-import name="PrezentacniLista" items="{{ presItems }}" onToggle="{{ onPresToggle }}" hint-size="320px,52px"></dc-import>
+
+  <main>
+    <section class="ss-grad-top" style="width:100%">
+      <div style="{{ inner }}">
+        <div style="{{ col }}">
+          <div style="display:flex;flex-direction:column;gap:16px">
+            <div style="display:flex;align-items:center;gap:16px">
+              <span style="display:flex;flex:none;color:var(--ss-status-success,#157A41)"><dc-import name="Ikony" iconName="circle-check" size="{{ checkSize }}" hint-size="48px,48px"></dc-import></span>
+              <h1 style="{{ h1Style }}">Děkujeme za objednávku č. {{ orderNo }}</h1>
+            </div>
+            <p style="margin:0;max-width:72ch;font-size:16px;line-height:1.6;color:var(--ss-text-secondary,#3D4750);text-wrap:pretty">Detail objednávky jsme vám poslali na e-mail <strong style="font-weight:600;color:var(--ss-text-primary,#1C2229)">{{ email }}</strong>. Pokud budete mít jakýkoli dotaz, jsme vám k dispozici na <a href="tel:+420543212855">+420 543 212 855</a> nebo <a href="mailto:info@svetspanku.cz">info@svetspanku.cz</a>.</p>
+          </div>
+          <dc-import name="PlatebniUdaje" stav="{{ stav }}" narrow="{{ narrow }}" doprava="{{ doprava }}" dopravaAdresa="{{ dopravaAdresa }}" platba="{{ platba }}" castka="{{ total }}" vs="{{ orderNo }}" onPay="{{ onPay }}" hint-size="100%,320px"></dc-import>
+        </div>
+      </div>
+    </section>
+
+    <section class="ss-grad-top ss-grad-glow" style="width:100%;background-color:var(--ss-surface-page,#FFFFFF)">
+      <div style="{{ innerFirst }}">
+        <div style="{{ col }}">
+          <dc-import name="ZpetnaVazba" narrow="{{ narrow }}" hint-size="100%,400px"></dc-import>
+        </div>
+      </div>
+    </section>
+
+    <section style="width:100%">
+      <div style="{{ innerFirst }}">
+        <div style="{{ col }}">
+          <dc-import name="PrubehObjednavky" steps="{{ steps }}" stacked="{{ narrow }}" hint-size="100%,240px"></dc-import>
+        </div>
+      </div>
+    </section>
+
+    <section class="ss-grad-top ss-grad-glow" style="width:100%;background-color:var(--ss-surface-page,#FFFFFF)">
+      <div style="{{ innerFirst }}">
+        <div style="{{ col }}">
+          <div style="{{ orderGrid }}">
+            <div style="{{ cardStyle }}">
+              <dc-import name="ShrnutiObjednavky" title="Objednáno máte" readonly="{{ true }}" items="{{ items }}" lines="{{ lines }}" total="{{ total }}" totalNoVat="{{ totalNoVat }}" hint-size="100%,520px"></dc-import>
+            </div>
+            <section aria-labelledby="ss-dk-udaje" style="{{ cardStyleCol }}">
+              <h2 id="ss-dk-udaje" style="margin:0;padding-bottom:16px;border-bottom:1px solid var(--ss-border-subtle,#E1E6EB);font-size:26px;line-height:1.2">Dodací a fakturační údaje</h2>
+              <sc-for list="{{ addr }}" as="ad" hint-placeholder-count="2">
+                <div style="display:flex;flex-direction:column;gap:8px">
+                  <span style="font-size:13px;color:var(--ss-text-muted,#5B6874)">{{ ad.label }}</span>
+                  <address style="display:flex;flex-direction:column;gap:2px;font-style:normal;font-size:15px;line-height:1.5">
+                    <sc-for list="{{ ad.lines }}" as="ln" hint-placeholder-count="3"><span style="{{ ln.style }}">{{ ln.text }}</span></sc-for>
+                  </address>
+                </div>
+              </sc-for>
+            </section>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <sc-if value="{{ showReg }}" hint-placeholder-val="{{ true }}">
+      <section style="width:100%">
+        <div style="{{ innerLast }}">
+          <div style="{{ col }}">
+            <dc-import name="RegistracePoNakupu" narrow="{{ narrow }}" email="{{ email }}" hint-size="100%,480px"></dc-import>
+          </div>
+        </div>
+      </section>
+    </sc-if>
+
+    <section class="ss-grad-top ss-grad-glow" style="width:100%;background-color:var(--ss-surface-page,#FFFFFF)">
+      <div style="{{ innerNews }}">
+        <dc-import name="Newsletter" narrow="{{ narrowNews }}" hint-size="100%,160px"></dc-import>
+      </div>
+    </section>
+
+    <section style="width:100%;background:#0B1F33">
+      <div style="{{ innerContact }}">
+        <dc-import name="KontaktniLista" ledMode="{{ ledMode }}" hint-size="100%,96px"></dc-import>
+      </div>
+    </section>
+  </main>
+
+  <footer style="width:100%;background:var(--ss-surface-subtle,#FAF5EF);border-top:1px solid var(--ss-border-subtle,#E1E6EB)">
+    <div style="{{ innerFoot }}">
+      <span style="font-size:13px;color:var(--ss-text-muted,#5B6874);text-align:center">Copyright © 2026 LUCKÉ CZ GROUP s.r.o. — Všechna práva vyhrazena</span>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:2400},&quot;stav&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;prevod&quot;,&quot;options&quot;:[&quot;prevod&quot;,&quot;zaplaceno&quot;,&quot;nezaplaceno&quot;,&quot;dobirka&quot;,&quot;osobni&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Stav objednávky&quot;},&quot;typ&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;skladem&quot;,&quot;options&quot;:[&quot;skladem&quot;,&quot;naObjednavku&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Stav objednávky&quot;},&quot;prihlasen&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Stav objednávky&quot;}}">
+class Component extends DCLogic {
+  state = { width: typeof window !== 'undefined' ? document.documentElement.clientWidth : 1440, led: true };
+  componentDidMount() {
+    this._r = () => this.setState({ width: document.documentElement.clientWidth });
+    window.addEventListener('resize', this._r);
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this._r); }
+  fmt(n) { return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0') + '\u00A0Kč'; }
+  renderVals() {
+    const p = this.props;
+    const stav = p.stav || 'prevod';
+    const typ = p.typ || 'skladem';
+    const osobni = stav === 'osobni';
+    const w = this.state.width, narrow = w < 820;
+    const pad = narrow ? '16px' : '32px';
+    const box = (t, b) => ({ maxWidth: '1560px', margin: '0 auto', boxSizing: 'border-box', padding: t + ' ' + pad + ' ' + b });
+    const email = 'jana.novakova@seznam.cz';
+    const goods = [{ title: 'Manželská postel SANTE 45 dvoulůžko', variant: '200 × 180 cm · olej Teak · jádrový buk', qty: 2, unit: 19990, img: 'produkt-sante-45.jpg' }];
+    const delFee = osobni ? 0 : 1500;
+    const total = goods.reduce((s, g) => s + g.unit * g.qty, 0) + delFee;
+    const platba = { prevod: 'Okamžitý bankovní převod', zaplaceno: 'Platba kartou online', nezaplaceno: 'Platba kartou online', dobirka: 'Dobírka', osobni: 'Na prodejně' }[stav];
+    const doprava = osobni ? 'Osobní odběr – Brno, H-Park' : 'Vlastní doprava Světspánku – vynáška do patra';
+    const dopravaAdresa = osobni ? 'Heršpická 11f, 639 00 Brno · Po–Pá 9:00–18:00, So 10:00–18:00' : 'Školní 279, 281 63 Žehušice';
+    const waitPay = stav === 'prevod' || stav === 'nezaplaceno';
+    let steps;
+    if (typ === 'naObjednavku') steps = [
+      { icon: 'duo-bed', title: 'Výroba', text: waitPay ? 'Po přijetí platby zadáme zboží' : 'Zboží zadáme', strong: 'do výroby.' },
+      { icon: 'duo-package', title: 'Příprava expedice', text: 'Hotové a zabalené bude', strong: 'do pátku 6. 11.' },
+      osobni ? { icon: 'duo-building-store', title: 'Vyzvednutí', text: 'Pošleme vám SMS a můžete si ho', strong: 'vyzvednout na prodejně.' }
+             : { icon: 'duo-phone', title: 'Doručení', text: 'Zavoláme vám a domluvíme', strong: 'termín doručení.' }
+    ];
+    else steps = osobni ? [
+      { icon: 'duo-package', title: 'Příprava objednávky', text: 'Objednávku připravíme', strong: 'ještě dnes.' },
+      { icon: 'duo-mail', title: 'Oznámení', text: 'Jakmile bude připravená,', strong: 'pošleme vám SMS a e-mail.' },
+      { icon: 'duo-building-store', title: 'Vyzvednutí', text: 'Vyzvednout si ji můžete', strong: 'od úterý 13. 10.' }
+    ] : [
+      { icon: 'duo-package', title: 'Příprava expedice', text: waitPay ? 'Po připsání platby objednávku pečlivě zabalíme,' : 'Objednávku pečlivě zabalíme', strong: waitPay ? 'nejdříve dnes.' : 'ještě dnes.' },
+      stav === 'dobirka'
+        ? { icon: 'usp-doprava', title: 'Expedice', logo: 'logo-ppl.svg', logoAlt: 'PPL', text: 'Předáme ji dopravci PPL', strong: 'v úterý 13. 10.' }
+        : { icon: 'usp-doprava', title: 'Expedice', text: 'Naloží ji náš řidič', strong: 'v úterý 13. 10.' },
+      { icon: 'duo-calendar', title: 'Doručíme', text: 'Můžete rozbalovat', strong: 've čtvrtek 15. 10.' }
+    ];
+    const S = { fontWeight: 600, color: 'var(--ss-text-primary,#1C2229)' };
+    const N = { color: 'var(--ss-text-secondary,#3D4750)' };
+    const L = (a) => a.map((t, i) => ({ text: t, style: i === 0 ? S : N }));
+    const addr = [
+      { label: osobni ? 'Kontaktní údaje' : 'Dodací adresa', lines: L(osobni ? ['Jana Nováková', email, '+420 603 123 456'] : ['Jana Nováková', 'Školní 279', '281 63 Žehušice', '+420 603 123 456']) },
+      { label: 'Fakturační adresa', lines: L(['Jana Nováková', 'Školní 279', '281 63 Žehušice', email]) }
+    ];
+    return {
+      ledMode: this.state.led ? 'on' : 'off',
+      presItems: [{ label: 'LED', value: this.state.led }],
+      onPresToggle: () => this.setState(s => ({ led: !s.led })),
+      narrow, stav, doprava, dopravaAdresa, platba, email,
+      orderNo: '111666',
+      onPay: () => {},
+      checkSize: narrow ? 36 : 48,
+      h1Style: { margin: 0, fontSize: narrow ? '28px' : '40px', lineHeight: 1.15, textWrap: 'balance' },
+      inner: box(narrow ? '32px' : '48px', narrow ? '32px' : '48px'),
+      innerContact: box(narrow ? '32px' : '40px', narrow ? '32px' : '40px'),
+      narrowNews: w < 1000,
+      innerNews: box(narrow ? '40px' : '64px', narrow ? '40px' : '64px'),
+      innerFoot: { maxWidth: '1560px', margin: '0 auto', boxSizing: 'border-box', padding: '16px ' + pad, display: 'flex', justifyContent: 'center' },
+      innerFirst: box(narrow ? '48px' : '64px', narrow ? '48px' : '64px'),
+      innerMid: box('0', narrow ? '48px' : '64px'),
+      innerLast: box(narrow ? '48px' : '64px', narrow ? '48px' : '80px'),
+      col: { maxWidth: '960px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: narrow ? '48px' : '64px' },
+      orderGrid: { display: 'grid', gridTemplateColumns: w >= 1000 ? 'minmax(0,1fr) minmax(0,1fr)' : 'minmax(0,1fr)', gap: '20px', alignItems: 'stretch' },
+      steps, addr,
+      cardStyle: { boxSizing: 'border-box', minWidth: 0, background: 'var(--ss-surface-box,#FFFFFF)', borderRadius: '12px', padding: narrow ? '24px 16px' : '32px', boxShadow: '0 4px 12px rgba(19,44,67,.12)' },
+      cardStyleCol: { boxSizing: 'border-box', minWidth: 0, background: 'var(--ss-surface-box,#FFFFFF)', borderRadius: '12px', padding: narrow ? '24px 16px' : '32px', boxShadow: '0 4px 12px rgba(19,44,67,.12)', display: 'flex', flexDirection: 'column', gap: '24px' },
+      items: goods.map(g => ({ title: g.title, variant: g.variant, qty: g.qty, img: g.img, total: this.fmt(g.unit * g.qty) })),
+      lines: [
+        { label: 'Doprava', name: doprava, value: delFee ? this.fmt(delFee) : 'Zdarma' },
+        { label: 'Platba', name: platba, value: 'Zdarma' }
+      ],
+      total: this.fmt(total),
+      totalNoVat: this.fmt(total / 1.21),
+      showReg: !p.prihlasen
+    };
+  }
+}
+</script>
+</body>
+</html>
