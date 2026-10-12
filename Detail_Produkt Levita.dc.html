@@ -104,12 +104,14 @@ html[data-mode="dark"] .ss-pd-glass::before,html[data-mode="dark"] .ss-pd-glassw
   <dc-import name="Hlavicka" style="position:sticky;top:0;z-index:200" ledMode="{{ ledMode }}" hint-size="100%,180px"></dc-import>
   <dc-import name="PrezentacniLista" items="{{ presItems }}" onToggle="{{ onPresToggle }}" choices="{{ presChoices }}" onPick="{{ onPresPick }}" hint-size="460px,52px"></dc-import>
 
-  <main>
+  <main style="background:var(--ss-surface-tint,rgba(251,178,85,.05))">
+    <div style="width:100%;background:transparent">
     <div style="{{ inner }}">
       <dc-import name="Drobeckova" items="{{ crumbs }}" hint-size="100%,48px"></dc-import>
     </div>
+    </div>
 
-    <section style="width:100%;background:var(--ss-surface-page,#FFFFFF)">
+    <section style="width:100%;background:transparent">
       <div style="{{ inner }}">
         <sc-if value="{{ titleTop }}" hint-placeholder-val="{{ false }}">
           <div style="display:flex;flex-direction:column;gap:10px;padding:0 0 16px">
@@ -123,7 +125,7 @@ html[data-mode="dark"] .ss-pd-glass::before,html[data-mode="dark"] .ss-pd-glassw
         </sc-if>
         <div style="display:grid;grid-template-columns:{{ topTemplate }};gap:{{ topGap }};padding:8px 0 0;align-items:start">
 
-          <div style="min-width:0;display:flex;flex-direction:column;gap:16px;{{ galleryStick }}">
+          <div style="{{ galleryStyle }}">
             <div style="position:relative">
               <button type="button" class="ss-pd-ph" style="aspect-ratio:4/3" onClick="{{ openMain }}" aria-label="{{ mainAlt }}">
                 <sc-if value="{{ mainIsPhoto }}" hint-placeholder-val="{{ true }}">
@@ -442,7 +444,7 @@ html[data-mode="dark"] .ss-pd-glass::before,html[data-mode="dark"] .ss-pd-glassw
       </div>
     </section>
 
-    <section style="width:100%;background:var(--ss-surface-page,#FFFFFF);margin-top:{{ sectionGap }}">
+    <section style="width:100%;background:transparent;margin-top:{{ sectionGap }}">
       <div style="{{ innerPadded }}">
         <dc-import name="Usp" heading="Už 22 let pomáháme našim spáčům vyspat se do růžova" items="{{ uspItems }}" hint-size="100%,260px"></dc-import>
       </div>
@@ -458,7 +460,7 @@ html[data-mode="dark"] .ss-pd-glass::before,html[data-mode="dark"] .ss-pd-glassw
       </div>
     </nav>
 
-    <section id="popis" style="width:100%;background:var(--ss-surface-page,#FFFFFF)">
+    <section id="popis" style="width:100%;background:transparent">
       <div style="{{ innerPadded }}">
         <div style="display:grid;grid-template-columns:{{ descTemplate }};gap:{{ topGap }};align-items:start">
           <div style="min-width:0;display:flex;flex-direction:column;gap:20px">
@@ -483,7 +485,7 @@ html[data-mode="dark"] .ss-pd-glass::before,html[data-mode="dark"] .ss-pd-glassw
       </div>
     </section>
 
-    <section id="prednosti" style="width:100%;background:var(--ss-surface-page,#FFFFFF)">
+    <section id="prednosti" style="width:100%;background:transparent">
       <div style="{{ innerTight }}">
         <div style="display:grid;grid-template-columns:{{ descTemplate }};gap:{{ topGap }};align-items:start">
           <div style="min-width:0;display:flex;flex-direction:column;gap:20px">
@@ -533,7 +535,7 @@ html[data-mode="dark"] .ss-pd-glass::before,html[data-mode="dark"] .ss-pd-glassw
       </div>
     </section>
 
-    <section id="doplnky" style="width:100%;background:var(--ss-surface-page,#FFFFFF)">
+    <section id="doplnky" style="width:100%;background:transparent">
       <div style="{{ innerPadded }}">
         <div style="display:flex;flex-direction:column;gap:8px;align-items:center;text-align:center;margin-bottom:32px">
           <h2 style="margin:0;font-size:{{ h2Size }};line-height:1.15">Vyberte si z naší nabídky i další produkty, ať máte svou novou postel kompletní</h2>
@@ -551,7 +553,7 @@ html[data-mode="dark"] .ss-pd-glass::before,html[data-mode="dark"] .ss-pd-glassw
       </div>
     </section>
 
-    <section id="na-miru" style="width:100%;background:var(--ss-surface-page,#FFFFFF)">
+    <section id="na-miru" style="width:100%;background:transparent">
       <div style="{{ innerTight }}">
         <div style="display:grid;grid-template-columns:{{ descTemplate }};gap:{{ topGap }};align-items:center">
           <div style="min-width:0;display:flex;flex-direction:column;gap:20px">
@@ -574,7 +576,7 @@ html[data-mode="dark"] .ss-pd-glass::before,html[data-mode="dark"] .ss-pd-glassw
       </div>
     </section>
 
-    <section id="hodnoceni" style="width:100%;background:var(--ss-surface-page,#FFFFFF)">
+    <section id="hodnoceni" style="width:100%;background:transparent">
       <div style="{{ innerPadded }}">
         <div style="display:grid;grid-template-columns:{{ reviewTemplate }};gap:{{ topGap }};align-items:start">
           <div style="min-width:0;display:flex;flex-direction:column;gap:24px">
@@ -630,7 +632,7 @@ html[data-mode="dark"] .ss-pd-glass::before,html[data-mode="dark"] .ss-pd-glassw
       </div>
     </section>
 
-    <section id="faq" style="width:100%;background:var(--ss-surface-page,#FFFFFF)">
+    <section id="faq" style="width:100%;background:transparent">
       <div style="{{ innerTight }}">
         <div style="max-width:900px;display:flex;flex-direction:column;gap:16px">
           <h2 style="margin:0;font-size:{{ h2Size }};line-height:1.15">Časté dotazy našich spáčů</h2>
@@ -652,7 +654,7 @@ html[data-mode="dark"] .ss-pd-glass::before,html[data-mode="dark"] .ss-pd-glassw
       </div>
     </section>
 
-    <section id="souvisejici" style="width:100%;background:var(--ss-surface-tint,rgba(251,178,85,.05))">
+    <section id="souvisejici" style="width:100%;background:transparent">
       <div style="{{ innerPadded }}">
         <dc-import name="SouvisejiciProdukty" heading="Spáči ještě přikoupili" navPosition="below" hint-size="100%,560px"></dc-import>
       </div>
@@ -937,7 +939,7 @@ class Component extends DCLogic {
     const n = PH.length;
     const i = this.state.photo % n;
     const stick = this.props.fixniSloupec ?? 'galerie';
-    const canStick = w >= 1150;
+    const canStick = w >= 1000;
     const crumbH = 0;
     const tocTop = (this.state.headerH || 0) + 'px';
     const stickStyle = 'position:sticky;top:' + ((this.state.headerH || 0) + crumbH + 16) + 'px';
@@ -1042,6 +1044,7 @@ class Component extends DCLogic {
       tilesTemplate: w >= 820 ? 'repeat(3,minmax(0,1fr))' : w >= 550 ? 'repeat(2,minmax(0,1fr))' : 'minmax(0,1fr)',
       factsTemplate: w >= 550 ? 'repeat(2,minmax(0,1fr))' : 'minmax(0,1fr)',
       galleryStick: canStick && (this.state.stickPick ? this.state.stickPick === 'Galerie' : stick !== 'zadny') ? stickStyle : '',
+      galleryStyle: Object.assign({ minWidth: 0, display: 'flex', flexDirection: 'column', gap: '16px' }, (canStick && (this.state.stickPick ? this.state.stickPick === 'Galerie' : stick !== 'zadny')) ? { position: 'sticky', top: ((this.state.headerH || 0) + 16) + 'px', alignSelf: 'start', transition: 'top .4s cubic-bezier(.22,.61,.36,1)' } : {}),
       buyStick: '',
       titleTop: w < 1000,
       titleInColumn: w >= 1000,

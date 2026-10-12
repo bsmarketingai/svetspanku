@@ -68,6 +68,21 @@ a:hover{color:var(--ss-link-hover,#21507B);}
 class Component extends DCLogic {
   static DAYS = [
     { date: '12. 10. 2026', entries: [
+      { title: 'Detaily produktu: oprava fixního sloupce Galerie',
+        before: 'Sticky galerie se vkládala jako text do inline stylu („…;{{ galleryStick }}“) — runtime ho nepropsal, sloupec nezůstával přichycený.',
+        after: 'Celý styl sloupce galerie jako objekt galleryStyle (position sticky, top = výška hlavičky + 16 px, align-self start), od 1000 px (kdy jsou galerie a nákupní box vedle sebe; dříve až od 1150 px) a při volbě Fixní sloupec = Galerie. Při schované hlavičce (H2) galerie plynule (400 ms) vyjede k hornímu okraji (16 px), při zobrazení se vrátí pod hlavičku.',
+        why: 'Fixní sloupec nefungoval.',
+        files: 'Detail_Matrace 3.0, Detail_Postel 3.0, Detail_Komplet 3.0, Detail_Multi 3.0, Detail_Produkt Levita' },
+      { title: 'Detaily produktu: meruňkový podklad přes celou stránku',
+        before: 'surface.tint jen pod drobečkovou, horní sekcí a Spáči ještě přikoupili; ostatní sekce bílé.',
+        after: 'surface.tint na <main> (od drobečkové až po patičku). Sekce, které měly surface.page nebo tint, jsou průhledné (bez zdvojení odstínu). Sekce s vlastním podkladem (např. Materiály surface.subtle) beze změny.',
+        why: 'Požadavek klienta.',
+        files: 'Detail_Matrace 3.0, Detail_Postel 3.0, Detail_Komplet 3.0, Detail_Multi 3.0, Detail_Produkt Levita' },
+      { title: 'Detaily produktu: lehký meruňkový podklad horní sekce',
+        before: 'Horní sekce detailu (galerie + nákupní box) na bílé surface.page.',
+        after: 'Podklad surface.tint (apricot 5 %) — bílé boxy konfigurace a galerie na něm vystupují. Drobečková navigace nad sekcí na stejném podkladu. Šipky galerie (náběhy z okraje, jen Detail_Matrace 3.0) mají stejný podklad (tint přes surface.page), aby plynule navazovaly. Ostatní sekce detailu beze změny.',
+        why: 'Požadavek klienta.',
+        files: 'Detail_Matrace 3.0, Detail_Postel 3.0, Detail_Komplet 3.0, Detail_Multi 3.0, Detail_Produkt Levita' },
       { title: 'O nás: sekce Naše prodejny',
         before: 'Sekce neexistovala.',
         after: 'Samostatná sekce pod „Vyrábíme na míru“ s výpisem prodejen jako na homepage, varianta P1: kicker, h2 na střed, chipy měst, karta prodejny (fakta, adresa, otevírací doba, telefon, e-mail, Více o prodejně) + fotka + mapa; 3/2/1 sloupce. Podklad surface.subtle. Výpis vytažen do nové komponenty Prodejny.dc.html (první verze P2 nahrazena). Homepage zatím beze změny.',
